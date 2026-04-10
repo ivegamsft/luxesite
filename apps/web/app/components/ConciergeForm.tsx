@@ -233,15 +233,14 @@ export default function ConciergeForm() {
   return (
     <section id="contact" className="py-section-lg px-4 sm:px-6 bg-aurora-bg-light">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
+        {/* Section Header — warm, conversational */}
         <AnimatedSection>
           <div className="mb-12">
-            <h2 className="text-fluid-2xl font-heading font-semibold tracking-tight leading-tight mb-4 text-aurora-text">
-              Ready to Start Planning?
-            </h2>
-            <p className="text-fluid-base text-aurora-text-muted max-w-[65ch]">
-              A specialist will reach out within 24 hours to discuss your vision.
+            <p className="text-fluid-lg text-aurora-text-muted max-w-[50ch] leading-relaxed">
+              Tell us where you dream of going.{' '}
+              <span className="text-aurora-text font-heading font-medium">We&rsquo;ll handle every detail from&nbsp;here.</span>
             </p>
+            <h2 className="sr-only">Request a Consultation</h2>
           </div>
         </AnimatedSection>
 

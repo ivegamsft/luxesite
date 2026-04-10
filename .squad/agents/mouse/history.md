@@ -327,3 +327,21 @@ Price opacity bumped from `/60` to `/80`; region from `/60` to `/70`. All text n
 - `apps/web/app/components/Hero.tsx` — LuxeSelect component + Hero
 - `apps/web/app/components/__tests__/Hero.test.tsx` — fixed framer-motion mock
 - `apps/web/app/__mocks__/framer-motion.tsx` — added useReducedMotion + motion.ul/h1/p
+
+### Issue #145: Section Heading Variety (2026-04-11)
+
+**Problem:** Gold uppercase eyebrow → large h2 → muted subtitle pattern repeated in 6+ sections. This is the #1 AI-template tell — human designers create variety.
+
+**Audit results:** Gold eyebrow pattern found in DestinationGrid, ExperienceList, FAQ, GuideGrid, WhyAurora. Tiers/ConciergeForm had similar centered h2+subtitle without eyebrow. Testimonials was already unique (editorial quote opener).
+
+**Changes (3 files):**
+
+1. **FAQ.tsx** — Removed gold eyebrow ("Your Questions, Answered") and centered h2. Replaced with left-aligned, understated `text-fluid-xl font-medium text-aurora-text/80` heading ("Common Questions"). No eyebrow, no subtitle. The accordion items are the content — the heading just labels the section.
+
+2. **Tiers.tsx** — Replaced centered h2+subtitle block with a flex baseline row: left-aligned `text-fluid-lg` heading ("Membership") + right-aligned muted tagline ("Three tiers. One uncompromising standard."). Cards now lead the visual hierarchy, heading is a section label.
+
+3. **ConciergeForm.tsx** — Replaced formal h2 ("Ready to Start Planning?") with a warm conversational line using mixed weight/color: muted lead-in + emphasized `font-heading font-medium` phrase. Visual h2 moved to `sr-only` for accessibility — screen readers still get proper heading structure.
+
+**Preserved:** DestinationGrid and ExperienceList keep the gold eyebrow pattern (appropriate for discovery sections). GuideGrid and WhyAurora untouched (Morpheus territory, Issue #147).
+
+**Key lesson:** Section heading variety is about matching the heading treatment to the section's purpose. Discovery sections earn the full eyebrow+heading treatment. Utility sections (FAQ, forms) need understated labels. Social proof (testimonials) should let content speak. Pricing should lead with the product.

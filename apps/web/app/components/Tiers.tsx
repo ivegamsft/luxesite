@@ -19,11 +19,11 @@ export default function Tiers() {
     <section id="membership" className="pt-section-lg pb-[calc(var(--space-section-lg)*1.25)] px-4 sm:px-6 lg:px-12 bg-aurora-navy">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection variant="fade-up">
-          <div className="text-center mb-14">
-            <h2 className="font-heading text-fluid-2xl font-bold tracking-tight leading-tight text-white mb-3">
-              One Standard — Uncompromising
+          <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
+            <h2 className="font-heading text-fluid-lg font-semibold tracking-tight text-white">
+              Membership
             </h2>
-            <p className="text-fluid-base text-white/70">Choose the tier that matches your travel ambitions.</p>
+            <p className="text-sm text-white/50">Three tiers. One uncompromising standard.</p>
           </div>
         </AnimatedSection>
 

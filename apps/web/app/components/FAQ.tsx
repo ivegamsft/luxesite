@@ -64,11 +64,8 @@ export default function FAQ() {
     <section id="faq" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-dark">
       <div className="max-w-5xl mx-auto">
         <AnimatedSection>
-          <p className="text-sm font-medium tracking-widest uppercase text-aurora-gold mb-3 text-center">
-            Your Questions, Answered
-          </p>
-          <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight text-aurora-text mb-14 text-center">
-            Frequently Asked Questions
+          <h2 className="font-heading text-fluid-xl font-medium tracking-tight text-aurora-text/80 mb-10">
+            Common Questions
           </h2>
         </AnimatedSection>
 
