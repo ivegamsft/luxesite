@@ -18,7 +18,7 @@ export default function Tiers() {
   return (
     <section id="membership" className="py-section-lg px-4 sm:px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
-        <AnimatedSection>
+        <AnimatedSection variant="fade-up">
           <div className="text-center mb-14">
             <h2 className="font-heading text-fluid-2xl font-bold tracking-tight leading-tight text-aurora-text mb-3">
               One Standard — Uncompromising
@@ -57,6 +57,9 @@ export default function Tiers() {
                     /{tier.price.split('/')[1]}
                   </span>
                 </div>
+                {tier.perTrip && (
+                  <p className="text-xs text-aurora-text-muted mt-1">{tier.perTrip}</p>
+                )}
               </div>
 
               <ul className="space-y-3 mb-8">

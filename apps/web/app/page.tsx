@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TrustBar from './components/TrustBar';
+import Differentiators from './components/Differentiators';
 import WhyAurora from './components/WhyAurora';
 import DestinationGrid from './components/DestinationGrid';
 import ExperienceList from './components/ExperienceList';
@@ -20,9 +21,10 @@ export default function Home() {
       <main id="main-content">
         <Hero />
         <TrustBar />
-        <WhyAurora />
+        <Differentiators />
         <DestinationGrid />
         <ExperienceList />
+        <WhyAurora />
         <GuideGrid />
         <Testimonials />
         <PressAwards />

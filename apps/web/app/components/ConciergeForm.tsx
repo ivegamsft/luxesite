@@ -48,9 +48,15 @@ export default function ConciergeForm() {
     const handleTierSelection = (e: Event) => {
       const { tier } = (e as CustomEvent).detail as { tier: string };
       
+      const tierBudgetMap: Record<string, string> = {
+        'Silver': '$5,000 – $10,000',
+        'Black': '$25,000 – $50,000',
+        'Obsidian': '$100,000+',
+      };
       setFormData((prev) => ({
         ...prev,
         notes: `Interested in ${tier} membership — please include tier details in our consultation.`,
+        budget: tierBudgetMap[tier] || prev.budget,
       }));
       
       setPrefillBanner(true);

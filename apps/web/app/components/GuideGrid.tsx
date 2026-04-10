@@ -14,7 +14,7 @@ export default function GuideGrid() {
   return (
     <section id="guides" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
       <div className="max-w-7xl mx-auto">
-        <AnimatedSection>
+        <AnimatedSection variant="fade-up">
           <p
             className="text-sm font-medium tracking-widest uppercase mb-3 text-aurora-gold"
           >
@@ -45,7 +45,7 @@ export default function GuideGrid() {
               fill
               className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, 50vw"
-              loading="lazy"
+              loading="eager"
             />
             <span
               className="absolute top-4 right-4 text-xs font-medium px-3 py-1 rounded-full backdrop-blur-sm bg-white/85 text-aurora-text"

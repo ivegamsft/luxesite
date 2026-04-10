@@ -6,6 +6,7 @@ export const tiers: MembershipTier[] = [
     name: 'Silver',
     tagline: 'Your Journey Begins',
     price: '$25,000/year',
+    perTrip: 'from $5,000 per journey',
     featured: false,
     perks: [
       'Priority booking at partner properties worldwide',
@@ -20,6 +21,7 @@ export const tiers: MembershipTier[] = [
     name: 'Black',
     tagline: 'Elevated Beyond Limits',
     price: '$75,000/year',
+    perTrip: 'from $15,000 per journey',
     featured: true,
     perks: [
       'Everything in Silver, plus:',
@@ -36,6 +38,7 @@ export const tiers: MembershipTier[] = [
     name: 'Obsidian',
     tagline: 'The Rarest Circle',
     price: '$200,000/year',
+    perTrip: 'from $50,000 per journey',
     featured: false,
     perks: [
       'Everything in Black, plus:',

@@ -24,6 +24,7 @@ export interface MembershipTier {
   price: string;
   featured: boolean;
   perks: string[];
+  perTrip?: string;
 }
 
 export interface Testimonial {

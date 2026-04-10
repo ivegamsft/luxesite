@@ -19,7 +19,7 @@ const faqData: FAQItem[] = [
   {
     id: 'tiers',
     question: "What's included in each membership tier?",
-    answer: 'Gold tier ($5,000+ per trip) includes personalized itineraries, 24/7 support, and exclusive partnerships. Platinum tier ($15,000+) adds priority booking, complimentary upgrades, and dedicated concierge. Black tier ($50,000+) offers unlimited changes, private events access, and a personal travel director for white-glove service.'
+    answer: 'Silver ($25,000/year, from $5,000 per journey) includes priority booking, lounge access, a quarterly destination guide, 10% experience discount, and a dedicated concierge hotline. Black ($75,000/year, from $15,000 per journey) adds a personal travel curator, room upgrades, private jet access, invitation-only events, and 24/7 emergency assistance. Obsidian ($200,000/year, from $50,000 per journey) provides a dedicated three-specialist team, companion travel, private experiences, helicopter transfers, and access to Aurora\'s private island.'
   },
   {
     id: 'booking-advance',
@@ -49,7 +49,7 @@ const faqData: FAQItem[] = [
   {
     id: 'minimum-budget',
     question: 'Is there a minimum budget?',
-    answer: 'Our Gold tier has a minimum trip value of $5,000 per person. This allows us to deliver the level of personalization, exclusive access, and white-glove service that defines Aurora Luxe. For travelers seeking exceptional experiences with meticulous attention to detail, we deliver unparalleled value.'
+    answer: 'Our Silver tier starts at $5,000 per journey. This allows us to deliver the level of personalization, exclusive access, and white-glove service that defines Aurora Luxe. For travelers seeking exceptional experiences with meticulous attention to detail, we deliver unparalleled value.'
   }
 ];
 

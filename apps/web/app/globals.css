@@ -13,7 +13,7 @@
   /* Accents */
   --aurora-gold: #c9a76a;        /* champagne gold — primary */
   --aurora-navy: #1a3a52;        /* secondary accent */
-  --aurora-sage: #7a8f7f;        /* tertiary */
+
 
   /* Text */
   --aurora-text: #2c2620;        /* body text, headings */
@@ -66,7 +66,7 @@
   --color-aurora-border: #e8e4df;
   --color-aurora-gold: #c9a76a;
   --color-aurora-navy: #1a3a52;
-  --color-aurora-sage: #7a8f7f;
+
   --color-aurora-success: #5a8f4a;
   --color-aurora-error: #a85a4a;
 
@@ -126,7 +126,7 @@ body {
     from 0deg,
     #c9a76a,
     #1a3a52,
-    #7a8f7f,
+    #f0ebe5,
     #c9a76a
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);

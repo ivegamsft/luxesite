@@ -71,6 +71,9 @@ export default function ExperienceList() {
     <section id="experiences" className="py-section-md px-4 sm:px-6 lg:px-12 bg-aurora-bg-dark">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection>
+          <p className="text-sm font-medium tracking-widest uppercase mb-3 text-aurora-gold">
+            Curated by Our Specialists
+          </p>
           <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-12">
             Signature Experiences
           </h2>

@@ -75,7 +75,10 @@ export default function DestinationGrid() {
   return (
     <section id="destinations" className="py-section-lg px-4 sm:px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
-        <AnimatedSection>
+        <AnimatedSection variant="fade-up">
+          <p className="text-sm font-medium tracking-widest uppercase mb-3 text-aurora-gold">
+            World-Class Destinations
+          </p>
           <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-10">
             Curated Destinations
           </h2>
@@ -151,6 +154,7 @@ export default function DestinationGrid() {
                         fill
                         className="object-cover"
                         sizes={isFeature ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'}
+                        loading={index < 6 ? 'eager' : 'lazy'}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-aurora-text/75 via-aurora-text/30 to-transparent pointer-events-none"></div>
                       <div className="absolute top-0 right-0 w-2/3 h-1/3 bg-gradient-to-bl from-aurora-text/40 to-transparent pointer-events-none"></div>
@@ -186,9 +190,9 @@ export default function DestinationGrid() {
                         {destination.tagline}
                       </p>
                       <span
-                        className="inline-block text-xs font-medium tracking-wide transition-opacity duration-200 opacity-0 group-hover:opacity-100 text-aurora-gold"
+                        className="inline-block text-xs font-medium tracking-wide transition-opacity duration-200 opacity-70 group-hover:opacity-100 text-aurora-gold"
                       >
-                        Learn More&nbsp;&rarr;
+                        Tap to explore&nbsp;&rarr;
                       </span>
                     </div>
                   </motion.div>
