@@ -307,3 +307,23 @@ Price opacity bumped from `/60` to `/80`; region from `/60` to `/70`. All text n
 6. **Component files** — all 10 component files checked. All className strings reference current semantic tokens (`aurora-text`, `aurora-gold`, `aurora-border`, etc.). No stale references.
 
 **Note:** Build has a pre-existing TypeScript error in `experiences.ts` (missing `regions` property) — unrelated to token naming. Filed separately.
+
+### Issue #136: Hero Planner Dropdown Styling (2026-04-11)
+
+**Problem:** Two native `<select>` elements in the hero concierge discovery row rendered browser-default dropdown panels — completely breaking the luxury control bar aesthetic.
+
+**Fix:** Replaced both native `<select>` with a custom `LuxeSelect` component (inline in Hero.tsx). The component uses:
+- `bg-white/90 backdrop-blur-md` + `border-aurora-border` + `shadow-glass` + `rounded-lg` for the dropdown panel — matches the parent control bar's glass treatment
+- Aurora gold highlight for the selected option (`text-aurora-gold font-semibold bg-aurora-gold/8`)
+- `bg-aurora-bg-dark` hover/active state for keyboard navigation
+- Animated chevron (rotate-180 on open) with `text-aurora-text-muted`
+- Framer Motion `AnimatePresence` for smooth open/close transitions (opacity + subtle y-shift)
+
+**Accessibility:** Full keyboard support — ArrowUp/Down, Enter/Space to select, Escape to close, Home/End. ARIA: `role="combobox"` on trigger, `role="listbox"` on panel, `role="option"` on items, `aria-expanded`, `aria-activedescendant`, `aria-selected`. Click-outside-to-close via mousedown listener.
+
+**Test fix:** Hero tests were pre-existing failures (framer-motion mock missing `useReducedMotion`). Added inline `jest.mock('framer-motion')` to Hero.test.tsx with all needed exports. Also updated stale headline assertion. All 5 tests now pass.
+
+**Key files:**
+- `apps/web/app/components/Hero.tsx` — LuxeSelect component + Hero
+- `apps/web/app/components/__tests__/Hero.test.tsx` — fixed framer-motion mock
+- `apps/web/app/__mocks__/framer-motion.tsx` — added useReducedMotion + motion.ul/h1/p
