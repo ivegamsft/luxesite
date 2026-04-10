@@ -11,13 +11,13 @@ const cardVariants = {
 
 export default function ExperienceList() {
   return (
-    <section id="experiences" className="py-16 md:py-20 px-4 sm:px-6 lg:px-12 bg-aurora-darker">
+    <section id="experiences" className="py-section-md px-4 sm:px-6 lg:px-12 bg-aurora-darker">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection>
-          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-center mb-4">
+          <h2 className="font-heading text-fluid-3xl mb-4">
             Signature Experiences
           </h2>
-          <p className="text-center text-aurora-white/60 mb-12 max-w-2xl mx-auto text-sm md:text-base">
+          <p className="text-aurora-white/60 mb-12 max-w-2xl text-fluid-sm">
             Unforgettable moments crafted exclusively for those who seek the extraordinary.
           </p>
         </AnimatedSection>
@@ -33,24 +33,33 @@ export default function ExperienceList() {
               },
             },
           }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          className="flex flex-col gap-6 md:gap-8"
         >
-          {experiences.map((experience) => (
-            <motion.div
-              key={experience.id}
-              variants={cardVariants}
-              transition={{ duration: 0.5 }}
-              className="bg-aurora-glass backdrop-blur-glass border border-aurora-glass-border rounded-2xl p-6 md:p-8 shadow-glass transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-glow hover:shadow-aurora-purple/20"
-            >
-              <div className="text-4xl md:text-5xl mb-4">{experience.icon}</div>
-              <h3 className="font-heading text-lg md:text-xl mb-3 text-aurora-white">
-                {experience.title}
-              </h3>
-              <p className="text-aurora-white/70 leading-relaxed text-sm md:text-base max-w-[65ch]">
-                {experience.description}
-              </p>
-            </motion.div>
-          ))}
+          {experiences.map((experience, index) => {
+            const isEven = index % 2 === 0;
+            return (
+              <motion.div
+                key={experience.id}
+                variants={cardVariants}
+                transition={{ duration: 0.5 }}
+                className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-stretch border border-aurora-glass-border rounded-2xl overflow-hidden shadow-glass transition-all duration-300 ease-out hover:shadow-glow hover:shadow-aurora-purple/20`}
+              >
+                {/* Icon side */}
+                <div className="flex items-center justify-center bg-aurora-glass backdrop-blur-glass p-8 md:p-12 md:w-48 shrink-0">
+                  <span className="text-5xl md:text-6xl">{experience.icon}</span>
+                </div>
+                {/* Content side */}
+                <div className="flex-1 p-6 md:p-8 flex flex-col justify-center bg-aurora-glass/50 backdrop-blur-glass">
+                  <h3 className="font-heading text-fluid-lg mb-3 text-aurora-white">
+                    {experience.title}
+                  </h3>
+                  <p className="text-aurora-white/70 leading-relaxed text-fluid-sm max-w-[65ch]">
+                    {experience.description}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>

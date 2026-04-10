@@ -88,7 +88,7 @@ export default function ConciergeForm() {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 px-4 sm:px-6">
+    <section id="contact" className="py-section-lg px-4 sm:px-6">
       <Toaster
         position="top-center"
         toastOptions={{
@@ -104,10 +104,10 @@ export default function ConciergeForm() {
         {/* Section Header */}
         <AnimatedSection>
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-4 bg-gradient-aurora bg-clip-text text-transparent">
+            <h2 className="text-fluid-3xl font-heading font-bold mb-4 text-aurora-white">
               Design Your Journey
             </h2>
-            <p className="text-base md:text-lg text-aurora-white/70">
+            <p className="text-fluid-base text-aurora-white/70">
               Tell us your dreams. We'll craft the reality.
             </p>
           </div>
@@ -117,6 +117,13 @@ export default function ConciergeForm() {
         <AnimatedSection delay={0.2}>
           <div className="max-w-2xl mx-auto bg-aurora-glass backdrop-blur-glass border border-aurora-glass-border rounded-2xl p-6 md:p-8 shadow-glass">
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Screen reader error announcements */}
+            <div aria-live="polite" className="sr-only">
+              {Object.values(errors).length > 0 && (
+                <p>{Object.values(errors).join('. ')}.</p>
+              )}
+            </div>
+
             {/* Name */}
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-aurora-white/80 mb-2">
@@ -129,8 +136,9 @@ export default function ConciergeForm() {
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full bg-aurora-glass border border-aurora-glass-border rounded-xl px-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
                 aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? 'name-error' : undefined}
               />
-              {errors.name && <p className="mt-1 text-sm text-red-400">{errors.name}</p>}
+              {errors.name && <p id="name-error" className="mt-1 text-sm text-red-400">{errors.name}</p>}
             </div>
 
             {/* Email */}
@@ -145,8 +153,9 @@ export default function ConciergeForm() {
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="w-full bg-aurora-glass border border-aurora-glass-border rounded-xl px-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
                 aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? 'email-error' : undefined}
               />
-              {errors.email && <p className="mt-1 text-sm text-red-400">{errors.email}</p>}
+              {errors.email && <p id="email-error" className="mt-1 text-sm text-red-400">{errors.email}</p>}
             </div>
 
             {/* Travel Dates */}

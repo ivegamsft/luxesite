@@ -117,4 +117,65 @@ describe('ConciergeForm', () => {
       expect(emailInput.value).toBe('');
     });
   });
+
+  // --- Accessibility tests (verifying Trinity's a11y fixes) ---
+
+  describe('Accessibility', () => {
+    it('aria-invalid is set on inputs when validation fails', async () => {
+      render(<ConciergeForm />);
+
+      const nameInput = screen.getByLabelText(/name/i);
+      const emailInput = screen.getByLabelText(/email/i);
+
+      // Before submission, aria-invalid should be false
+      expect(nameInput).toHaveAttribute('aria-invalid', 'false');
+      expect(emailInput).toHaveAttribute('aria-invalid', 'false');
+
+      // Submit empty form to trigger validation
+      fireEvent.click(screen.getByText('Send Request'));
+
+      await waitFor(() => {
+        expect(nameInput).toHaveAttribute('aria-invalid', 'true');
+        expect(emailInput).toHaveAttribute('aria-invalid', 'true');
+      });
+    });
+
+    it('validation errors have unique IDs', async () => {
+      render(<ConciergeForm />);
+
+      fireEvent.click(screen.getByText('Send Request'));
+
+      await waitFor(() => {
+        const nameError = screen.getByText('Name is required');
+        const emailError = screen.getByText('Email is required');
+
+        expect(nameError).toHaveAttribute('id');
+        expect(emailError).toHaveAttribute('id');
+        // IDs must be distinct
+        expect(nameError.getAttribute('id')).not.toBe(emailError.getAttribute('id'));
+      });
+    });
+
+    it('invalid inputs have aria-describedby pointing to their error message', async () => {
+      render(<ConciergeForm />);
+
+      fireEvent.click(screen.getByText('Send Request'));
+
+      await waitFor(() => {
+        const nameInput = screen.getByLabelText(/name/i);
+        const nameError = screen.getByText('Name is required');
+
+        expect(nameError).toHaveAttribute('id');
+        expect(nameInput).toHaveAttribute('aria-describedby', nameError.getAttribute('id'));
+      });
+    });
+
+    it('aria-live region exists for error announcements', () => {
+      render(<ConciergeForm />);
+
+      const liveRegion = document.querySelector('[aria-live]');
+      expect(liveRegion).toBeInTheDocument();
+      expect(liveRegion).toHaveAttribute('aria-live', 'polite');
+    });
+  });
 });

@@ -26,13 +26,13 @@ export default function DestinationGrid() {
   }, [toggleCard]);
 
   return (
-    <section id="destinations" className="py-16 md:py-20 px-4 sm:px-6 lg:px-12">
+    <section id="destinations" className="py-section-lg px-4 sm:px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection>
-          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-center mb-4">
+          <h2 className="font-heading text-fluid-3xl mb-4">
             Curated Destinations
           </h2>
-          <p className="text-center text-aurora-white/60 mb-12 max-w-2xl mx-auto text-sm md:text-base">
+          <p className="text-aurora-white/60 mb-12 max-w-2xl text-fluid-sm">
             Handpicked escapes where luxury meets adventure. Every destination tells a story worth living.
           </p>
         </AnimatedSection>
@@ -48,29 +48,30 @@ export default function DestinationGrid() {
               },
             },
           }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 auto-rows-[minmax(280px,auto)]"
         >
-          {destinations.map((destination) => {
+          {destinations.map((destination, index) => {
             const isExpanded = expandedSlug === destination.slug;
+            const isFeature = index === 0;
             return (
               <motion.div
                 key={destination.slug}
                 variants={cardVariants}
                 transition={{ duration: 0.5 }}
-                className="group relative rounded-2xl overflow-hidden bg-aurora-glass backdrop-blur-glass border border-aurora-glass-border shadow-glass transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-glow hover:shadow-aurora-cyan/20"
+                className={`group relative rounded-2xl overflow-hidden bg-aurora-glass backdrop-blur-glass border border-aurora-glass-border shadow-glass transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-glow hover:shadow-aurora-cyan/20 ${isFeature ? 'md:col-span-2 md:row-span-2' : ''}`}
                 role="button"
                 tabIndex={0}
                 aria-expanded={isExpanded}
                 onClick={() => toggleCard(destination.slug)}
                 onKeyDown={(e) => handleKeyDown(e, destination.slug)}
               >
-                <div className="relative aspect-[4/3]">
+                <div className={`relative ${isFeature ? 'aspect-[16/9] md:aspect-auto md:h-full' : 'aspect-[4/3]'}`}>
                   <Image
                     src={destination.imageUrl}
                     alt={destination.name}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    sizes={isFeature ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-aurora-dark/90 via-aurora-dark/30 to-transparent"></div>
                   
@@ -94,7 +95,7 @@ export default function DestinationGrid() {
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="font-heading text-xl mb-1 text-aurora-white">
+                  <h3 className={`font-heading mb-1 text-aurora-white ${isFeature ? 'text-fluid-xl' : 'text-fluid-lg'}`}>
                     {destination.name}
                   </h3>
                   <p className="text-sm text-aurora-white/60 mb-2">

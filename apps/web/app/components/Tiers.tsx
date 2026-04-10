@@ -11,13 +11,13 @@ const cardVariants = {
 
 export default function Tiers() {
   return (
-    <section id="membership" className="py-16 md:py-20 px-4 sm:px-6 lg:px-12">
+    <section id="membership" className="py-section-lg px-4 sm:px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection>
-          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-center mb-4">
+          <h2 className="font-heading text-fluid-3xl text-center mb-4">
             Membership
           </h2>
-          <p className="text-center text-aurora-white/60 mb-12 max-w-2xl mx-auto text-sm md:text-base">
+          <p className="text-center text-aurora-white/60 mb-12 max-w-2xl mx-auto text-fluid-sm">
             Exclusive access to a world beyond ordinary. Choose the tier that unlocks your next chapter.
           </p>
         </AnimatedSection>
@@ -53,7 +53,7 @@ export default function Tiers() {
               )}
 
               <div className="mb-6">
-                <h3 className="font-heading text-xl md:text-2xl mb-2 text-aurora-white">
+                <h3 className="font-heading text-fluid-xl mb-2 text-aurora-white">
                   {tier.name}
                 </h3>
                 <p className="text-xs md:text-sm text-aurora-white/60 mb-4">

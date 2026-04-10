@@ -1,17 +1,38 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 export default function Hero() {
-  const [scrollY, setScrollY] = useState(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const scrollYRef = useRef(0);
+  const rafRef = useRef<number>(0);
+
+  const applyParallax = useCallback(() => {
+    const el = contentRef.current;
+    if (!el) return;
+    const y = scrollYRef.current;
+    el.style.transform = `translateY(${y * 0.3}px)`;
+    el.style.opacity = `${Math.max(0, 1 - y / 500)}`;
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const handleScroll = () => {
+      scrollYRef.current = window.scrollY;
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(() => {
+        applyParallax();
+        rafRef.current = 0;
+      });
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [applyParallax]);
+
   const handleDesignTrip = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
@@ -54,20 +75,17 @@ export default function Hero() {
         <div className="w-96 h-96 md:w-[600px] md:h-[600px] bg-gradient-aurora opacity-20 rounded-full blur-[120px] animate-aurora-pulse" />
       </div>
 
-      {/* Content with parallax */}
+      {/* Content with parallax — transforms applied via ref to bypass React re-renders */}
       <motion.div 
+        ref={contentRef}
         className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
-        style={{ 
-          transform: `translateY(${scrollY * 0.3}px)`,
-          opacity: Math.max(0, 1 - scrollY / 500)
-        }}
       >
         {/* Headline */}
         <motion.h1 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-heading text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-aurora-white mb-6 tracking-tight px-4"
+          className="font-heading text-fluid-5xl font-bold text-aurora-white mb-6 tracking-tight px-4"
         >
           Beyond First Class.
         </motion.h1>
@@ -77,7 +95,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-base sm:text-lg md:text-xl text-aurora-white/70 max-w-2xl mx-auto mb-10 leading-relaxed px-4"
+          className="text-fluid-base text-aurora-white/70 max-w-2xl mx-auto mb-10 leading-relaxed px-4"
         >
           Experience the pinnacle of luxury travel with Aurora Luxe. From private jets to superyachts, 
           Michelin-starred dining to exclusive island retreats—every journey is curated to perfection 

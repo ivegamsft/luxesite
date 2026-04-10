@@ -24,4 +24,14 @@ describe('Footer', () => {
     expect(screen.getByText('Experiences')).toBeInTheDocument();
     expect(screen.getByText('Membership')).toBeInTheDocument();
   });
+
+  // --- Gradient text removal verification (Trinity's fix) ---
+
+  it('logo does NOT use gradient text clipping (bg-clip-text)', () => {
+    render(<Footer />);
+
+    const logo = screen.getByText('AURORA LUXE');
+    expect(logo).toBeInTheDocument();
+    expect(logo.className).not.toMatch(/bg-clip-text/);
+  });
 });

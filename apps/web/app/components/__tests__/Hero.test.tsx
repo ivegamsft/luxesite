@@ -47,4 +47,18 @@ describe('Hero', () => {
     // Should call getElementById with 'destinations'
     expect(mockGetElementById).toHaveBeenCalledWith('destinations');
   });
+
+  it('scroll indicator is present', () => {
+    render(<Hero />);
+
+    // The scroll indicator is an SVG arrow at the bottom
+    const svg = document.querySelector('.animate-float svg');
+    expect(svg).toBeInTheDocument();
+  });
+
+  it('renders without errors', () => {
+    // Smoke test — no exceptions during render
+    const { container } = render(<Hero />);
+    expect(container.querySelector('section#hero')).toBeInTheDocument();
+  });
 });

@@ -3,11 +3,11 @@ import { navLinks } from '../data/navigation';
 export default function Footer() {
   return (
     <footer className="border-t border-aurora-glass-border bg-aurora-darker">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-section-sm">
         {/* Top Row: Logo + Nav */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-8">
           {/* Logo */}
-          <div className="font-heading text-xl md:text-2xl font-bold bg-gradient-aurora bg-clip-text text-transparent">
+          <div className="font-heading text-fluid-xl font-bold text-aurora-white">
             AURORA LUXE
           </div>
 
