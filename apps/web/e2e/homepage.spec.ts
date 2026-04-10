@@ -40,10 +40,10 @@ test.describe('Homepage — Visual & Content Audit', () => {
 
     // Main heading
     const heading = hero.locator('h1');
-    await expect(heading).toContainText('Beyond First Class');
+    await expect(heading).toContainText('Award-Winning Travel Specialists');
 
     // CTA buttons
-    await expect(hero.getByText('Design My Trip')).toBeVisible();
+    await expect(hero.getByText('Request Consultation')).toBeVisible();
     await expect(hero.getByText('Explore Destinations')).toBeVisible();
 
     await hero.screenshot({ path: 'e2e/screenshots/section-hero.png' });

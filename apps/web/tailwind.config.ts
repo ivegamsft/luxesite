@@ -57,8 +57,8 @@ const config: Config = {
         "scroll-hint": "scroll-hint 1.2s ease-in-out 2s 1 both",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "Libre Franklin", "system-ui", "sans-serif"],
-        heading: ["var(--font-heading)", "Bodoni Moda", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "Inter", "system-ui", "sans-serif"],
+        heading: ["var(--font-heading)", "Space Grotesk", "system-ui", "sans-serif"],
       },
       fontSize: {
         "fluid-sm": "var(--fluid-sm)",
@@ -69,6 +69,13 @@ const config: Config = {
         "fluid-3xl": "var(--fluid-3xl)",
       },
       spacing: {
+        "xs": "var(--space-xs)",
+        "sm": "var(--space-sm)",
+        "md": "var(--space-md)",
+        "lg": "var(--space-lg)",
+        "xl": "var(--space-xl)",
+        "2xl": "var(--space-2xl)",
+        "3xl": "var(--space-3xl)",
         "section-hero": "var(--space-hero)",
         "section-lg": "var(--space-section-lg)",
         "section-md": "var(--space-section-md)",

@@ -245,3 +245,16 @@ Price opacity bumped from `/60` to `/80`; region from `/60` to `/70`. All text n
 - shadow-glow → shadow-lift | shadow-glass → shadow-subtle
 
 **Key lesson:** When migrating to a light theme, photo-heavy components (Hero, card grids) must retain dark scrims regardless of overall theme. The scrim color should be neutral black (not theme background) to ensure contrast on any photograph. This is a separation of concerns: page chrome follows theme, media overlays follow content.
+
+### Font Switch — Space Grotesk + Inter (Issue #28)
+
+**3 files, 6 edits. Build clean.**
+
+**Task:** Replace Bodoni Moda (serif heading) + Libre Franklin (body sans) with Space Grotesk (geometric sans heading) + Inter (body sans) per luxurysite.md spec.
+
+**Changes:**
+- `layout.tsx`: Swapped imports and font configs. Variables now `--font-space-grotesk` and `--font-inter`.
+- `globals.css`: Updated `@theme inline` block to map `--font-sans` → Inter, `--font-heading` → Space Grotesk. Updated body fallback. Recalibrated fluid type scale targets: h1→3rem, h2→2.25rem, h3→1.75rem, body→1rem, sm→0.875rem. Body line-height 1.7→1.6. Added 8px baseline spacing tokens (xs through 3xl).
+- `tailwind.config.ts`: Heading fallback changed from `"Bodoni Moda", "Georgia", "serif"` to `"Space Grotesk", "system-ui", "sans-serif"`. Body fallback updated to Inter. Added 8px spacing tokens.
+
+**Key lesson:** Moving from a serif heading font (Bodoni Moda) to a geometric sans (Space Grotesk) shifts the brand voice from editorial luxury toward modern tech-luxury. The type scale needed recalibration — Bodoni's high contrast and narrow letterforms read larger at same px size than Space Grotesk's even strokes. Fluid clamp() targets were reduced accordingly.

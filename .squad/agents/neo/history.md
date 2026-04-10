@@ -19,3 +19,21 @@
 - Used hardcoded hex tokens (`#faf9f7`, `#2c2620`, `#6b6458`, `#c9a76a`, `#e8e4df`) per spec — Tailwind token rename is pending (Issue C from COMPETITIVE_ANALYSIS)
 - Both components export default and are import-ready; page.tsx untouched per Issue #43 scope
 - Build verified clean with `npx next build`
+
+### 2026-07 — Issue #34: Travel Guides section (GuideGrid)
+- Created `app/data/guides.ts` with 6 mock guides (Botswana, Maldives, Japan ryokans, Patagonia, Marrakech, Alpine wellness) with `TravelGuide` interface
+- Added `TravelGuide` type to `app/lib/types.ts`
+- Built `GuideGrid.tsx`: 3/2/1 col responsive grid, 4:3 image cards, lazy-loaded images, read-time badge, author line, "Read Guide →" gold link, hover lift + shadow, light theme tokens, AnimatedSection + staggered Framer Motion, reduced-motion support
+- Cards: white bg, `#e8e4df` border, `rounded-sm`, `line-clamp-3` for excerpt, `line-clamp-2` for title
+
+### 2026-07 — Issue #38: Press & Awards section (PressAwards)
+- Created `app/data/awards.ts` with 6 entries (Condé Nast Traveler, Travel + Leisure, Forbes Travel Guide, Trustpilot, Virtuoso, Feefo) using text-based logos
+- Added `PressAward` type to `app/lib/types.ts`
+- Built `PressAwards.tsx`: headline stat, desktop row with dividers between text logos, mobile 2×3 grid, each logo links externally, stat line ("★ 4.9/5 on Trustpilot · 2,471 verified reviews"), hover color change to gold, reduced-motion support
+
+### 2026-07 — Issue #33: Expand Destinations to 15 cards
+- Added 9 new destinations to `app/data/destinations.ts`: Patagonia, Bali, Amalfi Coast, Santorini, Bora Bora, Marrakech, Iceland, Seychelles (total now 15)
+- Each follows existing data structure with slug, name, region, tagline, price (USD), currency, imageUrl (Unsplash), quickFacts (4 items)
+- Updated `DestinationGrid.tsx`: added "Learn More →" text link that appears on hover (gold, opacity transition)
+- Grid naturally handles 15 cards — first card remains featured (2-col span), rest fill 3-col grid
+- Build verified clean with `npx next build`

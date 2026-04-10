@@ -47,3 +47,20 @@ export interface NavLink {
   label: string;
   href: string;
 }
+
+export interface TravelGuide {
+  id: string;
+  title: string;
+  excerpt: string;
+  readTime: string;
+  imageUrl: string;
+  link: string;
+  author: string;
+}
+
+export interface PressAward {
+  id: string;
+  name: string;
+  logoText: string;
+  link: string;
+}

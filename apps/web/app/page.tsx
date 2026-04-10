@@ -6,7 +6,6 @@ import Tiers from './components/Tiers';
 import Testimonials from './components/Testimonials';
 import ConciergeForm from './components/ConciergeForm';
 import Footer from './components/Footer';
-import FloatingCTA from './components/FloatingCTA';
 
 export default function Home() {
   return (
@@ -19,7 +18,6 @@ export default function Home() {
       <Testimonials />
       <ConciergeForm />
       <Footer />
-      <FloatingCTA />
     </>
   );
 }

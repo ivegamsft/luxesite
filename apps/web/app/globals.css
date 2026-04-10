@@ -26,13 +26,24 @@
   --aurora-success: #5a8f4a;
   --aurora-error: #a85a4a;
 
-  /* ── Fluid Type Scale (Major Third ≥1.25 ratio) ──────────────── */
-  --fluid-sm: clamp(0.875rem, 0.83rem + 0.22vw, 1rem);
-  --fluid-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-  --fluid-lg: clamp(1.25rem, 1.1rem + 0.75vw, 1.563rem);
-  --fluid-xl: clamp(1.563rem, 1.25rem + 1.56vw, 2.25rem);
-  --fluid-2xl: clamp(1.953rem, 1.4rem + 2.76vw, 3.052rem);
-  --fluid-3xl: clamp(2.441rem, 1.6rem + 6.5vw, 6.5rem);
+  /* ── Fluid Type Scale — Space Grotesk + Inter ─────────────────
+     Targets: h1=48px(3rem), h2=36px(2.25rem), h3=28px(1.75rem),
+     body=16px(1rem), small=14px(0.875rem) */
+  --fluid-sm: clamp(0.8125rem, 0.78rem + 0.16vw, 0.875rem);
+  --fluid-base: clamp(0.9375rem, 0.9rem + 0.19vw, 1rem);
+  --fluid-lg: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem);
+  --fluid-xl: clamp(1.5rem, 1.25rem + 1.25vw, 2.25rem);
+  --fluid-2xl: clamp(1.75rem, 1.4rem + 1.75vw, 3rem);
+  --fluid-3xl: clamp(2.25rem, 1.6rem + 5vw, 4rem);
+
+  /* ── Spacing — 8px baseline ──────────────────────────────────── */
+  --space-xs: 0.5rem;    /* 8px */
+  --space-sm: 0.75rem;   /* 12px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+  --space-3xl: 4rem;     /* 64px */
 
   /* ── Section Spacing (varied rhythm) ──────────────────────────── */
   --space-hero: clamp(6rem, 4rem + 10vw, 12rem);
@@ -43,8 +54,8 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-libre-franklin);
-  --font-heading: var(--font-bodoni);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-space-grotesk);
 }
 
 /* Base Styles */
@@ -61,9 +72,9 @@ section[id] {
 body {
   background-color: var(--aurora-bg);
   color: var(--aurora-text);
-  font-family: var(--font-sans), "Libre Franklin", system-ui, sans-serif;
+  font-family: var(--font-sans), "Inter", system-ui, sans-serif;
   font-size: var(--fluid-base);
-  line-height: 1.7;
+  line-height: 1.6;
   font-kerning: normal;
 }
 

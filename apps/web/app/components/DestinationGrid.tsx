@@ -108,12 +108,18 @@ export default function DestinationGrid() {
                   <h3 className={`font-heading font-medium mb-1 text-white ${isFeature ? 'text-fluid-xl' : 'text-fluid-lg'}`}>
                     {destination.name}
                   </h3>
-                  <p className="text-sm text-white/70 mb-2">
+                  <p className="text-sm text-white/70 mb-1">
                     {destination.region}
                   </p>
-                  <p className="text-sm text-white/80 italic">
+                  <p className="text-sm text-white/80 italic mb-2">
                     {destination.tagline}
                   </p>
+                  <span
+                    className="inline-block text-xs font-medium tracking-wide transition-opacity duration-200 opacity-0 group-hover:opacity-100"
+                    style={{ color: '#c9a76a' }}
+                  >
+                    Learn More&nbsp;&rarr;
+                  </span>
                 </div>
               </motion.div>
             );

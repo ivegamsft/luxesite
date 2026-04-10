@@ -25,7 +25,6 @@ export default function Navbar() {
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    // Observe all sections that match nav hrefs
     navLinks.forEach((link) => {
       const sectionId = link.href.replace('#', '');
       const section = document.getElementById(sectionId);
@@ -34,7 +33,6 @@ export default function Navbar() {
       }
     });
 
-    // Also observe hero section
     const heroSection = document.getElementById('hero');
     if (heroSection) {
       observer.observe(heroSection);
@@ -53,12 +51,12 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 glass">
+    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-[#e8e4df]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <span className="font-heading text-xl md:text-2xl font-bold uppercase tracking-wider text-aurora-text">
+            <span className="font-heading text-xl md:text-2xl font-bold uppercase tracking-wider text-[#2c2620]">
               Aurora Luxe
             </span>
           </div>
@@ -76,10 +74,10 @@ export default function Navbar() {
                         e.preventDefault();
                         handleNavClick(link.href);
                       }}
-                      className={`text-sm font-medium transition-all duration-300 hover:text-aurora-gold focus:outline-none focus:text-aurora-gold focus:underline focus:ring-2 focus:ring-aurora-gold/50 focus:ring-offset-2 focus:ring-offset-aurora-bg focus:rounded-sm ${
+                      className={`uppercase tracking-wider text-xs font-medium transition-all duration-300 hover:text-[#c9a76a] focus:outline-none focus:text-[#c9a76a] focus:underline focus:ring-2 focus:ring-[#c9a76a]/50 focus:ring-offset-2 focus:ring-offset-white focus:rounded-sm ${
                         isActive
-                          ? 'text-aurora-gold underline decoration-2 underline-offset-4'
-                          : 'text-aurora-text-muted'
+                          ? 'text-[#c9a76a] underline decoration-2 underline-offset-4'
+                          : 'text-[#2c2620]'
                       }`}
                     >
                       {link.label}
@@ -97,9 +95,9 @@ export default function Navbar() {
                   contactSection.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="bg-aurora-gold text-aurora-text font-semibold px-6 py-3 rounded-lg hover:shadow-lift hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-bg min-h-[44px]"
+              className="bg-[#c9a76a] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#b8965c] hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#c9a76a] focus:ring-offset-2 focus:ring-offset-white min-h-[44px]"
             >
-              Design My Trip
+              Request Consultation
             </button>
           </div>
 
@@ -107,7 +105,7 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-aurora-text hover:text-aurora-gold focus:outline-none focus:text-aurora-gold transition-colors p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="text-[#2c2620] hover:text-[#c9a76a] focus:outline-none focus:text-[#c9a76a] transition-colors p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Toggle menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -139,7 +137,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden glass border-t border-aurora-border overflow-hidden"
+            className="md:hidden bg-white border-t border-[#e8e4df] overflow-hidden"
           >
           <div className="px-4 pt-4 pb-6 space-y-3">
             <ul className="space-y-3">
@@ -153,10 +151,10 @@ export default function Navbar() {
                         e.preventDefault();
                         handleNavClick(link.href);
                       }}
-                      className={`block text-base font-medium transition-colors py-3 focus:outline-none focus:text-aurora-gold min-h-[44px] ${
+                      className={`block uppercase tracking-wider text-xs font-medium transition-colors py-3 focus:outline-none focus:text-[#c9a76a] min-h-[44px] ${
                         isActive
-                          ? 'text-aurora-gold'
-                          : 'text-aurora-text-muted hover:text-aurora-gold'
+                          ? 'text-[#c9a76a]'
+                          : 'text-[#2c2620] hover:text-[#c9a76a]'
                       }`}
                     >
                       {link.label}
@@ -173,9 +171,9 @@ export default function Navbar() {
                 }
                 setMobileMenuOpen(false);
               }}
-              className="w-full bg-aurora-gold text-aurora-text font-semibold px-6 py-3 rounded-lg hover:shadow-lift hover:-translate-y-0.5 transition-all duration-300 mt-4 focus:outline-none focus:ring-2 focus:ring-aurora-gold min-h-[44px]"
+              className="w-full bg-[#c9a76a] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#b8965c] hover:-translate-y-0.5 transition-all duration-300 mt-4 focus:outline-none focus:ring-2 focus:ring-[#c9a76a] min-h-[44px]"
             >
-              Design My Trip
+              Request Consultation
             </button>
           </div>
           </motion.div>

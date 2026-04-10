@@ -118,3 +118,41 @@ Fixed issues #2, #4, and #8 as part of larger 5-issue sweep. All changes committ
 - **Opacity-only transitions feel calmer (2026-04-10):** Removing translateY from scroll-triggered animations eliminates the "slide deck" feel. Opacity fade alone reads as editorial — content appears, it doesn't bounce into view. Better for luxury tone.
 - **Parallax costs more than it gives (2026-04-10):** The ref-based parallax in Hero added complexity (3 refs, useCallback, rAF loop, scroll listener) for a subtle effect that competed with the editorial layout. Removing it simplified the component from 36 lines of hooks to 1 line (`useReducedMotion`).
 - **viewport `amount` vs `margin` (2026-04-10):** Framer Motion's `viewport.amount: 0.8` triggers when 80% of the element is visible — more predictable than negative margin offsets. Better for above-the-fold content that should appear as you approach it.
+
+### Wave 2 — Light Theme Navbar, Hero Redesign, FloatingCTA Removal (2026-04-10)
+
+**Status:** ✅ COMPLETE
+
+**Issue #30 — Navbar light theme:**
+- Replaced `glass` class with `bg-white/90 backdrop-blur-sm` for light frosted-glass sticky nav
+- Added `border-b border-[#e8e4df]` bottom separator
+- All nav text now `text-[#2c2620]` (dark); hover/active use `text-[#c9a76a]` (gold)
+- Nav links: ALL-CAPS with `uppercase tracking-wider text-xs font-medium`
+- Active indicator: gold underline (kept existing `underline decoration-2 underline-offset-4`)
+- CTA: "Request Consultation" with `bg-[#c9a76a] text-white`
+- Mobile menu: solid `bg-white` with `border-[#e8e4df]`, dark text
+- Logo: `text-[#2c2620]`
+- All focus rings updated to use white offsets instead of dark
+
+**Issue #32 — Hero redesign (light, image-centric):**
+- Removed dark vignette (`from-black via-black/40`), replaced with `bg-white/15` overlay
+- Removed `opacity-40` from background image (now full brightness)
+- Headline: "Award-Winning Travel Specialists Designing Bespoke Journeys"
+- Subhead: "Hand-curated experiences. 24/7 concierge. Journeys tailored to you alone."
+- All text now `text-[#2c2620]` (dark on light overlay)
+- Primary CTA: "Request Consultation" → `bg-[#c9a76a] text-white`, scrolls to #contact
+- Secondary CTA: "Explore Destinations" → outlined with `border-[#2c2620]/30`, scrolls to #destinations
+- Added concierge discovery row (md+ only): two `<select>` elements (destination + timing) + "Discuss with a specialist →" button, frosted white background
+- Scroll indicator: updated to dark color `text-[#2c2620]/50`
+
+**Issue #41 — FloatingCTA removal:**
+- Deleted `FloatingCTA.tsx`
+- Removed import and `<FloatingCTA />` from `page.tsx`
+
+**Tests updated:** Hero unit test (new headline + CTA text), E2E spec (new headline + CTA text). Build verified clean.
+
+## Learnings
+
+- **Concierge discovery as progressive disclosure (2026-04-10):** A 3-part inline row (where/when/action) in the hero gives users a quick entry point without overwhelming the page. Hidden on mobile (too cramped) — mobile users get the CTAs instead.
+- **White overlay > dark vignette for light themes (2026-04-10):** A subtle `bg-white/15` overlay on a bright photo creates enough contrast for dark text while preserving the image's color vibrancy. Dark vignettes made the hero feel heavy and moody; white overlay feels open and editorial.
+- **Consistent CTA label across components (2026-04-10):** Unified primary CTA to "Request Consultation" across navbar, hero, and mobile menu. Eliminates cognitive friction from label variation ("Design My Trip" vs "Request Itinerary" etc.).
