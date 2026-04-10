@@ -8,6 +8,7 @@ How to decide who handles what.
 |-----------|----------|----------|
 | Architecture & structure | Morpheus | Project scaffolding, folder structure, tech decisions |
 | Components & logic | Trinity | React components, TypeScript, forms, data models, Next.js config |
+| New sections & features | Neo | New component builds from spec, data models, feature implementation |
 | Visual design & animation | Mouse | Tailwind config, Framer Motion, glassmorphism, micro-interactions |
 | Code review | Morpheus | Review PRs, check quality, suggest improvements |
 | Testing & QA | Tank | Write tests, find edge cases, accessibility, verify builds |
