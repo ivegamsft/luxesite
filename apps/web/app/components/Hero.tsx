@@ -31,7 +31,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-end justify-start lg:pl-12 xl:pl-20 overflow-hidden pb-24">
+    <section id="hero" className="relative min-h-screen flex items-center justify-start lg:pl-12 xl:pl-20 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -44,8 +44,8 @@ export default function Hero() {
         />
       </div>
 
-      {/* Light overlay for readability on light theme */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-r from-white/90 via-white/70 to-white/30" />
+      {/* Dark overlay for hero text contrast */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-r from-aurora-navy/80 via-aurora-navy/50 to-transparent" />
 
       <motion.div 
         className="relative z-20 max-w-5xl px-4 sm:px-6 lg:px-8 text-left lg:max-w-[50%]"
@@ -54,8 +54,8 @@ export default function Hero() {
         <motion.h1 
           initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-          className="font-heading text-fluid-3xl font-bold text-aurora-text mb-6 tracking-tight leading-[1.1]"
+          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+          className="font-heading text-fluid-3xl font-bold text-white mb-6 tracking-tight leading-[1.1]"
         >
           Where Will Your Story Take You Next?
         </motion.h1>
@@ -64,8 +64,8 @@ export default function Hero() {
         <motion.p 
           initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, delay: 0.4, ease: 'easeOut' }}
-          className="text-fluid-base text-aurora-text max-w-[65ch] mb-10 leading-relaxed"
+          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.2, ease: 'easeOut' }}
+          className="text-fluid-base text-white/80 max-w-[65ch] mb-10 leading-relaxed"
         >
           130+ destinations, each curated by specialists who&apos;ve walked the ground. Your journey begins with a conversation.
         </motion.p>
@@ -74,18 +74,18 @@ export default function Hero() {
         <motion.div 
           initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, delay: 0.6, ease: 'easeOut' }}
+          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.3, ease: 'easeOut' }}
           className="flex flex-col sm:flex-row items-center justify-start gap-4"
         >
           <button
             onClick={handleRequestConsultation}
-            className="w-full sm:w-auto bg-aurora-gold text-white font-semibold px-8 py-4 rounded-lg hover:bg-aurora-gold/85 hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-bg min-h-[44px]"
+            className="w-full sm:w-auto bg-aurora-gold text-white font-semibold px-8 py-4 rounded-lg hover:bg-aurora-gold/85 hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-navy min-h-[44px]"
           >
             Request Consultation
           </button>
           <button
             onClick={handleExploreDestinations}
-            className="w-full sm:w-auto border border-aurora-text/30 text-aurora-text font-semibold px-8 py-4 rounded-lg hover:border-aurora-gold hover:text-aurora-gold hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-bg min-h-[44px]"
+            className="w-full sm:w-auto border-2 border-white/40 text-white font-semibold px-8 py-4 rounded-lg hover:border-aurora-gold hover:text-aurora-gold hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-navy min-h-[44px]"
           >
             Explore Destinations
           </button>
@@ -95,7 +95,7 @@ export default function Hero() {
         <motion.div
           initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, delay: 0.8, ease: 'easeOut' }}
+          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.4, ease: 'easeOut' }}
           className="flex flex-col md:flex-row items-stretch md:items-center gap-3 mt-8 mx-4 bg-white/80 backdrop-blur-sm border border-aurora-border rounded-lg px-4 py-3"
         >
           <select
@@ -137,7 +137,7 @@ export default function Hero() {
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-scroll-hint">
         <svg
-          className="w-6 h-6 text-aurora-text/50"
+          className="w-6 h-6 text-white/50"
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"

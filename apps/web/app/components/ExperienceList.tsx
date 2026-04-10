@@ -88,8 +88,24 @@ export default function ExperienceList() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-white border border-aurora-border rounded-lg p-8 lg:p-10 hover:shadow-lift transition-shadow flex flex-col row-span-full"
+            className="bg-white border border-aurora-border rounded-lg overflow-hidden hover:shadow-lift transition-shadow flex flex-col row-span-full"
           >
+            {/* Featured image */}
+            {featured.imageUrl && (
+              <div className="relative h-56 lg:h-64">
+                <Image
+                  src={featured.imageUrl}
+                  alt={featured.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+              </div>
+            )}
+
+            <div className="p-8 lg:p-10 flex flex-col flex-1">
             <div className="flex items-center gap-3 mb-6">
               <span className="inline-flex items-center gap-1.5 bg-aurora-gold/10 text-aurora-gold text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-full border border-aurora-gold/20">
                 <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5" aria-hidden="true">
@@ -97,10 +113,6 @@ export default function ExperienceList() {
                 </svg>
                 Featured
               </span>
-            </div>
-
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-aurora-gold/10 mb-6" aria-hidden="true">
-              {experienceIcons[featured.icon]}
             </div>
 
             <h3 className="font-heading text-fluid-xl font-semibold mb-4 text-aurora-text">
@@ -137,9 +149,8 @@ export default function ExperienceList() {
                 </span>
               ))}
             </div>
+            </div>
           </motion.div>
-
-          {/* Remaining cards — compact grid with images */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {rest.map((experience, i) => (
               <motion.div

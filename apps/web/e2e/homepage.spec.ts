@@ -45,6 +45,8 @@ test.describe('Homepage — Visual & Content Audit', () => {
     await expect(hero.getByText('Request Consultation')).toBeVisible();
     await expect(hero.getByText('Explore Destinations')).toBeVisible();
 
+    // Wait for all hero animations to complete
+    await page.waitForTimeout(1500);
     await hero.screenshot({ path: 'e2e/screenshots/section-hero.png' });
   });
 
