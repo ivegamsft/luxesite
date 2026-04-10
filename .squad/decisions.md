@@ -195,6 +195,325 @@ All scrims use `pointer-events-none` to preserve interactions.
 
 ---
 
+### 6. Motion System Simplification
+**Author:** Trinity  
+**Date:** 2026-04-10  
+**Issues:** #24, #29  
+**Status:** Implemented
+
+Simplified motion system to opacity-only fades. Removed slide-up animations, parallax scroll, decorative overlays, and unused keyframe utilities.
+
+**Changes:**
+- All animations: `opacity: 0 → 1` only, 600ms easeOut
+- Hero: Removed parallax ref-based system (3 refs, useCallback, rAF listener)
+- Removed: `bg-gradient-aurora-subtle` overlay, SVG noise texture
+- Removed unused keyframes: `aurora-pulse`, `shimmer`, `float`
+- AnimatedSection trigger: 80% viewport visibility (was -100px offset)
+
+**Rationale:** Slide-up animations read as "presentation deck," not editorial. Parallax and decorative overlays diluted photography and added AI aesthetic noise. Photography carries the mood.
+
+**Impact:** Hero reduced 141→102 lines (28% reduction). Build clean.
+
+---
+
+### 7. Light Color Theme Migration
+**Author:** Mouse  
+**Date:** 2026-04-10  
+**Issues:** #25 (P0), #26 (P1)  
+**Status:** Implemented
+
+Migrated from dark OKLCH theme to light hex values. Removed all glow shadows and SaaS visual patterns.
+
+**Color Changes:**
+- Page background: `aurora-bg` (#f5f3f0)
+- Card background: `aurora-bg-light` (#faf9f7)
+- Alternating section: `aurora-bg-dark` (#f0ebe5)
+- Body text: `aurora-text` (#2c2620)
+- Muted text: `aurora-text-muted` (#6b6458)
+- Primary accent: `aurora-gold` (#c9a76a)
+- Secondary: `aurora-navy` (#1a3a52)
+- Tertiary: `aurora-sage` (#7a8f7f)
+- Borders: `aurora-border` (#e8e4df)
+- Error: `aurora-error` (#a85a4a) — warm bordeaux
+- Success: `aurora-success` (#5a8f4a)
+
+**Shadow Strategy:**
+- Removed: `glow`, `glow-purple` (SaaS patterns)
+- Added: `lift` (primary hover), `subtle` (card), `medium` (active)
+- Photo overlays: Use `from-black/XX`, not theme colors
+
+**Key Decisions:**
+- Hero text stays white (dark photo backgrounds)
+- CTA buttons: Solid gold (`bg-aurora-gold text-aurora-text`), not gradient
+- Glass utility: Solid surface (#faf9f7) with border, no blur
+- Animated border preserved (conic gradient updated)
+
+---
+
+### 8. Navbar & Hero Light Theme Redesign
+**Author:** Trinity  
+**Date:** 2026-04-10  
+**Issues:** #30, #32  
+**Status:** Implemented
+
+**Navbar (#30):**
+- `bg-white/90 backdrop-blur-sm border-b border-[#e8e4df]`
+- Links: `uppercase tracking-wider text-xs text-[#2c2620]`
+- Active/hover: `text-[#c9a76a]` with underline
+- CTA: "Request Consultation" `bg-[#c9a76a] text-white`
+
+**Hero (#32):**
+- Removed dark vignette and image opacity dimming
+- Added `bg-white/15` overlay for subtle readability on dark photos
+- Dark text throughout (`text-[#2c2620]`)
+- New headline/subhead emphasizing bespoke service
+- Concierge discovery row: `[Where? ▾] [When? ▾] [Discuss →]` (md+ only)
+- CTAs: "Request Consultation" (gold) + "Explore Destinations" (dark outline)
+
+---
+
+### 9. FloatingCTA Removal
+**Author:** Trinity  
+**Date:** 2026-04-10  
+**Issue:** #41  
+**Status:** Implemented
+
+Deleted `FloatingCTA.tsx`. Sticky navbar CTA "Request Consultation" (always visible) made the floating button redundant.
+
+---
+
+### 10. Destinations Expansion & GuideGrid
+**Author:** Neo  
+**Date:** 2026-04-10  
+**Issues:** #33, #34  
+**Status:** Implemented
+
+**Destinations (#33):**
+- Expanded to 15 destinations (added Patagonia, Bali, Amalfi Coast, Santorini, Bora Bora, Marrakech, Iceland, Seychelles)
+- 15 destinations fill 3-col grid evenly (1 featured 2-col + 14 standard = clean rows)
+- Added "Learn More →" gold link on hover
+
+**GuideGrid (#34):**
+- 6 guides with unique authors and 8-12 min read times
+- 4:3 image cards in responsive 3/2/1 grid
+- `AnimatedSection` wrapper with staggered Framer Motion
+- Read-time badge overlay, gold "Read Guide →" link
+- Hover: `-translate-y-1 + shadow-lg`
+- `TravelGuide` interface added to `app/lib/types.ts`
+
+---
+
+### 11. Press & Awards Section
+**Author:** Neo  
+**Date:** 2026-04-10  
+**Issue:** #38  
+**Status:** Implemented
+
+**PressAwards Component:**
+- 6 publications with text-based logo treatment (tracking-widest font-heading)
+- Desktop: flex row with 1px dividers
+- Mobile: 2×3 grid with borders
+- Stat line with gold star rating
+- External links on all logos
+- Hover: text-aurora-gold
+- `PressAward` interface added to `app/lib/types.ts`
+
+**Rationale:** Text logos avoid asset management, render crisply, easy to update. Better than trying to source and host image assets.
+
+---
+
+### 12. ConciergeForm & Footer Styling (Wave 3)
+**Author:** Trinity  
+**Date:** 2026-04-10  
+**Issues:** #36, #39, #40, #43  
+**Status:** Implemented
+
+**ConciergeForm (#36):**
+- Success feedback: Auto-dismissing toast (6s) instead of full-page panel
+- Toast remains above form; form resets for immediate reuse
+- Inputs: `bg-white` (#fff) for clear separation on `bg-aurora-bg` container
+- Selected interest pills: `text-white` on gold background (matches button pattern)
+- Toast: `role="status"` for screen reader announcement
+
+**Footer (#39):**
+- `bg-aurora-navy text-white` for visual page terminus
+- Separate inline footer data (not coupled to nav links)
+- Footer links grouped by category, allows independent evolution
+
+**SEO (#40):**
+- Title, description, keywords, OG, Twitter card per spec
+
+**Section Order (#43):**
+- Wired imports for TrustBar, WhyAurora, GuideGrid, PressAwards
+- Spec-exact ordering in page.tsx
+
+---
+
+### 13. WhyAurora & TrustBar New Sections
+**Author:** Neo  
+**Date:** 2026-04-10  
+**Issues:** #31, #35  
+**Status:** Implemented
+
+**WhyAurora:**
+- 5 mock specialists with Unsplash portraits (avg 13 years experience)
+- 3-col lg / 2-col md / 1-col sm grid
+- White cards with `#e8e4df` borders
+- Hover: `-translate-y-1 + shadow-medium`
+- Monoline SVG icons in gold circles (consistent with ExperienceList)
+- `useReducedMotion()` disables all motion
+- Light bg: `#faf9f7` (aurora-bg-light)
+
+**TrustBar:**
+- 4 credibility signals: phone (gold-highlighted), review count, years, destinations
+- Desktop: flex row with `w-px` dividers
+- Mobile: 2×2 grid
+- `role="complementary"` + `aria-label`
+
+**Data Layer:**
+- `TeamMember` interface in `app/lib/types.ts`
+- `app/data/team.ts` holds 5 specialists
+
+---
+
+### 14. Testimonials & Experiences Redesign
+**Author:** Neo  
+**Date:** 2026-04-10  
+**Issues:** #37, #42  
+**Status:** Implemented
+
+**Testimonials (#37):**
+- Kept carousel + sidebar-dot navigation (works well for single voice focus)
+- All ratings: 5 stars
+- 4 of 7 with Trustpilot sourceLinks (>3 as required)
+- Trip-specific roles ("Anniversary — Private Island, Greece") instead of job titles
+
+**Experiences (#42):**
+- Replaced SVG icons with emoji (simpler, renders well at 4xl)
+- Switched from alternating horizontal cards to 3/2/1 responsive grid
+- Region pills: `rounded-full` (differentiate from `rounded-sm` cards)
+- Pills: subdued styling (light bg, border, text-xs) so they inform without competing
+
+---
+
+### 15. Layout Monotony Fix (Wave 4)
+**Author:** Neo  
+**Date:** 2026-04-10  
+**Issue:** #46  
+**Status:** Implemented
+
+**Strategy:** Changed 3 of 5 grid sections to add visual variety; kept 2 unchanged.
+
+**ExperienceList:** Featured + compact grid
+- Left: featured card with 2-col span
+- Right: 2×4 compact grid
+- Featured: slide-from-left (x: -32)
+- Compact: opacity fade with minimal stagger (0.04s)
+- Mobile: featured on top, grid below
+
+**GuideGrid:** Editorial hero + grid
+- First guide as side-by-side hero (image left, content right, "Featured Guide" label)
+- Remaining 5 guides in standard card grid
+- Rationale: Signals editorial curation, not AI generation
+
+**WhyAurora:** Horizontal scroll strip
+- Replaced 3-col stagger grid with static scroll strip
+- Asymmetric card sizing (first 2 larger) adds visual interest
+- No Framer Motion animation — static render
+- Rationale: Trust content shouldn't bounce. Team sections use scroll pattern in luxury travel (cf. LinkedIn, Virtuoso)
+
+**Animation Diversity:**
+- Removed "everything stagger-fades-up" pattern (top #1 AI tell)
+- Featured cards: slide-from-left
+- Remaining cards: opacity fade only
+- Credibility sections: static (no animation)
+
+---
+
+### 16. Experience Icon System & Emoji Replacement
+**Author:** Neo  
+**Date:** 2026-04-10  
+**Issue:** #49  
+**Status:** Implemented
+
+**Strategy:** Replace emoji icons with stroke-only 24×24 SVGs for consistency.
+
+**Icon System:**
+- Icon map (`experienceIcons` record) in ExperienceList.tsx
+- IDs keyed to experience data
+- All SVGs: `fill="none" stroke="currentColor" strokeWidth="1.5"`
+- 24×24 viewBox for consistent sizing (`w-8 h-8`)
+- Color: `text-aurora-gold` (inherited via `stroke="currentColor"`)
+- Consistent with WhyAurora differentiator icons (monoline look)
+
+**Rationale:** Stroke-only SVGs avoid asset overhead and match existing icon patterns. Emoji destroys premium credibility.
+
+---
+
+### 17. Wave 4 UI/A11y Fixes
+**Author:** Mouse  
+**Date:** 2026-04-10  
+**Issues:** #44, #48, #50, #51  
+**Status:** Implemented
+
+**PressAwards Hover (#44, #48):**
+- Replaced inline `onMouseEnter`/`onMouseLeave` style handlers with Tailwind `hover:text-aurora-gold focus:text-aurora-gold`
+- Enables keyboard/focus access; normalizes token usage
+
+**DestinationGrid Focus (#48):**
+- Changed `focus-within:opacity-100` → `group-focus-within:opacity-100`
+- Card is `group` element; keyboard focus on card now reveals overlay
+
+**Testimonials Heading Semantics (#50):**
+- Swapped elements: eyebrow `<h2>` → `<p>`, visual heading `<p>` → `<h2>`
+- Visual appearance unchanged; semantic hierarchy fixed
+
+**Phone Number Standardization (#51):**
+- TrustBar: `+1 (212) 555-0190` → `+1 (888) 200-LUXE`
+- Footer: Already `+1 (888) 200-LUXE`
+- Vanity number is on-brand and memorable
+
+---
+
+### 18. Token Naming Audit
+**Author:** Mouse  
+**Date:** 2026-04-10  
+**Issue:** #27  
+**Status:** No action — already complete
+
+All token renames from dark to light theme (Issue #26) are already done:
+- `aurora-cyan` → `aurora-gold` (#c9a76a)
+- `aurora-purple` → `aurora-navy` (#1a3a52)
+- `aurora-magenta` → `aurora-sage` (#7a8f7f)
+
+No stale references remain. Minor observation: `lift` shadow uses `oklch(0 0 0 / 0.35)` while others use `rgba()` — format inconsistency, not a bug. Can normalize in future cleanup.
+
+---
+
+### 19. Wave 4 Design Decisions (Trinity)
+**Author:** Trinity  
+**Date:** 2026-04-10  
+**Issues:** #45, #47  
+**Status:** Implemented
+
+**Custom Event Pattern (#45):**
+- Hero → ConciergeForm pre-fill via `CustomEvent('hero-discovery')`
+- Hero dispatches with destination, timing, tags
+- ConciergeForm listens via `useEffect`, pre-fills matching fields
+- Rationale: Lightweight, browser-native, keeps components independent (no imports, no prop drilling)
+- Pre-fill strategy: Map destination → interest tags (maldives → "Beach & Islands"), timing → travelDates, fallback to human-readable summary in notes
+
+**Region Tab Filtering (#47):**
+- Horizontal pill-style tabs with "All" + per-region tabs
+- Tab labels show counts: "Indian Ocean (2)"
+- "All" tab gates to 6 destinations with expand button
+- Filtered views show all (small enough sets don't need gating)
+- Featured card (`index === 0` of visible set) spans 2×2 — changes per region
+- Animation: `AnimatePresence mode="wait"` with opacity crossfade (250ms), respects `useReducedMotion`
+- No layout shift — grid dimensions consistent
+
+---
+
 ## Governance
 
 - All meaningful changes require team consensus
