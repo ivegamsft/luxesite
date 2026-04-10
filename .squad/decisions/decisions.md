@@ -285,6 +285,100 @@ Luxury sites should feel confident and still, not restless. Infinite animations 
 
 ---
 
+### Critique Fixes — Visual Rhythm & Passive Scroll (2026-04-10)
+
+**Author:** Mouse  
+**Date:** 2026-04-10  
+**Status:** Implemented  
+**Issues:** #20, #22  
+
+#### Issue #20 — Testimonials Background Alternation
+
+**Decision:** Testimonials section uses `bg-aurora-darker` to break visual monotony.
+
+**Implementation:** Added `bg-aurora-darker` class to the `<section>` element in `Testimonials.tsx`.
+
+**Rationale:** Tiers → Testimonials → ConciergeForm all shared the default aurora-dark background. Three consecutive same-background sections kill visual rhythm and make the lower page feel like a single continuous scroll. Alternating dark/darker/dark creates clear section boundaries without borders or dividers.
+
+**Impact:** Lower page now has clear visual rhythm. Each section reads as a distinct content block.
+
+#### Issue #22 — Passive Scroll Listener on FloatingCTA
+
+**Decision:** All scroll event listeners must use `{ passive: true }` when they don't call `preventDefault()`.
+
+**Implementation:** Added `{ passive: true }` as third argument to `window.addEventListener('scroll', handleScroll)` in `FloatingCTA.tsx`.
+
+**Rationale:** Hero.tsx already uses passive listeners correctly. FloatingCTA was an inconsistency. Passive listeners allow the browser to optimize scroll performance by guaranteeing no `preventDefault()` call will occur. This is a free performance win.
+
+**Impact:** Consistent scroll listener pattern across all components. No performance penalty from non-passive scroll handling.
+
+---
+
+### Critique Fixes — Accessibility & Form Polish (2026-04-10)
+
+**Author:** Trinity  
+**Date:** 2026-04-10  
+**Status:** Implemented  
+**Issues:** #17, #18, #19, #21, #23  
+
+#### Issue #17 — Duplicate h1 Tags (P0)
+
+**Problem:** Navbar and Hero both had `<h1>` tags, violating WCAG heading hierarchy and confusing SEO.
+
+**Solution:** Navbar `<h1>` changed to `<span>` with identical className. Single semantic `<h1>` now only in Hero.
+
+**Impact:** Single clear heading hierarchy per page; SEO compliance; WCAG pass.
+
+#### Issue #18 — CTA Label Unification (P1)
+
+**Problem:** Primary call-to-action buttons used inconsistent labels across the site: "Request Itinerary", "Send Request", "Design My Trip".
+
+**Solution:** All primary CTAs unified to "Design My Trip":
+- Navbar desktop + mobile: "Request Itinerary" → "Design My Trip"
+- FloatingCTA button + aria-label: "Request Itinerary" → "Design My Trip"
+- ConciergeForm submit: "Send Request" → "Send My Request" (secondary, distinct)
+
+**Impact:** Consistent, recognizable call-to-action across entire user flow.
+
+#### Issue #19 — Post-submission Confirmation (P1)
+
+**Problem:** Form submissions showed `react-hot-toast` notifications, which disappear quickly and don't reassure users.
+
+**Solution:** Replaced `react-hot-toast` with inline confirmation panel showing:
+- Personalized thank-you with first name
+- "What happens next" (24-hour curator response expectation)
+- Privacy assurance
+- "Submit another request" reset link
+
+**Implementation:** Removed `react-hot-toast` dependency and `<Toaster>` component. Updated test suite to match new behavior.
+
+**Impact:** Better user reassurance post-submission; clear expectations; improved form completion confidence.
+
+#### Issue #21 — Inline onBlur Validation (P2)
+
+**Problem:** Form validation only occurred on submit, leaving users uncertain about field correctness during input.
+
+**Solution:** Added `validateField()` function with `onBlur` handlers on name and email inputs. Errors clear on `onChange` for immediate user feedback. Submit-time validation retained as safety net.
+
+**Impact:** Earlier error feedback loop; improved form usability; better UX on slow connections.
+
+#### Issue #23 — aria-pressed on Interest Toggles (P3)
+
+**Problem:** Interest toggle buttons in ConciergeForm lacked semantic accessibility markup for screen readers.
+
+**Solution:** Added `aria-pressed={isSelected}` to all interest toggle buttons. Screen reader now announces toggle state correctly.
+
+**Impact:** Full accessibility for screen reader users; toggles semantically correct; added test coverage.
+
+#### Files Modified
+- `apps/web/app/components/Navbar.tsx`
+- `apps/web/app/components/FloatingCTA.tsx`
+- `apps/web/app/components/ConciergeForm.tsx`
+- `apps/web/app/components/__tests__/ConciergeForm.test.tsx`
+
+---
+
 **Follow-Up Logs:**  
-- Orchestration: `.squad/orchestration-log/2026-04-10T05-00-00Z-trinity-p2p3-fixes.md`  
-- Session Log: `.squad/log/2026-04-10T05-session-final-critique-fixes.md`
+- Orchestration (Mouse): `.squad/orchestration-log/2026-04-10T05-42-30Z-mouse.md`  
+- Orchestration (Trinity): `.squad/orchestration-log/2026-04-10T05-42-30Z-trinity.md`  
+- Session Log: `.squad/log/2026-04-10T05-42-30Z-orchestration-critique-round2.md`
