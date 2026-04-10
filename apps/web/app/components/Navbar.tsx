@@ -58,9 +58,9 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="font-heading text-xl md:text-2xl font-bold uppercase tracking-wider text-aurora-white">
+            <span className="font-heading text-xl md:text-2xl font-bold uppercase tracking-wider text-aurora-white">
               Aurora Luxe
-            </h1>
+            </span>
           </div>
 
           {/* Desktop Navigation */}
@@ -99,7 +99,7 @@ export default function Navbar() {
               }}
               className="bg-gradient-aurora text-aurora-white font-semibold px-6 py-3 rounded-lg hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan focus:ring-offset-2 focus:ring-offset-aurora-dark min-h-[44px]"
             >
-              Request Itinerary
+              Design My Trip
             </button>
           </div>
 
@@ -175,7 +175,7 @@ export default function Navbar() {
               }}
               className="w-full bg-gradient-aurora text-aurora-white font-semibold px-6 py-3 rounded-lg hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 mt-4 focus:outline-none focus:ring-2 focus:ring-aurora-cyan min-h-[44px]"
             >
-              Request Itinerary
+              Design My Trip
             </button>
           </div>
           </motion.div>

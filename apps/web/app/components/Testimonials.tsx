@@ -34,7 +34,7 @@ export default function Testimonials() {
   const active = testimonials[activeIndex];
 
   return (
-    <section id="testimonials" className="py-section-md px-4 sm:px-6">
+    <section id="testimonials" className="py-section-md px-4 sm:px-6 bg-aurora-darker">
       <div className="max-w-7xl mx-auto">
         {/* Section Header — left-aligned */}
         <AnimatedSection>

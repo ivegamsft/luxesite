@@ -198,3 +198,13 @@ Price opacity bumped from `/60` to `/80`; region from `/60` to `/70`. All text n
 - No badges, pills, or visible UI elements — contrast is achieved through invisible gradient layers
 
 **Key lesson:** Dual-scrim layering (general vignette + targeted text protection) is standard in production media UIs. It provides robust contrast on any image brightness without visible UI chrome. The existing single full-image gradient wasn't enough on bright imagery (Swiss Alps snow, Dubai gold).
+
+### Critique Fixes — Visual Rhythm & Passive Scroll (2026-04-10)
+
+**2 fixes across 2 files. Build clean.**
+
+**Issue #20 — Section background rhythm:** Added `bg-aurora-darker` to Testimonials `<section>`. Creates alternating dark/darker/dark pattern across Tiers → Testimonials → ConciergeForm. Prevents the lower page from reading as a single continuous block.
+
+**Issue #22 — Passive scroll listener:** Added `{ passive: true }` to FloatingCTA's scroll event listener. Hero.tsx already used passive — this was an inconsistency. Passive listeners let the browser optimize scroll performance by guaranteeing no `preventDefault()` call.
+
+**Key lesson:** Always add `{ passive: true }` to scroll/touch listeners that don't call `preventDefault()`. It's a free performance win and browsers may warn without it.

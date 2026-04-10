@@ -13,7 +13,7 @@ export default function FloatingCTA() {
       setIsVisible(shouldShow);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -34,9 +34,9 @@ export default function FloatingCTA() {
           transition={{ duration: 0.3 }}
           onClick={handleClick}
           className="md:hidden fixed bottom-6 right-6 z-40 bg-gradient-aurora text-aurora-dark font-semibold px-6 py-4 rounded-full shadow-glow hover:-translate-y-0.5 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan"
-          aria-label="Request Itinerary"
+          aria-label="Design My Trip"
         >
-          Request Itinerary
+          Design My Trip
         </motion.button>
       )}
     </AnimatePresence>
