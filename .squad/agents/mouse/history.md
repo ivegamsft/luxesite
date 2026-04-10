@@ -70,6 +70,25 @@
 - All Framer Motion animations: need `useReducedMotion()` hook
 - Global need for `@container` queries on card components
 
+### Issues #110, #108, #103 — Experience Cards + Tier Border + Eyebrow Fix (2026-04-10)
+
+**Issue #110 — Experience cards visual punch:**
+- Rest cards redesigned as image-forward overlay cards (h-56/sm:h-64, up from h-36)
+- Text/regions/icon now overlaid on image with layered scrims for contrast
+- Added hover lift (-translate-y-1) and slower zoom transition (700ms ease-out)
+- Region tags now use glass-style (bg-white/10 backdrop-blur-sm) over image
+- Featured card image bumped to h-64/lg:h-80 with stronger scrim
+
+**Issue #108 — Featured tier border:**
+- Replaced conic-gradient `::before` pseudo-element with solid gold border (1.5px, oklch aurora-gold)
+- Added subtle gold glow shadow (oklch 0.80 0.12 75 / 0.15)
+- Conic gradients are AI-aesthetic — solid gold reads as understated luxury
+
+**Issue #103 — Eyebrow removed:**
+- Removed "Curated by Our Specialists" eyebrow from ExperienceList
+- "Signature Experiences" heading stands alone — consistent with section intro variety decision
+- Not every section needs an eyebrow (per established pattern)
+
 ## Session Activity
 
 ### Impeccable Audit Fixes (2026-04-10T03:42:00Z)

@@ -72,9 +72,6 @@ export default function ExperienceList() {
     <section id="experiences" className="py-section-md px-4 sm:px-6 lg:px-12 bg-aurora-bg-dark">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection>
-          <p className="text-sm font-medium tracking-widest uppercase mb-3 text-aurora-gold">
-            Curated by Our Specialists
-          </p>
           <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-12">
             Signature Experiences
           </h2>
@@ -88,11 +85,11 @@ export default function ExperienceList() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-white border border-aurora-border rounded-lg overflow-hidden hover:shadow-lift transition-shadow flex flex-col row-span-full"
+            className="bg-white border border-aurora-border rounded-lg overflow-hidden hover:shadow-lift hover:-translate-y-1 transition-all duration-300 flex flex-col row-span-full"
           >
-            {/* Featured image */}
+            {/* Featured image — hero-scale */}
             {featured.imageUrl && (
-              <div className="relative h-56 lg:h-64">
+              <div className="relative h-64 lg:h-80">
                 <Image
                   src={featured.imageUrl}
                   alt={featured.title}
@@ -101,7 +98,7 @@ export default function ExperienceList() {
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   loading="eager"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
               </div>
             )}
 
@@ -151,7 +148,7 @@ export default function ExperienceList() {
             </div>
             </div>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {rest.map((experience, i) => (
               <motion.div
                 key={experience.id}
@@ -159,53 +156,74 @@ export default function ExperienceList() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, delay: i * 0.04 }}
-                className="group bg-white border border-aurora-border rounded-lg overflow-hidden hover:shadow-lift transition-shadow flex flex-col"
+                className="group relative rounded-lg overflow-hidden hover:shadow-lift transition-all duration-300 hover:-translate-y-1"
               >
-                {/* Image */}
+                {/* Full-bleed background image */}
                 {experience.imageUrl && (
-                  <div className="relative h-36 overflow-hidden">
+                  <div className="relative h-56 sm:h-64 overflow-hidden">
                     <Image
                       src={experience.imageUrl}
                       alt={experience.title}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                    <h3 className="absolute bottom-3 left-4 font-heading text-fluid-base font-medium text-white drop-shadow-sm">
-                      {experience.title}
-                    </h3>
+                    {/* Layered scrims for text contrast */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-aurora-dark/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                    {/* Content overlay pinned to bottom */}
+                    <div className="absolute inset-x-0 bottom-0 p-5">
+                      <div className="flex items-center gap-2.5 mb-2">
+                        <span className="text-aurora-gold/90" aria-hidden="true">
+                          {experienceIcons[experience.icon]}
+                        </span>
+                        <h3 className="font-heading text-fluid-lg font-semibold text-white drop-shadow-md">
+                          {experience.title}
+                        </h3>
+                      </div>
+                      <p className="text-white/75 text-sm leading-relaxed line-clamp-2 drop-shadow-sm">
+                        {experience.description}
+                      </p>
+                      <div className="flex flex-wrap gap-1.5 mt-3">
+                        {experience.regions.map((region) => (
+                          <span
+                            key={region}
+                            className="bg-white/10 backdrop-blur-sm border border-white/15 text-white/80 text-xs rounded-full px-2.5 py-0.5"
+                          >
+                            {region}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 )}
 
-                <div className="p-4 flex flex-col flex-1">
-                  {!experience.imageUrl && (
-                    <>
-                      <div className="mb-3" aria-hidden="true">
-                        {experienceIcons[experience.icon]}
-                      </div>
-                      <h3 className="font-heading text-fluid-base font-medium mb-2 text-aurora-text">
-                        {experience.title}
-                      </h3>
-                    </>
-                  )}
-
-                  <p className="text-aurora-text-muted leading-relaxed text-sm mb-4 flex-1 line-clamp-2">
-                    {experience.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 mt-auto">
-                    {experience.regions.map((region) => (
-                      <span
-                        key={region}
-                        className="bg-aurora-bg-light border border-aurora-border text-aurora-text-muted text-xs rounded-full px-2 py-0.5"
-                      >
-                        {region}
-                      </span>
-                    ))}
+                {/* Fallback for no-image cards */}
+                {!experience.imageUrl && (
+                  <div className="bg-white border border-aurora-border p-5 flex flex-col h-56 sm:h-64">
+                    <div className="mb-3" aria-hidden="true">
+                      {experienceIcons[experience.icon]}
+                    </div>
+                    <h3 className="font-heading text-fluid-base font-medium mb-2 text-aurora-text">
+                      {experience.title}
+                    </h3>
+                    <p className="text-aurora-text-muted leading-relaxed text-sm mb-4 flex-1 line-clamp-2">
+                      {experience.description}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 mt-auto">
+                      {experience.regions.map((region) => (
+                        <span
+                          key={region}
+                          className="bg-aurora-bg-light border border-aurora-border text-aurora-text-muted text-xs rounded-full px-2 py-0.5"
+                        >
+                          {region}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
               </motion.div>
             ))}
           </div>
