@@ -45,7 +45,7 @@ export default function Hero() {
       </div>
 
       {/* Light overlay for readability on light theme */}
-      <div className="absolute inset-0 z-10 bg-white/15" />
+      <div className="absolute inset-0 z-10 bg-white/60" />
 
       <motion.div 
         className="relative z-20 max-w-5xl px-4 sm:px-6 lg:px-8 text-left lg:max-w-[50%]"

@@ -192,10 +192,10 @@ export default function ConciergeForm() {
 
         {/* Form Container */}
         <AnimatedSection delay={0.2}>
-          <div className="max-w-2xl mx-auto bg-aurora-bg border border-aurora-border rounded-lg p-5 sm:p-6 md:p-8 shadow-subtle">
+          <div className="max-w-2xl mx-auto bg-white border border-aurora-border rounded-lg p-5 sm:p-6 md:p-8 shadow-subtle">
           {/* Trust Badge */}
           <p className="text-sm text-aurora-text-muted text-center mb-6">
-            ✓ 4.9/5 on Trustpilot · 1,000+ journeys designed
+            ✓ 4.9/5 on Trustpilot · 1,200+ families trust Aurora Luxe
           </p>
 
           {/* Prefill Banner */}

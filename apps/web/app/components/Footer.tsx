@@ -7,7 +7,7 @@ const footerDestinations = [
 ];
 
 const footerCompany = [
-  { label: 'About', href: '#about' },
+  { label: 'Our Team', href: '#why-aurora' },
   { label: 'Guides', href: '#guides' },
   { label: 'Press & Awards', href: '#press' },
   { label: 'Contact', href: '#contact' },

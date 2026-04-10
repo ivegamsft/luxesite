@@ -80,21 +80,21 @@ body {
 
 /* Selection — gold on light */
 ::selection {
-  background: #c9a76a;
-  color: #f5f3f0;
+  background: var(--aurora-gold);
+  color: var(--aurora-bg);
 }
 
 /* ── Surface: Solid light with subtle border ─────────────────────── */
 .glass {
-  background: #faf9f7;
-  border: 1px solid #e8e4df;
+  background: var(--aurora-bg-light);
+  border: 1px solid var(--aurora-border);
   box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
 }
 
 /* Static Conic Gradient Border — featured tier distinction */
 .animated-border {
   position: relative;
-  background: #faf9f7;
+  background: var(--aurora-bg-light);
 }
 
 .animated-border::before {

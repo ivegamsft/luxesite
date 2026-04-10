@@ -58,7 +58,7 @@ export default function TrustBar() {
     <div
       role="complementary"
       aria-label="Trust and credibility"
-      className="border-y border-[#e8e4df] bg-[#f5f3f0]"
+      className="border-y border-aurora-border bg-aurora-bg"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-4">
         {/* Desktop: horizontal row with dividers */}
@@ -66,17 +66,17 @@ export default function TrustBar() {
           {trustSignals.map((signal, i) => (
             <React.Fragment key={signal.id}>
               {i > 0 && (
-                <div className="w-px h-8 bg-[#e8e4df] shrink-0" aria-hidden="true" />
+                <div className="w-px h-8 bg-aurora-border shrink-0" aria-hidden="true" />
               )}
               <div className="flex items-center gap-3 min-w-0">
-                <span className={signal.highlight ? 'text-[#c9a76a]' : 'text-[#6b6458]'}>
+                <span className={signal.highlight ? 'text-aurora-gold' : 'text-aurora-text-muted'}>
                   {signal.icon}
                 </span>
                 <div className="min-w-0">
-                  <p className={`text-sm font-medium leading-tight truncate ${signal.highlight ? 'text-[#c9a76a]' : 'text-[#2c2620]'}`}>
+                  <p className={`text-sm font-medium leading-tight truncate ${signal.highlight ? 'text-aurora-gold' : 'text-aurora-text'}`}>
                     {signal.label}
                   </p>
-                  <p className="text-xs text-[#6b6458] leading-tight truncate">
+                  <p className="text-xs text-aurora-text-muted leading-tight truncate">
                     {signal.sublabel}
                   </p>
                 </div>
@@ -89,14 +89,14 @@ export default function TrustBar() {
         <div className="grid grid-cols-2 gap-4 md:hidden">
           {trustSignals.map((signal) => (
             <div key={signal.id} className="flex items-start gap-2.5">
-              <span className={`mt-0.5 shrink-0 ${signal.highlight ? 'text-[#c9a76a]' : 'text-[#6b6458]'}`}>
+              <span className={`mt-0.5 shrink-0 ${signal.highlight ? 'text-aurora-gold' : 'text-aurora-text-muted'}`}>
                 {signal.icon}
               </span>
               <div className="min-w-0">
-                <p className={`text-sm font-medium leading-tight ${signal.highlight ? 'text-[#c9a76a]' : 'text-[#2c2620]'}`}>
+                <p className={`text-sm font-medium leading-tight ${signal.highlight ? 'text-aurora-gold' : 'text-aurora-text'}`}>
                   {signal.label}
                 </p>
-                <p className="text-xs text-[#6b6458] leading-tight">
+                <p className="text-xs text-aurora-text-muted leading-tight">
                   {signal.sublabel}
                 </p>
               </div>

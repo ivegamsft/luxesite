@@ -95,7 +95,7 @@ export default function DestinationGrid() {
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => handleRegionChange(tab.label)}
-                  className={`px-4 py-2 text-sm font-medium rounded-full transition-all min-h-[44px] ${
+                  className={`px-4 py-2 text-sm font-medium rounded-full transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 ${
                     isActive
                       ? 'bg-aurora-gold text-white'
                       : 'bg-aurora-bg-light border border-aurora-border text-aurora-text-muted hover:border-aurora-gold/50'
@@ -186,8 +186,7 @@ export default function DestinationGrid() {
                         {destination.tagline}
                       </p>
                       <span
-                        className="inline-block text-xs font-medium tracking-wide transition-opacity duration-200 opacity-0 group-hover:opacity-100"
-                        style={{ color: '#c9a76a' }}
+                        className="inline-block text-xs font-medium tracking-wide transition-opacity duration-200 opacity-0 group-hover:opacity-100 text-aurora-gold"
                       >
                         Learn More&nbsp;&rarr;
                       </span>
@@ -201,7 +200,7 @@ export default function DestinationGrid() {
               <div className="mt-10 text-center">
                 <button
                   onClick={() => setShowAll(true)}
-                  className="px-8 py-3 text-sm font-semibold rounded-lg border border-aurora-border text-aurora-text-muted hover:border-aurora-gold hover:text-aurora-gold transition-all min-h-[44px]"
+                  className="px-8 py-3 text-sm font-semibold rounded-lg border border-aurora-border text-aurora-text-muted hover:border-aurora-gold hover:text-aurora-gold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
                 >
                   View All Destinations ({filteredDestinations.length})
                 </button>

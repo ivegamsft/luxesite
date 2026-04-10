@@ -70,8 +70,9 @@ export default function GuideGrid() {
                 by {featured.author}
               </span>
               <a
-                href={featured.link}
-                className="text-sm font-medium transition-colors duration-200 hover:underline text-aurora-gold"
+                href="#contact"
+                onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
+                className="text-sm font-medium transition-colors duration-200 underline decoration-aurora-gold/40 underline-offset-2 hover:decoration-aurora-gold text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
               >
                 Read Guide&nbsp;&rarr;
               </a>
@@ -119,9 +120,9 @@ export default function GuideGrid() {
                     by {guide.author}
                   </span>
                   <a
-                    href={guide.link}
-                    className="text-sm font-medium transition-colors duration-200 hover:underline text-aurora-gold"
-                    onClick={(e) => e.stopPropagation()}
+                    href="#contact"
+                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
+                    className="text-sm font-medium transition-colors duration-200 underline decoration-aurora-gold/40 underline-offset-2 hover:decoration-aurora-gold text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
                   >
                     Read Guide&nbsp;&rarr;
                   </a>

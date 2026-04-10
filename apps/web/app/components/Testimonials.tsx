@@ -66,7 +66,7 @@ export default function Testimonials() {
           tabIndex={0}
         >
           {/* Main quote */}
-          <div className="relative min-h-[320px]">
+          <div className="relative min-h-[320px]" aria-live="polite">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.id}
@@ -108,7 +108,7 @@ export default function Testimonials() {
                     href={active.sourceLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs text-aurora-gold hover:text-aurora-gold/80 transition-colors mt-3"
+                    className="inline-flex items-center gap-1 text-xs text-aurora-gold underline decoration-aurora-gold/40 underline-offset-2 hover:decoration-aurora-gold hover:text-aurora-gold/80 transition-colors mt-3 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
                   >
                     Verified on Trustpilot <span aria-hidden="true">&rarr;</span>
                   </a>
@@ -126,7 +126,7 @@ export default function Testimonials() {
                   key={t.id}
                   onClick={() => goTo(i)}
                   aria-label={`View testimonial from ${t.name}`}
-                  className="min-w-[44px] min-h-[44px] flex items-center justify-center"
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
                 >
                   <span className={`block transition-all duration-300 rounded-full ${
                     i === activeIndex
@@ -142,7 +142,7 @@ export default function Testimonials() {
               <button
                 onClick={goPrev}
                 aria-label="Previous testimonial"
-                className="w-11 h-11 rounded-full border border-aurora-border flex items-center justify-center text-aurora-text-muted hover:text-aurora-text hover:border-aurora-gold transition-all min-h-[44px]"
+                className="w-11 h-11 rounded-full border border-aurora-border flex items-center justify-center text-aurora-text-muted hover:text-aurora-text hover:border-aurora-gold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -151,7 +151,7 @@ export default function Testimonials() {
               <button
                 onClick={goNext}
                 aria-label="Next testimonial"
-                className="w-11 h-11 rounded-full border border-aurora-border flex items-center justify-center text-aurora-text-muted hover:text-aurora-text hover:border-aurora-gold transition-all min-h-[44px]"
+                className="w-11 h-11 rounded-full border border-aurora-border flex items-center justify-center text-aurora-text-muted hover:text-aurora-text hover:border-aurora-gold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
