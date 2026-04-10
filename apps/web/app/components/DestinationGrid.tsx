@@ -158,7 +158,8 @@ export default function DestinationGrid() {
                         </span>
                       </div>
 
-                      <div className={`absolute inset-0 bg-black/95 transition-opacity duration-300 p-6 flex flex-col justify-center group-hover:opacity-100 group-focus-within:opacity-100 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
+                      {/* Quick facts overlay — positioned above bottom text area */}
+                      <div className={`absolute top-0 left-0 right-0 bottom-[140px] bg-black/95 transition-opacity duration-300 p-6 flex flex-col justify-center group-hover:opacity-100 group-focus-within:opacity-100 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
                         <h4 className="font-heading text-lg mb-3 text-aurora-gold">Quick Facts:</h4>
                         <ul className="space-y-2 text-sm text-white/80">
                           {destination.quickFacts.map((fact, i) => (
