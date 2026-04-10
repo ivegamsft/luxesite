@@ -54,7 +54,7 @@ export default function ExperienceList() {
     <section id="experiences" className="py-section-md px-4 sm:px-6 lg:px-12 bg-aurora-darker">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection>
-          <h2 className="font-heading text-fluid-3xl mb-12">
+          <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-12">
             Signature Experiences
           </h2>
         </AnimatedSection>
@@ -88,7 +88,7 @@ export default function ExperienceList() {
                 </div>
                 {/* Content side */}
                 <div className="flex-1 p-6 md:p-8 flex flex-col justify-center bg-aurora-darker/80">
-                  <h3 className="font-heading text-fluid-lg mb-3 text-aurora-white">
+                  <h3 className="font-heading text-fluid-lg font-medium mb-3 text-aurora-white">
                     {experience.title}
                   </h3>
                   <p className="text-aurora-white/70 leading-relaxed text-fluid-sm max-w-[65ch]">

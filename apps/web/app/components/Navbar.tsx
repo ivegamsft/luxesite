@@ -97,7 +97,7 @@ export default function Navbar() {
                   contactSection.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="bg-gradient-aurora text-aurora-white font-medium px-6 py-3 rounded-lg hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan focus:ring-offset-2 focus:ring-offset-aurora-dark min-h-[44px]"
+              className="bg-gradient-aurora text-aurora-white font-semibold px-6 py-3 rounded-lg hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan focus:ring-offset-2 focus:ring-offset-aurora-dark min-h-[44px]"
             >
               Request Itinerary
             </button>
@@ -173,7 +173,7 @@ export default function Navbar() {
                 }
                 setMobileMenuOpen(false);
               }}
-              className="w-full bg-gradient-aurora text-aurora-white font-medium px-6 py-3 rounded-lg hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 mt-4 focus:outline-none focus:ring-2 focus:ring-aurora-cyan min-h-[44px]"
+              className="w-full bg-gradient-aurora text-aurora-white font-semibold px-6 py-3 rounded-lg hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 mt-4 focus:outline-none focus:ring-2 focus:ring-aurora-cyan min-h-[44px]"
             >
               Request Itinerary
             </button>

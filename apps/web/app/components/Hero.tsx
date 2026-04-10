@@ -85,7 +85,7 @@ export default function Hero() {
           initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.8, delay: 0.2 }}
-          className="font-heading text-fluid-3xl font-bold text-aurora-white mb-6 tracking-tight px-4"
+          className="font-heading text-fluid-3xl font-bold text-aurora-white mb-6 tracking-tight leading-[1.1] px-4"
         >
           Beyond First Class.
         </motion.h1>
@@ -95,7 +95,7 @@ export default function Hero() {
           initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.8, delay: 0.4 }}
-          className="text-fluid-base text-aurora-white/70 max-w-2xl mx-auto mb-10 leading-relaxed px-4"
+          className="text-fluid-base text-aurora-white/70 max-w-[65ch] mx-auto mb-10 leading-relaxed px-4"
         >
           Private shores. Unmarked airstrips. Tables that don&apos;t take reservations.
         </motion.p>
@@ -109,13 +109,13 @@ export default function Hero() {
         >
           <button
             onClick={handleDesignTrip}
-            className="w-full sm:w-auto bg-gradient-aurora text-aurora-white font-medium px-8 py-4 rounded-lg hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan focus:ring-offset-2 focus:ring-offset-aurora-dark min-h-[44px]"
+            className="w-full sm:w-auto bg-gradient-aurora text-aurora-white font-semibold px-8 py-4 rounded-lg hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan focus:ring-offset-2 focus:ring-offset-aurora-dark min-h-[44px]"
           >
             Design My Trip
           </button>
           <button
             onClick={handleExploreDestinations}
-            className="w-full sm:w-auto border border-aurora-glass-border text-aurora-white/80 font-medium px-8 py-4 rounded-lg hover:border-aurora-cyan hover:text-aurora-white hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan focus:ring-offset-2 focus:ring-offset-aurora-dark min-h-[44px]"
+            className="w-full sm:w-auto border border-aurora-glass-border text-aurora-white/80 font-semibold px-8 py-4 rounded-lg hover:border-aurora-cyan hover:text-aurora-white hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan focus:ring-offset-2 focus:ring-offset-aurora-dark min-h-[44px]"
           >
             Explore Destinations
           </button>

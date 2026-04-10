@@ -104,10 +104,10 @@ export default function ConciergeForm() {
         {/* Section Header */}
         <AnimatedSection>
           <div className="mb-12">
-            <h2 className="text-fluid-3xl font-heading font-bold mb-4 text-aurora-white">
+            <h2 className="text-fluid-2xl font-heading font-semibold tracking-tight leading-tight mb-4 text-aurora-white">
               Design Your Journey
             </h2>
-            <p className="text-fluid-base text-aurora-white/50">
+            <p className="text-fluid-base text-aurora-white/50 max-w-[65ch]">
               One conversation. Then we take it from here.
             </p>
           </div>

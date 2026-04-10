@@ -42,7 +42,7 @@ export default function Testimonials() {
             <h2 className="text-fluid-sm font-heading tracking-widest uppercase text-aurora-white/40 mb-6">
               Testimonials
             </h2>
-            <p className="font-heading italic text-fluid-2xl text-aurora-white/70 max-w-3xl leading-relaxed">
+            <p className="font-heading italic text-fluid-2xl text-aurora-white/70 max-w-[75ch] leading-snug tracking-tight">
               &ldquo;The measure of a journey is not the distance&nbsp;&mdash; it&rsquo;s the silence when you return.&rdquo;
             </p>
           </div>
@@ -70,7 +70,7 @@ export default function Testimonials() {
                 {/* Large quote mark */}
                 <div className="text-8xl text-aurora-cyan/15 font-serif leading-none mb-2 select-none">&ldquo;</div>
 
-                <p className="text-fluid-xl italic text-aurora-white/90 mb-8 max-w-[50ch] leading-relaxed -mt-6">
+                <p className="text-fluid-xl italic text-aurora-white/90 mb-8 max-w-[50ch] leading-snug -mt-6">
                   {active.quote}
                 </p>
 

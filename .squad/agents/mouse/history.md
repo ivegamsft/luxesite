@@ -126,3 +126,36 @@ Trinity completed P0+P1 frontend fixes in parallel with Mouse design polish:
 **No conflicts:** Trinity's frontend fixes orthogonal to Mouse's design aesthetics. Combined coverage: design polish (Mouse) + engineering quality (Trinity) = complete P0+P1+P2 pass.
 
 **Build Status:** Both agents' changes verified independently and together — zero regressions.
+
+### Typography System Overhaul (2026-04-10)
+
+**8 tasks, 23 edits across 9 files. Build clean.**
+
+**Task 1 — Heading Hierarchy:** Section headings (Destinations, Experiences, Tiers, ConciergeForm) dropped from `text-fluid-3xl` to `text-fluid-2xl`. Hero stays at `text-fluid-3xl`. Creates clear display → section → subsection hierarchy.
+
+**Task 2 — Line-Height by Size:** Hero h1 gets `leading-[1.1]` (tight for 6.5rem display). Section h2s get `leading-tight` (1.25). Testimonial quotes changed from `leading-relaxed` to `leading-snug` (1.375). Body stays at 1.7 (task 8). Rule: line-height scales inversely with font size.
+
+**Task 3 — Weight Strategy:** Consistent roles enforced:
+- Display (Hero h1): `font-bold` (700)
+- Section h2s: `font-semibold` (600) — ConciergeForm was bold, others had nothing
+- Subsection h3s (card titles): `font-medium` (500)
+- Buttons: `font-semibold` (600) — Hero, Navbar, Tiers, FloatingCTA upgraded from font-medium
+- Body/labels: Regular (400) — default
+
+**Task 4 — Letter-Spacing:** `tracking-tight` added to all `text-fluid-2xl` headings and the Testimonials pull quote. Large display text needs tighter tracking. Navbar wordmark keeps `tracking-wider` (correct for uppercase), Testimonials label keeps `tracking-widest`.
+
+**Task 5 — Tabular Numerals:** `tabular-nums` added to Tiers price display and DestinationGrid price badges. Prices now align visually in columns.
+
+**Task 6 — Ch-Based Measure:** Prose max-widths converted to `ch` units:
+- Hero subtitle: `max-w-2xl` → `max-w-[65ch]`
+- DestinationGrid subtitle: `max-w-3xl` → `max-w-[75ch]`
+- Tiers subtitle: `max-w-xl` → `max-w-[65ch]`
+- ConciergeForm subtitle: added `max-w-[65ch]`
+- Testimonials pull quote: `max-w-3xl` → `max-w-[75ch]`
+- Active quote already used `max-w-[50ch]` ✓
+
+**Task 7 — OpenType Features:** Added `font-kerning: normal` to body in globals.css. Antialiased already handled by Tailwind `antialiased` class on html+body. Kept `uppercase` on Testimonials label (Google Fonts Bodoni Moda subsetting may strip small-caps OpenType tables — safer to keep text-transform).
+
+**Task 8 — Dark Background Line-Height:** Body `line-height: 1.7` added to globals.css. Light-on-dark text appears lighter weight and needs more breathing room. Headings unaffected — they have explicit leading classes from task 2.
+
+**Key pattern:** Typography hierarchy is now fully intentional: size, weight, tracking, and leading all scale together. Each heading level is visually distinct without relying solely on font-size.

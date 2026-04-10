@@ -34,10 +34,10 @@ export default function DestinationGrid() {
     <section id="destinations" className="py-section-lg px-4 sm:px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection>
-          <h2 className="font-heading text-fluid-3xl mb-4">
+          <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-4">
             Curated Destinations
           </h2>
-          <p className="text-aurora-white/50 mb-12 max-w-3xl text-fluid-sm">
+          <p className="text-aurora-white/50 mb-12 max-w-[75ch] text-fluid-sm">
             Handpicked escapes where luxury meets adventure. Every destination tells a story worth living.
           </p>
         </AnimatedSection>
@@ -81,7 +81,7 @@ export default function DestinationGrid() {
                   
                   {/* Price — editorial typographic treatment */}
                   <div className="absolute top-5 right-5">
-                    <span className="font-heading text-base tracking-wide text-aurora-white/60">
+                    <span className="font-heading text-base tracking-wide text-aurora-white/60 tabular-nums">
                       from {destination.currency}{destination.price.toLocaleString()}
                     </span>
                   </div>
@@ -101,7 +101,7 @@ export default function DestinationGrid() {
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className={`font-heading mb-1 text-aurora-white ${isFeature ? 'text-fluid-xl' : 'text-fluid-lg'}`}>
+                  <h3 className={`font-heading font-medium mb-1 text-aurora-white ${isFeature ? 'text-fluid-xl' : 'text-fluid-lg'}`}>
                     {destination.name}
                   </h3>
                   <p className="text-sm text-aurora-white/60 mb-2">

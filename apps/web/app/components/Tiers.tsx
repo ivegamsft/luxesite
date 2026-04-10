@@ -19,10 +19,10 @@ export default function Tiers() {
     <section id="membership" className="py-section-lg px-4 sm:px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection>
-          <h2 className="font-heading text-fluid-3xl mb-4">
+          <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-4">
             Membership
           </h2>
-          <p className="text-aurora-white/60 mb-12 max-w-xl text-fluid-sm">
+          <p className="text-aurora-white/60 mb-12 max-w-[65ch] text-fluid-sm">
             Three tiers. One standard&nbsp;&mdash; uncompromising.
           </p>
         </AnimatedSection>
@@ -52,13 +52,13 @@ export default function Tiers() {
             >
 
               <div className="mb-6">
-                <h3 className="font-heading text-fluid-xl mb-2 text-aurora-white">
+                <h3 className="font-heading text-fluid-xl font-medium mb-2 text-aurora-white">
                   {tier.name}
                 </h3>
                 <p className="text-xs md:text-sm text-aurora-white/60 mb-4">
                   {tier.tagline}
                 </p>
-                <div className="text-2xl md:text-3xl font-bold text-aurora-white">
+                <div className="text-2xl md:text-3xl font-bold text-aurora-white tabular-nums">
                   {tier.price.split('/')[0]}
                   <span className="text-sm font-normal text-aurora-white/60">
                     /{tier.price.split('/')[1]}
@@ -76,7 +76,7 @@ export default function Tiers() {
               </ul>
 
               <button
-                className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 min-h-[44px] ${
+                className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 min-h-[44px] ${
                   tier.featured
                     ? 'bg-gradient-aurora text-aurora-dark hover:shadow-glow hover:-translate-y-0.5'
                     : 'border border-aurora-glass-border text-aurora-white/80 hover:border-aurora-cyan hover:text-aurora-white hover:-translate-y-0.5'
