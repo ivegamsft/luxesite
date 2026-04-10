@@ -1,93 +1,323 @@
-Create a production-ready, visually stunning website with a **futuristic luxury travel** theme.
+# AURORA LUXE TRAVEL - Reverse-Engineered UI Spec (Design-MD Style)
 
-GOAL
-Build a single-page (plus optional “Destination” detail route) website for a fictional brand:
-**“AURORA LUXE TRAVEL”** — ultra-premium, concierge-level trips.
+## 1) Product Summary
 
-TECH STACK (use exactly this unless something breaks)
-- Next.js (latest stable) + TypeScript
-- Tailwind CSS
-- Framer Motion (for scroll/entrance animations)
-- next/image for optimized images
-- No backend required (mock data in code)
+Aurora Luxe Travel is a single-page, high-end luxury travel marketing and lead-capture experience.
 
-DESIGN DIRECTION
-- Futuristic luxury: dark mode, glassmorphism, neon accents, subtle animated gradients, premium typography.
-- Palette: near-black background, icy white text, accent gradients (cyan ↔ purple ↔ magenta), soft gold highlights used sparingly.
-- Add tasteful micro-interactions: hover lift, glow rings, animated borders, smooth section reveal, parallax-like hero.
-- Must be responsive: mobile-first, looks excellent on iPhone + 4K desktop.
-- Accessibility: good contrast, focus states, keyboard nav, semantic headings, aria labels.
-- Performance: avoid heavy libraries; keep animations smooth; lazy-load imagery.
+Primary goal:
+- Convert high-intent visitors into concierge requests via section CTAs and a premium intake form.
 
-PAGES / SECTIONS
-1) Sticky glass navbar (logo + sections + “Request Itinerary” CTA).
-2) HERO
-   - Big headline (“Beyond First Class.”)
-   - Subtext (luxury concierge pitch)
-   - Primary CTA: “Design My Trip”
-   - Secondary CTA: “Explore Destinations”
-   - A cinematic hero background image with an animated gradient overlay + subtle noise.
-3) DESTINATIONS (grid of 6)
-   - Each card: name, region, 1-line vibe, “from €X,XXX” (mock)
-   - Hover: shimmer + slight tilt + reveal quick facts
-   - Clicking opens a modal or navigates to /destinations/[slug] (optional).
-4) SIGNATURE EXPERIENCES (3–5)
-   - e.g., private jet hops, yacht week, Michelin trails, desert stargazing, alpine retreat.
-5) MEMBERSHIP TIERS (3 tiers)
-   - “Silver / Black / Obsidian” with perks.
-6) TESTIMONIALS (carousel or simple cards)
-7) CONCIERGE FORM
-   - Fields: name, email, dates, travelers, interests (chips), budget (select), notes
-   - Validate on client; on submit show “Request received” toast (no backend).
-8) FOOTER
-   - Minimal, premium; include image credits.
+Secondary goals:
+- Communicate exclusivity, discretion, and bespoke service quality.
+- Showcase curated destinations, signature experiences, and membership tiers.
 
-IMAGERY (IMPORTANT)
-Use attractive photos **from the web** that are safe to use. Prefer **Unsplash Source** (no API key) and/or Pexels free images.
-Implementation requirement:
-- Use remote images (do NOT commit copyrighted assets).
-- Configure Next.js to allow the remote image domains.
-- Provide a small “Image Credits” list in the footer (“Images via Unsplash Source / Pexels”).
-Use these remote image URLs (stable enough) for backgrounds/cards:
-- Hero: https://source.unsplash.com/featured/2400x1400?luxury,travel
-- Destinations:
-  1) https://source.unsplash.com/featured/1200x900?maldives,resort
-  2) https://source.unsplash.com/featured/1200x900?tokyo,night,skyline
-  3) https://source.unsplash.com/featured/1200x900?switzerland,alps,luxury
-  4) https://source.unsplash.com/featured/1200x900?dubai,luxury,hotel
-  5) https://source.unsplash.com/featured/1200x900?safari,lodge,luxury
-  6) https://source.unsplash.com/featured/1200x900?yacht,mediterranean
-(If any URL fails, pick alternatives from Unsplash Source with similar keywords.)
+Current implementation scope:
+- Single landing page composed of 8 stacked sections.
+- No backend integration (client-only form submit success toast).
 
-FEATURE POLISH (make it feel premium)
-- Use two Google fonts (e.g., Space Grotesk for headings + Inter for body).
-- Add a subtle animated “aurora” gradient blob behind the hero text.
-- Add a thin animated border (conic gradient) around key CTAs and cards.
-- Add scroll-based section reveal (Framer Motion).
-- Add “active section” highlight in navbar while scrolling.
-- Add a floating “Request Itinerary” button on mobile.
-- Add SEO metadata (title, description, OpenGraph) and a nice favicon (simple SVG mark is fine).
+## 2) Experience Principles
 
-PROJECT STRUCTURE
-- /app with layout, page, components folder
-- components: Navbar, Hero, DestinationGrid, ExperienceList, Tiers, Testimonials, ConciergeForm, Footer
-- data: destinations + experiences (typed)
-- utilities: classnames helper
-- Tailwind config with custom colors, gradients, shadows
-- Clean code, no unused deps.
+Brand expression:
+- Futuristic luxury, low-light palette, glassmorphism surfaces, neon gradient accents.
+- Editorial headline tone with concise premium copy.
 
-DELIVERABLES
-1) A complete repo that runs:
-   - npm install
-   - npm run dev
-   - npm run build
-2) A README.md with:
-   - What it is
-   - How to run
-   - Where images come from + credits note
-3) Ensure it looks “finished”: spacing, typography scale, consistent radii (rounded-2xl), shadows, transitions.
+Interaction principles:
+- Motion supports clarity (entrance reveals, hover emphasis, scroll context).
+- CTA path is always available (navbar button, hero actions, floating mobile CTA).
+- Perceived quality through subtle depth, blur, glow, and animation timing.
 
-QUALITY BAR
-This must look like a high-end luxury brand landing page (Apple-level polish). No template-y feel. No placeholder Lorem Ipsum except where absolutely necessary.
+## 3) Information Architecture
 
-Now implement it end-to-end.
+Section order (top to bottom):
+1. Sticky Navbar
+2. Hero
+3. Destinations
+4. Signature Experiences
+5. Membership
+6. Testimonials
+7. Concierge Form
+8. Footer
+
+Anchor map:
+- #hero
+- #destinations
+- #experiences
+- #membership
+- #testimonials
+- #contact
+
+Global navigation labels:
+- Destinations
+- Experiences
+- Membership
+- Testimonials
+- Contact
+
+## 4) Visual System
+
+Color tokens (CSS custom properties + Tailwind extension):
+- aurora-dark: #0a0a0f
+- aurora-darker: #050508
+- aurora-cyan: #00e5ff
+- aurora-purple: #8b5cf6
+- aurora-magenta: #d946ef
+- aurora-gold: #fbbf24
+- aurora-white: #f0f0f5
+- aurora-glass: rgba(255,255,255,0.05)
+- aurora-glass-border: rgba(255,255,255,0.1)
+
+Gradients:
+- Primary aurora gradient: cyan -> purple -> magenta
+- Subtle overlay gradient variant for hero atmosphere
+
+Typography:
+- Heading: Space Grotesk
+- Body: Inter
+- Headline usage: bold, high tracking discipline, large scale in hero
+
+Surfaces and elevation:
+- Glass cards: translucent fill + backdrop blur + thin border
+- Glow shadows on hover/focus for premium affordance
+- Rounded geometry standardized around xl/2xl radii
+
+## 5) Motion and Interaction System
+
+Core motion patterns:
+- Section reveal: fade-up on first viewport entry
+- Grid stagger: child cards animate in sequence
+- Hover lift: slight translate/scale for cards and buttons
+- Glow intensification: hover/active focus on key interactive elements
+
+Hero-specific motion:
+- Background atmospheric pulse loop
+- Foreground content parallax-like transform based on scrollY
+- Content opacity reduction with scroll for cinematic fade
+
+Special effects:
+- Conic animated border utility for featured/priority surfaces
+- Floating scroll indicator in hero
+
+Reduced motion policy:
+- Global respect for prefers-reduced-motion (near-zero animation duration, no animated border loop)
+
+## 6) Responsive Behavior
+
+Breakpoint strategy:
+- Mobile-first layout with progressive enhancement at md/lg/xl/2xl.
+
+Key adaptations:
+- Navbar collapses to hamburger menu below md.
+- CTA buttons stack vertically on small screens in hero.
+- Destination/experience/tier/testimonial grids collapse to single-column on small screens.
+- Floating Request Itinerary CTA appears on mobile only after passing hero height.
+
+Touch/access sizing:
+- Interactive controls target min-height of 44px across primary touch elements.
+
+## 7) Section Specs
+
+### 7.1 Navbar (Sticky Glass)
+
+Purpose:
+- Persistent orientation and quick jumps to page sections.
+
+Behavior:
+- Sticks to top with glass treatment.
+- Active section highlighting is driven by IntersectionObserver.
+- Desktop: inline nav + Request Itinerary CTA.
+- Mobile: toggle menu, section links, full-width CTA.
+
+Actions:
+- All nav links smooth-scroll to anchors.
+- Request Itinerary scrolls to #contact.
+
+### 7.2 Hero
+
+Content:
+- H1: Beyond First Class.
+- Luxury concierge value proposition paragraph.
+- Primary CTA: Design My Trip
+- Secondary CTA: Explore Destinations
+
+Visual layers:
+- Remote full-bleed background image
+- Animated subtle aurora overlay
+- Noise texture overlay
+- Large blurred aurora blob behind hero copy
+
+Actions:
+- Design My Trip -> #contact
+- Explore Destinations -> #destinations
+
+### 7.3 Destinations
+
+Purpose:
+- Showcase 6 curated destination products.
+
+Card content model:
+- name
+- region
+- tagline
+- price + currency (badge, "from ...")
+- imageUrl
+- quickFacts[] (shown on hover overlay)
+
+Interactions:
+- Card scale and glow on hover
+- Full quick-facts overlay fades in on hover
+
+Current behavior note:
+- Cards are presentational only; no click-through route/modal currently implemented.
+
+### 7.4 Signature Experiences
+
+Purpose:
+- Communicate breadth and uniqueness of concierge offerings.
+
+Item model:
+- icon (emoji)
+- title
+- description
+
+Layout:
+- Responsive card grid with staggered reveal.
+
+### 7.5 Membership
+
+Purpose:
+- Present value ladder and promote premium conversion.
+
+Tiers:
+- Silver
+- Black (featured)
+- Obsidian
+
+Tier model:
+- name
+- tagline
+- price (yearly)
+- featured flag
+- perks[]
+
+Featured-state treatment:
+- Black tier receives animated conic border, elevated scale, and "Most Popular" badge.
+
+### 7.6 Testimonials
+
+Purpose:
+- Build trust and social proof with premium personas.
+
+Item model:
+- name
+- role
+- quote
+
+Layout:
+- Responsive card grid (2 columns from md upward in current implementation).
+
+### 7.7 Concierge Form
+
+Purpose:
+- Capture high-value travel request intent.
+
+Fields:
+- name (required)
+- email (required + format validation)
+- travelDates
+- travelers (number, min 1, max 20)
+- interests (multi-select chip buttons)
+- budget (select)
+- notes (textarea)
+
+Validation rules:
+- Name must be non-empty.
+- Email must be non-empty and regex-valid.
+
+Submission behavior:
+- Client-only submit.
+- Success toast: "Request received" message.
+- Form reset on successful validation.
+
+Error behavior:
+- Inline error text for name/email.
+- aria-invalid applied on invalid inputs.
+
+### 7.8 Footer
+
+Content:
+- Brand mark text
+- Repeated nav links
+- Copyright
+- Image source credit (Unsplash)
+
+## 8) Data Contracts
+
+Destination:
+- slug, name, region, tagline, price, currency, imageUrl, quickFacts[]
+
+Experience:
+- id, title, description, icon
+
+MembershipTier:
+- id, name, tagline, price, featured, perks[]
+
+Testimonial:
+- id, name, role, quote, optional avatar
+
+NavLink:
+- label, href
+
+## 9) Accessibility and UX Quality
+
+Implemented strengths:
+- Semantic sectioning with explicit IDs for navigation.
+- Focus styles on key controls.
+- Keyboard-usable buttons/links.
+- aria-label and aria-expanded on mobile menu control.
+- Reduced motion support.
+
+Known gaps/opportunities:
+- Form errors are not announced via aria-live region.
+- Footer nav links currently use anchor href only (no smooth scroll handler there).
+- Destination cards do not yet support keyboard-open details since no click action exists.
+
+## 10) Media and Asset Strategy
+
+Images:
+- Remote-hosted Unsplash assets in hero and destination cards.
+
+Allowed image domains configured:
+- source.unsplash.com
+- images.unsplash.com
+- images.pexels.com
+
+Credits:
+- Footer displays Unsplash attribution link.
+
+## 11) SEO and Metadata
+
+Document metadata present:
+- Title: Aurora Luxe Travel | Beyond First Class
+- Description and keyword list for luxury travel intent
+- Open Graph title/description/siteName/type
+- Twitter summary_large_image metadata
+
+## 12) Implementation Map
+
+Primary composition:
+- app/page.tsx orchestrates section components in final order.
+
+Shared animation primitive:
+- AnimatedSection component provides reusable viewport fade-up reveal.
+
+Styling architecture:
+- globals.css defines theme variables, glass and animated-border utilities, reduced-motion handling.
+- tailwind.config.ts extends palette, gradients, shadows, keyframes, and custom breakpoints.
+
+## 13) Future Iteration Backlog (Spec-Level)
+
+High-value enhancements:
+- Add destination details modal/route with keyboard/focus trap support.
+- Add explicit form success and error live regions for improved screen reader announcements.
+- Add analytics events for CTA click funnels and form completion.
+- Expand testimonial component into optional carousel mode on mobile.
