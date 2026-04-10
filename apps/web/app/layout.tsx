@@ -53,7 +53,7 @@ export default function RootLayout({
       lang="en"
       className={`${bodoni.variable} ${libreFranklin.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-aurora-dark text-aurora-white font-sans antialiased">
+      <body className="min-h-full flex flex-col bg-aurora-bg text-aurora-text font-sans antialiased">
         <main>{children}</main>
       </body>
     </html>

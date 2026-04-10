@@ -208,3 +208,40 @@ Price opacity bumped from `/60` to `/80`; region from `/60` to `/70`. All text n
 **Issue #22 — Passive scroll listener:** Added `{ passive: true }` to FloatingCTA's scroll event listener. Hero.tsx already used passive — this was an inconsistency. Passive listeners let the browser optimize scroll performance by guaranteeing no `preventDefault()` call.
 
 **Key lesson:** Always add `{ passive: true }` to scroll/touch listeners that don't call `preventDefault()`. It's a free performance win and browsers may warn without it.
+
+### Light Theme Migration — Issues #25 & #26 (2026-04-10)
+
+**Issue #25 — Remove glow shadows and SaaS patterns from Tiers:**
+- Deleted `glow` and `glow-purple` boxShadow tokens from tailwind.config.ts
+- Added `lift: '0 2px 24px oklch(0 0 0 / 0.35)'` as replacement elevation shadow
+- Removed `scale-[1.02] md:scale-105` from featured tier card — scale transforms are SaaS patterns
+- Removed `staggerChildren: 0.15` stagger variant from Tiers grid — cards now appear simultaneously
+- Replaced `shadow-glow-purple` → `shadow-lift` on featured card
+- Replaced `bg-gradient-aurora` → `bg-aurora-gold` (solid CTA) on featured tier button
+- Updated Hero CTA `hover:shadow-glow` → `hover:shadow-lift`
+- Replaced ALL `shadow-glow` references across Navbar, DestinationGrid, ConciergeForm, FloatingCTA
+
+**Issue #26 — Full light color theme migration:**
+- Replaced ALL OKLCH color tokens with hex values: aurora-bg (#f5f3f0), aurora-bg-light (#faf9f7), aurora-bg-dark (#f0ebe5), aurora-text (#2c2620), aurora-text-muted (#6b6458), aurora-border (#e8e4df), aurora-gold (#c9a76a), aurora-navy (#1a3a52), aurora-sage (#7a8f7f), aurora-success (#5a8f4a), aurora-error (#a85a4a)
+- Changed `color-scheme: dark` → `color-scheme: light` in globals.css
+- Simplified `.glass` utility — removed backdrop-blur, now solid #faf9f7 with #e8e4df border
+- Updated `.animated-border` — gold/navy/sage conic gradient, no backdrop-blur
+- Updated `::selection` for light theme (gold on cream)
+- Updated gradients to use new gold/navy/sage palette
+- Added `subtle` and `medium` shadow tokens for light-theme elevation hierarchy
+- Updated 10 component files: Navbar, Hero, DestinationGrid, ExperienceList, Tiers, Testimonials, ConciergeForm, Footer, FloatingCTA, layout.tsx
+
+**Key design decisions for photo-heavy components:**
+- Hero and DestinationGrid keep dark scrims (`from-black/XX`) for text readability on photography — cinematic overlays are theme-independent
+- Hero text uses `text-white` (not aurora-text) because it sits on dark photo backgrounds
+- DestinationGrid card text uses `text-white` for same reason
+- All CTA buttons switched from gradient to solid `bg-aurora-gold text-aurora-text` — dark text on gold passes WCAG AA (~5.5:1 contrast ratio)
+
+**Token mapping reference:**
+- aurora-dark → aurora-bg | aurora-darker → aurora-bg-dark
+- aurora-white → aurora-text | aurora-white/60 → aurora-text-muted
+- aurora-cyan → aurora-gold | aurora-purple → aurora-navy | aurora-magenta → aurora-sage
+- aurora-glass → aurora-bg-light | aurora-glass-border → aurora-border
+- shadow-glow → shadow-lift | shadow-glass → shadow-subtle
+
+**Key lesson:** When migrating to a light theme, photo-heavy components (Hero, card grids) must retain dark scrims regardless of overall theme. The scrim color should be neutral black (not theme background) to ensure contrast on any photograph. This is a separation of concerns: page chrome follows theme, media overlays follow content.

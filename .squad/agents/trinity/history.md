@@ -94,3 +94,27 @@ Fixed issues #2, #4, and #8 as part of larger 5-issue sweep. All changes committ
 - Added `focus:ring-offset-2 focus:ring-offset-aurora-dark` for keyboard focus visibility
 
 **Key pattern:** Native form controls need solid backgrounds (not glass). Gradient button text must be light for contrast at darkest gradient point.
+
+### Issues #24 + #29 — Hero Left-Align & Motion Simplification (2026-04-10)
+
+**Status:** ✅ COMPLETE
+
+**Issue #24 — Hero editorial left-alignment:**
+- Section: `justify-center` → `justify-start lg:pl-12 xl:pl-20`
+- Content container: `text-center` → `text-left`, added `lg:max-w-[50%]`
+- Removed `mx-auto` from subtext paragraph
+- CTA buttons: `justify-center` → `justify-start`
+- Scroll indicator unchanged (absolute positioned, independent)
+
+**Issue #29 — Motion system simplification:**
+- Hero: Removed parallax scroll effect (useEffect, useCallback, 3 refs), aurora gradient overlay, noise texture overlay
+- Hero + AnimatedSection: Simplified to opacity-only fade-in (no translateY), 600ms duration, easeOut
+- AnimatedSection: viewport trigger changed from `margin: '-100px'` to `amount: 0.8` (80% visible)
+- tailwind.config: Removed `aurora-pulse`, `shimmer`, `float` keyframes + animations (kept `scroll-hint`)
+- Fixed Hero test referencing removed `.animate-float` class
+
+## Learnings
+
+- **Opacity-only transitions feel calmer (2026-04-10):** Removing translateY from scroll-triggered animations eliminates the "slide deck" feel. Opacity fade alone reads as editorial — content appears, it doesn't bounce into view. Better for luxury tone.
+- **Parallax costs more than it gives (2026-04-10):** The ref-based parallax in Hero added complexity (3 refs, useCallback, rAF loop, scroll listener) for a subtle effect that competed with the editorial layout. Removing it simplified the component from 36 lines of hooks to 1 line (`useReducedMotion`).
+- **viewport `amount` vs `margin` (2026-04-10):** Framer Motion's `viewport.amount: 0.8` triggers when 80% of the element is visible — more predictable than negative margin offsets. Better for above-the-fold content that should appear as you approach it.

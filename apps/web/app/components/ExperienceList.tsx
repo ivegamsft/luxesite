@@ -51,7 +51,7 @@ export default function ExperienceList() {
     : cardVariants;
 
   return (
-    <section id="experiences" className="py-section-md px-4 sm:px-6 lg:px-12 bg-aurora-darker">
+    <section id="experiences" className="py-section-md px-4 sm:px-6 lg:px-12 bg-aurora-bg-dark">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection>
           <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-12">
@@ -78,20 +78,20 @@ export default function ExperienceList() {
               <motion.div
                 key={experience.id}
                 variants={cardMotionVariants}
-                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}                className={`experience-card flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-stretch border border-aurora-glass-border rounded-sm overflow-hidden shadow-glass transition-all duration-300 ease-out hover:brightness-110 hover:border-aurora-cyan/30`}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}                className={`experience-card flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-stretch border border-aurora-border rounded-sm overflow-hidden shadow-subtle transition-all duration-300 ease-out hover:brightness-110 hover:border-aurora-gold/30`}
               >
                 {/* Icon side */}
-                <div className="experience-icon flex items-center justify-center bg-aurora-darker p-8 md:p-12 md:w-48 shrink-0">
-                  <div className="w-10 h-10 md:w-12 md:h-12 text-aurora-cyan/80 [&_svg]:w-full [&_svg]:h-full">
+                <div className="experience-icon flex items-center justify-center bg-aurora-bg-dark p-8 md:p-12 md:w-48 shrink-0">
+                  <div className="w-10 h-10 md:w-12 md:h-12 text-aurora-gold/80 [&_svg]:w-full [&_svg]:h-full">
                     {experienceIcons[experience.id]}
                   </div>
                 </div>
                 {/* Content side */}
-                <div className="flex-1 p-6 md:p-8 flex flex-col justify-center bg-aurora-darker/80">
-                  <h3 className="font-heading text-fluid-lg font-medium mb-3 text-aurora-white">
+                <div className="flex-1 p-6 md:p-8 flex flex-col justify-center bg-aurora-bg-light">
+                  <h3 className="font-heading text-fluid-lg font-medium mb-3 text-aurora-text">
                     {experience.title}
                   </h3>
-                  <p className="text-aurora-white/70 leading-relaxed text-fluid-sm max-w-[65ch]">
+                  <p className="text-aurora-text-muted leading-relaxed text-fluid-sm max-w-[65ch]">
                     {experience.description}
                   </p>
                 </div>

@@ -1,29 +1,30 @@
 @import "tailwindcss";
 
-/* ── Aurora Luxe Theme — "Gilded Bordeaux" ───────────────────────────
-   OKLCH palette: warm golds, deep wine, champagne, ivory.
-   Designed for luxury travel — intentionally NOT the AI cyan-on-dark palette. */
+/* ── Aurora Luxe Theme — Light Warmth ────────────────────────────────
+   Hex palette: warm neutrals, champagne gold, navy, sage.
+   Designed for luxury travel — light, refined, editorial. */
 
 :root {
-  /* Backgrounds — wine-tinted darks */
-  --aurora-dark: oklch(0.15 0.015 50);
-  --aurora-darker: oklch(0.11 0.01 50);
+  /* Backgrounds — warm neutrals */
+  --aurora-bg: #f5f3f0;
+  --aurora-bg-light: #faf9f7;
+  --aurora-bg-dark: #f0ebe5;
 
   /* Accents */
-  --aurora-cyan: oklch(0.82 0.105 85);       /* champagne gold — primary */
-  --aurora-purple: oklch(0.42 0.13 20);      /* deep bordeaux wine */
-  --aurora-magenta: oklch(0.70 0.09 30);     /* dusty rose */
-  --aurora-gold: oklch(0.80 0.12 75);        /* burnished antique gold */
+  --aurora-gold: #c9a76a;        /* champagne gold — primary */
+  --aurora-navy: #1a3a52;        /* secondary accent */
+  --aurora-sage: #7a8f7f;        /* tertiary */
 
   /* Text */
-  --aurora-white: oklch(0.95 0.012 85);      /* warm ivory */
+  --aurora-text: #2c2620;        /* body text, headings */
+  --aurora-text-muted: #6b6458;  /* labels, captions */
 
-  /* Surfaces — subtle warm tint, NOT heavy glass */
-  --aurora-glass: oklch(0.95 0.01 85 / 0.04);
-  --aurora-glass-border: oklch(0.95 0.01 85 / 0.07);
+  /* Surfaces */
+  --aurora-border: #e8e4df;      /* all borders */
 
-  /* Error — warm bordeaux-adjacent red */
-  --aurora-error: oklch(0.65 0.20 25);
+  /* Status */
+  --aurora-success: #5a8f4a;
+  --aurora-error: #a85a4a;
 
   /* ── Fluid Type Scale (Major Third ≥1.25 ratio) ──────────────── */
   --fluid-sm: clamp(0.875rem, 0.83rem + 0.22vw, 1rem);
@@ -50,7 +51,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 section[id] {
@@ -58,37 +59,31 @@ section[id] {
 }
 
 body {
-  background-color: var(--aurora-dark);
-  color: var(--aurora-white);
+  background-color: var(--aurora-bg);
+  color: var(--aurora-text);
   font-family: var(--font-sans), "Libre Franklin", system-ui, sans-serif;
   font-size: var(--fluid-base);
   line-height: 1.7;
   font-kerning: normal;
 }
 
-/* Selection — champagne gold on dark */
+/* Selection — gold on light */
 ::selection {
-  background: oklch(0.82 0.105 85);
-  color: oklch(0.15 0.015 50);
+  background: #c9a76a;
+  color: #f5f3f0;
 }
 
-/* ── Surface: Subtle Frosted (reduced glassmorphism) ────────────────
-   Lighter blur + more opaque = works as solid-ish surface for cards.
-   Heavy glass reserved for animated-border (featured tier) only. */
+/* ── Surface: Solid light with subtle border ─────────────────────── */
 .glass {
-  background: oklch(0.17 0.012 50 / 0.7);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid oklch(0.95 0.01 85 / 0.06);
-  box-shadow: 0 4px 20px oklch(0 0 0 / 0.2);
+  background: #faf9f7;
+  border: 1px solid #e8e4df;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
 }
 
 /* Static Conic Gradient Border — featured tier distinction */
 .animated-border {
   position: relative;
-  background: oklch(0.17 0.012 50 / 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: #faf9f7;
 }
 
 .animated-border::before {
@@ -99,10 +94,10 @@ body {
   padding: 2px;
   background: conic-gradient(
     from 0deg,
-    oklch(0.82 0.105 85),
-    oklch(0.42 0.13 20),
-    oklch(0.70 0.09 30),
-    oklch(0.82 0.105 85)
+    #c9a76a,
+    #1a3a52,
+    #7a8f7f,
+    #c9a76a
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);

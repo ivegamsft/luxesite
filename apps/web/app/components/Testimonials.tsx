@@ -34,15 +34,15 @@ export default function Testimonials() {
   const active = testimonials[activeIndex];
 
   return (
-    <section id="testimonials" className="py-section-md px-4 sm:px-6 bg-aurora-darker">
+    <section id="testimonials" className="py-section-md px-4 sm:px-6 bg-aurora-bg-dark">
       <div className="max-w-7xl mx-auto">
         {/* Section Header — left-aligned */}
         <AnimatedSection>
           <div className="mb-16">
-            <h2 className="text-fluid-sm font-heading tracking-widest uppercase text-aurora-white/40 mb-6">
+            <h2 className="text-fluid-sm font-heading tracking-widest uppercase text-aurora-text-muted mb-6">
               Testimonials
             </h2>
-            <p className="font-heading italic text-fluid-2xl text-aurora-white/70 max-w-[75ch] leading-snug tracking-tight">
+            <p className="font-heading italic text-fluid-2xl text-aurora-text/70 max-w-[75ch] leading-snug tracking-tight">
               &ldquo;The measure of a journey is not the distance&nbsp;&mdash; it&rsquo;s the silence when you return.&rdquo;
             </p>
           </div>
@@ -68,18 +68,18 @@ export default function Testimonials() {
                 transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4 }}
               >
                 {/* Large quote mark */}
-                <div className="text-8xl text-aurora-cyan/15 font-serif leading-none mb-2 select-none">&ldquo;</div>
+                <div className="text-8xl text-aurora-gold/15 font-serif leading-none mb-2 select-none">&ldquo;</div>
 
-                <p className="text-fluid-xl italic text-aurora-white/90 mb-8 max-w-[50ch] leading-snug -mt-6">
+                <p className="text-fluid-xl italic text-aurora-text/90 mb-8 max-w-[50ch] leading-snug -mt-6">
                   {active.quote}
                 </p>
 
                 <div className="h-px bg-gradient-aurora opacity-30 mb-6 max-w-xs"></div>
 
-                <p className="font-heading font-semibold text-fluid-lg text-aurora-white">
+                <p className="font-heading font-semibold text-fluid-lg text-aurora-text">
                   {active.name}
                 </p>
-                <p className="text-fluid-sm text-aurora-white/60">
+                <p className="text-fluid-sm text-aurora-text-muted">
                   {active.role}
                 </p>
               </motion.div>
@@ -99,8 +99,8 @@ export default function Testimonials() {
                 >
                   <span className={`block transition-all duration-300 rounded-full ${
                     i === activeIndex
-                      ? 'w-10 h-3 lg:w-3 lg:h-10 bg-aurora-cyan'
-                      : 'w-3 h-3 bg-aurora-white/20 hover:bg-aurora-white/40'
+                      ? 'w-10 h-3 lg:w-3 lg:h-10 bg-aurora-gold'
+                      : 'w-3 h-3 bg-aurora-text/20 hover:bg-aurora-text/40'
                   }`} />
                 </button>
               ))}
@@ -111,7 +111,7 @@ export default function Testimonials() {
               <button
                 onClick={goPrev}
                 aria-label="Previous testimonial"
-                className="w-11 h-11 rounded-full border border-aurora-glass-border flex items-center justify-center text-aurora-white/60 hover:text-aurora-white hover:border-aurora-cyan transition-all min-h-[44px]"
+                className="w-11 h-11 rounded-full border border-aurora-border flex items-center justify-center text-aurora-text-muted hover:text-aurora-text hover:border-aurora-gold transition-all min-h-[44px]"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -120,7 +120,7 @@ export default function Testimonials() {
               <button
                 onClick={goNext}
                 aria-label="Next testimonial"
-                className="w-11 h-11 rounded-full border border-aurora-glass-border flex items-center justify-center text-aurora-white/60 hover:text-aurora-white hover:border-aurora-cyan transition-all min-h-[44px]"
+                className="w-11 h-11 rounded-full border border-aurora-border flex items-center justify-center text-aurora-text-muted hover:text-aurora-text hover:border-aurora-gold transition-all min-h-[44px]"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

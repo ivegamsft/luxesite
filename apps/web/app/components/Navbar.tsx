@@ -58,7 +58,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <span className="font-heading text-xl md:text-2xl font-bold uppercase tracking-wider text-aurora-white">
+            <span className="font-heading text-xl md:text-2xl font-bold uppercase tracking-wider text-aurora-text">
               Aurora Luxe
             </span>
           </div>
@@ -76,10 +76,10 @@ export default function Navbar() {
                         e.preventDefault();
                         handleNavClick(link.href);
                       }}
-                      className={`text-sm font-medium transition-all duration-300 hover:text-aurora-cyan focus:outline-none focus:text-aurora-cyan focus:underline focus:ring-2 focus:ring-aurora-cyan/50 focus:ring-offset-2 focus:ring-offset-aurora-dark focus:rounded-sm ${
+                      className={`text-sm font-medium transition-all duration-300 hover:text-aurora-gold focus:outline-none focus:text-aurora-gold focus:underline focus:ring-2 focus:ring-aurora-gold/50 focus:ring-offset-2 focus:ring-offset-aurora-bg focus:rounded-sm ${
                         isActive
-                          ? 'text-aurora-cyan underline decoration-2 underline-offset-4'
-                          : 'text-aurora-white/80'
+                          ? 'text-aurora-gold underline decoration-2 underline-offset-4'
+                          : 'text-aurora-text-muted'
                       }`}
                     >
                       {link.label}
@@ -97,7 +97,7 @@ export default function Navbar() {
                   contactSection.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="bg-gradient-aurora text-aurora-white font-semibold px-6 py-3 rounded-lg hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan focus:ring-offset-2 focus:ring-offset-aurora-dark min-h-[44px]"
+              className="bg-aurora-gold text-aurora-text font-semibold px-6 py-3 rounded-lg hover:shadow-lift hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-bg min-h-[44px]"
             >
               Design My Trip
             </button>
@@ -107,7 +107,7 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-aurora-white hover:text-aurora-cyan focus:outline-none focus:text-aurora-cyan transition-colors p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="text-aurora-text hover:text-aurora-gold focus:outline-none focus:text-aurora-gold transition-colors p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Toggle menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -139,7 +139,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden glass border-t border-aurora-glass-border overflow-hidden"
+            className="md:hidden glass border-t border-aurora-border overflow-hidden"
           >
           <div className="px-4 pt-4 pb-6 space-y-3">
             <ul className="space-y-3">
@@ -153,10 +153,10 @@ export default function Navbar() {
                         e.preventDefault();
                         handleNavClick(link.href);
                       }}
-                      className={`block text-base font-medium transition-colors py-3 focus:outline-none focus:text-aurora-cyan min-h-[44px] ${
+                      className={`block text-base font-medium transition-colors py-3 focus:outline-none focus:text-aurora-gold min-h-[44px] ${
                         isActive
-                          ? 'text-aurora-cyan'
-                          : 'text-aurora-white/80 hover:text-aurora-cyan'
+                          ? 'text-aurora-gold'
+                          : 'text-aurora-text-muted hover:text-aurora-gold'
                       }`}
                     >
                       {link.label}
@@ -173,7 +173,7 @@ export default function Navbar() {
                 }
                 setMobileMenuOpen(false);
               }}
-              className="w-full bg-gradient-aurora text-aurora-white font-semibold px-6 py-3 rounded-lg hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 mt-4 focus:outline-none focus:ring-2 focus:ring-aurora-cyan min-h-[44px]"
+              className="w-full bg-aurora-gold text-aurora-text font-semibold px-6 py-3 rounded-lg hover:shadow-lift hover:-translate-y-0.5 transition-all duration-300 mt-4 focus:outline-none focus:ring-2 focus:ring-aurora-gold min-h-[44px]"
             >
               Design My Trip
             </button>

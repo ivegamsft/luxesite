@@ -9,63 +9,35 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "aurora-dark": "oklch(0.15 0.015 50)",
-        "aurora-darker": "oklch(0.11 0.01 50)",
-        "aurora-cyan": "oklch(0.82 0.105 85)",
-        "aurora-purple": "oklch(0.42 0.13 20)",
-        "aurora-magenta": "oklch(0.70 0.09 30)",
-        "aurora-gold": "oklch(0.80 0.12 75)",
-        "aurora-white": "oklch(0.95 0.012 85)",
-        "aurora-glass": "oklch(0.95 0.01 85 / 0.04)",
-        "aurora-glass-border": "oklch(0.95 0.01 85 / 0.07)",
-        "aurora-error": "oklch(0.65 0.20 25)",
+        "aurora-bg": "#f5f3f0",
+        "aurora-bg-light": "#faf9f7",
+        "aurora-bg-dark": "#f0ebe5",
+        "aurora-text": "#2c2620",
+        "aurora-text-muted": "#6b6458",
+        "aurora-border": "#e8e4df",
+        "aurora-gold": "#c9a76a",
+        "aurora-navy": "#1a3a52",
+        "aurora-sage": "#7a8f7f",
+        "aurora-success": "#5a8f4a",
+        "aurora-error": "#a85a4a",
       },
       backgroundImage: {
         "gradient-aurora":
-          "linear-gradient(135deg, oklch(0.82 0.105 85), oklch(0.42 0.13 20), oklch(0.70 0.09 30))",
+          "linear-gradient(135deg, #c9a76a, #1a3a52, #7a8f7f)",
         "gradient-aurora-subtle":
-          "linear-gradient(135deg, oklch(0.82 0.105 85 / 0.15), oklch(0.42 0.13 20 / 0.15), oklch(0.70 0.09 30 / 0.15))",
-      },
-      backdropBlur: {
-        glass: "6px",
-        "glass-lg": "12px",
+          "linear-gradient(135deg, rgba(201,167,106,0.15), rgba(26,58,82,0.15), rgba(122,143,127,0.15))",
       },
       boxShadow: {
-        glass: "0 4px 20px oklch(0 0 0 / 0.2)",
-        glow: "0 0 20px oklch(0.82 0.105 85 / 0.3)",
-        "glow-purple": "0 0 20px oklch(0.42 0.13 20 / 0.3)",
+        glass: "0 4px 20px rgba(0,0,0,0.08)",
+        lift: "0 2px 24px oklch(0 0 0 / 0.35)",
+        subtle: "0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04)",
+        medium: "0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)",
       },
       screens: {
         'xs': '320px',
         'xl': '1440px',
       },
       keyframes: {
-        "aurora-pulse": {
-          "0%, 100%": {
-            opacity: "1",
-            transform: "scale(1)",
-          },
-          "50%": {
-            opacity: "0.8",
-            transform: "scale(1.05)",
-          },
-        },
-        shimmer: {
-          "0%": {
-            backgroundPosition: "-200% 0",
-          },
-          "100%": {
-            backgroundPosition: "200% 0",
-          },
-        },
-        float: {
-          "0%, 100%": {
-            transform: "translateY(0px)",
-          },
-          "50%": {
-            transform: "translateY(-10px)",
-          },
-        },
         "scroll-hint": {
           "0%": {
             transform: "translateY(0)",
@@ -82,9 +54,6 @@ const config: Config = {
         },
       },
       animation: {
-        "aurora-pulse": "aurora-pulse 4s ease-in-out infinite",
-        shimmer: "shimmer 3s linear infinite",
-        float: "float 3s ease-in-out infinite",
         "scroll-hint": "scroll-hint 1.2s ease-in-out 2s 1 both",
       },
       fontFamily: {

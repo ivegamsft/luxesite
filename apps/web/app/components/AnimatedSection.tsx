@@ -13,10 +13,10 @@ export default function AnimatedSection({ children, className, delay = 0 }: Anim
 
   return (
     <motion.div
-      initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
+      initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.8 }}
+      transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, delay, ease: 'easeOut' }}
       className={className}
     >
       {children}

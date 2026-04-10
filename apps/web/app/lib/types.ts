@@ -33,6 +33,16 @@ export interface Testimonial {
   avatar?: string;
 }
 
+export interface TeamMember {
+  id: string;
+  name: string;
+  title: string;
+  bio: string;
+  photoUrl: string;
+  yearsExperience: number;
+  specialties: string[];
+}
+
 export interface NavLink {
   label: string;
   href: string;

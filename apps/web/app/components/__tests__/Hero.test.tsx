@@ -52,7 +52,7 @@ describe('Hero', () => {
     render(<Hero />);
 
     // The scroll indicator is an SVG arrow at the bottom
-    const svg = document.querySelector('.animate-float svg');
+    const svg = document.querySelector('.animate-scroll-hint svg');
     expect(svg).toBeInTheDocument();
   });
 

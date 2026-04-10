@@ -2,12 +2,12 @@ import { navLinks } from '../data/navigation';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-aurora-glass-border bg-aurora-darker">
+    <footer className="border-t border-aurora-border bg-aurora-bg-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-section-sm">
         {/* Top Row: Logo + Nav */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-8">
           {/* Logo */}
-          <div className="font-heading text-fluid-xl font-bold text-aurora-white">
+          <div className="font-heading text-fluid-xl font-bold text-aurora-text">
             AURORA LUXE
           </div>
 
@@ -17,7 +17,7 @@ export default function Footer() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-aurora-white/70 hover:text-aurora-cyan transition-colors text-sm min-h-[44px] flex items-center"
+                className="text-aurora-text-muted hover:text-aurora-gold transition-colors text-sm min-h-[44px] flex items-center"
               >
                 {link.label}
               </a>
@@ -26,7 +26,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Row: Copyright + Credits */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-aurora-glass-border text-sm text-aurora-white/50">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-aurora-border text-sm text-aurora-text-muted">
           <p>© 2025 Aurora Luxe Travel. All rights reserved.</p>
           <p>
             Images via{' '}
@@ -34,7 +34,7 @@ export default function Footer() {
               href="https://unsplash.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-aurora-cyan/70 hover:text-aurora-cyan transition-colors"
+              className="text-aurora-gold/70 hover:text-aurora-gold transition-colors"
             >
               Unsplash
             </a>
