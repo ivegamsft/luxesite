@@ -15,6 +15,7 @@ export interface Experience {
   description: string;
   icon: string;
   regions: string[];
+  imageUrl?: string;
 }
 
 export interface MembershipTier {

@@ -57,7 +57,7 @@ export default function Hero() {
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, delay: 0.2, ease: 'easeOut' }}
           className="font-heading text-fluid-3xl font-bold text-aurora-text mb-6 tracking-tight leading-[1.1]"
         >
-          Award-Winning Travel Specialists Designing Bespoke Journeys
+          Where Will Your Story Take You Next?
         </motion.h1>
 
         {/* Subtext */}
@@ -67,7 +67,7 @@ export default function Hero() {
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, delay: 0.4, ease: 'easeOut' }}
           className="text-fluid-base text-aurora-text max-w-[65ch] mb-10 leading-relaxed"
         >
-          Hand-curated experiences. 24/7 concierge. Journeys tailored to you alone.
+          130+ destinations, each curated by specialists who&apos;ve walked the ground. Your journey begins with a conversation.
         </motion.p>
 
         {/* CTA Buttons */}

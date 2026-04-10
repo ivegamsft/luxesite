@@ -1,6 +1,7 @@
 'use client';
 
 import React, { type ReactElement } from 'react';
+import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
 import { experiences } from '../data/experiences';
 import AnimatedSection from './AnimatedSection';
@@ -138,7 +139,7 @@ export default function ExperienceList() {
             </div>
           </motion.div>
 
-          {/* Remaining cards — compact grid */}
+          {/* Remaining cards — compact grid with images */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {rest.map((experience, i) => (
               <motion.div
@@ -147,29 +148,52 @@ export default function ExperienceList() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, delay: i * 0.04 }}
-                className="bg-white border border-aurora-border rounded-lg p-5 hover:shadow-lift transition-shadow flex flex-col"
+                className="group bg-white border border-aurora-border rounded-lg overflow-hidden hover:shadow-lift transition-shadow flex flex-col"
               >
-                <div className="mb-3" aria-hidden="true">
-                  {experienceIcons[experience.icon]}
-                </div>
+                {/* Image */}
+                {experience.imageUrl && (
+                  <div className="relative h-36 overflow-hidden">
+                    <Image
+                      src={experience.imageUrl}
+                      alt={experience.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                    <h3 className="absolute bottom-3 left-4 font-heading text-fluid-base font-medium text-white drop-shadow-sm">
+                      {experience.title}
+                    </h3>
+                  </div>
+                )}
 
-                <h3 className="font-heading text-fluid-base font-medium mb-2 text-aurora-text">
-                  {experience.title}
-                </h3>
+                <div className="p-4 flex flex-col flex-1">
+                  {!experience.imageUrl && (
+                    <>
+                      <div className="mb-3" aria-hidden="true">
+                        {experienceIcons[experience.icon]}
+                      </div>
+                      <h3 className="font-heading text-fluid-base font-medium mb-2 text-aurora-text">
+                        {experience.title}
+                      </h3>
+                    </>
+                  )}
 
-                <p className="text-aurora-text-muted leading-relaxed text-sm mb-4 flex-1 line-clamp-3">
-                  {experience.description}
-                </p>
+                  <p className="text-aurora-text-muted leading-relaxed text-sm mb-4 flex-1 line-clamp-2">
+                    {experience.description}
+                  </p>
 
-                <div className="flex flex-wrap gap-1.5 mt-auto">
-                  {experience.regions.map((region) => (
-                    <span
-                      key={region}
-                      className="bg-aurora-bg-light border border-aurora-border text-aurora-text-muted text-xs rounded-full px-2 py-0.5"
-                    >
-                      {region}
-                    </span>
-                  ))}
+                  <div className="flex flex-wrap gap-1.5 mt-auto">
+                    {experience.regions.map((region) => (
+                      <span
+                        key={region}
+                        className="bg-aurora-bg-light border border-aurora-border text-aurora-text-muted text-xs rounded-full px-2 py-0.5"
+                      >
+                        {region}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             ))}

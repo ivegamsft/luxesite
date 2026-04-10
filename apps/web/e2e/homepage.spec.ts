@@ -39,7 +39,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
 
     // Main heading
     const heading = hero.locator('h1');
-    await expect(heading).toContainText('Award-Winning Travel Specialists');
+    await expect(heading).toContainText('Where Will Your Story');
 
     // CTA buttons
     await expect(hero.getByText('Request Consultation')).toBeVisible();
@@ -147,7 +147,10 @@ test.describe('Homepage — Visual & Content Audit', () => {
     await expect(section.locator('#name')).toBeVisible();
     await expect(section.locator('#email')).toBeVisible();
 
-    // Optional fields
+    // Optional fields — hidden by default, expand first
+    const detailsToggle = section.getByText('Share more details');
+    await detailsToggle.click();
+    await page.waitForTimeout(300);
     await expect(section.locator('#travelDates')).toBeVisible();
     await expect(section.locator('#travelers')).toBeVisible();
     await expect(section.locator('#budget')).toBeVisible();

@@ -36,6 +36,7 @@ const initialFormData = {
 
 export default function ConciergeForm() {
   const [formData, setFormData] = useState(initialFormData);
+  const [showDetails, setShowDetails] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [toast, setToast] = useState(false);
   const [prefillBanner, setPrefillBanner] = useState(false);
@@ -61,6 +62,7 @@ export default function ConciergeForm() {
       
       setPrefillBanner(true);
       setTierIndicator(tier);
+      setShowDetails(true);
     };
 
     window.addEventListener('tier-selected', handleTierSelection);
@@ -118,6 +120,7 @@ export default function ConciergeForm() {
       });
 
       setPrefillBanner(true);
+      setShowDetails(true);
     };
 
     window.addEventListener('hero-discovery', handleHeroDiscovery);
@@ -228,7 +231,7 @@ export default function ConciergeForm() {
     'w-full bg-white border border-aurora-border rounded-lg px-4 py-3 text-aurora-text focus:border-aurora-gold focus:ring-2 focus:ring-aurora-gold/50 focus:outline-none transition-all min-h-[44px]';
 
   return (
-    <section id="contact" className="py-section-lg px-4 sm:px-6">
+    <section id="contact" className="py-section-lg px-4 sm:px-6 bg-aurora-bg-light">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <AnimatedSection>
@@ -331,107 +334,117 @@ export default function ConciergeForm() {
               {errors.email && <p id="email-error" className="mt-1 text-sm text-aurora-error">{errors.email}</p>}
             </div>
 
-            {/* Travel Dates */}
-            <div>
-              <label htmlFor="travelDates" className="block text-sm font-medium text-aurora-text/80 mb-2">
-                Travel Dates
-              </label>
-              <input
-                type="text"
-                id="travelDates"
-                placeholder="e.g., March 2025"
-                value={formData.travelDates}
-                onChange={(e) => setFormData({ ...formData, travelDates: e.target.value })}
-                className={`${inputClass} placeholder:text-aurora-text-muted`}
-              />
-            </div>
-
-            {/* Number of Travelers */}
-            <div>
-              <label htmlFor="travelers" className="block text-sm font-medium text-aurora-text/80 mb-2">
-                Number of Travelers
-              </label>
-              <input
-                type="number"
-                id="travelers"
-                min="1"
-                max="20"
-                value={formData.travelers}
-                onChange={(e) => setFormData({ ...formData, travelers: parseInt(e.target.value) || 1 })}
-                className={inputClass}
-              />
-            </div>
-
-            {/* Interests */}
-            <div>
-              <label className="block text-sm font-medium text-aurora-text/80 mb-3">
-                Interests
-              </label>
-              <div className="flex flex-wrap gap-3">
-                {interestOptions.map((interest) => {
-                  const isSelected = formData.interests.includes(interest);
-                  return (
-                    <button
-                      key={interest}
-                      type="button"
-                      onClick={() => toggleInterest(interest)}
-                      aria-pressed={isSelected}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all min-h-[44px] ${
-                        isSelected
-                          ? 'bg-aurora-gold text-white shadow-medium'
-                          : 'bg-white border border-aurora-border text-aurora-text-muted hover:border-aurora-gold/50'
-                      }`}
-                    >
-                      {interest}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Budget Range */}
-            <div>
-              <label htmlFor="budget" className="block text-sm font-medium text-aurora-text/80 mb-2">
-                Budget Range
-              </label>
-              <select
-                id="budget"
-                value={formData.budget}
-                onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                className={`${inputClass} [&>option]:bg-white [&>option]:text-aurora-text`}
-              >
-                <option value="">Select a range</option>
-                {budgetRanges.map((range) => (
-                  <option key={range} value={range}>
-                    {range}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Additional Notes */}
+            {/* Notes — brief */}
             <div>
               <label htmlFor="notes" className="block text-sm font-medium text-aurora-text/80 mb-2">
-                Additional Notes
+                Tell us about your dream journey
               </label>
               <textarea
                 id="notes"
-                rows={4}
+                rows={3}
                 maxLength={NOTES_MAX_LENGTH}
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                 className="w-full bg-white border border-aurora-border rounded-lg px-4 py-3 text-aurora-text placeholder:text-aurora-text-muted focus:border-aurora-gold focus:ring-2 focus:ring-aurora-gold/50 focus:outline-none transition-all resize-none"
-                placeholder="Tell us about your dream journey..."
+                placeholder="Where would you like to go? Any special occasions or preferences?"
               />
-              <p className="mt-1 text-xs text-aurora-text-muted text-right">
-                {formData.notes.length}/{NOTES_MAX_LENGTH}
-              </p>
             </div>
 
-            {/* Privacy Note */}
-            <p className="text-xs text-aurora-text-muted text-center">
-              Your details are held in strict confidence and never shared with third parties.
-            </p>
+            {/* Expandable details */}
+            <div>
+              <button
+                type="button"
+                onClick={() => setShowDetails(!showDetails)}
+                className="flex items-center gap-2 text-sm text-aurora-gold hover:text-aurora-gold/80 transition-colors font-medium"
+              >
+                <svg className={`w-4 h-4 transition-transform ${showDetails ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+                {showDetails ? 'Fewer details' : 'Share more details (optional)'}
+              </button>
+
+              {showDetails && (
+                <div className="mt-4 space-y-5 pt-4 border-t border-aurora-border/50">
+                  {/* Travel Dates */}
+                  <div>
+                    <label htmlFor="travelDates" className="block text-sm font-medium text-aurora-text/80 mb-2">
+                      Travel Dates
+                    </label>
+                    <input
+                      type="text"
+                      id="travelDates"
+                      placeholder="e.g., March 2025"
+                      value={formData.travelDates}
+                      onChange={(e) => setFormData({ ...formData, travelDates: e.target.value })}
+                      className={`${inputClass} placeholder:text-aurora-text-muted`}
+                    />
+                  </div>
+
+                  {/* Number of Travelers */}
+                  <div>
+                    <label htmlFor="travelers" className="block text-sm font-medium text-aurora-text/80 mb-2">
+                      Number of Travelers
+                    </label>
+                    <input
+                      type="number"
+                      id="travelers"
+                      min="1"
+                      max="20"
+                      value={formData.travelers}
+                      onChange={(e) => setFormData({ ...formData, travelers: parseInt(e.target.value) || 1 })}
+                      className={inputClass}
+                    />
+                  </div>
+
+                  {/* Interests */}
+                  <div>
+                    <label className="block text-sm font-medium text-aurora-text/80 mb-3">
+                      Interests
+                    </label>
+                    <div className="flex flex-wrap gap-2">
+                      {interestOptions.map((interest) => {
+                        const isSelected = formData.interests.includes(interest);
+                        return (
+                          <button
+                            key={interest}
+                            type="button"
+                            onClick={() => toggleInterest(interest)}
+                            aria-pressed={isSelected}
+                            className={`px-3 py-1.5 rounded-full text-sm transition-all min-h-[36px] ${
+                              isSelected
+                                ? 'bg-aurora-gold text-white shadow-medium'
+                                : 'bg-white border border-aurora-border text-aurora-text-muted hover:border-aurora-gold/50'
+                            }`}
+                          >
+                            {interest}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Budget Range */}
+                  <div>
+                    <label htmlFor="budget" className="block text-sm font-medium text-aurora-text/80 mb-2">
+                      Budget Range
+                    </label>
+                    <select
+                      id="budget"
+                      value={formData.budget}
+                      onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                      className={`${inputClass} [&>option]:bg-white [&>option]:text-aurora-text`}
+                    >
+                      <option value="">Select a range</option>
+                      {budgetRanges.map((range) => (
+                        <option key={range} value={range}>
+                          {range}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* Submit Button */}
             <button
@@ -440,6 +453,10 @@ export default function ConciergeForm() {
             >
               Request Consultation
             </button>
+
+            <p className="text-xs text-aurora-text-muted text-center">
+              Your details are held in strict confidence and never shared with third parties.
+            </p>
           </form>
         </div>
         </AnimatedSection>

@@ -58,7 +58,7 @@ export default function Testimonials() {
 
         {/* Featured Quote — large, single testimonial with navigation */}
         <div
-          className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-12 items-start"
+          className="max-w-3xl"
           role="region"
           aria-roledescription="carousel"
           aria-label="Member testimonials"
@@ -66,7 +66,7 @@ export default function Testimonials() {
           tabIndex={0}
         >
           {/* Main quote */}
-          <div className="relative min-h-[320px]" aria-live="polite">
+          <div className="relative min-h-[280px]" aria-live="polite">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.id}
@@ -75,32 +75,23 @@ export default function Testimonials() {
                 exit={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                 transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4 }}
               >
-                {/* Large quote mark */}
-                <div className="text-8xl text-aurora-gold/15 font-serif leading-none mb-2 select-none">&ldquo;</div>
-
                 {active.rating && (
-                  <div className="mb-4 -mt-4">
+                  <div className="mb-4">
                     <StarRating rating={active.rating} />
                   </div>
                 )}
 
-                <p className="text-fluid-xl italic text-aurora-text/90 mb-8 max-w-[50ch] leading-snug -mt-2">
-                  {active.quote}
+                <p className="text-fluid-xl italic text-aurora-text/90 mb-8 max-w-[50ch] leading-snug">
+                  &ldquo;{active.quote}&rdquo;
                 </p>
 
-                <div className="h-px bg-gradient-aurora opacity-30 mb-6 max-w-xs"></div>
+                <div className="h-px bg-aurora-border mb-6 max-w-xs"></div>
 
                 <p className="font-heading font-semibold text-fluid-lg text-aurora-text">
                   {active.name}
                 </p>
                 <p className="text-fluid-sm text-aurora-text-muted">
-                  {active.location}
-                </p>
-                <p className="text-fluid-sm text-aurora-text-muted mt-1">
-                  {active.role}
-                </p>
-                <p className="text-xs text-aurora-text-muted/70 mt-2">
-                  {active.date}
+                  {active.location} · {active.role}
                 </p>
 
                 {active.sourceLink && (
@@ -117,10 +108,19 @@ export default function Testimonials() {
             </AnimatePresence>
           </div>
 
-          {/* Navigation sidebar — dots + arrows */}
-          <div className="flex lg:flex-col items-center lg:items-start gap-6">
-            {/* Navigation dots */}
-            <div className="flex lg:flex-col gap-1">
+          {/* Horizontal navigation — dots + arrows */}
+          <div className="flex items-center gap-4 mt-8">
+            <button
+              onClick={goPrev}
+              aria-label="Previous testimonial"
+              className="w-11 h-11 rounded-full border border-aurora-border flex items-center justify-center text-aurora-text-muted hover:text-aurora-text hover:border-aurora-gold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            <div className="flex gap-1.5">
               {testimonials.map((t, i) => (
                 <button
                   key={t.id}
@@ -130,34 +130,22 @@ export default function Testimonials() {
                 >
                   <span className={`block transition-all duration-300 rounded-full ${
                     i === activeIndex
-                      ? 'w-10 h-3 lg:w-3 lg:h-10 bg-aurora-gold'
-                      : 'w-3 h-3 bg-aurora-text/20 hover:bg-aurora-text/40'
+                      ? 'w-8 h-2.5 bg-aurora-gold'
+                      : 'w-2.5 h-2.5 bg-aurora-text/20 hover:bg-aurora-text/40'
                   }`} />
                 </button>
               ))}
             </div>
 
-            {/* Arrow buttons */}
-            <div className="flex gap-3">
-              <button
-                onClick={goPrev}
-                aria-label="Previous testimonial"
-                className="w-11 h-11 rounded-full border border-aurora-border flex items-center justify-center text-aurora-text-muted hover:text-aurora-text hover:border-aurora-gold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
-              >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button
-                onClick={goNext}
-                aria-label="Next testimonial"
-                className="w-11 h-11 rounded-full border border-aurora-border flex items-center justify-center text-aurora-text-muted hover:text-aurora-text hover:border-aurora-gold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
-              >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
+            <button
+              onClick={goNext}
+              aria-label="Next testimonial"
+              className="w-11 h-11 rounded-full border border-aurora-border flex items-center justify-center text-aurora-text-muted hover:text-aurora-text hover:border-aurora-gold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>

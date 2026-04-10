@@ -73,7 +73,7 @@ export default function DestinationGrid() {
   }, [toggleCard]);
 
   return (
-    <section id="destinations" className="py-section-lg px-4 sm:px-6 lg:px-12">
+    <section id="destinations" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection variant="fade-up">
           <p className="text-sm font-medium tracking-widest uppercase mb-3 text-aurora-gold">
