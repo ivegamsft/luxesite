@@ -37,7 +37,7 @@ export default function WhyAurora() {
               viewport={{ once: true, margin: '-60px' }}
               transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: i * 0.1 }}
               aria-label={`${member.name}, ${member.title}`}
-              className="bg-white border border-aurora-border rounded-lg p-8 text-center transition-shadow duration-200 hover:shadow-[0_4px_6px_rgba(0,0,0,0.1),0_2px_4px_rgba(0,0,0,0.06)]"
+              className="bg-white border border-aurora-border rounded-lg p-8 text-center transition-all duration-200 hover:shadow-medium hover:-translate-y-1 hover:border-aurora-gold/30"
             >
               <div className="relative mx-auto mb-5 w-28 h-28 rounded-full overflow-hidden border-2 border-aurora-border bg-aurora-bg-dark">
                 <Image

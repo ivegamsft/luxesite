@@ -75,12 +75,12 @@ export default function FAQ() {
             
             return (
               <AnimatedSection key={faq.id} delay={index * 0.05}>
-                <div className={`border rounded-lg overflow-hidden transition-all duration-300 ${isOpen ? 'border-aurora-gold/40 bg-white shadow-subtle' : 'border-aurora-border bg-white/80 hover:border-aurora-gold/30'}`}>
+                <div className={`border rounded-lg overflow-hidden transition-all duration-300 ${isOpen ? 'border-aurora-gold/40 bg-white shadow-subtle' : 'border-aurora-border bg-white/80 hover:border-aurora-gold/40 hover:shadow-subtle'}`}>
                   <button
                     onClick={() => toggleItem(faq.id)}
                     aria-expanded={isOpen}
                     aria-controls={`faq-answer-${faq.id}`}
-                    className="w-full flex items-center justify-between px-7 py-6 text-left hover:bg-aurora-bg/20 transition-colors focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-inset"
+                    className="w-full flex items-center justify-between px-7 py-6 text-left hover:bg-aurora-bg/30 transition-colors focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-inset"
                   >
                     <span className="font-heading text-fluid-base font-semibold text-aurora-text pr-8 leading-snug">
                       {faq.question}

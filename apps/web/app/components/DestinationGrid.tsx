@@ -168,8 +168,8 @@ export default function DestinationGrid() {
                         </span>
                       </div>
 
-                      {/* Quick facts overlay — slide up panel */}
-                      <div className={`absolute inset-x-0 top-0 bottom-28 bg-gradient-to-b from-aurora-text/92 via-aurora-text/84 to-aurora-text/72 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
+                      {/* Quick facts overlay — only shown when card is expanded (clicked), not on hover */}
+                      <div className={`absolute inset-x-0 top-0 bottom-28 bg-gradient-to-b from-aurora-text/92 via-aurora-text/84 to-aurora-text/72 transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                         <div className="h-full overflow-y-auto px-5 py-5 md:px-6 md:py-6">
                           <h4 className="font-heading text-base font-semibold mb-3 text-aurora-gold tracking-wide">Quick Facts</h4>
                           <ul className="space-y-2 text-sm text-white/92 pr-2">

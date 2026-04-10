@@ -16,7 +16,7 @@ export default function Tiers() {
     : cardVariants;
 
   return (
-    <section id="membership" className="pt-section-lg pb-[calc(var(--space-section-lg)*1.25)] px-4 sm:px-6 lg:px-12 bg-aurora-navy">
+    <section id="membership" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-navy">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection variant="fade-up">
           <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
@@ -37,7 +37,7 @@ export default function Tiers() {
             <motion.div
               key={tier.id}
               variants={cardMotionVariants}
-              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}              className={`tier-card relative rounded-sm p-8 md:p-10 flex flex-col transition-all duration-300 hover:scale-[1.02] hover:shadow-xl ${
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}              className={`tier-card relative rounded-sm p-8 md:p-10 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
                 tier.featured
                   ? 'gradient-border z-10 shadow-lift'
                   : 'bg-white/10 border border-white/20 shadow-subtle hover:border-aurora-gold/40'

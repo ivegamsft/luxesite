@@ -69,7 +69,7 @@ export default function ExperienceList() {
   const rest = experiences.slice(1);
 
   return (
-    <section id="experiences" className="py-section-md px-4 sm:px-6 lg:px-12 bg-aurora-bg-dark">
+    <section id="experiences" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-dark">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection>
           <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-12">
@@ -169,9 +169,8 @@ export default function ExperienceList() {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       loading={i < 3 ? 'eager' : 'lazy'}
                     />
-                    {/* Layered scrims for text contrast */}
+                    {/* Scrim for text contrast */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    <div className="absolute inset-0 bg-gradient-to-br from-aurora-dark/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                     {/* Content overlay pinned to bottom */}
                     <div className="absolute inset-x-0 bottom-0 p-5">
