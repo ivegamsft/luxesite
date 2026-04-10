@@ -41,7 +41,7 @@ describe('Hero', () => {
 
   it('renders headline', () => {
     render(<Hero />);
-    expect(screen.getByText('Where Will Your Story Take You Next?')).toBeInTheDocument();
+    expect(screen.getByText('Journeys Written in Light')).toBeInTheDocument();
   });
 
   it('renders both CTA buttons', () => {

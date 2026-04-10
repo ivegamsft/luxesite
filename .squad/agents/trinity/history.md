@@ -43,6 +43,9 @@
 - **CTA honesty over guide detail pages (2026-04-10):** When guide cards link to #contact (no detail pages exist), use action-oriented CTAs like "Plan Your Journey" or "Start planning with our team" instead of "Read Guide" or "Meet all specialists". The CTA text must honestly describe where the link goes.
 - **Mobile-only affordance for tap-interactive cards (2026-04-10):** Desktop cards have hover overlays that signal interactivity. Mobile doesn't. Use `md:hidden` on "Tap to explore" hints so they only appear on touch/mobile, and use a finite animation (3 iterations) to avoid restless loops.
 - **tabIndex={0} on tabpanels (2026-04-10):** WAI-ARIA tabs pattern requires `role="tabpanel"`, `aria-labelledby`, AND `tabIndex={0}` on the content container so keyboard users can tab into the panel content.
+- **Eager loading for near-fold images (2026-04-10):** Mid-page images using `loading="lazy"` may never render in headless/SSR contexts because the IntersectionObserver never triggers. Use `loading="eager"` for the first few images in each grid (index < 3–6) and keep lazy only for truly below-fold content.
+- **Always add fallback bg to image containers (2026-04-10):** When Unsplash or any CDN fails, `next/image` shows a blank rectangle. Adding `bg-aurora-bg-dark` (or `bg-aurora-navy` for hero) to the parent container ensures a styled placeholder instead of nothing.
+- **Dead design tokens create confusion (2026-04-10):** `aurora-sage` was defined in tailwind.config.ts but never used in any component — only its hex value appeared in gradient definitions. Remove unused tokens to keep the design system honest.
 
 ## Session Activity
 

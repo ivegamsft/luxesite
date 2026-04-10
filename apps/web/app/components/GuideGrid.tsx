@@ -98,7 +98,7 @@ export default function GuideGrid() {
                   fill
                   className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  loading="lazy"
+                  loading={i < 3 ? 'eager' : 'lazy'}
                 />
                 <span
                   className="absolute top-4 right-4 text-xs font-medium px-3 py-1 rounded-full backdrop-blur-sm bg-white/85 text-aurora-text"

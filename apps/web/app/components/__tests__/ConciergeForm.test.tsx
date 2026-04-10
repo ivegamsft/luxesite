@@ -15,7 +15,7 @@ describe('ConciergeForm', () => {
     expect(screen.getByLabelText(/travel dates/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/number of travelers/i)).toBeInTheDocument();
     expect(screen.getByText(/interests/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/budget range/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/investment per journey/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/additional notes/i)).toBeInTheDocument();
   });
 

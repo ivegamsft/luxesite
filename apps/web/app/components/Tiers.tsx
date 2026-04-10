@@ -23,7 +23,7 @@ export default function Tiers() {
             <h2 className="font-heading text-fluid-lg font-semibold tracking-tight text-white">
               Membership
             </h2>
-            <p className="text-sm text-white/50">Three tiers. One uncompromising standard.</p>
+            <p className="text-sm text-white/50">Every journey is custom-tailored to your vision.</p>
           </div>
         </AnimatedSection>
 
@@ -52,10 +52,16 @@ export default function Tiers() {
                   {tier.tagline}
                 </p>
                 <div className="text-2xl md:text-3xl font-bold text-white tabular-nums">
-                  {tier.price.split('/')[0]}
-                  <span className="text-sm font-normal text-white/60">
-                    /{tier.price.split('/')[1]}
-                  </span>
+                  {tier.price.includes('/') ? (
+                    <>
+                      {tier.price.split('/')[0]}
+                      <span className="text-sm font-normal text-white/60">
+                        /{tier.price.split('/')[1]}
+                      </span>
+                    </>
+                  ) : (
+                    <span>{tier.price}</span>
+                  )}
                 </div>
                 {tier.perTrip && (
                   <p className="text-xs text-white/50 mt-1">{tier.perTrip}</p>
@@ -83,7 +89,7 @@ export default function Tiers() {
                     : 'border border-white/30 text-white/80 hover:border-aurora-gold hover:text-white hover:-translate-y-0.5'
                 }`}
               >
-                Join {tier.name}
+                Begin a Conversation
               </button>
               </div>
             </motion.div>

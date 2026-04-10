@@ -17,7 +17,6 @@ const config: Config = {
         "aurora-border": "#e8e4df",
         "aurora-gold": "#c9a76a",
         "aurora-navy": "#1a3a52",
-        "aurora-sage": "#7a8f7f",
         "aurora-success": "#5a8f4a",
         "aurora-error": "#a85a4a",
       },

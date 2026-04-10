@@ -89,7 +89,7 @@ export default function ExperienceList() {
           >
             {/* Featured image — hero-scale */}
             {featured.imageUrl && (
-              <div className="relative h-64 lg:h-80">
+              <div className="relative h-64 lg:h-80 bg-aurora-bg-dark">
                 <Image
                   src={featured.imageUrl}
                   alt={featured.title}
@@ -160,14 +160,14 @@ export default function ExperienceList() {
               >
                 {/* Full-bleed background image */}
                 {experience.imageUrl && (
-                  <div className="relative h-56 sm:h-64 overflow-hidden">
+                  <div className="relative h-56 sm:h-64 overflow-hidden bg-aurora-bg-dark">
                     <Image
                       src={experience.imageUrl}
                       alt={experience.title}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      loading="lazy"
+                      loading={i < 3 ? 'eager' : 'lazy'}
                     />
                     {/* Layered scrims for text contrast */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />

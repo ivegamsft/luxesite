@@ -378,3 +378,11 @@ Price opacity bumped from `/60` to `/80`; region from `/60` to `/70`. All text n
 **Issue #82 (P2) — ExperienceList featured card gap:** The highlights `<ul>` had `flex-1` which expanded it to fill the `row-span-full` card height, creating an awkward empty zone below the list items and above the region pills. Fix: removed `flex-1` from the list, added `mt-auto` to the region pills wrapper. Content now flows naturally from top; pills anchor to card bottom.
 
 **Key lesson:** When cards use `row-span-full` in a grid, avoid `flex-1` on intermediate content — it stretches to fill the cross-column height. Instead, use `mt-auto` on the final element to anchor it to the bottom while letting content above it size naturally.
+
+### Issues #111 & #100 — Hero Copy + Pricing Anxiety (2026-04-11)
+
+**Issue #111 (P3) — Generic hero copy:** Headline changed from "Where Will Your Story Take You Next?" to "Journeys Written in Light" — ties directly to the Aurora brand identity. Subheadline replaced with the approved fragmented atmospheric style from decisions.md: "Private shores. Unmarked airstrips. Tables that don't take reservations." — under 15 words, no banned luxury clichés.
+
+**Issue #100 (P2) — Pricing shock / tier-form mismatch:** Three changes: (1) Tier prices softened with "From $X" language; Obsidian changed to "By Invitation" with no dollar amount — luxury clients don't shop price lists. (2) ConciergeForm budget field renamed to "Investment per Journey" with ranges aligned to tier pricing, plus a "Let's discuss what's right for me" escape hatch. (3) Section subheading changed to "Every journey is custom-tailored to your vision."
+
+**Key lesson:** Tiers.tsx price display splits on `/` to separate amount from period — when a tier has no `/` (like "By Invitation"), the component now conditionally renders the whole string instead of breaking. Always check string-splitting rendering logic when changing data formats.

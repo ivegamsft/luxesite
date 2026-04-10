@@ -15,11 +15,11 @@ const interestOptions = [
 ];
 
 const budgetRanges = [
-  '$5,000 – $10,000',
-  '$10,000 – $25,000',
-  '$25,000 – $50,000',
-  '$50,000 – $100,000',
-  '$100,000+'
+  'Under $25,000 per journey',
+  '$25,000 – $50,000 per journey',
+  '$50,000 – $100,000 per journey',
+  '$100,000+ per journey',
+  'Let\u2019s discuss what\u2019s right for me'
 ];
 
 const NOTES_MAX_LENGTH = 500;
@@ -50,9 +50,9 @@ export default function ConciergeForm() {
       const { tier } = (e as CustomEvent).detail as { tier: string };
       
       const tierBudgetMap: Record<string, string> = {
-        'Silver': '$5,000 – $10,000',
-        'Black': '$25,000 – $50,000',
-        'Obsidian': '$100,000+',
+        'Silver': 'Under $25,000 per journey',
+        'Black': '$25,000 – $50,000 per journey',
+        'Obsidian': 'Let\u2019s discuss what\u2019s right for me',
       };
       setFormData((prev) => ({
         ...prev,
@@ -483,7 +483,7 @@ export default function ConciergeForm() {
                   {/* Budget Range */}
                   <div>
                     <label htmlFor="budget" className="block text-sm font-medium text-aurora-text/80 mb-2">
-                      Budget Range
+                      Investment per Journey
                     </label>
                     <select
                       id="budget"

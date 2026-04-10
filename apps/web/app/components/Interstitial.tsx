@@ -7,7 +7,7 @@ export default function Interstitial() {
   return (
     <section
       aria-label="Visual interlude"
-      className="relative w-full h-[60vh] min-h-[400px] max-h-[600px] overflow-hidden"
+      className="relative w-full h-[60vh] min-h-[400px] max-h-[600px] overflow-hidden bg-aurora-bg-dark"
     >
       <Image
         src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=1920&h=1080&fit=crop"
@@ -15,7 +15,7 @@ export default function Interstitial() {
         fill
         sizes="100vw"
         className="object-cover"
-        loading="lazy"
+        loading="eager"
       />
       {/* Dark overlay for text legibility */}
       <div className="absolute inset-0 bg-black/40" aria-hidden="true" />

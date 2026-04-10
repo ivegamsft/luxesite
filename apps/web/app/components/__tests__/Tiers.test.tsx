@@ -24,17 +24,16 @@ describe('Tiers', () => {
   it('renders tier prices', () => {
     render(<Tiers />);
     
-    // Check for price information
-    expect(screen.getByText(/€25,000/)).toBeInTheDocument();
-    expect(screen.getByText(/€75,000/)).toBeInTheDocument();
-    expect(screen.getByText(/€200,000/)).toBeInTheDocument();
+    // Check for price information (softened with "From" language)
+    expect(screen.getByText(/From \$25,000/)).toBeInTheDocument();
+    expect(screen.getByText(/From \$75,000/)).toBeInTheDocument();
+    expect(screen.getByText(/By Invitation/)).toBeInTheDocument();
   });
 
-  it('renders join buttons for all tiers', () => {
+  it('renders conversation buttons for all tiers', () => {
     render(<Tiers />);
     
-    expect(screen.getByText('Join Silver')).toBeInTheDocument();
-    expect(screen.getByText('Join Black')).toBeInTheDocument();
-    expect(screen.getByText('Join Obsidian')).toBeInTheDocument();
+    const buttons = screen.getAllByText('Begin a Conversation');
+    expect(buttons).toHaveLength(3);
   });
 });

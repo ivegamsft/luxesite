@@ -246,7 +246,7 @@ export default function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-start lg:pl-12 xl:pl-20 overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 bg-aurora-navy">
         <Image
           src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=2400&h=1400&fit=crop"
           alt="Luxury beach paradise"
@@ -270,7 +270,7 @@ export default function Hero() {
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.1, ease: 'easeOut' }}
           className="font-heading text-fluid-3xl font-bold text-white mb-6 tracking-tight leading-[1.08]"
         >
-          Where Will Your Story Take You Next?
+          Journeys Written in Light
         </motion.h1>
 
         {/* Subtext */}
@@ -280,7 +280,7 @@ export default function Hero() {
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.2, ease: 'easeOut' }}
           className="text-fluid-lg text-white/80 max-w-[55ch] mb-10 leading-relaxed"
         >
-          130+ destinations, each curated by specialists who&apos;ve walked the ground. Your journey begins with a conversation.
+          Private shores. Unmarked airstrips. Tables that don&apos;t take reservations.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -304,7 +304,7 @@ export default function Hero() {
           </button>
         </motion.div>
 
-        {/* Concierge Discovery Row — md+ only */}
+        {/* Concierge Discovery Row — stacked on mobile, inline on md+ */}
         <motion.div
           initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
