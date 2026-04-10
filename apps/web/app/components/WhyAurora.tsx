@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { motion, useReducedMotion } from 'framer-motion';
+import { useReducedMotion } from 'framer-motion';
 import { teamMembers } from '../data/team';
 import AnimatedSection from './AnimatedSection';
 
@@ -41,121 +41,102 @@ const differentiators = [
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
 export default function WhyAurora() {
   const prefersReducedMotion = useReducedMotion();
-  const motionVariants = prefersReducedMotion
-    ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
-    : cardVariants;
+  void prefersReducedMotion;
 
   return (
-    <section id="why-aurora" className="py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 bg-[#faf9f7]">
+    <section id="why-aurora" className="py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
       <div className="max-w-7xl mx-auto">
         {/* Section heading */}
         <AnimatedSection>
           <div className="mb-14 lg:mb-16">
-            <p className="text-sm font-medium tracking-widest uppercase text-[#c9a76a] mb-3">
+            <p className="text-sm font-medium tracking-widest uppercase text-aurora-gold mb-3">
               Meet the Team
             </p>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-tight text-[#2c2620] mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-tight text-aurora-text mb-4">
               Our Specialists
             </h2>
-            <p className="text-[#6b6458] max-w-2xl text-base leading-relaxed">
+            <p className="text-aurora-text-muted max-w-2xl text-base leading-relaxed">
               Each journey is designed by a regional expert with over a decade of on-the-ground experience.
             </p>
           </div>
         </AnimatedSection>
 
-        {/* Team grid */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          variants={{
-            visible: {
-              transition: {
-                staggerChildren: prefersReducedMotion ? 0 : 0.1,
-              },
-            },
-          }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 lg:mb-20"
-        >
-          {teamMembers.map((member) => (
-            <motion.article
-              key={member.id}
-              variants={motionVariants}
-              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="group bg-white border border-[#e8e4df] rounded-lg p-6 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_4px_6px_rgba(0,0,0,0.1),0_2px_4px_rgba(0,0,0,0.06)]"
-            >
-              {/* Photo */}
-              <div className="relative w-28 h-28 mx-auto mb-5 rounded-full overflow-hidden border-2 border-[#e8e4df]">
-                <Image
-                  src={member.photoUrl}
-                  alt={`${member.name}, ${member.title}`}
-                  fill
-                  sizes="112px"
-                  className="object-cover"
-                  loading="lazy"
-                />
-              </div>
-
-              {/* Name & title */}
-              <div className="text-center mb-4">
-                <h3 className="font-heading text-lg font-semibold text-[#2c2620]">
-                  {member.name}
-                </h3>
-                <p className="text-sm text-[#c9a76a] font-medium mt-0.5">
-                  {member.title}
-                </p>
-                <p className="text-xs text-[#6b6458] mt-1">
-                  {member.yearsExperience} years experience
-                </p>
-              </div>
-
-              {/* Bio */}
-              <p className="text-sm text-[#6b6458] leading-relaxed text-center mb-4">
-                {member.bio}
-              </p>
-
-              {/* Specialties */}
-              <div className="flex flex-wrap justify-center gap-1.5">
-                {member.specialties.map((specialty) => (
-                  <span
-                    key={specialty}
-                    className="text-xs px-2.5 py-1 rounded-full bg-[#f5f3f0] text-[#6b6458] border border-[#e8e4df]"
-                  >
-                    {specialty}
-                  </span>
-                ))}
-              </div>
-            </motion.article>
-          ))}
-        </motion.div>
-
-        {/* Differentiators row */}
-        <AnimatedSection>
-          <div className="border-t border-[#e8e4df] pt-12 lg:pt-14">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-              {differentiators.map((item) => (
-                <div key={item.headline} className="text-center">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#c9a76a]/10 text-[#c9a76a] mb-4">
-                    {item.icon}
+        {/* Team — horizontal scroll strip (no stagger animation — credibility section) */}
+        <div className="relative mb-16 lg:mb-20">
+          <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 scrollbar-thin scrollbar-thumb-aurora-border">
+            {teamMembers.map((member, i) => {
+              const isLarge = i < 2;
+              return (
+                <article
+                  key={member.id}
+                  className={`snap-start shrink-0 bg-white border border-aurora-border rounded-lg p-6 transition-shadow duration-200 hover:shadow-[0_4px_6px_rgba(0,0,0,0.1),0_2px_4px_rgba(0,0,0,0.06)] ${
+                    isLarge ? 'w-[300px] md:w-[340px]' : 'w-[260px] md:w-[280px]'
+                  }`}
+                >
+                  <div className={`relative mx-auto mb-5 rounded-full overflow-hidden border-2 border-aurora-border ${
+                    isLarge ? 'w-32 h-32' : 'w-24 h-24'
+                  }`}>
+                    <Image
+                      src={member.photoUrl}
+                      alt={`${member.name}, ${member.title}`}
+                      fill
+                      sizes={isLarge ? '128px' : '96px'}
+                      className="object-cover"
+                      loading="lazy"
+                    />
                   </div>
-                  <h3 className="font-heading text-lg font-semibold text-[#2c2620] mb-2">
-                    {item.headline}
-                  </h3>
-                  <p className="text-sm text-[#6b6458] leading-relaxed max-w-xs mx-auto">
-                    {item.description}
+                  <div className="text-center mb-4">
+                    <h3 className={`font-heading font-semibold text-aurora-text ${isLarge ? 'text-lg' : 'text-base'}`}>
+                      {member.name}
+                    </h3>
+                    <p className="text-sm text-aurora-gold font-medium mt-0.5">
+                      {member.title}
+                    </p>
+                    <p className="text-xs text-aurora-text-muted mt-1">
+                      {member.yearsExperience} years experience
+                    </p>
+                  </div>
+                  <p className={`text-aurora-text-muted leading-relaxed text-center mb-4 ${isLarge ? 'text-sm' : 'text-xs line-clamp-3'}`}>
+                    {member.bio}
                   </p>
-                </div>
-              ))}
-            </div>
+                  <div className="flex flex-wrap justify-center gap-1.5">
+                    {member.specialties.map((specialty) => (
+                      <span
+                        key={specialty}
+                        className="text-xs px-2.5 py-1 rounded-full bg-aurora-bg text-aurora-text-muted border border-aurora-border"
+                      >
+                        {specialty}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              );
+            })}
           </div>
-        </AnimatedSection>
+          {/* Fade hint on right edge */}
+          <div className="hidden lg:block absolute right-0 top-0 bottom-4 w-16 bg-gradient-to-l from-aurora-bg-light to-transparent pointer-events-none" />
+        </div>
+
+        {/* Differentiators row — no animation, trust section */}
+        <div className="border-t border-aurora-border pt-12 lg:pt-14">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            {differentiators.map((item) => (
+              <div key={item.headline} className="text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-aurora-gold/10 text-aurora-gold mb-4">
+                  {item.icon}
+                </div>
+                <h3 className="font-heading text-lg font-semibold text-aurora-text mb-2">
+                  {item.headline}
+                </h3>
+                <p className="text-sm text-aurora-text-muted leading-relaxed max-w-xs mx-auto">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -167,3 +167,9 @@ body {
   }
   
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll-hint {
+    animation: none;
+  }
+}

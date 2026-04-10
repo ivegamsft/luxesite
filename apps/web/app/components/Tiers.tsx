@@ -69,7 +69,7 @@ export default function Tiers() {
               </ul>
 
               <button
-                className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 min-h-[44px] ${
+                className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 min-h-[44px] focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:outline-none ${
                   tier.featured
                     ? 'bg-aurora-gold text-aurora-text hover:shadow-lift hover:-translate-y-0.5'
                     : 'border border-aurora-border text-aurora-text-muted hover:border-aurora-gold hover:text-aurora-text hover:-translate-y-0.5'

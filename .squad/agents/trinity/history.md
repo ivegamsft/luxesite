@@ -186,3 +186,26 @@ Fixed issues #2, #4, and #8 as part of larger 5-issue sweep. All changes committ
 - New order: Navbar → Hero → TrustBar → WhyAurora → DestinationGrid → ExperienceList → GuideGrid → Tiers → Testimonials → PressAwards → ConciergeForm → Footer
 
 Build verified clean.
+
+### Wave 4 — Issues #45, #47 (2026-04-10)
+
+**Status:** ✅ COMPLETE
+
+**Issue #45 — Hero discovery row wiring to ConciergeForm:**
+- Hero.tsx: Added `useState` for `selectedDest` and `selectedTiming`, converted selects from `defaultValue` to controlled components
+- Hero.tsx: `handleRequestConsultation` now dispatches `CustomEvent('hero-discovery')` with `{ destination, timing }` detail before scrolling to #contact
+- ConciergeForm.tsx: Added `useEffect` listener for `hero-discovery` event
+- Pre-fill mapping: destination → matching interest tags (e.g. maldives → "Beach & Islands"), timing → travelDates field, both → notes textarea as fallback
+- Added gold-tinted prefill banner ("✦ We've pre-filled some details from your selection above.") with 5s auto-dismiss
+- Pattern: custom event decoupling — no prop drilling, no shared state, both components remain independent
+
+**Issue #47 — Destination grid region filtering:**
+- DestinationGrid.tsx: Derived unique regions from destinations data with `useMemo`, producing tab objects with counts
+- Added tab bar (role="tablist") with "All (14)" + per-region tabs e.g. "Indian Ocean (2)", "Europe (1)"
+- Default "All" tab shows first 6 destinations with "View All Destinations (14)" expand button
+- Region-specific tabs show all destinations in that region (no gating)
+- Featured card (`col-span-2 row-span-2`) always applies to index 0 of visible set
+- Added `AnimatePresence mode="wait"` with opacity fade (0.25s) on tab switch
+- All transitions respect `useReducedMotion`
+
+Build verified clean.

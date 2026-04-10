@@ -194,6 +194,35 @@ Price opacity bumped from `/60` to `/80`; region from `/60` to `/70`. All text n
 - Price text opacity bumped from `/60` to `/80` for WCAG AA compliance
 - Region text opacity bumped from `/60` to `/70`
 - All scrims use `pointer-events-none` to preserve click/hover/keyboard interactions
+
+## Wave 4 — Issues #44, #48, #50, #51 (2025-01-XX)
+
+### Issue #44 (P0): Footer + PressAwards accessibility
+- Footer.tsx: All `<a>` links now have `focus:text-white focus:underline focus:outline-none focus:ring-2 focus:ring-aurora-gold`
+- Footer.tsx: Copyright row bumped from `text-white/40` → `text-white/70` for WCAG AA
+- Footer.tsx: All body text bumped from `text-white/60` → `text-white/80`
+- PressAwards.tsx: Award links now have visible focus styles with ring offset
+- PressAwards.tsx: Removed onMouseEnter/onMouseLeave inline style handlers, replaced with Tailwind hover:/focus: classes
+- Tiers.tsx: Join buttons now have `focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:outline-none`
+
+### Issue #48 (P2): Normalize inline styles to tokens
+- Hero.tsx: All `[#hex]` replaced with `aurora-*` tokens (text, gold, border, bg)
+- Navbar.tsx: All `[#hex]` replaced with tokens (text, gold, border)
+- WhyAurora.tsx: All `[#hex]` replaced with tokens (bg-light, text, gold, border, text-muted)
+- GuideGrid.tsx: All `style={{ }}` inline styles replaced with Tailwind token classes
+- PressAwards.tsx: All `style={{ }}` inline styles replaced with Tailwind token classes
+
+### Issue #50 (P2): Skip-nav, main landmark, reduced-motion
+- layout.tsx: Added skip-to-content link as first child of `<body>`, removed `<main>` wrapper
+- page.tsx: Wrapped all sections (after Navbar, before Footer) in `<main id="main-content">`
+- StaggerChildren.tsx: Added `useReducedMotion` — sets stagger to 0 when reduced motion preferred
+- globals.css: Added `@media (prefers-reduced-motion: reduce) { .animate-scroll-hint { animation: none; } }`
+- Navbar.tsx: Mobile menu animation kept as-is (functional reveal, not decorative)
+
+### Issue #51 (P3): Minor fixes
+- TrustBar.tsx: Phone number standardized to `+1 (888) 200-LUXE` (was `+1 (212) 555-0190`)
+- Testimonials.tsx: Swapped h2/p — eyebrow is now `<p>`, visual heading is now `<h2>`
+- DestinationGrid.tsx: Changed `focus-within:opacity-100` → `group-focus-within:opacity-100` on overlay so keyboard focus on card reveals quick facts
 - All colors remain in OKLCH via aurora-dark token
 - No badges, pills, or visible UI elements — contrast is achieved through invisible gradient layers
 

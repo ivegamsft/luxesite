@@ -10,20 +10,17 @@ export default function PressAwards() {
   return (
     <section
       id="press"
-      className="py-section-lg px-4 sm:px-6 lg:px-12"
-      style={{ backgroundColor: '#faf9f7' }}
+      className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light"
     >
       <div className="max-w-5xl mx-auto text-center">
         <AnimatedSection>
           <p
-            className="text-sm font-medium tracking-widest uppercase mb-3"
-            style={{ color: '#c9a76a' }}
+            className="text-sm font-medium tracking-widest uppercase mb-3 text-aurora-gold"
           >
             Recognition
           </p>
           <h2
-            className="font-heading text-fluid-xl font-semibold tracking-tight leading-tight mb-3"
-            style={{ color: '#2c2620' }}
+            className="font-heading text-fluid-xl font-semibold tracking-tight leading-tight mb-3 text-aurora-text"
           >
             Trusted by industry leaders and 2,400+ verified reviews
           </h2>
@@ -47,8 +44,7 @@ export default function PressAwards() {
               <div key={award.id} className="flex items-center">
                 {index > 0 && (
                   <div
-                    className="w-px h-8 mx-6 lg:mx-8"
-                    style={{ backgroundColor: '#e8e4df' }}
+                    className="w-px h-8 mx-6 lg:mx-8 bg-aurora-border"
                     aria-hidden="true"
                   />
                 )}
@@ -56,14 +52,7 @@ export default function PressAwards() {
                   href={award.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-sm lg:text-base font-heading font-semibold tracking-widest transition-colors duration-200 whitespace-nowrap"
-                  style={{ color: '#6b6458' }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.color = '#c9a76a')
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = '#6b6458')
-                  }
+                  className="block text-sm lg:text-base font-heading font-semibold tracking-widest transition-colors duration-200 whitespace-nowrap text-aurora-text-muted hover:text-aurora-gold focus:text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
                   aria-label={`Visit ${award.name}`}
                 >
                   {award.logoText}
@@ -80,8 +69,7 @@ export default function PressAwards() {
                 href={award.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center py-3 px-2 rounded-sm text-xs font-heading font-semibold tracking-widest transition-colors duration-200"
-                style={{ color: '#6b6458', border: '1px solid #e8e4df' }}
+                className="flex items-center justify-center py-3 px-2 rounded-sm text-xs font-heading font-semibold tracking-widest transition-colors duration-200 text-aurora-text-muted border border-aurora-border hover:text-aurora-gold focus:text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
                 aria-label={`Visit ${award.name}`}
               >
                 {award.logoText}
@@ -92,8 +80,8 @@ export default function PressAwards() {
 
         {/* Stat line */}
         <AnimatedSection delay={0.2}>
-          <p className="text-sm" style={{ color: '#6b6458' }}>
-            <span style={{ color: '#c9a76a' }}>★ 4.9/5 on Trustpilot</span>
+          <p className="text-sm text-aurora-text-muted">
+            <span className="text-aurora-gold">★ 4.9/5 on Trustpilot</span>
             <span className="mx-2" aria-hidden="true">
               ·
             </span>

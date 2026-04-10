@@ -49,3 +49,17 @@
 - Rewrote `app/data/experiences.ts` from 5 → 8 spec-aligned categories: Wildlife Safaris, Cultural Immersion, Beach & Islands, Mountain & Ski, Food & Wine, Adventure, Family Journeys, Honeymoon & Romance — each with 4 region strings and emoji icons
 - Redesigned `ExperienceList.tsx`: replaced alternating horizontal cards with 3-col lg / 2-col md / 1-col sm grid, emoji icon top, region pills at bottom (rounded-full, aurora-bg-light bg, aurora-border border), white card bg, hover shadow-lift, removed old SVG icon map
 - Build verified clean
+
+### 2026-07 — Issue #46: Break layout monotony across sections
+- **ExperienceList.tsx**: Replaced uniform 3-col grid with 2-col featured layout. Left column = tall featured card (Wildlife Safaris), right column = 2×4 compact card grid. Animation changed from stagger fade-up to slide-from-left for featured + simple opacity fade for rest.
+- **GuideGrid.tsx**: Replaced uniform 3-col grid with magazine editorial layout. First guide renders as full-width 2-col hero card (image left, content right). Remaining 5 guides in standard 3-col grid below. Animation changed from stagger fade-up to slide-from-left for featured + simple opacity fade for rest.
+- **WhyAurora.tsx**: Replaced 3-col team grid with horizontal scroll strip. First 2 members get larger cards (300-340px), remaining 3 get smaller cards (260-280px). Added snap-scroll, right-edge fade gradient. Removed all motion animation from team and differentiators (credibility section — animation not needed).
+- DestinationGrid and Tiers kept as grids per instructions.
+- Build verified clean
+
+### 2026-07 — Issue #49: Replace emoji icons with SVGs in Experiences
+- Updated `experiences.ts`: changed `icon` field from emoji strings (🦁🏛️🏝️ etc.) to semantic ID strings ('wildlife', 'cultural', 'beach', 'mountain', 'food-wine', 'adventure', 'family', 'romance')
+- Created `experienceIcons` record in `ExperienceList.tsx` mapping 8 IDs → inline JSX SVG elements (viewBox 24×24, fill="none", stroke="currentColor", strokeWidth="1.5")
+- Icons: binoculars (wildlife), temple columns (cultural), palm tree + waves (beach), mountain peaks + sun (mountain), wine glass (food-wine), compass rose (adventure), hot air balloon (family), heart (romance)
+- SVGs rendered with `w-8 h-8 text-aurora-gold` styling and `aria-hidden="true"`
+- Build verified clean

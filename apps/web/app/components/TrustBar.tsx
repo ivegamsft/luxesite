@@ -5,7 +5,7 @@ import React from 'react';
 const trustSignals = [
   {
     id: 'phone',
-    label: '+1 (212) 555-0190',
+    label: '+1 (888) 200-LUXE',
     sublabel: 'Available 24/7',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">

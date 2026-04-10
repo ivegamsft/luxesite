@@ -38,6 +38,71 @@ export default function ConciergeForm() {
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [toast, setToast] = useState(false);
+  const [prefillBanner, setPrefillBanner] = useState(false);
+
+  // Listen for hero discovery row selections
+  useEffect(() => {
+    const handleHeroDiscovery = (e: Event) => {
+      const { destination, timing } = (e as CustomEvent).detail as {
+        destination: string;
+        timing: string;
+      };
+
+      const destLabels: Record<string, string> = {
+        maldives: 'Maldives',
+        santorini: 'Santorini',
+        kyoto: 'Kyoto',
+        patagonia: 'Patagonia',
+        safari: 'East Africa Safari',
+        other: 'Somewhere else',
+      };
+
+      const timingLabels: Record<string, string> = {
+        'next-month': 'Next month',
+        '3-months': 'In 2–3 months',
+        '6-months': 'In 4–6 months',
+        'next-year': 'Next year',
+        flexible: "I'm flexible",
+      };
+
+      setFormData((prev) => {
+        const parts: string[] = [];
+        if (destination) parts.push(`Interested in: ${destLabels[destination] ?? destination}`);
+        if (timing) parts.push(`Timing: ${timingLabels[timing] ?? timing}`);
+        const prefillText = parts.join(' · ');
+
+        const interestMap: Record<string, string[]> = {
+          maldives: ['Beach & Islands'],
+          santorini: ['Beach & Islands', 'City & Culture'],
+          kyoto: ['City & Culture'],
+          patagonia: ['Adventure'],
+          safari: ['Wildlife & Safari'],
+        };
+
+        const mappedInterests = destination ? (interestMap[destination] ?? []) : [];
+        const mergedInterests = Array.from(new Set([...prev.interests, ...mappedInterests]));
+
+        return {
+          ...prev,
+          travelDates: timing ? (timingLabels[timing] ?? prev.travelDates) : prev.travelDates,
+          interests: mergedInterests,
+          notes: prev.notes ? prev.notes : prefillText,
+        };
+      });
+
+      setPrefillBanner(true);
+    };
+
+    window.addEventListener('hero-discovery', handleHeroDiscovery);
+    return () => window.removeEventListener('hero-discovery', handleHeroDiscovery);
+  }, []);
+
+  // Auto-dismiss prefill banner
+  useEffect(() => {
+    if (!prefillBanner) return;
+    const timer = setTimeout(() => setPrefillBanner(false), 5000);
+    return () => clearTimeout(timer);
+  }, [prefillBanner]);
 
   useEffect(() => {
     if (!toast) return;
@@ -132,6 +197,17 @@ export default function ConciergeForm() {
           <p className="text-sm text-aurora-text-muted text-center mb-6">
             ✓ 4.9/5 on Trustpilot · 1,000+ journeys designed
           </p>
+
+          {/* Prefill Banner */}
+          {prefillBanner && (
+            <div
+              role="status"
+              className="mb-6 flex items-center gap-2 rounded-lg border border-aurora-gold/30 bg-aurora-gold/10 px-4 py-3 text-sm text-aurora-gold"
+            >
+              <span className="shrink-0">✦</span>
+              We&apos;ve pre-filled some details from your selection above.
+            </div>
+          )}
 
           {/* Success Toast */}
           {toast && (

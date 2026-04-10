@@ -15,16 +15,18 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <Hero />
-      <TrustBar />
-      <WhyAurora />
-      <DestinationGrid />
-      <ExperienceList />
-      <GuideGrid />
-      <Tiers />
-      <Testimonials />
-      <PressAwards />
-      <ConciergeForm />
+      <main id="main-content">
+        <Hero />
+        <TrustBar />
+        <WhyAurora />
+        <DestinationGrid />
+        <ExperienceList />
+        <GuideGrid />
+        <Tiers />
+        <Testimonials />
+        <PressAwards />
+        <ConciergeForm />
+      </main>
       <Footer />
     </>
   );
