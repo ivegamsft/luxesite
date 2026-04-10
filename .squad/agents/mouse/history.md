@@ -8,3 +8,28 @@
 ## Learnings
 
 <!-- Append new learnings below. Each entry is something lasting about the project. -->
+
+### Visual Redesign — "Gilded Bordeaux" (2026-04-10)
+
+**Palette:** Replaced the AI-default cyan/purple/magenta-on-dark with an OKLCH warm luxury palette:
+- Primary accent: champagne gold `oklch(0.82 0.105 85)` — mapped to `aurora-cyan` token
+- Secondary: deep bordeaux wine `oklch(0.42 0.13 20)` — mapped to `aurora-purple`
+- Tertiary: dusty rose `oklch(0.70 0.09 30)` — mapped to `aurora-magenta`
+- Gold highlight: burnished antique `oklch(0.80 0.12 75)` — mapped to `aurora-gold`
+- Dark backgrounds: wine-tinted near-black, not pure neutral
+- Text: warm ivory `oklch(0.95 0.012 85)`, not cold white
+
+**All color token NAMES preserved** (aurora-cyan, aurora-purple, etc.) so component classes didn't break. Only VALUES changed.
+
+**Glassmorphism:** Reduced from heavy 16px blur + transparent bg to subtle 6px blur + 70% opaque warm surface. The `.glass` class now reads as a tinted solid surface. `animated-border` retains stronger glass (12px blur, 60% opacity) for the featured tier.
+
+**Fonts:** Replaced banned Inter + Space Grotesk with Playfair Display (heading serif — editorial luxury) + Source Sans 3 (body sans — clean readability). Variables: `--font-playfair`, `--font-source-sans`.
+
+**Fluid Typography:** Major Third (1.25) scale with `clamp()` — 8 steps from `--fluid-sm` to `--fluid-5xl`. Available as CSS custom properties and Tailwind `text-fluid-*` utilities.
+
+**Section Spacing:** 5 rhythm tokens (`--space-hero` through `--space-section-xs`) using `clamp()`. Available as Tailwind `section-hero`, `section-lg`, etc. Trinity needs to apply these to component section padding.
+
+**Key files:**
+- `apps/web/app/globals.css` — OKLCH vars, glass, animated-border, fluid type, spacing tokens
+- `apps/web/tailwind.config.ts` — all color/gradient/shadow/font/fontSize/spacing tokens
+- `apps/web/app/layout.tsx` — Playfair Display + Source Sans 3 imports

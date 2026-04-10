@@ -8,6 +8,7 @@
 ## Team Updates
 
 - **Monorepo Structure (2026-04-10):** App code moved to `apps/web/` (by Morpheus). All CI/CD and test runs now target `apps/web/` path. Backend/API apps can be added to `apps/` in future. See `.squad/decisions/decisions.md` for full rationale.
+- **Playwright E2E Suite (2026-04-10):** Tank set up Playwright with Chromium, covering 8 sections + full-page screenshot. All 9/9 tests pass. This audit discovered P0 (sections invisible below hero due to Framer Motion opacity gating) and P1 (navbar clipping). Both issues now fixed in Trinity's UI fixes and animation visibility work.
 
 ## Learnings
 
@@ -18,3 +19,9 @@
 - **Sticky nav scroll offset (2026-04-10):** The 80px sticky navbar hides section headers when `scrollIntoView` fires. Fix with `scroll-margin-top` on target sections AND `scroll-padding-top` on html for belt-and-suspenders coverage.
 - **`color-scheme: dark` matters (2026-04-10):** Without it, native form controls (select, number input, date picker) render with light OS defaults on the dark background. One line in globals.css fixes all of them.
 - **Tier card scale overflow (2026-04-10):** `scale-110` on a grid child overflows its cell and overlaps neighbors when the gap is smaller than the scaled overflow. Keep featured card scale modest (≤105%) and add `z-10` for proper stacking.
+- **Hero parallax via refs, not state (2026-04-10):** Scroll-driven transforms should bypass React re-renders. Use `useRef` for the DOM element, `requestAnimationFrame` for throttling, and mutate `el.style` directly. Zero re-renders on scroll.
+- **Framer Motion opacity gating kills SSR/screenshots (2026-04-10):** `initial={{ opacity: 0 }}` with `whileInView` makes content invisible on SSR, full-page screenshots, no-JS clients, and SEO crawlers — the IntersectionObserver never fires. Fix: set `hidden` variant to `{ opacity: 1, y: 20 }` so content is always visible and the animation is a subtle slide-up (progressive enhancement). Never gate content visibility behind a scroll-triggered animation.
+- **Hover-only overlays need tap fallback (2026-04-10):** `group-hover:opacity-100` is invisible on touch devices. Add `useState` toggle on click, `tabIndex={0}` + `role="button"` + `aria-expanded` for keyboard/screen reader support, and `focus-within:opacity-100` as CSS fallback.
+- **Form errors need aria-live (2026-04-10):** Visual error messages aren't announced to screen readers. Add `aria-live="polite"` container, `aria-describedby` on each input linking to its error's `id`.
+- **Gradient text banned (2026-04-10):** `bg-gradient-aurora bg-clip-text text-transparent` on headings causes readability issues. Use solid `text-aurora-white` instead. Gradients OK for decorative elements (dividers, badges) but not text.
+- **OKLCH for selection colors (2026-04-10):** Mouse is moving palette to OKLCH. `::selection` now uses `oklch()` values. Keep aligned with the OKLCH migration.
