@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import AnimatedSection from './AnimatedSection';
 
 const interestOptions = [
@@ -22,19 +22,28 @@ const budgetRanges = [
   '$100,000+'
 ];
 
-export default function ConciergeForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    travelDates: '',
-    travelers: 2,
-    interests: [] as string[],
-    budget: '',
-    notes: ''
-  });
+const NOTES_MAX_LENGTH = 500;
 
+const initialFormData = {
+  name: '',
+  email: '',
+  travelDates: '',
+  travelers: 2,
+  interests: [] as string[],
+  budget: '',
+  notes: ''
+};
+
+export default function ConciergeForm() {
+  const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [submitted, setSubmitted] = useState(false);
+  const [toast, setToast] = useState(false);
+
+  useEffect(() => {
+    if (!toast) return;
+    const timer = setTimeout(() => setToast(false), 6000);
+    return () => clearTimeout(timer);
+  }, [toast]);
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -92,9 +101,14 @@ export default function ConciergeForm() {
     e.preventDefault();
 
     if (validateForm()) {
-      setSubmitted(true);
+      setToast(true);
+      setFormData({ ...initialFormData, interests: [] });
+      setErrors({});
     }
   };
+
+  const inputClass =
+    'w-full bg-white border border-aurora-border rounded-lg px-4 py-3 text-aurora-text focus:border-aurora-gold focus:ring-2 focus:ring-aurora-gold/50 focus:outline-none transition-all min-h-[44px]';
 
   return (
     <section id="contact" className="py-section-lg px-4 sm:px-6">
@@ -103,40 +117,33 @@ export default function ConciergeForm() {
         <AnimatedSection>
           <div className="mb-12">
             <h2 className="text-fluid-2xl font-heading font-semibold tracking-tight leading-tight mb-4 text-aurora-text">
-              Design Your Journey
+              Ready to Start Planning?
             </h2>
             <p className="text-fluid-base text-aurora-text-muted max-w-[65ch]">
-              One conversation. Then we take it from here.
+              A specialist will reach out within 24 hours to discuss your vision.
             </p>
           </div>
         </AnimatedSection>
 
         {/* Form Container */}
         <AnimatedSection delay={0.2}>
-          <div className="max-w-2xl mx-auto bg-aurora-bg-dark border border-aurora-border rounded-sm p-6 md:p-8 shadow-subtle">
-          {submitted ? (
-            <div className="text-center py-12 space-y-6">
-              <div className="text-5xl mb-4">✦</div>
-              <h3 className="font-heading text-fluid-xl font-semibold text-aurora-text">
-                Thank you, {formData.name.split(' ')[0]}.
-              </h3>
-              <p className="text-fluid-base text-aurora-text-muted max-w-[50ch] mx-auto leading-relaxed">
-                A dedicated curator will reach out within 24 hours to begin shaping your journey. Your information is held in absolute confidence.
-              </p>
-              <div className="h-px bg-gradient-aurora opacity-30 max-w-xs mx-auto"></div>
-              <button
-                type="button"
-                onClick={() => {
-                  setSubmitted(false);
-                  setFormData({ name: '', email: '', travelDates: '', travelers: 2, interests: [], budget: '', notes: '' });
-                  setErrors({});
-                }}
-                className="text-sm text-aurora-text-muted hover:text-aurora-text/80 transition-colors underline underline-offset-4"
-              >
-                Submit another request
-              </button>
+          <div className="max-w-2xl mx-auto bg-aurora-bg border border-aurora-border rounded-lg p-5 sm:p-6 md:p-8 shadow-subtle">
+          {/* Trust Badge */}
+          <p className="text-sm text-aurora-text-muted text-center mb-6">
+            ✓ 4.9/5 on Trustpilot · 1,000+ journeys designed
+          </p>
+
+          {/* Success Toast */}
+          {toast && (
+            <div
+              role="status"
+              className="mb-6 flex items-center gap-2 rounded-lg border border-aurora-success/30 bg-aurora-success/10 px-4 py-3 text-sm text-aurora-success"
+            >
+              <span className="shrink-0">✓</span>
+              Request received! A specialist will be in touch within 24 hours.
             </div>
-          ) : (
+          )}
+
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Screen reader error announcements */}
             <div aria-live="polite" className="sr-only">
@@ -159,7 +166,7 @@ export default function ConciergeForm() {
                   if (errors.name) setErrors((prev) => { const next = { ...prev }; delete next.name; return next; });
                 }}
                 onBlur={() => validateField('name')}
-                className="w-full bg-aurora-bg-light border border-aurora-border rounded-lg px-4 py-3 text-aurora-text focus:border-aurora-gold focus:ring-1 focus:ring-aurora-gold/50 focus:outline-none transition-all min-h-[44px]"
+                className={inputClass}
                 aria-invalid={!!errors.name}
                 aria-describedby={errors.name ? 'name-error' : undefined}
               />
@@ -180,7 +187,7 @@ export default function ConciergeForm() {
                   if (errors.email) setErrors((prev) => { const next = { ...prev }; delete next.email; return next; });
                 }}
                 onBlur={() => validateField('email')}
-                className="w-full bg-aurora-bg-light border border-aurora-border rounded-lg px-4 py-3 text-aurora-text focus:border-aurora-gold focus:ring-1 focus:ring-aurora-gold/50 focus:outline-none transition-all min-h-[44px]"
+                className={inputClass}
                 aria-invalid={!!errors.email}
                 aria-describedby={errors.email ? 'email-error' : undefined}
               />
@@ -198,7 +205,7 @@ export default function ConciergeForm() {
                 placeholder="e.g., March 2025"
                 value={formData.travelDates}
                 onChange={(e) => setFormData({ ...formData, travelDates: e.target.value })}
-                className="w-full bg-aurora-bg-light border border-aurora-border rounded-lg px-4 py-3 text-aurora-text placeholder:text-aurora-text-muted focus:border-aurora-gold focus:ring-1 focus:ring-aurora-gold/50 focus:outline-none transition-all min-h-[44px]"
+                className={`${inputClass} placeholder:text-aurora-text-muted`}
               />
             </div>
 
@@ -214,7 +221,7 @@ export default function ConciergeForm() {
                 max="20"
                 value={formData.travelers}
                 onChange={(e) => setFormData({ ...formData, travelers: parseInt(e.target.value) || 1 })}
-                className="w-full bg-aurora-bg-light border border-aurora-border rounded-lg px-4 py-3 text-aurora-text focus:border-aurora-gold focus:ring-1 focus:ring-aurora-gold/50 focus:outline-none transition-all min-h-[44px]"
+                className={inputClass}
               />
             </div>
 
@@ -234,8 +241,8 @@ export default function ConciergeForm() {
                       aria-pressed={isSelected}
                       className={`px-4 py-2 rounded-full text-sm font-medium transition-all min-h-[44px] ${
                         isSelected
-                          ? 'bg-aurora-gold text-aurora-text shadow-medium'
-                          : 'bg-aurora-bg-light border border-aurora-border text-aurora-text-muted hover:border-aurora-gold/50'
+                          ? 'bg-aurora-gold text-white shadow-medium'
+                          : 'bg-white border border-aurora-border text-aurora-text-muted hover:border-aurora-gold/50'
                       }`}
                     >
                       {interest}
@@ -254,7 +261,7 @@ export default function ConciergeForm() {
                 id="budget"
                 value={formData.budget}
                 onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                className="w-full bg-aurora-bg-light border border-aurora-border rounded-lg px-4 py-3 text-aurora-text focus:border-aurora-gold focus:ring-1 focus:ring-aurora-gold/50 focus:outline-none transition-all min-h-[44px] [&>option]:bg-aurora-bg-light [&>option]:text-aurora-text"
+                className={`${inputClass} [&>option]:bg-white [&>option]:text-aurora-text`}
               >
                 <option value="">Select a range</option>
                 {budgetRanges.map((range) => (
@@ -273,11 +280,15 @@ export default function ConciergeForm() {
               <textarea
                 id="notes"
                 rows={4}
+                maxLength={NOTES_MAX_LENGTH}
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                className="w-full bg-aurora-bg-light border border-aurora-border rounded-lg px-4 py-3 text-aurora-text placeholder:text-aurora-text-muted focus:border-aurora-gold focus:ring-1 focus:ring-aurora-gold/50 focus:outline-none transition-all resize-none"
+                className="w-full bg-white border border-aurora-border rounded-lg px-4 py-3 text-aurora-text placeholder:text-aurora-text-muted focus:border-aurora-gold focus:ring-2 focus:ring-aurora-gold/50 focus:outline-none transition-all resize-none"
                 placeholder="Tell us about your dream journey..."
               />
+              <p className="mt-1 text-xs text-aurora-text-muted text-right">
+                {formData.notes.length}/{NOTES_MAX_LENGTH}
+              </p>
             </div>
 
             {/* Privacy Note */}
@@ -288,12 +299,11 @@ export default function ConciergeForm() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-aurora-gold text-aurora-text font-heading font-semibold py-4 rounded-lg cursor-pointer hover:shadow-lift hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-bg min-h-[44px]"
+              className="w-full bg-aurora-gold text-white font-heading font-semibold py-4 rounded-lg cursor-pointer hover:shadow-lift hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-bg min-h-[44px]"
             >
-              Send My Request
+              Request Consultation
             </button>
           </form>
-          )}
         </div>
         </AnimatedSection>
       </div>

@@ -258,3 +258,23 @@ Price opacity bumped from `/60` to `/80`; region from `/60` to `/70`. All text n
 - `tailwind.config.ts`: Heading fallback changed from `"Bodoni Moda", "Georgia", "serif"` to `"Space Grotesk", "system-ui", "sans-serif"`. Body fallback updated to Inter. Added 8px spacing tokens.
 
 **Key lesson:** Moving from a serif heading font (Bodoni Moda) to a geometric sans (Space Grotesk) shifts the brand voice from editorial luxury toward modern tech-luxury. The type scale needed recalibration — Bodoni's high contrast and narrow letterforms read larger at same px size than Space Grotesk's even strokes. Fluid clamp() targets were reduced accordingly.
+
+### Token Naming Audit — Issue #27 (2026-04-11)
+
+**Status:** ✅ CLEAN — No stale dark-theme tokens found. Issue can be closed.
+
+**Full audit of `apps/web/`:**
+
+1. **`aurora-cyan`, `aurora-purple`, `aurora-magenta`** — zero references in entire codebase. These were fully replaced during the Wave 1 light-theme migration (Issue #26). No rename needed.
+
+2. **`globals.css`** — all 11 CSS custom properties use semantic names (`--aurora-bg`, `--aurora-gold`, `--aurora-navy`, `--aurora-sage`, etc.) with hex values. No stale OKLCH color tokens.
+
+3. **`tailwind.config.ts`** — all color tokens are semantic: `aurora-bg`, `aurora-bg-light`, `aurora-bg-dark`, `aurora-text`, `aurora-text-muted`, `aurora-border`, `aurora-gold`, `aurora-navy`, `aurora-sage`, `aurora-success`, `aurora-error`. Names accurately describe their light-theme roles.
+
+4. **`bg-gradient-aurora`** — used in ConciergeForm.tsx (line 126) and Testimonials.tsx (line 77) as decorative `h-px` dividers at 30% opacity. The underlying gradient is `linear-gradient(135deg, #c9a76a, #1a3a52, #7a8f7f)` — correct gold/navy/sage light-theme palette. No change needed.
+
+5. **`oklch` references** — only one: `lift` shadow in tailwind.config.ts uses `oklch(0 0 0 / 0.35)` (neutral black). This is functionally identical to `rgba(0,0,0,0.35)` — not a stale dark-theme color. Minor inconsistency with other shadows (which use `rgba()`), but not a token naming issue.
+
+6. **Component files** — all 10 component files checked. All className strings reference current semantic tokens (`aurora-text`, `aurora-gold`, `aurora-border`, etc.). No stale references.
+
+**Note:** Build has a pre-existing TypeScript error in `experiences.ts` (missing `regions` property) — unrelated to token naming. Filed separately.

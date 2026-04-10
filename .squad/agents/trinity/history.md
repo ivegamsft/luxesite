@@ -156,3 +156,33 @@ Fixed issues #2, #4, and #8 as part of larger 5-issue sweep. All changes committ
 - **Concierge discovery as progressive disclosure (2026-04-10):** A 3-part inline row (where/when/action) in the hero gives users a quick entry point without overwhelming the page. Hidden on mobile (too cramped) — mobile users get the CTAs instead.
 - **White overlay > dark vignette for light themes (2026-04-10):** A subtle `bg-white/15` overlay on a bright photo creates enough contrast for dark text while preserving the image's color vibrancy. Dark vignettes made the hero feel heavy and moody; white overlay feels open and editorial.
 - **Consistent CTA label across components (2026-04-10):** Unified primary CTA to "Request Consultation" across navbar, hero, and mobile menu. Eliminates cognitive friction from label variation ("Design My Trip" vs "Request Itinerary" etc.).
+
+### Wave 3 — Issues #36, #39, #40, #43 (2026-04-10)
+
+**Status:** ✅ COMPLETE
+
+**Issue #36 — ConciergeForm overhaul for light theme:**
+- Headline → "Ready to Start Planning?", subtitle updated
+- Trust badge added above form: "✓ 4.9/5 on Trustpilot · 1,000+ journeys designed"
+- Submit button: "Request Consultation", `bg-aurora-gold text-white`
+- Inputs: `bg-white`, `border-aurora-border`, `focus:ring-2 focus:ring-aurora-gold/50`
+- Textarea: `maxLength={500}` + live character counter (X/500)
+- Success: replaced full-page state with auto-dismissing toast + form reset
+- Container: `bg-aurora-bg`, `rounded-lg`, responsive padding (p-5/p-6/p-8)
+
+**Issue #39 — Footer enhancement:**
+- 4-column grid: Brand | Destinations | Company | Contact
+- Background: `bg-aurora-navy text-white` for visual differentiation
+- Contact info: phone "+1 (888) 200-LUXE", email "concierge@auroraluxe.com"
+- Removed navLinks import; inline data for footer-specific links
+
+**Issue #40 — SEO metadata update:**
+- Title: "Aurora Luxe Travel | Award-Winning Private Travel Specialists"
+- Description: "Bespoke luxury travel by specialists..."
+- Keywords updated per spec; OG and Twitter cards match
+
+**Issue #43 — Page section order:**
+- Added imports: TrustBar, WhyAurora, GuideGrid, PressAwards
+- New order: Navbar → Hero → TrustBar → WhyAurora → DestinationGrid → ExperienceList → GuideGrid → Tiers → Testimonials → PressAwards → ConciergeForm → Footer
+
+Build verified clean.

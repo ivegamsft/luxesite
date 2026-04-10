@@ -14,6 +14,7 @@ export interface Experience {
   title: string;
   description: string;
   icon: string;
+  regions: string[];
 }
 
 export interface MembershipTier {
@@ -30,7 +31,11 @@ export interface Testimonial {
   name: string;
   role: string;
   quote: string;
+  location: string;
+  date: string;
   avatar?: string;
+  rating?: number;
+  sourceLink?: string;
 }
 
 export interface TeamMember {

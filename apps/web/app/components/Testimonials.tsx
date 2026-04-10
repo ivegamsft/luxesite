@@ -1,9 +1,17 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { testimonials } from '../data/testimonials';
 import AnimatedSection from './AnimatedSection';
+
+function StarRating({ rating }: { rating: number }) {
+  return (
+    <span className="text-aurora-gold text-sm tracking-wide" aria-label={`${rating} out of 5 stars`}>
+      {'★'.repeat(rating)}{'☆'.repeat(5 - rating)}
+    </span>
+  );
+}
 
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -58,7 +66,7 @@ export default function Testimonials() {
           tabIndex={0}
         >
           {/* Main quote */}
-          <div className="relative min-h-[260px]">
+          <div className="relative min-h-[320px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.id}
@@ -70,7 +78,13 @@ export default function Testimonials() {
                 {/* Large quote mark */}
                 <div className="text-8xl text-aurora-gold/15 font-serif leading-none mb-2 select-none">&ldquo;</div>
 
-                <p className="text-fluid-xl italic text-aurora-text/90 mb-8 max-w-[50ch] leading-snug -mt-6">
+                {active.rating && (
+                  <div className="mb-4 -mt-4">
+                    <StarRating rating={active.rating} />
+                  </div>
+                )}
+
+                <p className="text-fluid-xl italic text-aurora-text/90 mb-8 max-w-[50ch] leading-snug -mt-2">
                   {active.quote}
                 </p>
 
@@ -80,8 +94,25 @@ export default function Testimonials() {
                   {active.name}
                 </p>
                 <p className="text-fluid-sm text-aurora-text-muted">
+                  {active.location}
+                </p>
+                <p className="text-fluid-sm text-aurora-text-muted mt-1">
                   {active.role}
                 </p>
+                <p className="text-xs text-aurora-text-muted/70 mt-2">
+                  {active.date}
+                </p>
+
+                {active.sourceLink && (
+                  <a
+                    href={active.sourceLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs text-aurora-gold hover:text-aurora-gold/80 transition-colors mt-3"
+                  >
+                    Verified on Trustpilot <span aria-hidden="true">&rarr;</span>
+                  </a>
+                )}
               </motion.div>
             </AnimatePresence>
           </div>

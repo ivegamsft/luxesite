@@ -37,3 +37,15 @@
 - Updated `DestinationGrid.tsx`: added "Learn More →" text link that appears on hover (gold, opacity transition)
 - Grid naturally handles 15 cards — first card remains featured (2-col span), rest fill 3-col grid
 - Build verified clean with `npx next build`
+
+### 2026-07 — Issue #37: Enhance Testimonials with rich data
+- Updated `Testimonial` type in `app/lib/types.ts`: added `location`, `date`, `rating?`, `sourceLink?` fields
+- Expanded `app/data/testimonials.ts` from 4 → 7 testimonials with location, date, rating (all 5★), specific trip roles, and Trustpilot sourceLinks on 4 entries
+- Enhanced `Testimonials.tsx`: star rating display (★★★★★), location line, date line, trip-role line, "Verified on Trustpilot →" link when sourceLink exists, kept carousel+sidebar nav pattern
+- Build verified clean
+
+### 2026-07 — Issue #42: Enhance Experiences with regions
+- Updated `Experience` type in `app/lib/types.ts`: added `regions: string[]` field
+- Rewrote `app/data/experiences.ts` from 5 → 8 spec-aligned categories: Wildlife Safaris, Cultural Immersion, Beach & Islands, Mountain & Ski, Food & Wine, Adventure, Family Journeys, Honeymoon & Romance — each with 4 region strings and emoji icons
+- Redesigned `ExperienceList.tsx`: replaced alternating horizontal cards with 3-col lg / 2-col md / 1-col sm grid, emoji icon top, region pills at bottom (rounded-full, aurora-bg-light bg, aurora-border border), white card bg, hover shadow-lift, removed old SVG icon map
+- Build verified clean
