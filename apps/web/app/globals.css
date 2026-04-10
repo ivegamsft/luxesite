@@ -56,6 +56,25 @@
 @theme inline {
   --font-sans: var(--font-inter);
   --font-heading: var(--font-space-grotesk);
+
+  /* Colors — register for Tailwind v4 utility generation */
+  --color-aurora-bg: #f5f3f0;
+  --color-aurora-bg-light: #faf9f7;
+  --color-aurora-bg-dark: #f0ebe5;
+  --color-aurora-text: #2c2620;
+  --color-aurora-text-muted: #6b6458;
+  --color-aurora-border: #e8e4df;
+  --color-aurora-gold: #c9a76a;
+  --color-aurora-navy: #1a3a52;
+  --color-aurora-sage: #7a8f7f;
+  --color-aurora-success: #5a8f4a;
+  --color-aurora-error: #a85a4a;
+
+  /* Box shadows */
+  --shadow-glass: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow-lift: 0 2px 24px oklch(0 0 0 / 0.35);
+  --shadow-subtle: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-medium: 0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
 }
 
 /* Base Styles */

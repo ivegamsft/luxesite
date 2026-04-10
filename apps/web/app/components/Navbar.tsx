@@ -62,8 +62,8 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <ul className="flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6 overflow-visible">
+            <ul className="flex items-center space-x-6">
               {navLinks.map((link) => {
                 const isActive = activeSection === link.href.replace('#', '');
                 return (
@@ -95,7 +95,7 @@ export default function Navbar() {
                   contactSection.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="bg-aurora-gold text-white font-semibold px-6 py-3 rounded-lg hover:bg-aurora-gold/85 hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-white min-h-[44px]"
+              className="shrink-0 whitespace-nowrap bg-aurora-gold text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-aurora-gold/85 hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-white min-h-[44px]"
             >
               Request Consultation
             </button>

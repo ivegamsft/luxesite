@@ -84,20 +84,46 @@ export default function ExperienceList() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-white border border-aurora-border rounded-lg p-8 lg:p-10 hover:shadow-lift transition-shadow flex flex-col justify-between row-span-full"
+            className="bg-white border border-aurora-border rounded-lg p-8 lg:p-10 hover:shadow-lift transition-shadow flex flex-col row-span-full"
           >
-            <div>
-              <div className="mb-5" aria-hidden="true">
-                {experienceIcons[featured.icon]}
-              </div>
-              <h3 className="font-heading text-fluid-xl font-semibold mb-4 text-aurora-text">
-                {featured.title}
-              </h3>
-              <p className="text-aurora-text-muted leading-relaxed text-fluid-sm mb-6">
-                {featured.description}
-              </p>
+            <div className="flex items-center gap-3 mb-6">
+              <span className="inline-flex items-center gap-1.5 bg-aurora-gold/10 text-aurora-gold text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-full border border-aurora-gold/20">
+                <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5" aria-hidden="true">
+                  <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z" />
+                </svg>
+                Featured
+              </span>
             </div>
-            <div className="flex flex-wrap gap-2 mt-auto">
+
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-aurora-gold/10 mb-6" aria-hidden="true">
+              {experienceIcons[featured.icon]}
+            </div>
+
+            <h3 className="font-heading text-fluid-xl font-semibold mb-4 text-aurora-text">
+              {featured.title}
+            </h3>
+            <p className="text-aurora-text-muted leading-relaxed text-fluid-sm mb-8">
+              {featured.description}
+            </p>
+
+            {/* Highlights */}
+            <ul className="space-y-3 mb-8 flex-1" role="list">
+              {[
+                'Private conservancy access with expert naturalist guides',
+                'Great Migration & intimate gorilla encounters',
+                'Luxury mobile camps in untouched wilderness',
+                'Tailored itineraries for every experience level',
+              ].map((highlight) => (
+                <li key={highlight} className="flex items-start gap-2.5 text-sm text-aurora-text-muted leading-relaxed">
+                  <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 mt-0.5 text-aurora-gold shrink-0" aria-hidden="true">
+                    <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143z" clipRule="evenodd" />
+                  </svg>
+                  {highlight}
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex flex-wrap items-center gap-2 pt-6 border-t border-aurora-border">
               {featured.regions.map((region) => (
                 <span
                   key={region}
