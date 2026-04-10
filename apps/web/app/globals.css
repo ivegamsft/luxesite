@@ -153,13 +153,9 @@ body {
   container-type: inline-size;
 }
 
-/* Destination cards — adapt padding and text at narrow containers */
+/* Destination cards — adapt text only; outer card padding breaks image framing */
 @container (max-width: 480px) {
-  .destination-card { padding: 1rem; }
   .destination-card h3 { font-size: var(--fluid-base); }
-}
-@container (min-width: 481px) {
-  .destination-card { padding: 1.5rem; }
 }
 
 /* Experience cards — stack at narrow containers */

@@ -76,17 +76,19 @@ export default function DestinationGrid() {
     <section id="destinations" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection variant="fade-up">
-          <p className="text-sm font-medium tracking-widest uppercase mb-3 text-aurora-gold">
+          <div className="mb-8 md:mb-10">
+            <p className="text-sm font-medium tracking-widest uppercase mb-4 text-aurora-gold">
             World-Class Destinations
-          </p>
-          <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-10">
-            Curated Destinations
-          </h2>
+            </p>
+            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight">
+              Curated Destinations
+            </h2>
+          </div>
         </AnimatedSection>
 
         {/* Region Tabs */}
         <AnimatedSection delay={0.1}>
-          <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Filter destinations by region">
+          <div className="flex flex-wrap gap-3 mb-12 md:mb-14" role="tablist" aria-label="Filter destinations by region">
             {regionTabs.map((tab) => {
               const isActive = activeRegion === tab.label;
               return (
@@ -96,7 +98,7 @@ export default function DestinationGrid() {
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => handleRegionChange(tab.label)}
-                  className={`px-4 py-2 text-sm font-medium rounded-full transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 ${
+                    className={`px-5 py-2.5 text-sm font-medium rounded-full transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 ${
                     isActive
                       ? 'bg-aurora-gold text-white'
                       : 'bg-aurora-bg-light border border-aurora-border text-aurora-text-muted hover:border-aurora-gold/50'
@@ -140,7 +142,7 @@ export default function DestinationGrid() {
                     key={destination.slug}
                     variants={cardMotionVariants}
                     transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    className={`destination-card group relative rounded-sm overflow-hidden border border-aurora-border shadow-subtle transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-medium ${isFeature ? 'md:col-span-2 md:row-span-2' : ''}`}
+                    className={`destination-card group relative rounded-sm overflow-hidden border border-aurora-border bg-aurora-bg-light shadow-subtle transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-medium ${isFeature ? 'md:col-span-2 md:row-span-2' : ''}`}
                     role="button"
                     tabIndex={0}
                     aria-expanded={isExpanded}
@@ -156,8 +158,8 @@ export default function DestinationGrid() {
                         sizes={isFeature ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'}
                         loading={index < 6 ? 'eager' : 'lazy'}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-aurora-text/75 via-aurora-text/30 to-transparent pointer-events-none"></div>
-                      <div className="absolute top-0 right-0 w-2/3 h-1/3 bg-gradient-to-bl from-aurora-text/40 to-transparent pointer-events-none"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-aurora-text/78 via-aurora-text/24 to-transparent pointer-events-none"></div>
+                      <div className="absolute top-0 right-0 w-2/3 h-1/3 bg-gradient-to-bl from-aurora-text/24 to-transparent pointer-events-none"></div>
 
                       <div className="absolute top-5 right-5">
                         <span className="font-heading text-base tracking-wide text-white/80 tabular-nums">
@@ -166,10 +168,10 @@ export default function DestinationGrid() {
                       </div>
 
                       {/* Quick facts overlay — slide up panel */}
-                      <div className={`absolute inset-0 bg-gradient-to-t from-aurora-text/95 via-aurora-text/85 to-aurora-text/70 transition-opacity duration-300 flex flex-col justify-end group-hover:opacity-100 group-focus-within:opacity-100 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
-                        <div className="p-8">
-                          <h4 className="font-heading text-lg font-semibold mb-4 text-aurora-gold tracking-wide">Quick Facts</h4>
-                          <ul className="space-y-2.5 text-sm text-white/90">
+                      <div className={`absolute inset-x-0 top-0 bottom-28 bg-gradient-to-b from-aurora-text/92 via-aurora-text/84 to-aurora-text/72 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
+                        <div className="h-full overflow-y-auto px-5 py-5 md:px-6 md:py-6">
+                          <h4 className="font-heading text-base font-semibold mb-3 text-aurora-gold tracking-wide">Quick Facts</h4>
+                          <ul className="space-y-2 text-sm text-white/92 pr-2">
                             {destination.quickFacts.map((fact, i) => (
                               <li key={i} className="flex items-start gap-2.5">
                                 <span className="text-aurora-gold mt-0.5 flex-shrink-0">•</span>
@@ -178,12 +180,10 @@ export default function DestinationGrid() {
                             ))}
                           </ul>
                         </div>
-                        {/* Spacer for the always-visible bottom info strip */}
-                        <div className="shrink-0 h-28" aria-hidden="true" />
                       </div>
                     </div>
 
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
                       <h3 className={`font-heading font-medium mb-1 text-white ${isFeature ? 'text-fluid-xl' : 'text-fluid-lg'}`}>
                         {destination.name}
                       </h3>
