@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* Aurora Luxe Theme - CSS Custom Properties */
+:root {
+  --aurora-dark: #0a0a0f;
+  --aurora-darker: #050508;
+  --aurora-cyan: #00e5ff;
+  --aurora-purple: #8b5cf6;
+  --aurora-magenta: #d946ef;
+  --aurora-gold: #fbbf24;
+  --aurora-white: #f0f0f5;
+  --aurora-glass: rgba(255, 255, 255, 0.05);
+  --aurora-glass-border: rgba(255, 255, 255, 0.1);
+}
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-space-grotesk);
+}
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--aurora-dark);
+  color: var(--aurora-white);
+  font-family: var(--font-sans), Inter, system-ui, sans-serif;
+}
+
+/* Selection Styling */
+::selection {
+  background: linear-gradient(135deg, #00e5ff, #8b5cf6, #d946ef);
+  color: #0a0a0f;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Glassmorphism Utility */
+.glass {
+  background: var(--aurora-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--aurora-glass-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Animated Conic Gradient Border */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animated-border {
+  position: relative;
+  background: var(--aurora-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.animated-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from 0deg,
+    #00e5ff,
+    #8b5cf6,
+    #d946ef,
+    #00e5ff
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: rotate 4s linear infinite;
+  z-index: -1;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animated-border::before {
+    animation: none;
+  }
+}
