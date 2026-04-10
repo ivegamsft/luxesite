@@ -452,3 +452,33 @@ Each section gets a heading treatment matched to its purpose:
 - Orchestration (Morpheus): `.squad/orchestration-log/2026-04-10T19-55-00Z-morpheus.md`  
 - Orchestration (Mouse): `.squad/orchestration-log/2026-04-10T19-55-00Z-mouse.md`  
 - Session Log: `.squad/log/2026-04-10T19-55-00Z-p0-architecture-batch.md`
+
+---
+
+### Experience Cards + Featured Tier Border Refinement
+
+**Author:** Mouse  
+**Date:** 2026-04-10  
+**Status:** Implemented  
+**Issues:** #110, #108, #103  
+**Commits:** 9317b10
+
+#### Decisions
+
+**1. Experience Cards — Image-Forward Overlay Layout**
+
+Experience cards redesigned from split image/text-body layout to full-bleed image cards with text overlaid via layered scrims. Cards are taller (h-56/sm:h-64 vs h-36) so each experience feels aspirational and premium. Region tags now use glass-style overlay on the image rather than opaque pills below the card.
+
+**2. Featured Tier — Solid Gold Border (No Conic Gradient)**
+
+The `gradient-border` class replaced: `gradient-border` (conic-gradient `::before` pseudo-element) → simple 1.5px solid gold border (`oklch(0.80 0.12 75)`) with subtle gold glow shadow. Conic gradients — even static ones — read as AI-aesthetic. A solid gold line is how actual luxury brands differentiate premium tiers. Cleaner, more refined, more human.
+
+**3. ExperienceList Eyebrow Removed**
+
+The "Curated by Our Specialists" eyebrow was removed from ExperienceList. The heading "Signature Experiences" is sufficient and provides necessary hierarchy. Follows the section heading variety principle (#145) — not every section needs eyebrow + heading + subtitle.
+
+#### Files Changed
+
+- `apps/web/app/components/ExperienceList.tsx`
+- `apps/web/app/components/Tiers.tsx`
+- `apps/web/app/styles/components.css` (gradient-border class)
