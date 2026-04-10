@@ -104,6 +104,97 @@ ConciergeForm Toaster styles converted from `rgba(255,255,255,0.1)` / `#f0f0f5` 
 **7. [P1] Type scale trimmed — IMPLEMENTED**
 Consolidated from 8 steps to 6 (sm, base, lg, xl, 2xl, 3xl). Removed `--fluid-4xl` and `--fluid-5xl`. The `--fluid-3xl` step now uses a wider clamp range (`2.441rem` → `6.5rem`) to cover hero/display use. Hero.tsx updated from `text-fluid-5xl` → `text-fluid-3xl`. Tailwind config and CSS utilities updated.
 
+---
+
+### 5. GitHub Issues Sweep — Mouse & Trinity
+**Author:** Mouse, Trinity  
+**Date:** 2026-04-10  
+**Status:** Implemented  
+
+#### Issue #1 — Animated Border (Removed Rotation)
+
+**Decision:** Featured tier border now static, not rotating.
+
+**Implementation:** Removed `@keyframes rotate` animation block and animation rule from `.animated-border::before` in `globals.css`.
+
+**Rationale:** Continuous rotation violates "authority through restraint." The conic gradient (champagne gold → bordeaux → dusty rose → gold) is already a strong visual differentiator as a static border. Spinning draws the eye reflexively — the featured tier should command attention through presence, not movement. Luxury brands don't wave their arms.
+
+**Impact:** Static border preserves visual hierarchy without animation overhead. Aligns with design philosophy of restraint.
+
+---
+
+#### Issue #2 — Currency EUR → USD
+
+**Decision:** Global currency conversion from EUR (€) to USD ($).
+
+**Implementation:**
+- `tiers.ts`: Silver $25k, Black $75k, Obsidian $200k; perk "valued at $50,000"
+- `destinations.ts`: All 6 destinations updated `currency: '€'` → `'$'`
+- `ConciergeForm.tsx`: Budget dropdown options changed to USD
+
+**Rationale:** Business decision to quote prices in USD for broader market appeal.
+
+**Impact:** All price displays now consistent with USD branding.
+
+---
+
+#### Issue #3 — Destination Card Text Contrast (Dual-Scrim System)
+
+**Decision:** Replace single gradient overlay with layered scrim system for robust text contrast on any background.
+
+**Implementation:** Three-layer scrim in `DestinationGrid.tsx`:
+1. Full vignette: `inset-0`, `from-aurora-dark/70 via-aurora-dark/20 to-transparent`
+2. Bottom scrim: `h-1/2`, `from-aurora-dark/80 via-aurora-dark/40 to-transparent` — protects title, region, tagline
+3. Top-right corner: `w-2/3 h-1/3`, `from-aurora-dark/60 to-transparent` — protects price text
+
+Text opacity bumps:
+- Price: `/60` → `/80` (WCAG AA against any background)
+- Region: `/60` → `/70` (improved contrast on bright backgrounds)
+
+All scrims use `pointer-events-none` to preserve interactions.
+
+**Rationale:** Single-layer gradients distribute evenly across image height. On tall cards (featured 16:9) or bright imagery (Alpine snow, Dubai gold skyline), the gradient becomes too diffuse to protect text. Layered scrims deliver exact opacity per zone — standard technique in production media UI (Netflix, movie posters).
+
+**Impact:** All destination card text now passes WCAG AA contrast. No visible UI chrome added — contrast purely typographic through invisible gradient layers.
+
+---
+
+#### Issue #4 — Budget Dropdown Readability + Form Input Class Typo
+
+**Decision:** Solid-background select dropdowns (native browsers ignore transparency); fix form input class name errors.
+
+**Implementation in `ConciergeForm.tsx`:**
+- Select styling: Replaced `bg-aurora-glass` (transparent) with solid `bg-[oklch(0.15_0.015_50)]`
+- Option styling: Added `[&>option]:bg-[oklch(0.15_0.015_50)] [&>option]:text-[oklch(0.95_0.012_85)]` for explicit option colors
+- Class typo fix: `rounded-lgpx-4` → `rounded-lg px-4` across 5 inputs (name, email, travelDates, travelers, budget). Missing space caused both classes to silently fail.
+
+**Rationale:** 
+- Native `<select>` dropdowns don't support transparency or backdrop-blur on most browsers. Glass backgrounds are for CSS-controlled containers only.
+- Missing space in class names produced `rounded-lgpx-4` — an invalid Tailwind class generating no CSS output.
+
+**Impact:** Dropdown options now readable with solid backgrounds. Form inputs restored proper border-radius and padding.
+
+---
+
+#### Issue #8 — Submit Button Affordance & WCAG AA Contrast
+
+**Decision:** Add interaction feedback and fix contrast failure on gradient background.
+
+**Implementation in `ConciergeForm.tsx`:**
+- Added `cursor-pointer` for interaction feedback
+- Added `active:scale-[0.98]` for press-state scale feedback
+- Changed `text-aurora-dark` → `text-aurora-white` (fixes contrast on gradient's bordeaux midpoint)
+- Added `focus:ring-offset-2 focus:ring-offset-aurora-dark` for keyboard focus visibility
+
+**Rationale:**
+- Button on `bg-gradient-aurora` with dark text fails WCAG AA contrast at the gradient's darkest point (bordeaux, oklch L=0.42). Ratio only ~2.5:1, need 4.5:1 minimum.
+- Light text (`text-aurora-white` at oklch L=0.95) passes 4.5:1 against all gradient stops.
+- Press feedback and focus ring improve perceived affordance.
+
+**Impact:** Button now fully accessible (WCAG AA), has clear press feedback, and keyboard-navigable focus indication.
+
+---
+
 ## Governance
 
 - All meaningful changes require team consensus

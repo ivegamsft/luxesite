@@ -160,7 +160,24 @@ Trinity completed P0+P1 frontend fixes in parallel with Mouse design polish:
 
 **Key pattern:** Typography hierarchy is now fully intentional: size, weight, tracking, and leading all scale together. Each heading level is visually distinct without relying solely on font-size.
 
-### GitHub Issue Fixes — #1 (spinning border) & #3 (text contrast) (2026-04-10)
+### GitHub Issue Fixes — #1 (spinning border) & #3 (text contrast) (2026-04-10T05:08:21Z)
+
+**Parallel Sprint:** Mouse + Trinity GitHub Issues Sweep  
+**Status:** ✅ COMPLETE  
+**Orchestration Log:** `.squad/orchestration-log/2026-04-10T05-08-21Z-mouse.md`
+
+Fixed issues #1 (rotating border) and #3 (destination text contrast) as part of larger 5-issue sweep. All changes committed as `1bad133` with all issues now closed on GitHub.
+
+**Issue #1 — Featured Tier Border:** Removed `@keyframes rotate` animation from `.animated-border::before`. Static conic gradient (champagne gold → bordeaux → dusty rose) now provides visual distinction without spinning motion, aligning with luxury restraint principle.
+
+**Issue #3 — Destination Card Scrims:** Implemented three-layer scrim system in `DestinationGrid.tsx`:
+- Full vignette for cinematic tone
+- Bottom scrim protecting title/region/tagline zone
+- Top-right corner scrim protecting price zone
+
+Price opacity bumped from `/60` to `/80`; region from `/60` to `/70`. All text now passes WCAG AA (4.5:1 minimum) on any background without visible UI chrome.
+
+**Key pattern:** Dual-scrim layering is standard in production media UI. Single-layer overlays fail on bright imagery; layered scrims provide exact opacity per content zone.
 
 **Issue #1 — Animated border made static:**
 - Removed `animation: rotate 4s linear infinite` from `.animated-border::before` in globals.css

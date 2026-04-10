@@ -68,3 +68,25 @@ Mouse completed P0+P1+P2 design aesthetics fixes in parallel with Trinity fronte
 **Complementary scope:** Mouse's design aesthetics (P0+P1+P2) + Trinity's frontend quality (P0+P1) = complete pass. No conflicts. Build verified clean.
 
 **Design audit projection:** Score improves from 48/80 → ~65/80 with both teams' fixes applied.
+
+### GitHub Issue Fixes — #2 (EUR→USD), #4 (dropdown), #8 (button) (2026-04-10T05:08:21Z)
+
+**Parallel Sprint:** Mouse + Trinity GitHub Issues Sweep  
+**Status:** ✅ COMPLETE  
+**Orchestration Log:** `.squad/orchestration-log/2026-04-10T05-08-21Z-trinity.md`
+
+Fixed issues #2, #4, and #8 as part of larger 5-issue sweep. All changes committed as `1bad133` with all issues now closed on GitHub.
+
+**Issue #2 — Currency EUR → USD:** Global conversion across `tiers.ts`, `destinations.ts`, and `ConciergeForm.tsx`. All prices now display in USD (Silver $25k, Black $75k, Obsidian $200k).
+
+**Issue #4 — Budget Dropdown + Form Input Typo:** 
+- Select styling changed from `bg-aurora-glass` (transparent, ignored by native browsers) to solid `bg-[oklch(0.15_0.015_50)]`
+- Added explicit option styling: `[&>option]:bg-[oklch(0.15_0.015_50)] [&>option]:text-[oklch(0.95_0.012_85)]`
+- Fixed class name typo: `rounded-lgpx-4` → `rounded-lg px-4` across 5 form inputs. Missing space caused both Tailwind classes to silently fail (no border-radius or padding rendered).
+
+**Issue #8 — Submit Button Affordance & Contrast:**
+- Added `cursor-pointer`, `active:scale-[0.98]` for press feedback
+- Changed `text-aurora-dark` → `text-aurora-white` (dark text failed WCAG AA on gradient's bordeaux midpoint)
+- Added `focus:ring-offset-2 focus:ring-offset-aurora-dark` for keyboard focus visibility
+
+**Key pattern:** Native form controls need solid backgrounds (not glass). Gradient button text must be light for contrast at darkest gradient point.
