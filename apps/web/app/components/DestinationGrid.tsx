@@ -1,16 +1,30 @@
 'use client';
 
+import { useState, useCallback, KeyboardEvent } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { destinations } from '../data/destinations';
 import AnimatedSection from './AnimatedSection';
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 1, y: 20 },
   visible: { opacity: 1, y: 0 }
 };
 
 export default function DestinationGrid() {
+  const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
+
+  const toggleCard = useCallback((slug: string) => {
+    setExpandedSlug(prev => (prev === slug ? null : slug));
+  }, []);
+
+  const handleKeyDown = useCallback((e: KeyboardEvent, slug: string) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleCard(slug);
+    }
+  }, [toggleCard]);
+
   return (
     <section id="destinations" className="py-16 md:py-20 px-4 sm:px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
@@ -36,55 +50,63 @@ export default function DestinationGrid() {
           }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
         >
-          {destinations.map((destination) => (
-            <motion.div
-              key={destination.slug}
-              variants={cardVariants}
-              transition={{ duration: 0.5 }}
-              className="group relative rounded-2xl overflow-hidden bg-aurora-glass backdrop-blur-glass border border-aurora-glass-border shadow-glass transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-glow hover:shadow-aurora-cyan/20"
-            >
-              <div className="relative aspect-[4/3]">
-                <Image
-                  src={destination.imageUrl}
-                  alt={destination.name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-aurora-dark/90 via-aurora-dark/30 to-transparent"></div>
-                
-                {/* Price Badge */}
-                <div className="absolute top-4 right-4 bg-gradient-aurora text-aurora-dark text-xs font-bold px-3 py-1.5 rounded-full">
-                  from {destination.currency}{destination.price.toLocaleString()}
+          {destinations.map((destination) => {
+            const isExpanded = expandedSlug === destination.slug;
+            return (
+              <motion.div
+                key={destination.slug}
+                variants={cardVariants}
+                transition={{ duration: 0.5 }}
+                className="group relative rounded-2xl overflow-hidden bg-aurora-glass backdrop-blur-glass border border-aurora-glass-border shadow-glass transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-glow hover:shadow-aurora-cyan/20"
+                role="button"
+                tabIndex={0}
+                aria-expanded={isExpanded}
+                onClick={() => toggleCard(destination.slug)}
+                onKeyDown={(e) => handleKeyDown(e, destination.slug)}
+              >
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src={destination.imageUrl}
+                    alt={destination.name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-aurora-dark/90 via-aurora-dark/30 to-transparent"></div>
+                  
+                  {/* Price Badge */}
+                  <div className="absolute top-4 right-4 bg-gradient-aurora text-aurora-dark text-xs font-bold px-3 py-1.5 rounded-full">
+                    from {destination.currency}{destination.price.toLocaleString()}
+                  </div>
+
+                  {/* Quick Facts Overlay — visible on hover, focus, or tap toggle */}
+                  <div className={`absolute inset-0 bg-aurora-dark/95 transition-opacity duration-300 p-6 flex flex-col justify-center group-hover:opacity-100 focus-within:opacity-100 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
+                    <h4 className="font-heading text-lg mb-3 text-aurora-cyan">Quick Facts:</h4>
+                    <ul className="space-y-2 text-sm text-aurora-white/80">
+                      {destination.quickFacts.map((fact, index) => (
+                        <li key={index} className="flex items-start">
+                          <span className="text-aurora-cyan mr-2">•</span>
+                          <span>{fact}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
-                {/* Quick Facts Overlay - shown on hover */}
-                <div className="absolute inset-0 bg-aurora-dark/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-center">
-                  <h4 className="font-heading text-lg mb-3 text-aurora-cyan">Quick Facts:</h4>
-                  <ul className="space-y-2 text-sm text-aurora-white/80">
-                    {destination.quickFacts.map((fact, index) => (
-                      <li key={index} className="flex items-start">
-                        <span className="text-aurora-cyan mr-2">•</span>
-                        <span>{fact}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h3 className="font-heading text-xl mb-1 text-aurora-white">
+                    {destination.name}
+                  </h3>
+                  <p className="text-sm text-aurora-white/60 mb-2">
+                    {destination.region}
+                  </p>
+                  <p className="text-sm text-aurora-white/80 italic">
+                    {destination.tagline}
+                  </p>
                 </div>
-              </div>
-
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <h3 className="font-heading text-xl mb-1 text-aurora-white">
-                  {destination.name}
-                </h3>
-                <p className="text-sm text-aurora-white/60 mb-2">
-                  {destination.region}
-                </p>
-                <p className="text-sm text-aurora-white/80 italic">
-                  {destination.tagline}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>

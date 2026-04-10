@@ -5,7 +5,7 @@ import { testimonials } from '../data/testimonials';
 import AnimatedSection from './AnimatedSection';
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 1, y: 20 },
   visible: { opacity: 1, y: 0 }
 };
 
@@ -16,7 +16,7 @@ export default function Testimonials() {
         {/* Section Header */}
         <AnimatedSection>
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-4 bg-gradient-aurora bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-4 text-aurora-white">
               What Our Members Say
             </h2>
             <p className="text-base md:text-lg text-aurora-white/70 max-w-2xl mx-auto">
@@ -50,7 +50,7 @@ export default function Testimonials() {
               <div className="text-6xl text-aurora-cyan/20 font-serif leading-none mb-4">"</div>
 
               {/* Quote Text */}
-              <p className="text-base md:text-lg italic text-aurora-white/90 mb-6">
+              <p className="text-base md:text-lg italic text-aurora-white/90 mb-6 max-w-[65ch]">
                 {testimonial.quote}
               </p>
 

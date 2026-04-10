@@ -5,7 +5,7 @@ import { tiers } from '../data/tiers';
 import AnimatedSection from './AnimatedSection';
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 1, y: 20 },
   visible: { opacity: 1, y: 0 }
 };
 

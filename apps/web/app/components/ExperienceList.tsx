@@ -5,7 +5,7 @@ import { experiences } from '../data/experiences';
 import AnimatedSection from './AnimatedSection';
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 1, y: 20 },
   visible: { opacity: 1, y: 0 }
 };
 
@@ -46,7 +46,7 @@ export default function ExperienceList() {
               <h3 className="font-heading text-lg md:text-xl mb-3 text-aurora-white">
                 {experience.title}
               </h3>
-              <p className="text-aurora-white/70 leading-relaxed text-sm md:text-base">
+              <p className="text-aurora-white/70 leading-relaxed text-sm md:text-base max-w-[65ch]">
                 {experience.description}
               </p>
             </motion.div>
