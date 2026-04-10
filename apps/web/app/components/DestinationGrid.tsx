@@ -89,6 +89,7 @@ export default function DestinationGrid() {
               return (
                 <button
                   key={tab.label}
+                  id={`region-tab-${tab.label}`}
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => handleRegionChange(tab.label)}
@@ -124,6 +125,8 @@ export default function DestinationGrid() {
                   },
                 },
               }}
+              role="tabpanel"
+              aria-labelledby={`region-tab-${activeRegion}`}
               className="@container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 auto-rows-[minmax(280px,auto)]"
             >
               {visibleDestinations.map((destination, index) => {
@@ -141,7 +144,7 @@ export default function DestinationGrid() {
                     onClick={() => toggleCard(destination.slug)}
                     onKeyDown={(e) => handleKeyDown(e, destination.slug)}
                   >
-                    <div className={`relative ${isFeature ? 'aspect-[16/9] md:aspect-auto md:h-full' : 'aspect-[4/3]'}`}>
+                    <div className={`relative bg-aurora-bg-dark ${isFeature ? 'aspect-[16/9] md:aspect-auto md:h-full' : 'aspect-[4/3]'}`}>
                       <Image
                         src={destination.imageUrl}
                         alt={destination.name}
@@ -149,8 +152,8 @@ export default function DestinationGrid() {
                         className="object-cover"
                         sizes={isFeature ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent pointer-events-none"></div>
-                      <div className="absolute top-0 right-0 w-2/3 h-1/3 bg-gradient-to-bl from-black/40 to-transparent pointer-events-none"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-aurora-text/75 via-aurora-text/30 to-transparent pointer-events-none"></div>
+                      <div className="absolute top-0 right-0 w-2/3 h-1/3 bg-gradient-to-bl from-aurora-text/40 to-transparent pointer-events-none"></div>
 
                       <div className="absolute top-5 right-5">
                         <span className="font-heading text-base tracking-wide text-white/80 tabular-nums">
@@ -159,7 +162,7 @@ export default function DestinationGrid() {
                       </div>
 
                       {/* Quick facts overlay — positioned above bottom text area */}
-                      <div className={`absolute top-0 left-0 right-0 bottom-[140px] bg-black/95 transition-opacity duration-300 p-6 flex flex-col justify-center group-hover:opacity-100 group-focus-within:opacity-100 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
+                      <div className={`absolute top-0 left-0 right-0 bottom-[140px] bg-aurora-text/95 transition-opacity duration-300 p-6 flex flex-col justify-center group-hover:opacity-100 group-focus-within:opacity-100 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
                         <h4 className="font-heading text-lg mb-3 text-aurora-gold">Quick Facts:</h4>
                         <ul className="space-y-2 text-sm text-white/80">
                           {destination.quickFacts.map((fact, i) => (

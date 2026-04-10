@@ -184,7 +184,7 @@ export default function WhyAurora() {
                     isLarge ? 'w-[300px] md:w-[340px]' : 'w-[260px] md:w-[280px]'
                   }`}
                 >
-                  <div className={`relative mx-auto mb-5 rounded-full overflow-hidden border-2 border-aurora-border ${
+                  <div className={`relative mx-auto mb-5 rounded-full overflow-hidden border-2 border-aurora-border bg-aurora-bg-dark ${
                     isLarge ? 'w-32 h-32' : 'w-24 h-24'
                   }`}>
                     <Image

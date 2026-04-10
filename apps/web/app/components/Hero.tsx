@@ -45,7 +45,7 @@ export default function Hero() {
       </div>
 
       {/* Light overlay for readability on light theme */}
-      <div className="absolute inset-0 z-10 bg-white/80" />
+      <div className="absolute inset-0 z-10 bg-white/90" />
 
       <motion.div 
         className="relative z-20 max-w-5xl px-4 sm:px-6 lg:px-8 text-left lg:max-w-[50%]"
@@ -65,7 +65,7 @@ export default function Hero() {
           initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, delay: 0.4, ease: 'easeOut' }}
-          className="text-fluid-base text-aurora-text/85 max-w-[65ch] mb-10 leading-relaxed px-4"
+          className="text-fluid-base text-aurora-text/90 max-w-[65ch] mb-10 leading-relaxed px-4"
         >
           Hand-curated experiences. 24/7 concierge. Journeys tailored to you alone.
         </motion.p>

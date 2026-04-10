@@ -38,7 +38,7 @@ export default function GuideGrid() {
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="group grid grid-cols-1 md:grid-cols-2 gap-0 rounded-sm overflow-hidden mb-8 md:mb-10 transition-all duration-300 ease-out hover:shadow-lg bg-white border border-aurora-border"
         >
-          <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[320px] overflow-hidden">
+          <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[320px] overflow-hidden bg-aurora-bg-dark">
             <Image
               src={featured.imageUrl}
               alt={featured.title}
@@ -74,7 +74,7 @@ export default function GuideGrid() {
                 onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
                 className="text-sm font-medium transition-colors duration-200 underline decoration-aurora-gold/40 underline-offset-2 hover:decoration-aurora-gold text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
               >
-                Read Guide&nbsp;&rarr;
+                Plan Your Journey&nbsp;&rarr;
               </a>
             </div>
           </div>
@@ -91,7 +91,7 @@ export default function GuideGrid() {
               transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: i * 0.06 }}
               className="group rounded-sm overflow-hidden transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg bg-white border border-aurora-border"
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative aspect-[4/3] overflow-hidden bg-aurora-bg-dark">
                 <Image
                   src={guide.imageUrl}
                   alt={guide.title}
@@ -124,7 +124,7 @@ export default function GuideGrid() {
                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
                     className="text-sm font-medium transition-colors duration-200 underline decoration-aurora-gold/40 underline-offset-2 hover:decoration-aurora-gold text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
                   >
-                    Read Guide&nbsp;&rarr;
+                    Plan Your Journey&nbsp;&rarr;
                   </a>
                 </div>
               </div>

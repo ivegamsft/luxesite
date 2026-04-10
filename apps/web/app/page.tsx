@@ -24,9 +24,9 @@ export default function Home() {
         <DestinationGrid />
         <ExperienceList />
         <GuideGrid />
-        <Tiers />
         <Testimonials />
         <PressAwards />
+        <Tiers />
         <FAQ />
         <ConciergeForm />
       </main>
