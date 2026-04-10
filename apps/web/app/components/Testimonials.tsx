@@ -1,12 +1,13 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { testimonials } from '../data/testimonials';
 import AnimatedSection from './AnimatedSection';
 
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
 
   const goTo = useCallback((index: number) => {
     setActiveIndex(index);
@@ -38,11 +39,11 @@ export default function Testimonials() {
         {/* Section Header — left-aligned */}
         <AnimatedSection>
           <div className="mb-16">
-            <h2 className="text-fluid-3xl font-heading font-bold mb-4 text-aurora-white">
-              What Our Members Say
+            <h2 className="text-fluid-sm font-heading tracking-widest uppercase text-aurora-white/40 mb-6">
+              Testimonials
             </h2>
-            <p className="text-fluid-base text-aurora-white/70 max-w-2xl">
-              Journeys crafted with precision, remembered with wonder.
+            <p className="font-heading italic text-fluid-2xl text-aurora-white/70 max-w-3xl leading-relaxed">
+              &ldquo;The measure of a journey is not the distance&nbsp;&mdash; it&rsquo;s the silence when you return.&rdquo;
             </p>
           </div>
         </AnimatedSection>
@@ -61,10 +62,10 @@ export default function Testimonials() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.id}
-                initial={{ opacity: 0, x: 20 }}
+                initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.4 }}
+                exit={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4 }}
               >
                 {/* Large quote mark */}
                 <div className="text-8xl text-aurora-cyan/15 font-serif leading-none mb-2 select-none">&ldquo;</div>
@@ -88,18 +89,20 @@ export default function Testimonials() {
           {/* Navigation sidebar — dots + arrows */}
           <div className="flex lg:flex-col items-center lg:items-start gap-6">
             {/* Navigation dots */}
-            <div className="flex lg:flex-col gap-3">
+            <div className="flex lg:flex-col gap-1">
               {testimonials.map((t, i) => (
                 <button
                   key={t.id}
                   onClick={() => goTo(i)}
                   aria-label={`View testimonial from ${t.name}`}
-                  className={`transition-all duration-300 rounded-full ${
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center"
+                >
+                  <span className={`block transition-all duration-300 rounded-full ${
                     i === activeIndex
                       ? 'w-10 h-3 lg:w-3 lg:h-10 bg-aurora-cyan'
                       : 'w-3 h-3 bg-aurora-white/20 hover:bg-aurora-white/40'
-                  }`}
-                />
+                  }`} />
+                </button>
               ))}
             </div>
 

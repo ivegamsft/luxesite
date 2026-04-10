@@ -79,3 +79,33 @@
 **Orchestration Log:** `.squad/orchestration-log/2026-04-10T03-42-00Z-mouse.md`
 
 Redesigned visual system successfully implemented. Gilded Bordeaux OKLCH palette, new typography, fluid scales, and section spacing tokens established as foundation for all downstream components. Build passes; all metrics clean.
+
+### Design Polish Pass — Kill AI Aesthetics (2026-04-10)
+
+**7 fixes applied across 10 files. Build clean.**
+
+**Task 1 — SVG Icons in ExperienceList:** Replaced all 5 emoji icons (✈️🛥️🍽️🌌🏔️) with inline monoline SVGs. Each uses 24×24 viewBox, `currentColor` stroke, 1.5px weight. Icons: paper-plane (aviation), sailboat (yacht), wine glass (culinary), crescent moon (celestial), dual-peak mountain (alpine). Typed as `Record<string, React.ReactNode>` with `React` import.
+
+**Task 2 — Corner Radius Hierarchy:** Killed uniform `rounded-2xl` everywhere. New system:
+- Cards/containers → `rounded-sm` (DestinationGrid, ExperienceList, Tiers, ConciergeForm container)
+- Buttons → `rounded-lg` (Hero CTAs, Navbar CTAs, ConciergeForm submit)
+- Inputs → `rounded-lg` (all ConciergeForm fields)
+- Pills/badges → `rounded-full` (interest tags, FloatingCTA already correct)
+- No `rounded-2xl` or `rounded-xl` remains in any component.
+
+**Task 3 — Hero Subtext:** Replaced 3-line AI cliché ("pinnacle of luxury…curated to perfection…discerning travelers") with 9-word editorial line: "Private shores. Unmarked airstrips. Tables that don't take reservations." Fragmented, atmospheric, specific.
+
+**Task 4 — Price Badges:** Removed gradient pill badges from DestinationGrid. Replaced with `font-heading text-base tracking-wide text-aurora-white/60` — typographic-only, no background, no pill shape. Editorial price display.
+
+**Task 5 — Hero Aurora Blob:** Removed the floating 600px gradient blob entirely. Replaced with a bottom-up vignette (`bg-gradient-to-t from-aurora-dark via-aurora-dark/40 to-transparent`) for text readability. Photography + noise texture carry the atmosphere.
+
+**Task 6 — Section Intro Variety:** Broke the formulaic h2+p.text-aurora-white/60.mb-12.max-w-2xl pattern:
+- Destinations: subtitle widened to `max-w-3xl`, opacity dropped to `/50`
+- Experiences: subtitle removed entirely, heading carries section
+- Testimonials: replaced with pull-quote style (small uppercase label + italic Bodoni quote)
+- Tiers: left-aligned, tightened to `max-w-xl`, rewritten ("Three tiers. One standard — uncompromising.")
+- ConciergeForm: left-aligned, copy rewritten ("One conversation. Then we take it from here.")
+
+**Task 7 — Branded Error Color:** Added `aurora-error: oklch(0.65 0.20 25)` — warm bordeaux-adjacent red in OKLCH. Added to both `tailwind.config.ts` (color token) and `globals.css` (CSS variable). Updated ConciergeForm `text-red-400` → `text-aurora-error` on both error messages.
+
+**Key lesson:** Files in this project have been modified by multiple agents (Trinity, Morpheus). Always read current file state before editing — classes like `destination-card`, `tier-card`, `experience-card`, `@container`, and `useReducedMotion` were added by other squad members and must be preserved.

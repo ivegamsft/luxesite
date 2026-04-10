@@ -18,6 +18,7 @@ const config: Config = {
         "aurora-white": "oklch(0.95 0.012 85)",
         "aurora-glass": "oklch(0.95 0.01 85 / 0.04)",
         "aurora-glass-border": "oklch(0.95 0.01 85 / 0.07)",
+        "aurora-error": "oklch(0.65 0.20 25)",
       },
       backgroundImage: {
         "gradient-aurora":
@@ -83,8 +84,6 @@ const config: Config = {
         "fluid-xl": "var(--fluid-xl)",
         "fluid-2xl": "var(--fluid-2xl)",
         "fluid-3xl": "var(--fluid-3xl)",
-        "fluid-4xl": "var(--fluid-4xl)",
-        "fluid-5xl": "var(--fluid-5xl)",
       },
       spacing: {
         "section-hero": "var(--space-hero)",

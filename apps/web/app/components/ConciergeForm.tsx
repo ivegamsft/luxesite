@@ -93,29 +93,29 @@ export default function ConciergeForm() {
         position="top-center"
         toastOptions={{
           style: {
-            background: 'rgba(255,255,255,0.1)',
-            color: '#f0f0f5',
+            background: 'oklch(0.95 0.01 85 / 0.1)',
+            color: 'oklch(0.95 0.005 85)',
             backdropFilter: 'blur(16px)',
-            border: '1px solid rgba(255,255,255,0.2)',
+            border: '1px solid oklch(0.95 0.01 85 / 0.2)',
           },
         }}
       />
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <AnimatedSection>
-          <div className="text-center mb-12">
+          <div className="mb-12">
             <h2 className="text-fluid-3xl font-heading font-bold mb-4 text-aurora-white">
               Design Your Journey
             </h2>
-            <p className="text-fluid-base text-aurora-white/70">
-              Share your vision. We handle every detail.
+            <p className="text-fluid-base text-aurora-white/50">
+              One conversation. Then we take it from here.
             </p>
           </div>
         </AnimatedSection>
 
         {/* Form Container */}
         <AnimatedSection delay={0.2}>
-          <div className="max-w-2xl mx-auto bg-aurora-glass backdrop-blur-glass border border-aurora-glass-border rounded-2xl p-6 md:p-8 shadow-glass">
+          <div className="max-w-2xl mx-auto bg-aurora-glass backdrop-blur-glass border border-aurora-glass-border rounded-sm p-6 md:p-8 shadow-glass">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Screen reader error announcements */}
             <div aria-live="polite" className="sr-only">
@@ -134,11 +134,11 @@ export default function ConciergeForm() {
                 id="name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-xl px-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
+                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-lgpx-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
                 aria-invalid={!!errors.name}
                 aria-describedby={errors.name ? 'name-error' : undefined}
               />
-              {errors.name && <p id="name-error" className="mt-1 text-sm text-red-400">{errors.name}</p>}
+              {errors.name && <p id="name-error" className="mt-1 text-sm text-aurora-error">{errors.name}</p>}
             </div>
 
             {/* Email */}
@@ -151,11 +151,11 @@ export default function ConciergeForm() {
                 id="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-xl px-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
+                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-lgpx-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
                 aria-invalid={!!errors.email}
                 aria-describedby={errors.email ? 'email-error' : undefined}
               />
-              {errors.email && <p id="email-error" className="mt-1 text-sm text-red-400">{errors.email}</p>}
+              {errors.email && <p id="email-error" className="mt-1 text-sm text-aurora-error">{errors.email}</p>}
             </div>
 
             {/* Travel Dates */}
@@ -169,7 +169,7 @@ export default function ConciergeForm() {
                 placeholder="e.g., March 2025"
                 value={formData.travelDates}
                 onChange={(e) => setFormData({ ...formData, travelDates: e.target.value })}
-                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-xl px-4 py-3 text-aurora-white placeholder:text-aurora-white/40 focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
+                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-lgpx-4 py-3 text-aurora-white placeholder:text-aurora-white/40 focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
               />
             </div>
 
@@ -185,7 +185,7 @@ export default function ConciergeForm() {
                 max="20"
                 value={formData.travelers}
                 onChange={(e) => setFormData({ ...formData, travelers: parseInt(e.target.value) || 1 })}
-                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-xl px-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
+                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-lgpx-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
               />
             </div>
 
@@ -202,7 +202,7 @@ export default function ConciergeForm() {
                       key={interest}
                       type="button"
                       onClick={() => toggleInterest(interest)}
-                      className={`px-4 py-2 rounded-xl text-sm font-medium transition-all min-h-[44px] ${
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all min-h-[44px] ${
                         isSelected
                           ? 'bg-gradient-aurora text-aurora-dark shadow-glow'
                           : 'bg-aurora-glass border border-aurora-glass-border text-aurora-white/80 hover:border-aurora-cyan/50'
@@ -224,7 +224,7 @@ export default function ConciergeForm() {
                 id="budget"
                 value={formData.budget}
                 onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-xl px-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
+                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-lgpx-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
               >
                 <option value="" className="bg-aurora-dark">Select a range</option>
                 {budgetRanges.map((range) => (
@@ -245,7 +245,7 @@ export default function ConciergeForm() {
                 rows={4}
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-xl px-4 py-3 text-aurora-white placeholder:text-aurora-white/40 focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all resize-none"
+                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-lg px-4 py-3 text-aurora-white placeholder:text-aurora-white/40 focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all resize-none"
                 placeholder="Tell us about your dream journey..."
               />
             </div>
@@ -253,7 +253,7 @@ export default function ConciergeForm() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-gradient-aurora text-aurora-dark font-heading font-semibold py-4 rounded-xl hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan min-h-[44px]"
+              className="w-full bg-gradient-aurora text-aurora-dark font-heading font-semibold py-4 rounded-lg hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan min-h-[44px]"
             >
               Send Request
             </button>

@@ -25,6 +25,11 @@
 - **Form errors need aria-live (2026-04-10):** Visual error messages aren't announced to screen readers. Add `aria-live="polite"` container, `aria-describedby` on each input linking to its error's `id`.
 - **Gradient text banned (2026-04-10):** `bg-gradient-aurora bg-clip-text text-transparent` on headings causes readability issues. Use solid `text-aurora-white` instead. Gradients OK for decorative elements (dividers, badges) but not text.
 - **OKLCH for selection colors (2026-04-10):** Mouse is moving palette to OKLCH. `::selection` now uses `oklch()` values. Keep aligned with the OKLCH migration.
+- **Touch targets need invisible padding wrappers (2026-04-10):** WCAG requires 44px minimum touch targets. Small visual elements (nav dots, toggles) should use a transparent button wrapper with `min-w-[44px] min-h-[44px]` + flex centering, keeping the visual dot small inside.
+- **AnimatePresence for conditional renders (2026-04-10):** Any conditionally rendered UI in a motion-rich site should use Framer Motion's `AnimatePresence` + `motion.div` with exit animations. Instant appear/disappear is jarring.
+- **useReducedMotion must cover Framer Motion (2026-04-10):** CSS `prefers-reduced-motion` only handles CSS animations. Every Framer Motion `initial`/`animate`/`exit` must also check `useReducedMotion()` and skip animation when true (set initial === animate).
+- **Container queries for component responsiveness (2026-04-10):** Use `@container` on grid parents with CSS `container-type: inline-size` for card-level layout adaptation. Component should respond to its container, not the viewport.
+- **Type scale consolidation (2026-04-10):** Merged 8-step fluid type scale down to 6 (sm, base, lg, xl, 2xl, 3xl). The 3xl step now covers display/hero use via a wider clamp range. Fewer steps = more consistent hierarchy.
 
 ## Session Activity
 

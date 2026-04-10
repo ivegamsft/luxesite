@@ -2,7 +2,7 @@
 
 import { useState, useCallback, KeyboardEvent } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { destinations } from '../data/destinations';
 import AnimatedSection from './AnimatedSection';
 
@@ -13,6 +13,11 @@ const cardVariants = {
 
 export default function DestinationGrid() {
   const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  const cardMotionVariants = prefersReducedMotion
+    ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
+    : cardVariants;
 
   const toggleCard = useCallback((slug: string) => {
     setExpandedSlug(prev => (prev === slug ? null : slug));
@@ -32,7 +37,7 @@ export default function DestinationGrid() {
           <h2 className="font-heading text-fluid-3xl mb-4">
             Curated Destinations
           </h2>
-          <p className="text-aurora-white/60 mb-12 max-w-2xl text-fluid-sm">
+          <p className="text-aurora-white/50 mb-12 max-w-3xl text-fluid-sm">
             Handpicked escapes where luxury meets adventure. Every destination tells a story worth living.
           </p>
         </AnimatedSection>
@@ -44,11 +49,11 @@ export default function DestinationGrid() {
           variants={{
             visible: {
               transition: {
-                staggerChildren: 0.1,
+                staggerChildren: prefersReducedMotion ? 0 : 0.1,
               },
             },
           }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 auto-rows-[minmax(280px,auto)]"
+          className="@container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 auto-rows-[minmax(280px,auto)]"
         >
           {destinations.map((destination, index) => {
             const isExpanded = expandedSlug === destination.slug;
@@ -56,8 +61,8 @@ export default function DestinationGrid() {
             return (
               <motion.div
                 key={destination.slug}
-                variants={cardVariants}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}                className={`group relative rounded-2xl overflow-hidden border border-aurora-glass-border shadow-glass transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-glow hover:shadow-aurora-cyan/20 ${isFeature ? 'md:col-span-2 md:row-span-2' : ''}`}
+                variants={cardMotionVariants}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}                className={`destination-card group relative rounded-sm overflow-hidden border border-aurora-glass-border shadow-glass transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-glow hover:shadow-aurora-cyan/20 ${isFeature ? 'md:col-span-2 md:row-span-2' : ''}`}
                 role="button"
                 tabIndex={0}
                 aria-expanded={isExpanded}
@@ -74,9 +79,11 @@ export default function DestinationGrid() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-aurora-dark/90 via-aurora-dark/30 to-transparent"></div>
                   
-                  {/* Price Badge */}
-                  <div className="absolute top-4 right-4 bg-gradient-aurora text-aurora-dark text-xs font-bold px-3 py-1.5 rounded-full">
-                    from {destination.currency}{destination.price.toLocaleString()}
+                  {/* Price — editorial typographic treatment */}
+                  <div className="absolute top-5 right-5">
+                    <span className="font-heading text-base tracking-wide text-aurora-white/60">
+                      from {destination.currency}{destination.price.toLocaleString()}
+                    </span>
                   </div>
 
                   {/* Quick Facts Overlay — visible on hover, focus, or tap toggle */}

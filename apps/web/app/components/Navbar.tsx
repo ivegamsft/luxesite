@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { navLinks } from '../data/navigation';
 
 export default function Navbar() {
@@ -96,7 +97,7 @@ export default function Navbar() {
                   contactSection.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="bg-gradient-aurora text-aurora-white font-medium px-6 py-3 rounded-2xl hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan focus:ring-offset-2 focus:ring-offset-aurora-dark min-h-[44px]"
+              className="bg-gradient-aurora text-aurora-white font-medium px-6 py-3 rounded-lg hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan focus:ring-offset-2 focus:ring-offset-aurora-dark min-h-[44px]"
             >
               Request Itinerary
             </button>
@@ -131,8 +132,15 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden glass border-t border-aurora-glass-border">
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="md:hidden glass border-t border-aurora-glass-border overflow-hidden"
+          >
           <div className="px-4 pt-4 pb-6 space-y-3">
             <ul className="space-y-3">
               {navLinks.map((link) => {
@@ -165,13 +173,14 @@ export default function Navbar() {
                 }
                 setMobileMenuOpen(false);
               }}
-              className="w-full bg-gradient-aurora text-aurora-white font-medium px-6 py-3 rounded-2xl hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 mt-4 focus:outline-none focus:ring-2 focus:ring-aurora-cyan min-h-[44px]"
+              className="w-full bg-gradient-aurora text-aurora-white font-medium px-6 py-3 rounded-lg hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 mt-4 focus:outline-none focus:ring-2 focus:ring-aurora-cyan min-h-[44px]"
             >
               Request Itinerary
             </button>
           </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

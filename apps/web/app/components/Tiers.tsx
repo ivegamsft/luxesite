@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { tiers } from '../data/tiers';
 import AnimatedSection from './AnimatedSection';
 
@@ -10,15 +10,20 @@ const cardVariants = {
 };
 
 export default function Tiers() {
+  const prefersReducedMotion = useReducedMotion();
+  const cardMotionVariants = prefersReducedMotion
+    ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
+    : cardVariants;
+
   return (
     <section id="membership" className="py-section-lg px-4 sm:px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection>
-          <h2 className="font-heading text-fluid-3xl text-center mb-4">
+          <h2 className="font-heading text-fluid-3xl mb-4">
             Membership
           </h2>
-          <p className="text-center text-aurora-white/60 mb-12 max-w-2xl mx-auto text-fluid-sm">
-            Exclusive access to a world beyond ordinary. Choose the tier that unlocks your next chapter.
+          <p className="text-aurora-white/60 mb-12 max-w-xl text-fluid-sm">
+            Three tiers. One standard&nbsp;&mdash; uncompromising.
           </p>
         </AnimatedSection>
 
@@ -29,27 +34,22 @@ export default function Tiers() {
           variants={{
             visible: {
               transition: {
-                staggerChildren: 0.15,
+                staggerChildren: prefersReducedMotion ? 0 : 0.15,
               },
             },
           }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
+          className="@container grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
         >
           {tiers.map((tier) => (
             <motion.div
               key={tier.id}
-              variants={cardVariants}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}              className={`relative rounded-2xl p-6 md:p-8 transition-all duration-300 ${
+              variants={cardMotionVariants}
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}              className={`tier-card relative rounded-sm p-6 md:p-8 transition-all duration-300 ${
                 tier.featured
                   ? 'animated-border scale-[1.02] md:scale-105 z-10 shadow-glow-purple'
                   : 'bg-aurora-darker border border-aurora-glass-border shadow-glass hover:-translate-y-1 hover:shadow-glow hover:shadow-aurora-cyan/20'
               }`}
             >
-              {tier.featured && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-aurora text-aurora-dark text-xs font-bold px-4 py-1.5 rounded-full">
-                  Most Popular
-                </div>
-              )}
 
               <div className="mb-6">
                 <h3 className="font-heading text-fluid-xl mb-2 text-aurora-white">
