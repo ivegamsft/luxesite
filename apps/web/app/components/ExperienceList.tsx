@@ -5,7 +5,7 @@ import { experiences } from '../data/experiences';
 import AnimatedSection from './AnimatedSection';
 
 const cardVariants = {
-  hidden: { opacity: 1, y: 20 },
+  hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0 }
 };
 
@@ -41,15 +41,14 @@ export default function ExperienceList() {
               <motion.div
                 key={experience.id}
                 variants={cardVariants}
-                transition={{ duration: 0.5 }}
-                className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-stretch border border-aurora-glass-border rounded-2xl overflow-hidden shadow-glass transition-all duration-300 ease-out hover:shadow-glow hover:shadow-aurora-purple/20`}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}                className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-stretch border border-aurora-glass-border rounded-2xl overflow-hidden shadow-glass transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-glow hover:shadow-aurora-purple/20`}
               >
                 {/* Icon side */}
-                <div className="flex items-center justify-center bg-aurora-glass backdrop-blur-glass p-8 md:p-12 md:w-48 shrink-0">
+                <div className="flex items-center justify-center bg-aurora-darker p-8 md:p-12 md:w-48 shrink-0">
                   <span className="text-5xl md:text-6xl">{experience.icon}</span>
                 </div>
                 {/* Content side */}
-                <div className="flex-1 p-6 md:p-8 flex flex-col justify-center bg-aurora-glass/50 backdrop-blur-glass">
+                <div className="flex-1 p-6 md:p-8 flex flex-col justify-center bg-aurora-darker/80">
                   <h3 className="font-heading text-fluid-lg mb-3 text-aurora-white">
                     {experience.title}
                   </h3>

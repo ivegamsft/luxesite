@@ -71,7 +71,7 @@ export default function ConciergeForm() {
     e.preventDefault();
 
     if (validateForm()) {
-      toast.success('✨ Request received! Our concierge team will reach out within 24 hours.');
+      toast.success('Request received — our concierge team will reach out within 24 hours.');
       
       // Reset form
       setFormData({
@@ -108,7 +108,7 @@ export default function ConciergeForm() {
               Design Your Journey
             </h2>
             <p className="text-fluid-base text-aurora-white/70">
-              Tell us your dreams. We'll craft the reality.
+              Share your vision. We handle every detail.
             </p>
           </div>
         </AnimatedSection>
@@ -253,7 +253,7 @@ export default function ConciergeForm() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-gradient-aurora text-aurora-dark font-heading font-semibold py-4 rounded-xl hover:shadow-glow hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan min-h-[44px]"
+              className="w-full bg-gradient-aurora text-aurora-dark font-heading font-semibold py-4 rounded-xl hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan min-h-[44px]"
             >
               Send Request
             </button>

@@ -111,13 +111,13 @@ export default function Hero() {
         >
           <button
             onClick={handleDesignTrip}
-            className="w-full sm:w-auto bg-gradient-aurora text-aurora-white font-medium px-8 py-4 rounded-2xl hover:shadow-glow hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan focus:ring-offset-2 focus:ring-offset-aurora-dark min-h-[44px]"
+            className="w-full sm:w-auto bg-gradient-aurora text-aurora-white font-medium px-8 py-4 rounded-2xl hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan focus:ring-offset-2 focus:ring-offset-aurora-dark min-h-[44px]"
           >
             Design My Trip
           </button>
           <button
             onClick={handleExploreDestinations}
-            className="w-full sm:w-auto glass text-aurora-white font-medium px-8 py-4 rounded-2xl hover:border-aurora-cyan transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan focus:ring-offset-2 focus:ring-offset-aurora-dark min-h-[44px]"
+            className="w-full sm:w-auto border border-aurora-glass-border text-aurora-white/80 font-medium px-8 py-4 rounded-2xl hover:border-aurora-cyan hover:text-aurora-white hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan focus:ring-offset-2 focus:ring-offset-aurora-dark min-h-[44px]"
           >
             Explore Destinations
           </button>

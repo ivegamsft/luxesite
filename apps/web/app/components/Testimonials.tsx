@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { testimonials } from '../data/testimonials';
 import AnimatedSection from './AnimatedSection';
@@ -20,6 +20,16 @@ export default function Testimonials() {
     setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   }, []);
 
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      goNext();
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      goPrev();
+    }
+  }, [goNext, goPrev]);
+
   const active = testimonials[activeIndex];
 
   return (
@@ -38,7 +48,14 @@ export default function Testimonials() {
         </AnimatedSection>
 
         {/* Featured Quote — large, single testimonial with navigation */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-12 items-start">
+        <div
+          className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-12 items-start"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Member testimonials"
+          onKeyDown={handleKeyDown}
+          tabIndex={0}
+        >
           {/* Main quote */}
           <div className="relative min-h-[260px]">
             <AnimatePresence mode="wait">

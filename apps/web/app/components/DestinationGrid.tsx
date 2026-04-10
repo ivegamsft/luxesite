@@ -7,7 +7,7 @@ import { destinations } from '../data/destinations';
 import AnimatedSection from './AnimatedSection';
 
 const cardVariants = {
-  hidden: { opacity: 1, y: 20 },
+  hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0 }
 };
 
@@ -57,8 +57,7 @@ export default function DestinationGrid() {
               <motion.div
                 key={destination.slug}
                 variants={cardVariants}
-                transition={{ duration: 0.5 }}
-                className={`group relative rounded-2xl overflow-hidden bg-aurora-glass backdrop-blur-glass border border-aurora-glass-border shadow-glass transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-glow hover:shadow-aurora-cyan/20 ${isFeature ? 'md:col-span-2 md:row-span-2' : ''}`}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}                className={`group relative rounded-2xl overflow-hidden border border-aurora-glass-border shadow-glass transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-glow hover:shadow-aurora-cyan/20 ${isFeature ? 'md:col-span-2 md:row-span-2' : ''}`}
                 role="button"
                 tabIndex={0}
                 aria-expanded={isExpanded}

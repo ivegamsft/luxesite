@@ -5,7 +5,7 @@ import { tiers } from '../data/tiers';
 import AnimatedSection from './AnimatedSection';
 
 const cardVariants = {
-  hidden: { opacity: 1, y: 20 },
+  hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0 }
 };
 
@@ -39,11 +39,10 @@ export default function Tiers() {
             <motion.div
               key={tier.id}
               variants={cardVariants}
-              transition={{ duration: 0.5 }}
-              className={`relative rounded-2xl p-6 md:p-8 transition-all duration-300 ${
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}              className={`relative rounded-2xl p-6 md:p-8 transition-all duration-300 ${
                 tier.featured
                   ? 'animated-border scale-[1.02] md:scale-105 z-10 shadow-glow-purple'
-                  : 'bg-aurora-glass backdrop-blur-glass border border-aurora-glass-border shadow-glass hover:shadow-glow hover:shadow-aurora-cyan/20'
+                  : 'bg-aurora-darker border border-aurora-glass-border shadow-glass hover:-translate-y-1 hover:shadow-glow hover:shadow-aurora-cyan/20'
               }`}
             >
               {tier.featured && (
@@ -79,8 +78,8 @@ export default function Tiers() {
               <button
                 className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 min-h-[44px] ${
                   tier.featured
-                    ? 'bg-gradient-aurora text-aurora-dark hover:shadow-glow hover:scale-105'
-                    : 'bg-aurora-glass border border-aurora-glass-border text-aurora-white hover:bg-aurora-glass-border hover:scale-105'
+                    ? 'bg-gradient-aurora text-aurora-dark hover:shadow-glow hover:-translate-y-0.5'
+                    : 'border border-aurora-glass-border text-aurora-white/80 hover:border-aurora-cyan hover:text-aurora-white hover:-translate-y-0.5'
                 }`}
               >
                 Join {tier.name}

@@ -41,8 +41,8 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-source-sans);
-  --font-heading: var(--font-playfair);
+  --font-sans: var(--font-libre-franklin);
+  --font-heading: var(--font-bodoni);
 }
 
 /* Base Styles */
@@ -59,7 +59,7 @@ section[id] {
 body {
   background-color: var(--aurora-dark);
   color: var(--aurora-white);
-  font-family: var(--font-sans), "Source Sans 3", system-ui, sans-serif;
+  font-family: var(--font-sans), "Libre Franklin", system-ui, sans-serif;
   font-size: var(--fluid-base);
 }
 

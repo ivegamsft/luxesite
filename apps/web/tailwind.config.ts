@@ -73,8 +73,8 @@ const config: Config = {
         float: "float 3s ease-in-out infinite",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "Source Sans 3", "system-ui", "sans-serif"],
-        heading: ["var(--font-heading)", "Playfair Display", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "Libre Franklin", "system-ui", "sans-serif"],
+        heading: ["var(--font-heading)", "Bodoni Moda", "Georgia", "serif"],
       },
       fontSize: {
         "fluid-sm": "var(--fluid-sm)",
