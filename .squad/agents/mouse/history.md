@@ -364,3 +364,17 @@ Price opacity bumped from `/60` to `/80`; region from `/60` to `/70`. All text n
 **Preserved:** DestinationGrid and ExperienceList keep the gold eyebrow pattern (appropriate for discovery sections). GuideGrid and WhyAurora untouched (Morpheus territory, Issue #147).
 
 **Key lesson:** Section heading variety is about matching the heading treatment to the section's purpose. Discovery sections earn the full eyebrow+heading treatment. Utility sections (FAQ, forms) need understated labels. Social proof (testimonials) should let content speak. Pricing should lead with the product.
+
+### Issue Sweep — #82, #89, #92, #98 (2026-04-11)
+
+**4 fixes across 7 files. Build clean.**
+
+**Issue #98 (P3) — AnimatedSection entrance variety:** Most sections were using default `'fade'` variant, creating robotic uniformity. Distributed three variants across sections: `fade-up` for DestinationGrid/Tiers/WhyAurora/FAQ headings, `fade-left` for ExperienceList/Testimonials/ConciergeForm headings, and default `fade` for FAQ accordion items and ConciergeForm form sections. Pattern: directional entrances for primary headings, simple fades for repeated content.
+
+**Issue #92 (P3) — shadow-lift too dark:** Both tailwind.config.ts (`0.35` opacity) and globals.css (`0.15` opacity) had the `lift` shadow defined. Tailwind value was far too heavy for a light theme. Unified both to `0 2px 16px oklch(0 0 0 / 0.10), 0 1px 4px oklch(0 0 0 / 0.06)` — a two-layer shadow that reads as refined editorial elevation, not Material Design.
+
+**Issue #89 (P2) — Featured tier CTA hover:** Button already had correct `bg-aurora-gold text-white` base. Missing was an explicit hover background — added `hover:bg-aurora-gold/90` for a subtle darken on hover, consistent with primary CTA behavior across the site.
+
+**Issue #82 (P2) — ExperienceList featured card gap:** The highlights `<ul>` had `flex-1` which expanded it to fill the `row-span-full` card height, creating an awkward empty zone below the list items and above the region pills. Fix: removed `flex-1` from the list, added `mt-auto` to the region pills wrapper. Content now flows naturally from top; pills anchor to card bottom.
+
+**Key lesson:** When cards use `row-span-full` in a grid, avoid `flex-1` on intermediate content — it stretches to fill the cross-column height. Instead, use `mt-auto` on the final element to anchor it to the bottom while letting content above it size naturally.
