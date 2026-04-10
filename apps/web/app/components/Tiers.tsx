@@ -37,14 +37,14 @@ export default function Tiers() {
             <motion.div
               key={tier.id}
               variants={cardMotionVariants}
-              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}              className={`tier-card relative rounded-sm p-6 md:p-8 transition-all duration-300 ${
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}              className={`tier-card relative rounded-sm p-8 md:p-10 flex flex-col transition-all duration-300 hover:scale-[1.02] hover:shadow-xl ${
                 tier.featured
                   ? 'gradient-border z-10 shadow-lift'
                   : 'bg-white/10 border border-white/20 shadow-subtle hover:border-aurora-gold/40'
               }`}
             >
 
-              <div className="mb-6">
+              <div className="mb-8">
                 <h3 className="font-heading text-fluid-xl font-medium mb-2 text-white">
                   {tier.name}
                 </h3>
@@ -62,7 +62,7 @@ export default function Tiers() {
                 )}
               </div>
 
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3.5 mb-8 flex-1">
                 {tier.perks.map((perk, index) => (
                   <li key={index} className="flex items-start text-sm text-white/80">
                     <span className="text-aurora-gold mr-2 mt-0.5 flex-shrink-0">✓</span>
@@ -71,7 +71,8 @@ export default function Tiers() {
                 ))}
               </ul>
 
-              <button
+              <div className="mt-auto pt-6">
+                <button
                 onClick={() => {
                   window.dispatchEvent(new CustomEvent('tier-selected', { detail: { tier: tier.name } }));
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -84,6 +85,7 @@ export default function Tiers() {
               >
                 Join {tier.name}
               </button>
+              </div>
             </motion.div>
           ))}
         </motion.div>

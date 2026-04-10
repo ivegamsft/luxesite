@@ -34,7 +34,7 @@
   --fluid-lg: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem);
   --fluid-xl: clamp(1.5rem, 1.25rem + 1.25vw, 2.25rem);
   --fluid-2xl: clamp(1.75rem, 1.4rem + 1.75vw, 3rem);
-  --fluid-3xl: clamp(2.25rem, 1.6rem + 5vw, 4rem);
+  --fluid-3xl: clamp(3rem, 2rem + 5vw, 5rem);
 
   /* ── Spacing — 8px baseline ──────────────────────────────────── */
   --space-xs: 0.5rem;    /* 8px */
@@ -46,11 +46,11 @@
   --space-3xl: 4rem;     /* 64px */
 
   /* ── Section Spacing (varied rhythm) ──────────────────────────── */
-  --space-hero: clamp(6rem, 4rem + 10vw, 12rem);
-  --space-section-lg: clamp(5rem, 3rem + 6vw, 9rem);
-  --space-section-md: clamp(4rem, 2.5rem + 5vw, 7rem);
-  --space-section-sm: clamp(3rem, 2rem + 3vw, 5rem);
-  --space-section-xs: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  --space-hero: clamp(7rem, 5rem + 10vw, 14rem);
+  --space-section-lg: clamp(6rem, 4rem + 8vw, 12rem);
+  --space-section-md: clamp(5rem, 3.5rem + 6vw, 10rem);
+  --space-section-sm: clamp(4rem, 3rem + 4vw, 7rem);
+  --space-section-xs: clamp(3rem, 2rem + 3vw, 5rem);
 }
 
 @theme inline {
@@ -172,6 +172,15 @@ body {
 @container (max-width: 400px) {
   .tier-card { padding: 1rem; }
   .tier-card h3 { font-size: var(--fluid-lg); }
+}
+
+/* ── Scrollbar Hide ─────────────────────────────────────────────── */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 /* Respect prefers-reduced-motion */

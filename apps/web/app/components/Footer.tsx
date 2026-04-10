@@ -16,12 +16,12 @@ const footerCompany = [
 export default function Footer() {
   return (
     <footer className="bg-aurora-navy text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-section-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-20 pb-12">
         {/* 4-column grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-16">
           {/* Brand */}
           <div>
-            <div className="font-heading text-fluid-xl font-bold mb-4">
+            <div className="font-heading text-fluid-xl font-bold mb-5">
               AURORA LUXE
             </div>
             <p className="text-sm text-white/80 leading-relaxed max-w-[28ch]">
@@ -88,7 +88,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Row: Copyright + Credits */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-white/10 text-sm text-white/70">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-10 border-t border-white/15 text-sm text-white/70">
           <p>© 2026 Aurora Luxe Travel. All rights reserved.</p>
           <p>
             Images via{' '}

@@ -64,33 +64,38 @@ export default function FAQ() {
     <section id="faq" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-dark">
       <div className="max-w-3xl mx-auto">
         <AnimatedSection>
-          <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight text-aurora-text mb-12 text-center">
+          <p className="text-sm font-medium tracking-widest uppercase text-aurora-gold mb-3 text-center">
+            Your Questions, Answered
+          </p>
+          <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight text-aurora-text mb-14 text-center">
             Frequently Asked Questions
           </h2>
         </AnimatedSection>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {faqData.map((faq, index) => {
             const isOpen = openId === faq.id;
             
             return (
               <AnimatedSection key={faq.id} delay={index * 0.05}>
-                <div className="border border-aurora-border rounded-lg bg-white overflow-hidden">
+                <div className={`border rounded-lg overflow-hidden transition-all duration-300 ${isOpen ? 'border-aurora-gold/40 bg-white shadow-subtle' : 'border-aurora-border bg-white/80 hover:border-aurora-gold/30'}`}>
                   <button
                     onClick={() => toggleItem(faq.id)}
                     aria-expanded={isOpen}
                     aria-controls={`faq-answer-${faq.id}`}
-                    className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-aurora-bg/30 transition-colors focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-inset"
+                    className="w-full flex items-center justify-between px-7 py-6 text-left hover:bg-aurora-bg/20 transition-colors focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-inset"
                   >
-                    <span className="font-heading text-fluid-base font-medium text-aurora-text pr-8">
+                    <span className="font-heading text-fluid-base font-semibold text-aurora-text pr-8 leading-snug">
                       {faq.question}
                     </span>
                     <span
-                      className="flex-shrink-0 text-aurora-gold text-2xl font-light transition-transform duration-300"
+                      className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-aurora-gold/30 text-aurora-gold transition-all duration-300"
                       aria-hidden="true"
-                      style={{ transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)' }}
+                      style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
                     >
-                      +
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="6 9 12 15 18 9" />
+                      </svg>
                     </span>
                   </button>
                   
@@ -103,8 +108,10 @@ export default function FAQ() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       >
-                        <div className="px-6 pb-5 text-aurora-text-muted leading-relaxed">
-                          {faq.answer}
+                        <div className="px-7 pb-6 border-t border-aurora-gold/20">
+                          <p className="pt-5 text-aurora-text-muted leading-relaxed">
+                            {faq.answer}
+                          </p>
                         </div>
                       </motion.div>
                     )}

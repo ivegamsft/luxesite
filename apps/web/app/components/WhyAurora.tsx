@@ -135,7 +135,7 @@ export default function WhyAurora() {
           <div
             ref={scrollRef}
             tabIndex={0}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 scrollbar-thin scrollbar-thumb-aurora-border focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 rounded"
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 scrollbar-hide focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 rounded"
           >
             {teamMembers.map((member, i) => {
               const isLarge = i < 2;

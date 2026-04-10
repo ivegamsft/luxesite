@@ -55,7 +55,7 @@ export default function Hero() {
           initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.1, ease: 'easeOut' }}
-          className="font-heading text-fluid-3xl font-bold text-white mb-6 tracking-tight leading-[1.1]"
+          className="font-heading text-fluid-3xl font-bold text-white mb-6 tracking-tight leading-[1.08]"
         >
           Where Will Your Story Take You Next?
         </motion.h1>
@@ -65,7 +65,7 @@ export default function Hero() {
           initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.2, ease: 'easeOut' }}
-          className="text-fluid-base text-white/80 max-w-[65ch] mb-10 leading-relaxed"
+          className="text-fluid-lg text-white/80 max-w-[55ch] mb-10 leading-relaxed"
         >
           130+ destinations, each curated by specialists who&apos;ve walked the ground. Your journey begins with a conversation.
         </motion.p>
@@ -75,7 +75,7 @@ export default function Hero() {
           initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.3, ease: 'easeOut' }}
-          className="flex flex-col sm:flex-row items-center justify-start gap-4"
+          className="flex flex-col sm:flex-row items-start gap-4"
         >
           <button
             onClick={handleRequestConsultation}
@@ -96,7 +96,7 @@ export default function Hero() {
           initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.4, ease: 'easeOut' }}
-          className="flex flex-col md:flex-row items-stretch md:items-center gap-3 mt-8 mx-4 bg-white/80 backdrop-blur-sm border border-aurora-border rounded-lg px-4 py-3"
+          className="flex flex-col md:flex-row items-stretch md:items-center gap-3 mt-8 bg-white/80 backdrop-blur-sm border border-aurora-border rounded-lg px-4 py-3"
         >
           <select
             aria-label="Destination"

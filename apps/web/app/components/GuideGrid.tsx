@@ -12,7 +12,7 @@ export default function GuideGrid() {
   const remaining = guides.slice(1);
 
   return (
-    <section id="guides" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
+    <section id="guides" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection variant="fade-up">
           <p

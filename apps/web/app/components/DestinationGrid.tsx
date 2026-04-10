@@ -165,17 +165,19 @@ export default function DestinationGrid() {
                         </span>
                       </div>
 
-                      {/* Quick facts overlay — positioned above bottom text area */}
-                      <div className={`absolute top-0 left-0 right-0 bottom-[140px] bg-aurora-text/95 transition-opacity duration-300 p-6 flex flex-col justify-center group-hover:opacity-100 group-focus-within:opacity-100 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
-                        <h4 className="font-heading text-lg mb-3 text-aurora-gold">Quick Facts:</h4>
-                        <ul className="space-y-2 text-sm text-white/80">
-                          {destination.quickFacts.map((fact, i) => (
-                            <li key={i} className="flex items-start">
-                              <span className="text-aurora-gold mr-2">•</span>
-                              <span>{fact}</span>
-                            </li>
-                          ))}
-                        </ul>
+                      {/* Quick facts overlay — slide up panel */}
+                      <div className={`absolute inset-0 bg-gradient-to-t from-aurora-text/95 via-aurora-text/85 to-aurora-text/70 transition-opacity duration-300 flex flex-col justify-end group-hover:opacity-100 group-focus-within:opacity-100 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
+                        <div className="p-8 pb-[160px]">
+                          <h4 className="font-heading text-lg font-semibold mb-4 text-aurora-gold tracking-wide">Quick Facts</h4>
+                          <ul className="space-y-2.5 text-sm text-white/90">
+                            {destination.quickFacts.map((fact, i) => (
+                              <li key={i} className="flex items-start gap-2.5">
+                                <span className="text-aurora-gold mt-0.5 flex-shrink-0">•</span>
+                                <span className="leading-relaxed">{fact}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
                     </div>
 
