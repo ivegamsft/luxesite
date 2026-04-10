@@ -1,63 +1,46 @@
 # Aurora Luxe Travel
 
-## Description
+A futuristic luxury travel website for the world's most discerning travelers. Built as a fictional brand showcase featuring ultra-premium concierge travel experiences.
 
-Aurora Luxe Travel is a futuristic luxury travel website designed for the world's most discerning travelers. Built as a fictional brand showcase, this platform represents ultra-premium concierge travel experiences including private jet charters, superyacht getaways, Michelin-starred dining trails, and bespoke itineraries tailored to extraordinary tastes.
+## Project Structure
 
-This project demonstrates modern web design principles with glassmorphism aesthetics, smooth animations, and a seamless responsive experience. It's crafted as a portfolio piece showcasing advanced React and Next.js capabilities alongside stunning visual design.
+```
+luxesite/
+├── apps/
+│   └── web/          ← Next.js web application
+├── spec/             ← Project-wide specifications
+├── .squad/           ← Squad team configuration
+└── .github/          ← CI/CD workflows
+```
 
-## Tech Stack
+## Apps
 
-- **Framework:** Next.js with TypeScript
-- **Styling:** Tailwind CSS
-- **Animations:** Framer Motion
-- **Font Optimization:** Google Fonts (Space Grotesk, Inter)
-- **Build Tool:** Next.js (Node.js)
+### Web (`apps/web/`)
 
-## Getting Started
-
-### Installation
+The main customer-facing website. Next.js, TypeScript, Tailwind CSS, Framer Motion.
 
 ```bash
+cd apps/web
 npm install
+npm run dev        # Development server at http://localhost:3000
+npm run build      # Production build
+npm test           # Run all tests
 ```
 
-### Development Server
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the site.
-
-### Production Build
-
-```bash
-npm run build
-npm start
-```
-
-### Run Tests
-
-```bash
-npm test
-```
+See [`apps/web/`](apps/web/) for the full web app README.
 
 ## Features
 
 - **8 Premium Sections** – Comprehensive showcase of luxury travel offerings
-- **Glassmorphism Design** – Modern, frosted-glass aesthetic throughout the interface
+- **Glassmorphism Design** – Modern, frosted-glass aesthetic throughout
 - **Smooth Animations** – Framer Motion-powered transitions and micro-interactions
-- **Fully Responsive** – Optimized for desktop, tablet, and mobile devices
+- **Fully Responsive** – Optimized for desktop, tablet, and mobile
 - **Accessible** – WCAG compliance with semantic HTML and ARIA attributes
-- **Dynamic Components** – Destination grids, experience listings, and tier comparisons
-- **Contact Integration** – Concierge form for premium travel inquiries
-- **SEO Optimized** – Complete metadata and structured data for search engines
 
 ## Image Credits
 
-All images sourced from [Unsplash](https://unsplash.com) and are free to use under the Unsplash License.
+All images sourced from [Unsplash](https://unsplash.com) under the Unsplash License.
 
 ## License
 
-This is a demonstration/portfolio project. Feel free to use it as a reference for your own projects.
+Demonstration/portfolio project. Free to use as reference.
