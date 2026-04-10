@@ -21,6 +21,12 @@
 /* Base Styles */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  color-scheme: dark;
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
 }
 
 body {
@@ -31,10 +37,8 @@ body {
 
 /* Selection Styling */
 ::selection {
-  background: linear-gradient(135deg, #00e5ff, #8b5cf6, #d946ef);
+  background: #00e5ff;
   color: #0a0a0f;
-  -webkit-background-clip: text;
-  background-clip: text;
 }
 
 /* Glassmorphism Utility */

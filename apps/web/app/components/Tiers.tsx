@@ -42,7 +42,7 @@ export default function Tiers() {
               transition={{ duration: 0.5 }}
               className={`relative rounded-2xl p-6 md:p-8 transition-all duration-300 ${
                 tier.featured
-                  ? 'animated-border scale-105 md:scale-110 shadow-glow-purple'
+                  ? 'animated-border scale-[1.02] md:scale-105 z-10 shadow-glow-purple'
                   : 'bg-aurora-glass backdrop-blur-glass border border-aurora-glass-border shadow-glass hover:shadow-glow hover:shadow-aurora-cyan/20'
               }`}
             >
