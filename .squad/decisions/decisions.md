@@ -378,7 +378,77 @@ Luxury sites should feel confident and still, not restless. Infinite animations 
 
 ---
 
+### Decision: Section Reduction — Merge GuideGrid into WhyAurora
+
+**Author:** Morpheus  
+**Date:** 2026-04-10  
+**Status:** Implemented  
+**Issue:** #147 (P0)  
+**Commit:** 8e69200
+
+#### Context
+
+The page had 11 content sections creating a monolithic scroll wall. WhyAurora (team carousel) and GuideGrid (travel guides) both showcased people, creating redundancy. UHNW luxury brands (Aman, Rolls-Royce) use 3-4 editorial sections with generous breathing room.
+
+#### Decision
+
+1. **WhyAurora** refactored from horizontal carousel → 3-card editorial grid with "Meet all specialists" CTA
+2. **GuideGrid** removed from page composition (component file retained for future use)
+3. **PressAwards** removed from page composition (component file retained)
+4. **Interstitial** added — full-bleed Unsplash image with overlay quote, placed before Tiers for visual breathing room
+5. **ScrollNav** updated to remove Guides entry
+
+#### Result
+
+Page reduced from 11 → 8 sections: Hero, TrustBar, Destinations, Experiences, WhyAurora, Testimonials, Interstitial, Tiers, FAQ, ConciergeForm (8 content + structural nav/footer).
+
+#### Trade-offs
+
+- Guide content is no longer immediately visible on the homepage; it can be re-introduced on a dedicated `/guides` route later
+- PressAwards likewise available for a press/about page
+- All data files and components preserved — no data loss
+
+---
+
+### Decision: Section Heading Variety
+
+**Author:** Mouse  
+**Date:** 2026-04-10  
+**Status:** Implemented  
+**Issue:** #145 (P2)  
+**Commit:** 6ddcf0c
+
+#### Context
+
+The gold uppercase eyebrow → large h2 → muted subtitle pattern was mechanically repeated in 6+ sections. This is the #1 AI-template tell — human designers create variety while maintaining hierarchy.
+
+#### Decision
+
+Each section gets a heading treatment matched to its purpose:
+
+| Section Type | Treatment | Example |
+|---|---|---|
+| **Discovery** (Destinations, Experiences) | Full eyebrow + heading | Gold uppercase label + fluid-2xl h2 |
+| **Utility** (FAQ) | Understated label | Left-aligned fluid-xl, medium weight, muted |
+| **Pricing** (Tiers) | Inline label + tagline | Flex row, heading left, tagline right — cards lead |
+| **Form** (ConciergeForm) | Conversational line | Mixed-weight prose sentence, sr-only h2 |
+| **Social proof** (Testimonials) | Editorial quote | No heading — content speaks directly |
+
+#### Rules
+
+1. **Max 2–3 sections** may use the full eyebrow+heading pattern on any page
+2. Screen reader heading structure must always exist (use `sr-only` if visually hidden)
+3. New sections should consult this table before defaulting to the eyebrow pattern
+
+#### Files Changed
+
+- `apps/web/app/components/FAQ.tsx`
+- `apps/web/app/components/Tiers.tsx`
+- `apps/web/app/components/ConciergeForm.tsx`
+
+---
+
 **Follow-Up Logs:**  
-- Orchestration (Mouse): `.squad/orchestration-log/2026-04-10T05-42-30Z-mouse.md`  
-- Orchestration (Trinity): `.squad/orchestration-log/2026-04-10T05-42-30Z-trinity.md`  
-- Session Log: `.squad/log/2026-04-10T05-42-30Z-orchestration-critique-round2.md`
+- Orchestration (Morpheus): `.squad/orchestration-log/2026-04-10T19-55-00Z-morpheus.md`  
+- Orchestration (Mouse): `.squad/orchestration-log/2026-04-10T19-55-00Z-mouse.md`  
+- Session Log: `.squad/log/2026-04-10T19-55-00Z-p0-architecture-batch.md`
