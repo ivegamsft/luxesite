@@ -13,8 +13,7 @@ export default function WhyAurora() {
   return (
     <section id="why-aurora" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
       <div className="max-w-7xl mx-auto">
-        {/* Section heading */}
-        <AnimatedSection>
+        <AnimatedSection variant="fade-up">
           <div className="mb-14 lg:mb-16">
             <p className="text-sm font-medium tracking-widest uppercase text-aurora-gold mb-3">
               Why Aurora
@@ -76,7 +75,7 @@ export default function WhyAurora() {
           ))}
         </div>
 
-        {/* CTA — Meet the full team */}
+        {/* CTA — Plan with the team */}
         <AnimatedSection>
           <div className="text-center">
             <a
@@ -84,7 +83,7 @@ export default function WhyAurora() {
               onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
               className="inline-flex items-center gap-2 text-sm font-medium text-aurora-gold underline decoration-aurora-gold/40 underline-offset-4 hover:decoration-aurora-gold transition-colors focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
             >
-              Meet all {teamMembers.length} specialists&nbsp;&rarr;
+              Start planning with our team&nbsp;&rarr;
             </a>
           </div>
         </AnimatedSection>

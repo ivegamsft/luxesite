@@ -132,6 +132,7 @@ export default function DestinationGrid() {
               }}
               role="tabpanel"
               aria-labelledby={`region-tab-${activeRegion}`}
+              tabIndex={0}
               className="@container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 auto-rows-[minmax(280px,auto)]"
             >
               {visibleDestinations.map((destination, index) => {
@@ -194,9 +195,13 @@ export default function DestinationGrid() {
                         {destination.tagline}
                       </p>
                       <span
-                        className="inline-block text-xs font-medium tracking-wide transition-opacity duration-200 opacity-70 group-hover:opacity-100 text-aurora-gold"
+                        className="inline-flex items-center gap-1 text-xs font-medium tracking-wide text-aurora-gold md:hidden"
+                        aria-hidden="true"
                       >
-                        Tap to explore&nbsp;&rarr;
+                        Tap to explore
+                        <svg className="w-3.5 h-3.5 animate-[bounceX_1.5s_ease-in-out_3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
                       </span>
                     </div>
                   </motion.div>

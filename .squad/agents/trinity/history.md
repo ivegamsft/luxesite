@@ -40,6 +40,10 @@
 - **Infinite decorative animations read as restless (2026-04-10):** Background pulses and floating scroll indicators that loop forever feel anxious on a luxury site. Prefer one-shot animations with `animation-iteration-count: 1` and a delay, or remove the animation entirely for static elements.
 - **Type scale consolidation (2026-04-10):** Merged 8-step fluid type scale down to 6 (sm, base, lg, xl, 2xl, 3xl). The 3xl step now covers display/hero use via a wider clamp range. Fewer steps = more consistent hierarchy.
 
+- **CTA honesty over guide detail pages (2026-04-10):** When guide cards link to #contact (no detail pages exist), use action-oriented CTAs like "Plan Your Journey" or "Start planning with our team" instead of "Read Guide" or "Meet all specialists". The CTA text must honestly describe where the link goes.
+- **Mobile-only affordance for tap-interactive cards (2026-04-10):** Desktop cards have hover overlays that signal interactivity. Mobile doesn't. Use `md:hidden` on "Tap to explore" hints so they only appear on touch/mobile, and use a finite animation (3 iterations) to avoid restless loops.
+- **tabIndex={0} on tabpanels (2026-04-10):** WAI-ARIA tabs pattern requires `role="tabpanel"`, `aria-labelledby`, AND `tabIndex={0}` on the content container so keyboard users can tab into the panel content.
+
 ## Session Activity
 
 ### Impeccable Audit Fixes (2026-04-10T03:42:01Z–03:42:02Z)

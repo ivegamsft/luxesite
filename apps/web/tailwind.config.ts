@@ -29,7 +29,7 @@ const config: Config = {
       },
       boxShadow: {
         glass: "0 4px 20px rgba(0,0,0,0.08)",
-        lift: "0 2px 24px oklch(0 0 0 / 0.35)",
+        lift: "0 2px 16px oklch(0 0 0 / 0.10), 0 1px 4px oklch(0 0 0 / 0.06)",
         subtle: "0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04)",
         medium: "0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)",
       },
@@ -51,6 +51,10 @@ const config: Config = {
             transform: "translateY(0)",
             opacity: "1",
           },
+        },
+        "bounceX": {
+          "0%, 100%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(3px)" },
         },
       },
       animation: {
