@@ -42,33 +42,29 @@ export default function Testimonials() {
   const active = testimonials[activeIndex];
 
   return (
-    <section id="testimonials" className="py-section-md px-4 sm:px-6 bg-aurora-bg-dark">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header — left-aligned */}
+    <section id="testimonials" className="py-section-lg px-4 sm:px-6 bg-aurora-navy relative overflow-hidden">
+      {/* Subtle decorative element to break grid monotony */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-white/[0.03] to-transparent pointer-events-none" aria-hidden="true" />
+
+      <div className="max-w-4xl mx-auto relative">
+        {/* Section Header — editorial, no gold-label pattern */}
         <AnimatedSection>
           <div className="mb-16">
-            <p className="text-fluid-sm font-heading tracking-widest uppercase text-aurora-text-muted mb-6">
-              Testimonials
-            </p>
-            <h2 className="font-heading italic text-fluid-2xl text-aurora-text/70 max-w-[75ch] leading-snug tracking-tight">
+            <h2 className="font-heading italic text-fluid-2xl text-white/50 max-w-[75ch] leading-snug tracking-tight">
               &ldquo;The measure of a journey is not the distance&nbsp;&mdash; it&rsquo;s the silence when you return.&rdquo;
             </h2>
           </div>
         </AnimatedSection>
 
-        {/* Two-column layout: testimonial left, stats right */}
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
-        {/* Featured Quote — large, single testimonial with navigation */}
+        {/* Featured Quote — full width, no sidebar */}
         <div
-          className="flex-1 min-w-0"
           role="region"
           aria-roledescription="carousel"
           aria-label="Member testimonials"
           onKeyDown={handleKeyDown}
           tabIndex={0}
         >
-          {/* Main quote */}
-          <div className="relative min-h-[280px]" aria-live="polite">
+          <div className="relative min-h-[240px]" aria-live="polite">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.id}
@@ -83,16 +79,16 @@ export default function Testimonials() {
                   </div>
                 )}
 
-                <p className="text-fluid-xl italic text-aurora-text/90 mb-8 max-w-[50ch] leading-snug">
+                <p className="text-fluid-xl italic text-white/90 mb-8 max-w-[55ch] leading-snug">
                   &ldquo;{active.quote}&rdquo;
                 </p>
 
-                <div className="h-px bg-aurora-border mb-6 max-w-xs"></div>
+                <div className="h-px bg-white/15 mb-6 max-w-xs"></div>
 
-                <p className="font-heading font-semibold text-fluid-lg text-aurora-text">
+                <p className="font-heading font-semibold text-fluid-lg text-white">
                   {active.name}
                 </p>
-                <p className="text-fluid-sm text-aurora-text-muted">
+                <p className="text-fluid-sm text-white/50">
                   {active.location} · {active.role}
                 </p>
 
@@ -110,12 +106,12 @@ export default function Testimonials() {
             </AnimatePresence>
           </div>
 
-          {/* Horizontal navigation — dots + arrows */}
+          {/* Navigation */}
           <div className="flex items-center gap-4 mt-8">
             <button
               onClick={goPrev}
               aria-label="Previous testimonial"
-              className="w-11 h-11 rounded-full border border-aurora-border flex items-center justify-center text-aurora-text-muted hover:text-aurora-text hover:border-aurora-gold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
+              className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white/50 hover:text-white hover:border-aurora-gold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-navy"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -128,12 +124,12 @@ export default function Testimonials() {
                   key={t.id}
                   onClick={() => goTo(i)}
                   aria-label={`View testimonial from ${t.name}`}
-                  className="min-w-[44px] min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-navy"
                 >
                   <span className={`block transition-all duration-300 rounded-full ${
                     i === activeIndex
                       ? 'w-8 h-2.5 bg-aurora-gold'
-                      : 'w-2.5 h-2.5 bg-aurora-text/20 hover:bg-aurora-text/40'
+                      : 'w-2.5 h-2.5 bg-white/25 hover:bg-white/50'
                   }`} />
                 </button>
               ))}
@@ -142,33 +138,13 @@ export default function Testimonials() {
             <button
               onClick={goNext}
               aria-label="Next testimonial"
-              className="w-11 h-11 rounded-full border border-aurora-border flex items-center justify-center text-aurora-text-muted hover:text-aurora-text hover:border-aurora-gold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
+              className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white/50 hover:text-white hover:border-aurora-gold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-navy"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </button>
           </div>
-        </div>
-
-          {/* Right side — social proof stats */}
-          <aside className="hidden lg:flex flex-col justify-center gap-10 lg:w-72 shrink-0" aria-label="Client satisfaction metrics">
-            <div>
-              <p className="text-5xl font-heading font-semibold text-aurora-gold leading-none mb-2">4.9</p>
-              <p className="text-sm text-aurora-text-muted">out of 5 on Trustpilot</p>
-              <div className="mt-1.5 text-aurora-gold text-sm tracking-wide">★★★★★</div>
-            </div>
-            <div className="h-px bg-aurora-border" />
-            <div>
-              <p className="text-4xl font-heading font-semibold text-aurora-text leading-none mb-2">2,471</p>
-              <p className="text-sm text-aurora-text-muted">verified reviews</p>
-            </div>
-            <div className="h-px bg-aurora-border" />
-            <div>
-              <p className="text-4xl font-heading font-semibold text-aurora-text leading-none mb-2">98%</p>
-              <p className="text-sm text-aurora-text-muted">would book again</p>
-            </div>
-          </aside>
         </div>
       </div>
     </section>

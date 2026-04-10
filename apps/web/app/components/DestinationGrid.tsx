@@ -167,7 +167,7 @@ export default function DestinationGrid() {
 
                       {/* Quick facts overlay — slide up panel */}
                       <div className={`absolute inset-0 bg-gradient-to-t from-aurora-text/95 via-aurora-text/85 to-aurora-text/70 transition-opacity duration-300 flex flex-col justify-end group-hover:opacity-100 group-focus-within:opacity-100 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
-                        <div className="p-8 pb-[160px]">
+                        <div className="p-8">
                           <h4 className="font-heading text-lg font-semibold mb-4 text-aurora-gold tracking-wide">Quick Facts</h4>
                           <ul className="space-y-2.5 text-sm text-white/90">
                             {destination.quickFacts.map((fact, i) => (
@@ -178,6 +178,8 @@ export default function DestinationGrid() {
                             ))}
                           </ul>
                         </div>
+                        {/* Spacer for the always-visible bottom info strip */}
+                        <div className="shrink-0 h-28" aria-hidden="true" />
                       </div>
                     </div>
 

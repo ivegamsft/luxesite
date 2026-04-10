@@ -2,43 +2,37 @@
 
 import { motion, useReducedMotion } from 'framer-motion';
 import { awards, awardStyles } from '../data/awards';
-import AnimatedSection from './AnimatedSection';
 
 export default function PressAwards() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section
-      id="press"
-      className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light"
+    <div
+      role="complementary"
+      aria-label="Featured press and awards"
+      className="py-8 px-4 sm:px-6 lg:px-12 border-y border-aurora-border/50 bg-aurora-bg"
     >
-      <div className="max-w-5xl mx-auto text-center">
-        <AnimatedSection>
-          <p className="text-aurora-gold font-heading text-fluid-lg font-semibold mb-3">★ 4.9/5 on Trustpilot · 2,471 verified reviews</p>
-          <h2 className="font-heading text-fluid-xl font-semibold tracking-tight leading-tight text-aurora-text">
-            Trusted by industry leaders worldwide
-          </h2>
-        </AnimatedSection>
-
-        {/* Logo row */}
+      <div className="max-w-5xl mx-auto">
         <motion.div
-          initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
+          initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: '-40px' }}
           transition={
             prefersReducedMotion
               ? { duration: 0 }
               : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
           }
-          className="mt-10 mb-8"
         >
+          <p className="text-xs font-medium tracking-widest uppercase text-aurora-text-muted text-center mb-5">
+            As Featured In
+          </p>
           {/* Desktop: evenly spaced row with dividers */}
           <div className="hidden md:flex items-center justify-center">
             {awards.map((award, index) => (
               <div key={award.id} className="flex items-center">
                 {index > 0 && (
                   <div
-                    className="w-px h-8 mx-6 lg:mx-8 bg-aurora-border"
+                    className="w-px h-6 mx-5 lg:mx-7 bg-aurora-border"
                     aria-hidden="true"
                   />
                 )}
@@ -46,7 +40,7 @@ export default function PressAwards() {
                   href={award.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`block transition-colors duration-200 whitespace-nowrap text-aurora-text-muted hover:text-aurora-gold focus:text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 ${awardStyles[award.id] || 'text-sm font-heading font-semibold tracking-widest'}`}
+                  className={`block transition-colors duration-200 whitespace-nowrap text-aurora-text-muted/70 hover:text-aurora-gold focus:text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 ${awardStyles[award.id] || 'text-sm font-heading font-semibold tracking-widest'}`}
                   aria-label={`Visit ${award.name}`}
                 >
                   {award.logoText}
@@ -55,15 +49,15 @@ export default function PressAwards() {
             ))}
           </div>
 
-          {/* Mobile: 2×3 grid */}
-          <div className="grid grid-cols-2 gap-x-4 gap-y-5 md:hidden">
+          {/* Mobile: horizontal scroll */}
+          <div className="flex items-center justify-center gap-4 overflow-x-auto scrollbar-hide md:hidden pb-1">
             {awards.map((award) => (
               <a
                 key={award.id}
                 href={award.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex items-center justify-center py-3 px-2 rounded-sm transition-colors duration-200 text-aurora-text-muted border border-aurora-border hover:text-aurora-gold focus:text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 ${awardStyles[award.id] || 'text-xs font-heading font-semibold tracking-widest'}`}
+                className={`shrink-0 transition-colors duration-200 text-aurora-text-muted/70 hover:text-aurora-gold focus:text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 ${awardStyles[award.id] || 'text-xs font-heading font-semibold tracking-widest'}`}
                 aria-label={`Visit ${award.name}`}
               >
                 {award.logoText}
@@ -72,6 +66,6 @@ export default function PressAwards() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </div>
   );
 }

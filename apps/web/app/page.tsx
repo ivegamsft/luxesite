@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TrustBar from './components/TrustBar';
+import ScrollNav from './components/ScrollNav';
 
 import WhyAurora from './components/WhyAurora';
 import DestinationGrid from './components/DestinationGrid';
@@ -18,6 +19,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      <ScrollNav />
       <main id="main-content">
         <Hero />
         <TrustBar />
