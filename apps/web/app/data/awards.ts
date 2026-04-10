@@ -1,5 +1,15 @@
 import { PressAward } from '../lib/types';
 
+// Each publication gets a distinctive typographic style
+const awardStyles: Record<string, string> = {
+  'award-conde-nast': 'text-base lg:text-lg font-serif italic tracking-normal',
+  'award-travel-leisure': 'text-sm lg:text-base font-heading font-bold tracking-[0.3em]',
+  'award-forbes': 'text-sm lg:text-base font-heading font-semibold tracking-[0.2em]',
+  'award-trustpilot': 'text-sm lg:text-base font-heading font-bold tracking-[0.15em]',
+  'award-virtuoso': 'text-base lg:text-lg font-heading font-light tracking-[0.35em]',
+  'award-feefo': 'text-sm lg:text-base font-heading font-bold tracking-[0.25em] uppercase',
+};
+
 export const awards: PressAward[] = [
   {
     id: 'award-conde-nast',
@@ -38,3 +48,5 @@ export const awards: PressAward[] = [
     link: 'https://www.feefo.com',
   },
 ];
+
+export { awardStyles };

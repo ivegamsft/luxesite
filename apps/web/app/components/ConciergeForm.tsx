@@ -245,6 +245,34 @@ export default function ConciergeForm() {
           </div>
         </AnimatedSection>
 
+        {/* Process Steps */}
+        <AnimatedSection delay={0.1}>
+          <div className="max-w-2xl mx-auto mb-12">
+            <div className="flex items-start gap-4 sm:gap-0 sm:items-center justify-between">
+              {[
+                { step: '1', label: 'Share your vision', desc: 'Tell us where and when' },
+                { step: '2', label: 'Meet your specialist', desc: 'Matched within 24 hours' },
+                { step: '3', label: 'Receive your itinerary', desc: 'Bespoke, down to every detail' },
+              ].map((item, i) => (
+                <div key={item.step} className="flex flex-col items-center text-center flex-1">
+                  <div className="w-10 h-10 rounded-full border-2 border-aurora-gold/40 flex items-center justify-center text-aurora-gold font-heading font-semibold text-sm mb-2">
+                    {item.step}
+                  </div>
+                  <p className="text-sm font-heading font-medium text-aurora-text">{item.label}</p>
+                  <p className="text-xs text-aurora-text-muted mt-0.5">{item.desc}</p>
+                  {i < 2 && (
+                    <div className="hidden sm:block absolute" style={{ display: 'none' }} />
+                  )}
+                </div>
+              ))}
+            </div>
+            {/* Connecting line behind steps */}
+            <div className="hidden sm:block relative -mt-[72px] mx-16 mb-[72px]">
+              <div className="h-px bg-aurora-border" />
+            </div>
+          </div>
+        </AnimatedSection>
+
         {/* Form Container */}
         <AnimatedSection delay={0.2}>
           <div className="max-w-2xl mx-auto bg-white border border-aurora-border rounded-lg p-5 sm:p-6 md:p-8 shadow-subtle">

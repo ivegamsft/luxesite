@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
-import { awards } from '../data/awards';
+import { awards, awardStyles } from '../data/awards';
 import AnimatedSection from './AnimatedSection';
 
 export default function PressAwards() {
@@ -46,7 +46,7 @@ export default function PressAwards() {
                   href={award.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-sm lg:text-base font-heading font-semibold tracking-widest transition-colors duration-200 whitespace-nowrap text-aurora-text-muted hover:text-aurora-gold focus:text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
+                  className={`block transition-colors duration-200 whitespace-nowrap text-aurora-text-muted hover:text-aurora-gold focus:text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 ${awardStyles[award.id] || 'text-sm font-heading font-semibold tracking-widest'}`}
                   aria-label={`Visit ${award.name}`}
                 >
                   {award.logoText}
@@ -63,7 +63,7 @@ export default function PressAwards() {
                 href={award.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center py-3 px-2 rounded-sm text-xs font-heading font-semibold tracking-widest transition-colors duration-200 text-aurora-text-muted border border-aurora-border hover:text-aurora-gold focus:text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
+                className={`flex items-center justify-center py-3 px-2 rounded-sm transition-colors duration-200 text-aurora-text-muted border border-aurora-border hover:text-aurora-gold focus:text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 ${awardStyles[award.id] || 'text-xs font-heading font-semibold tracking-widest'}`}
                 aria-label={`Visit ${award.name}`}
               >
                 {award.logoText}

@@ -56,9 +56,11 @@ export default function Testimonials() {
           </div>
         </AnimatedSection>
 
+        {/* Two-column layout: testimonial left, stats right */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
         {/* Featured Quote — large, single testimonial with navigation */}
         <div
-          className="max-w-3xl"
+          className="flex-1 min-w-0"
           role="region"
           aria-roledescription="carousel"
           aria-label="Member testimonials"
@@ -147,6 +149,26 @@ export default function Testimonials() {
               </svg>
             </button>
           </div>
+        </div>
+
+          {/* Right side — social proof stats */}
+          <aside className="hidden lg:flex flex-col justify-center gap-10 lg:w-72 shrink-0" aria-label="Client satisfaction metrics">
+            <div>
+              <p className="text-5xl font-heading font-semibold text-aurora-gold leading-none mb-2">4.9</p>
+              <p className="text-sm text-aurora-text-muted">out of 5 on Trustpilot</p>
+              <div className="mt-1.5 text-aurora-gold text-sm tracking-wide">★★★★★</div>
+            </div>
+            <div className="h-px bg-aurora-border" />
+            <div>
+              <p className="text-4xl font-heading font-semibold text-aurora-text leading-none mb-2">2,471</p>
+              <p className="text-sm text-aurora-text-muted">verified reviews</p>
+            </div>
+            <div className="h-px bg-aurora-border" />
+            <div>
+              <p className="text-4xl font-heading font-semibold text-aurora-text leading-none mb-2">98%</p>
+              <p className="text-sm text-aurora-text-muted">would book again</p>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
