@@ -6,10 +6,9 @@ import ScrollNav from './components/ScrollNav';
 import WhyAurora from './components/WhyAurora';
 import DestinationGrid from './components/DestinationGrid';
 import ExperienceList from './components/ExperienceList';
-import GuideGrid from './components/GuideGrid';
-import Tiers from './components/Tiers';
 import Testimonials from './components/Testimonials';
-import PressAwards from './components/PressAwards';
+import Interstitial from './components/Interstitial';
+import Tiers from './components/Tiers';
 import FAQ from './components/FAQ';
 import ConciergeForm from './components/ConciergeForm';
 import Footer from './components/Footer';
@@ -26,9 +25,8 @@ export default function Home() {
         <DestinationGrid />
         <ExperienceList />
         <WhyAurora />
-        <GuideGrid />
         <Testimonials />
-        <PressAwards />
+        <Interstitial />
         <Tiers />
         <FAQ />
         <ConciergeForm />
