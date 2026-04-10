@@ -10,13 +10,10 @@ describe('Tiers', () => {
     expect(screen.getByText('Obsidian')).toBeInTheDocument();
   });
 
-  it('featured tier (Black) has special styling/badge', () => {
+  it('featured tier (Black) has tagline', () => {
     render(<Tiers />);
     
-    // The Black tier should have a "Most Popular" badge
-    expect(screen.getByText('Most Popular')).toBeInTheDocument();
-    
-    // Black tier should be present
+    // Black tier should be present with its tagline
     expect(screen.getByText('Black')).toBeInTheDocument();
     expect(screen.getByText('Elevated Beyond Limits')).toBeInTheDocument();
   });

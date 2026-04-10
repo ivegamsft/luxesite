@@ -4,7 +4,8 @@ import Testimonials from '@/app/components/Testimonials';
 describe('Testimonials', () => {
   it('renders section heading', () => {
     render(<Testimonials />);
-    expect(screen.getByText('What Our Members Say')).toBeInTheDocument();
+    // Section heading is now an editorial quote
+    expect(screen.getByText(/the measure of a journey/i)).toBeInTheDocument();
   });
 
   it('renders testimonial quotes', () => {
@@ -20,7 +21,7 @@ describe('Testimonials', () => {
   it('heading does NOT use gradient text clipping (bg-clip-text)', () => {
     render(<Testimonials />);
 
-    const heading = screen.getByText('What Our Members Say');
+    const heading = screen.getByText(/the measure of a journey/i);
     expect(heading).toBeInTheDocument();
     expect(heading.className).not.toMatch(/bg-clip-text/);
   });
@@ -48,6 +49,7 @@ describe('Testimonials', () => {
     const prevButton = screen.getByLabelText('Previous testimonial');
     fireEvent.click(prevButton);
 
-    expect(screen.getByText('Henrik Bjørn')).toBeInTheDocument();
+    // Last testimonial should now be visible (wrap around)
+    expect(screen.getByText('Yuki Tanaka')).toBeInTheDocument();
   });
 });
