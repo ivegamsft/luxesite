@@ -8,8 +8,10 @@ import GuideGrid from './components/GuideGrid';
 import Tiers from './components/Tiers';
 import Testimonials from './components/Testimonials';
 import PressAwards from './components/PressAwards';
+import FAQ from './components/FAQ';
 import ConciergeForm from './components/ConciergeForm';
 import Footer from './components/Footer';
+import BackToTop from './components/BackToTop';
 
 export default function Home() {
   return (
@@ -25,9 +27,11 @@ export default function Home() {
         <Tiers />
         <Testimonials />
         <PressAwards />
+        <FAQ />
         <ConciergeForm />
       </main>
       <Footer />
+      <BackToTop />
     </>
   );
 }

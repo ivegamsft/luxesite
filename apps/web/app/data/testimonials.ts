@@ -17,8 +17,8 @@ export const testimonials: Testimonial[] = [
     role: 'Private Villa — Venice & Italian Lakes',
     location: 'Paris, France',
     date: 'January 2024',
-    rating: 5,
-    quote: 'I\'ve stayed at the world\'s finest hotels, but Aurora\'s curation is in a category of its own. They found me a 16th-century palazzo in Venice that isn\'t even listed publicly. Obsidian membership has become my most valued asset.'
+    rating: 4,
+    quote: 'I\'ve stayed at the world\'s finest hotels, but Aurora\'s curation is in a category of its own. They found me a 16th-century palazzo in Venice that isn\'t even listed publicly. Initial communication took a day longer than expected, but once my concierge was assigned, the service was flawless. Obsidian membership has become my most valued asset.'
   },
   {
     id: 'aisha-rahman',

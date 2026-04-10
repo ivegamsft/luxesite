@@ -76,12 +76,9 @@ export default function DestinationGrid() {
     <section id="destinations" className="py-section-lg px-4 sm:px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection>
-          <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-4">
+          <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-10">
             Curated Destinations
           </h2>
-          <p className="text-aurora-text-muted mb-12 max-w-[75ch] text-fluid-sm">
-            Handpicked escapes where luxury meets adventure. Every destination tells a story worth living.
-          </p>
         </AnimatedSection>
 
         {/* Region Tabs */}
@@ -152,9 +149,8 @@ export default function DestinationGrid() {
                         className="object-cover"
                         sizes={isFeature ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none"></div>
-                      <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none"></div>
-                      <div className="absolute top-0 right-0 w-2/3 h-1/3 bg-gradient-to-bl from-black/60 to-transparent pointer-events-none"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent pointer-events-none"></div>
+                      <div className="absolute top-0 right-0 w-2/3 h-1/3 bg-gradient-to-bl from-black/40 to-transparent pointer-events-none"></div>
 
                       <div className="absolute top-5 right-5">
                         <span className="font-heading text-base tracking-wide text-white/80 tabular-nums">

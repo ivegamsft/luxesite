@@ -19,12 +19,12 @@ export default function Tiers() {
     <section id="membership" className="py-section-lg px-4 sm:px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection>
-          <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-4 text-aurora-text">
-            Membership
-          </h2>
-          <p className="text-aurora-text-muted mb-12 max-w-[65ch] text-fluid-sm">
-            Three tiers. One standard&nbsp;&mdash; uncompromising.
-          </p>
+          <div className="text-center mb-14">
+            <h2 className="font-heading text-fluid-2xl font-bold tracking-tight leading-tight text-aurora-text mb-3">
+              One Standard — Uncompromising
+            </h2>
+            <p className="text-fluid-base text-aurora-text-muted">Choose the tier that matches your travel ambitions.</p>
+          </div>
         </AnimatedSection>
 
         <motion.div 
@@ -39,7 +39,7 @@ export default function Tiers() {
               variants={cardMotionVariants}
               transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}              className={`tier-card relative rounded-sm p-6 md:p-8 transition-all duration-300 ${
                 tier.featured
-                  ? 'animated-border z-10 shadow-lift'
+                  ? 'gradient-border z-10 shadow-lift'
                   : 'bg-aurora-bg-light border border-aurora-border shadow-subtle hover:border-aurora-gold/40'
               }`}
             >
@@ -69,6 +69,10 @@ export default function Tiers() {
               </ul>
 
               <button
+                onClick={() => {
+                  window.dispatchEvent(new CustomEvent('tier-selected', { detail: { tier: tier.name } }));
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 min-h-[44px] focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:outline-none ${
                   tier.featured
                     ? 'bg-aurora-gold text-aurora-text hover:shadow-lift hover:-translate-y-0.5'

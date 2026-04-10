@@ -89,7 +89,7 @@ export default function Footer() {
 
         {/* Bottom Row: Copyright + Credits */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-white/10 text-sm text-white/70">
-          <p>© 2025 Aurora Luxe Travel. All rights reserved.</p>
+          <p>© 2026 Aurora Luxe Travel. All rights reserved.</p>
           <p>
             Images via{' '}
             <a

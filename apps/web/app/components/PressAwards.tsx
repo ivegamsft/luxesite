@@ -14,15 +14,9 @@ export default function PressAwards() {
     >
       <div className="max-w-5xl mx-auto text-center">
         <AnimatedSection>
-          <p
-            className="text-sm font-medium tracking-widest uppercase mb-3 text-aurora-gold"
-          >
-            Recognition
-          </p>
-          <h2
-            className="font-heading text-fluid-xl font-semibold tracking-tight leading-tight mb-3 text-aurora-text"
-          >
-            Trusted by industry leaders and 2,400+ verified reviews
+          <p className="text-aurora-gold font-heading text-fluid-lg font-semibold mb-3">★ 4.9/5 on Trustpilot · 2,471 verified reviews</p>
+          <h2 className="font-heading text-fluid-xl font-semibold tracking-tight leading-tight text-aurora-text">
+            Trusted by industry leaders worldwide
           </h2>
         </AnimatedSection>
 
@@ -77,17 +71,6 @@ export default function PressAwards() {
             ))}
           </div>
         </motion.div>
-
-        {/* Stat line */}
-        <AnimatedSection delay={0.2}>
-          <p className="text-sm text-aurora-text-muted">
-            <span className="text-aurora-gold">★ 4.9/5 on Trustpilot</span>
-            <span className="mx-2" aria-hidden="true">
-              ·
-            </span>
-            2,471 verified reviews
-          </p>
-        </AnimatedSection>
       </div>
     </section>
   );

@@ -39,6 +39,27 @@ export default function ConciergeForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [toast, setToast] = useState(false);
   const [prefillBanner, setPrefillBanner] = useState(false);
+  const [showErrorBanner, setShowErrorBanner] = useState(false);
+  const [validFields, setValidFields] = useState<Record<string, boolean>>({});
+  const [tierIndicator, setTierIndicator] = useState('');
+
+  // Listen for tier selections
+  useEffect(() => {
+    const handleTierSelection = (e: Event) => {
+      const { tier } = (e as CustomEvent).detail as { tier: string };
+      
+      setFormData((prev) => ({
+        ...prev,
+        notes: `Interested in ${tier} membership — please include tier details in our consultation.`,
+      }));
+      
+      setPrefillBanner(true);
+      setTierIndicator(tier);
+    };
+
+    window.addEventListener('tier-selected', handleTierSelection);
+    return () => window.removeEventListener('tier-selected', handleTierSelection);
+  }, []);
 
   // Listen for hero discovery row selections
   useEffect(() => {
@@ -110,6 +131,13 @@ export default function ConciergeForm() {
     return () => clearTimeout(timer);
   }, [toast]);
 
+  // Clear error banner when all errors are resolved
+  useEffect(() => {
+    if (Object.keys(errors).length === 0) {
+      setShowErrorBanner(false);
+    }
+  }, [errors]);
+
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -119,13 +147,13 @@ export default function ConciergeForm() {
     const newErrors: Record<string, string> = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = "We'll need your name to personalize your consultation";
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "We'll send trip ideas to your email";
     } else if (!validateEmail(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = "That doesn't look like a valid email — please double-check";
     }
 
     setErrors(newErrors);
@@ -134,23 +162,31 @@ export default function ConciergeForm() {
 
   const validateField = (field: string) => {
     const newErrors = { ...errors };
+    const newValidFields = { ...validFields };
+    
     if (field === 'name') {
       if (!formData.name.trim()) {
-        newErrors.name = 'Name is required';
+        newErrors.name = "We'll need your name to personalize your consultation";
+        newValidFields.name = false;
       } else {
         delete newErrors.name;
+        newValidFields.name = true;
       }
     }
     if (field === 'email') {
       if (!formData.email.trim()) {
-        newErrors.email = 'Email is required';
+        newErrors.email = "We'll send trip ideas to your email";
+        newValidFields.email = false;
       } else if (!validateEmail(formData.email)) {
-        newErrors.email = 'Please enter a valid email address';
+        newErrors.email = "That doesn't look like a valid email — please double-check";
+        newValidFields.email = false;
       } else {
         delete newErrors.email;
+        newValidFields.email = true;
       }
     }
     setErrors(newErrors);
+    setValidFields(newValidFields);
   };
 
   const toggleInterest = (interest: string) => {
@@ -169,6 +205,16 @@ export default function ConciergeForm() {
       setToast(true);
       setFormData({ ...initialFormData, interests: [] });
       setErrors({});
+      setShowErrorBanner(false);
+      setValidFields({});
+    } else {
+      setShowErrorBanner(true);
+      // Scroll to first error field
+      const firstErrorField = document.querySelector('[aria-invalid="true"]');
+      if (firstErrorField) {
+        firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        (firstErrorField as HTMLElement).focus();
+      }
     }
   };
 
@@ -205,7 +251,9 @@ export default function ConciergeForm() {
               className="mb-6 flex items-center gap-2 rounded-lg border border-aurora-gold/30 bg-aurora-gold/10 px-4 py-3 text-sm text-aurora-gold"
             >
               <span className="shrink-0">✦</span>
-              We&apos;ve pre-filled some details from your selection above.
+              {tierIndicator 
+                ? `${tierIndicator} tier selected — we've added this to your notes below.`
+                : "We've pre-filled some details from your selection above."}
             </div>
           )}
 
@@ -221,6 +269,13 @@ export default function ConciergeForm() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Error Banner */}
+            {showErrorBanner && (
+              <div role="alert" className="mb-6 flex items-center gap-2 rounded-lg border border-aurora-error/30 bg-aurora-error/10 px-4 py-3 text-sm text-aurora-error">
+                <span className="shrink-0">⚠</span>
+                Please complete the highlighted fields below.
+              </div>
+            )}
             {/* Screen reader error announcements */}
             <div aria-live="polite" className="sr-only">
               {Object.values(errors).length > 0 && (
@@ -231,7 +286,7 @@ export default function ConciergeForm() {
             {/* Name */}
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-aurora-text/80 mb-2">
-                Name *
+                Name *{validFields.name && <span className="text-aurora-success ml-1">✓</span>}
               </label>
               <input
                 type="text"
@@ -252,7 +307,7 @@ export default function ConciergeForm() {
             {/* Email */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-aurora-text/80 mb-2">
-                Email *
+                Email *{validFields.email && <span className="text-aurora-success ml-1">✓</span>}
               </label>
               <input
                 type="email"
