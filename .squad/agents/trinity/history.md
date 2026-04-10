@@ -46,3 +46,20 @@
 **Round 2 Scope:** Applied fluid typography tokens (text-fluid-*) across all 7 components, applied section spacing tokens (py-section-*), broke grid monotony with masonry/editorial/carousel layouts, left-aligned select headings.
 
 Build and tests pass; all 18 audit findings resolved across visual system and components.
+
+## Cross-Agent Coordination
+
+### Mouse Design Polish (2026-04-10T04:30:00Z)
+
+Mouse completed P0+P1+P2 design aesthetics fixes in parallel with Trinity frontend fixes:
+- **Corner radius hierarchy:** Cards `rounded-sm`, buttons `rounded-lg`, pills `rounded-full` (replaces uniform `rounded-2xl`)
+- **SVG icons:** Monoline icons replace emoji in ExperienceList (premium editorial aesthetic)
+- **Hero copy rewrite:** Atmospheric 9-word subtext ("Private shores. Unmarked airstrips. Tables that don't take reservations.") replaces AI clichés
+- **Price typographic redesign:** Bodoni Moda typography replaces gradient pills (editorial restraint)
+- **Aurora blob removal:** Vignette replaces floating gradient blob (eliminates #1 AI hero tell)
+- **Section intro variety:** Each section unique heading/subtitle treatment (breaks formulaic template)
+- **Branded error color:** `aurora-error: oklch(0.65 0.20 25)` added to OKLCH system
+
+**Complementary scope:** Mouse's design aesthetics (P0+P1+P2) + Trinity's frontend quality (P0+P1) = complete pass. No conflicts. Build verified clean.
+
+**Design audit projection:** Score improves from 48/80 → ~65/80 with both teams' fixes applied.

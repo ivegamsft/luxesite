@@ -109,3 +109,20 @@ Redesigned visual system successfully implemented. Gilded Bordeaux OKLCH palette
 **Task 7 — Branded Error Color:** Added `aurora-error: oklch(0.65 0.20 25)` — warm bordeaux-adjacent red in OKLCH. Added to both `tailwind.config.ts` (color token) and `globals.css` (CSS variable). Updated ConciergeForm `text-red-400` → `text-aurora-error` on both error messages.
 
 **Key lesson:** Files in this project have been modified by multiple agents (Trinity, Morpheus). Always read current file state before editing — classes like `destination-card`, `tier-card`, `experience-card`, `@container`, and `useReducedMotion` were added by other squad members and must be preserved.
+
+## Cross-Agent Coordination
+
+### Trinity Frontend Fixes (2026-04-10T04:30:00Z)
+
+Trinity completed P0+P1 frontend fixes in parallel with Mouse design polish:
+- **Touch targets (P0):** Nav dots wrapped in 44px buttons (WCAG compliance)
+- **Badge removal (P0):** "Most Popular" copy stripped from pricing tier
+- **Container queries (P1):** @container rules added to DestinationGrid, ExperienceList, Tiers — complements Mouse's card styling with responsive adaptation
+- **Mobile menu (P1):** AnimatePresence animation for smooth conditional render
+- **Motion reduced (P1):** useReducedMotion() wired into 6 Framer Motion components (complements Mouse's design work by respecting accessibility)
+- **Token migration (P1):** Toast colors converted to OKLCH (aligns with Mouse's branded error color work)
+- **Type scale trim (P1):** 8→6 steps consolidation (aligns with Mouse's visual hierarchy goals)
+
+**No conflicts:** Trinity's frontend fixes orthogonal to Mouse's design aesthetics. Combined coverage: design polish (Mouse) + engineering quality (Trinity) = complete P0+P1+P2 pass.
+
+**Build Status:** Both agents' changes verified independently and together — zero regressions.
