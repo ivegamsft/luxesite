@@ -64,7 +64,7 @@ export default function Hero() {
       </div>
 
       {/* Animated Gradient Overlay */}
-      <div className="absolute inset-0 z-10 bg-gradient-aurora-subtle animate-aurora-pulse" />
+      <div className="absolute inset-0 z-10 bg-gradient-aurora-subtle" />
 
       {/* Noise Texture Overlay (optional) */}
       <div className="absolute inset-0 z-10 opacity-30" style={{
@@ -123,7 +123,7 @@ export default function Hero() {
       </motion.div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-float">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-scroll-hint">
         <svg
           className="w-6 h-6 text-aurora-white/50"
           fill="none"

@@ -76,7 +76,7 @@ export default function Navbar() {
                         e.preventDefault();
                         handleNavClick(link.href);
                       }}
-                      className={`text-sm font-medium transition-all duration-300 hover:text-aurora-cyan focus:outline-none focus:text-aurora-cyan focus:underline ${
+                      className={`text-sm font-medium transition-all duration-300 hover:text-aurora-cyan focus:outline-none focus:text-aurora-cyan focus:underline focus:ring-2 focus:ring-aurora-cyan/50 focus:ring-offset-2 focus:ring-offset-aurora-dark focus:rounded-sm ${
                         isActive
                           ? 'text-aurora-cyan underline decoration-2 underline-offset-4'
                           : 'text-aurora-white/80'

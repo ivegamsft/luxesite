@@ -38,7 +38,6 @@ const config: Config = {
       screens: {
         'xs': '320px',
         'xl': '1440px',
-        '2xl': '2560px',
       },
       keyframes: {
         "aurora-pulse": {
@@ -67,11 +66,26 @@ const config: Config = {
             transform: "translateY(-10px)",
           },
         },
+        "scroll-hint": {
+          "0%": {
+            transform: "translateY(0)",
+            opacity: "1",
+          },
+          "50%": {
+            transform: "translateY(4px)",
+            opacity: "0.8",
+          },
+          "100%": {
+            transform: "translateY(0)",
+            opacity: "1",
+          },
+        },
       },
       animation: {
         "aurora-pulse": "aurora-pulse 4s ease-in-out infinite",
         shimmer: "shimmer 3s linear infinite",
         float: "float 3s ease-in-out infinite",
+        "scroll-hint": "scroll-hint 1.2s ease-in-out 2s 1 both",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "Libre Franklin", "system-ui", "sans-serif"],

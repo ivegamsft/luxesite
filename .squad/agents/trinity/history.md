@@ -29,6 +29,8 @@
 - **AnimatePresence for conditional renders (2026-04-10):** Any conditionally rendered UI in a motion-rich site should use Framer Motion's `AnimatePresence` + `motion.div` with exit animations. Instant appear/disappear is jarring.
 - **useReducedMotion must cover Framer Motion (2026-04-10):** CSS `prefers-reduced-motion` only handles CSS animations. Every Framer Motion `initial`/`animate`/`exit` must also check `useReducedMotion()` and skip animation when true (set initial === animate).
 - **Container queries for component responsiveness (2026-04-10):** Use `@container` on grid parents with CSS `container-type: inline-size` for card-level layout adaptation. Component should respond to its container, not the viewport.
+- **Differentiate hover behavior per card type (2026-04-10):** Uniform `hover:-translate-y-1` across all cards feels mechanical. Lift for destination discovery, glow/brighten for experience cards, border highlight for tier cards. Each interaction should match the card's purpose.
+- **Infinite decorative animations read as restless (2026-04-10):** Background pulses and floating scroll indicators that loop forever feel anxious on a luxury site. Prefer one-shot animations with `animation-iteration-count: 1` and a delay, or remove the animation entirely for static elements.
 - **Type scale consolidation (2026-04-10):** Merged 8-step fluid type scale down to 6 (sm, base, lg, xl, 2xl, 3xl). The 3xl step now covers display/hero use via a wider clamp range. Fewer steps = more consistent hierarchy.
 
 ## Session Activity

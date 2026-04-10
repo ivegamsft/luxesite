@@ -33,7 +33,7 @@ export default function FloatingCTA() {
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
           transition={{ duration: 0.3 }}
           onClick={handleClick}
-          className="md:hidden fixed bottom-6 right-6 z-40 bg-gradient-aurora text-aurora-dark font-medium px-6 py-4 rounded-full shadow-glow hover:scale-105 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan"
+          className="md:hidden fixed bottom-6 right-6 z-40 bg-gradient-aurora text-aurora-dark font-medium px-6 py-4 rounded-full shadow-glow hover:-translate-y-0.5 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan"
           aria-label="Request Itinerary"
         >
           Request Itinerary

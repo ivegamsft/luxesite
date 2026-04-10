@@ -47,7 +47,7 @@ export default function Tiers() {
               transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}              className={`tier-card relative rounded-sm p-6 md:p-8 transition-all duration-300 ${
                 tier.featured
                   ? 'animated-border scale-[1.02] md:scale-105 z-10 shadow-glow-purple'
-                  : 'bg-aurora-darker border border-aurora-glass-border shadow-glass hover:-translate-y-1 hover:shadow-glow hover:shadow-aurora-cyan/20'
+                  : 'bg-aurora-darker border border-aurora-glass-border shadow-glass hover:border-aurora-cyan/40'
               }`}
             >
 

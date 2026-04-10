@@ -78,7 +78,7 @@ export default function ExperienceList() {
               <motion.div
                 key={experience.id}
                 variants={cardMotionVariants}
-                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}                className={`experience-card flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-stretch border border-aurora-glass-border rounded-sm overflow-hidden shadow-glass transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-glow hover:shadow-aurora-purple/20`}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}                className={`experience-card flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-stretch border border-aurora-glass-border rounded-sm overflow-hidden shadow-glass transition-all duration-300 ease-out hover:brightness-110 hover:border-aurora-cyan/30`}
               >
                 {/* Icon side */}
                 <div className="experience-icon flex items-center justify-center bg-aurora-darker p-8 md:p-12 md:w-48 shrink-0">
