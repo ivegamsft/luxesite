@@ -1,0 +1,7 @@
+chore(squad): log root restructure session
+
+- Document Morpheus root restructure agent run (2026-04-10T03:00Z)
+- Merge inbox decisions into decisions.md (deduped)
+- Update Tank history: tests colocated at app/components/__tests__/, mocks at app/__mocks__/
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
