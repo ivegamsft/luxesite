@@ -152,6 +152,13 @@ export default function ConciergeForm() {
     return emailRegex.test(email);
   };
 
+  const validateTravelDates = (value: string): string | null => {
+    if (!value.trim()) return null; // optional field
+    if (value.trim().length < 3) return 'Please enter a recognizable date — e.g., "March 2025" or "Next spring"';
+    if (/^[\d\W]+$/.test(value.trim())) return 'Try something like "March 2025" or "Flexible — sometime this summer"';
+    return null;
+  };
+
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
 
@@ -163,6 +170,11 @@ export default function ConciergeForm() {
       newErrors.email = "We'll send trip ideas to your email";
     } else if (!validateEmail(formData.email)) {
       newErrors.email = "That doesn't look like a valid email — please double-check";
+    }
+
+    const dateError = validateTravelDates(formData.travelDates);
+    if (dateError) {
+      newErrors.travelDates = dateError;
     }
 
     setErrors(newErrors);
@@ -192,6 +204,14 @@ export default function ConciergeForm() {
       } else {
         delete newErrors.email;
         newValidFields.email = true;
+      }
+    }
+    if (field === 'travelDates') {
+      const dateError = validateTravelDates(formData.travelDates);
+      if (dateError) {
+        newErrors.travelDates = dateError;
+      } else {
+        delete newErrors.travelDates;
       }
     }
     setErrors(newErrors);
@@ -361,19 +381,19 @@ export default function ConciergeForm() {
               {errors.email && <p id="email-error" className="mt-1 text-sm text-aurora-error">{errors.email}</p>}
             </div>
 
-            {/* Notes — brief */}
+            {/* Notes — conversational */}
             <div>
               <label htmlFor="notes" className="block text-sm font-medium text-aurora-text/80 mb-2">
-                Tell us about your dream journey
+                Tell us about your dream trip
               </label>
               <textarea
                 id="notes"
-                rows={3}
+                rows={4}
                 maxLength={NOTES_MAX_LENGTH}
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                 className="w-full bg-white border border-aurora-border rounded-lg px-4 py-3 text-aurora-text placeholder:text-aurora-text-muted focus:border-aurora-gold focus:ring-2 focus:ring-aurora-gold/50 focus:outline-none transition-all resize-none"
-                placeholder="Where would you like to go? Any special occasions or preferences?"
+                placeholder="A week in the Maldives for our anniversary… A family safari in Kenya… Just dreaming for now…"
               />
             </div>
 
@@ -400,11 +420,21 @@ export default function ConciergeForm() {
                     <input
                       type="text"
                       id="travelDates"
-                      placeholder="e.g., March 2025"
+                      placeholder='e.g., "March 2025" or "Flexible"'
                       value={formData.travelDates}
-                      onChange={(e) => setFormData({ ...formData, travelDates: e.target.value })}
+                      onChange={(e) => {
+                        setFormData({ ...formData, travelDates: e.target.value });
+                        if (errors.travelDates) setErrors((prev) => { const next = { ...prev }; delete next.travelDates; return next; });
+                      }}
+                      onBlur={() => validateField('travelDates')}
                       className={`${inputClass} placeholder:text-aurora-text-muted`}
+                      aria-invalid={!!errors.travelDates}
+                      aria-describedby={errors.travelDates ? 'travelDates-error' : 'travelDates-hint'}
                     />
+                    {errors.travelDates
+                      ? <p id="travelDates-error" className="mt-1 text-sm text-aurora-error">{errors.travelDates}</p>
+                      : <p id="travelDates-hint" className="mt-1 text-xs text-aurora-text-muted">A rough timeframe is fine — exact dates aren&rsquo;t needed yet.</p>
+                    }
                   </div>
 
                   {/* Number of Travelers */}

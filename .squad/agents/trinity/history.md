@@ -230,3 +230,24 @@ Build verified clean.
 
 - **Carousel dots should represent pages, not items (2026-04-10):** One dot per card is misleading when multiple cards are visible. Compute `visibleCount` from `clientWidth`, then `totalPages = totalCards - visibleCount + 1`.
 - **Section spacing multipliers via calc() (2026-04-10):** Use `calc(var(--space-section-lg)*1.25)` to add proportional breathing room between sections, keeping spacing fluid.
+- **Freeform date fields need semantic validation, not format enforcement (2026-04-10):** For luxury concierge forms where "March 2025", "Next spring", and "Flexible" are all valid inputs, don't use `type="date"` or strict format patterns. Instead validate that the value contains at least some alphabetic characters (rejects "123!!") and meets a minimum length. Helper text ("A rough timeframe is fine") sets expectations without creating friction.
+
+### Issues #146, #112, #148 — Date validation, form friction, skip-to-content (2026-04-10)
+
+**Status:** ✅ COMPLETE
+
+**Issue #148 — Skip-to-content (WCAG 2.4.1):**
+- Already implemented in previous waves: `<a href="#main-content">` in layout.tsx with sr-only + focus styles, `id="main-content"` on `<main>` in page.tsx. No changes needed.
+
+**Issue #112 — Form friction reduction:**
+- Already addressed in Wave 3 (#36): form has 3 core fields (name, email, dream trip textarea) + collapsible "Share more details" optional section. Polished: increased textarea to 4 rows, more evocative placeholder ("A week in the Maldives for our anniversary…"), label updated to "Tell us about your dream trip".
+
+**Issue #146 — Travel dates validation:**
+- Added `validateTravelDates()` — rejects strings under 3 chars or purely numeric/symbol input
+- Added `onBlur` validation for the travelDates field
+- Added `onChange` error clearing for immediate feedback
+- Added `aria-invalid` + `aria-describedby` for accessibility
+- Added helper text: "A rough timeframe is fine — exact dates aren't needed yet."
+- Error messages are conversational: 'Try something like "March 2025" or "Flexible — sometime this summer"'
+
+Build verified clean.
