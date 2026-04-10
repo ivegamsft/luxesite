@@ -77,11 +77,15 @@ export default function DestinationGrid() {
                     className="object-cover"
                     sizes={isFeature ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-aurora-dark/90 via-aurora-dark/30 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-aurora-dark/70 via-aurora-dark/20 to-transparent pointer-events-none"></div>
+                  {/* Bottom scrim — WCAG AA text contrast on bright images */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-aurora-dark/80 via-aurora-dark/40 to-transparent pointer-events-none"></div>
+                  {/* Top-right scrim — cinematic vignette for price readability */}
+                  <div className="absolute top-0 right-0 w-2/3 h-1/3 bg-gradient-to-bl from-aurora-dark/60 to-transparent pointer-events-none"></div>
                   
                   {/* Price — editorial typographic treatment */}
                   <div className="absolute top-5 right-5">
-                    <span className="font-heading text-base tracking-wide text-aurora-white/60 tabular-nums">
+                    <span className="font-heading text-base tracking-wide text-aurora-white/80 tabular-nums">
                       from {destination.currency}{destination.price.toLocaleString()}
                     </span>
                   </div>
@@ -104,7 +108,7 @@ export default function DestinationGrid() {
                   <h3 className={`font-heading font-medium mb-1 text-aurora-white ${isFeature ? 'text-fluid-xl' : 'text-fluid-lg'}`}>
                     {destination.name}
                   </h3>
-                  <p className="text-sm text-aurora-white/60 mb-2">
+                  <p className="text-sm text-aurora-white/70 mb-2">
                     {destination.region}
                   </p>
                   <p className="text-sm text-aurora-white/80 italic">

@@ -159,3 +159,25 @@ Trinity completed P0+P1 frontend fixes in parallel with Mouse design polish:
 **Task 8 — Dark Background Line-Height:** Body `line-height: 1.7` added to globals.css. Light-on-dark text appears lighter weight and needs more breathing room. Headings unaffected — they have explicit leading classes from task 2.
 
 **Key pattern:** Typography hierarchy is now fully intentional: size, weight, tracking, and leading all scale together. Each heading level is visually distinct without relying solely on font-size.
+
+### GitHub Issue Fixes — #1 (spinning border) & #3 (text contrast) (2026-04-10)
+
+**Issue #1 — Animated border made static:**
+- Removed `animation: rotate 4s linear infinite` from `.animated-border::before` in globals.css
+- Removed the now-unused `@keyframes rotate` block entirely
+- Removed the specific `.animated-border::before { animation: none }` from `prefers-reduced-motion` (no animation to stop)
+- The conic gradient border remains as a static visual distinction for the featured tier — beautiful without spinning
+- Aligns with design principle #1: "Authority through restraint"
+
+**Issue #3 — Destination card text contrast hardened:**
+- Added dual-scrim system to DestinationGrid.tsx (cinematic, like Netflix/movie poster overlays):
+  - Full-image vignette: `from-aurora-dark/70 via-aurora-dark/20 to-transparent` (softened from /90)
+  - Targeted bottom scrim: `h-1/2 from-aurora-dark/80 via-aurora-dark/40 to-transparent` for title/region/tagline
+  - Top-right corner vignette: `w-2/3 h-1/3 from-aurora-dark/60 to-transparent` for price text
+- Price text opacity bumped from `/60` to `/80` for WCAG AA compliance
+- Region text opacity bumped from `/60` to `/70`
+- All scrims use `pointer-events-none` to preserve click/hover/keyboard interactions
+- All colors remain in OKLCH via aurora-dark token
+- No badges, pills, or visible UI elements — contrast is achieved through invisible gradient layers
+
+**Key lesson:** Dual-scrim layering (general vignette + targeted text protection) is standard in production media UIs. It provides robust contrast on any image brightness without visible UI chrome. The existing single full-image gradient wasn't enough on bright imagery (Swiss Alps snow, Dubai gold).

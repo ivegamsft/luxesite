@@ -16,11 +16,11 @@ const interestOptions = [
 ];
 
 const budgetRanges = [
-  '€5,000 – €10,000',
-  '€10,000 – €25,000',
-  '€25,000 – €50,000',
-  '€50,000 – €100,000',
-  '€100,000+'
+  '$5,000 – $10,000',
+  '$10,000 – $25,000',
+  '$25,000 – $50,000',
+  '$50,000 – $100,000',
+  '$100,000+'
 ];
 
 export default function ConciergeForm() {
@@ -134,7 +134,7 @@ export default function ConciergeForm() {
                 id="name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-lgpx-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
+                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-lg px-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
                 aria-invalid={!!errors.name}
                 aria-describedby={errors.name ? 'name-error' : undefined}
               />
@@ -151,7 +151,7 @@ export default function ConciergeForm() {
                 id="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-lgpx-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
+                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-lg px-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
                 aria-invalid={!!errors.email}
                 aria-describedby={errors.email ? 'email-error' : undefined}
               />
@@ -169,7 +169,7 @@ export default function ConciergeForm() {
                 placeholder="e.g., March 2025"
                 value={formData.travelDates}
                 onChange={(e) => setFormData({ ...formData, travelDates: e.target.value })}
-                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-lgpx-4 py-3 text-aurora-white placeholder:text-aurora-white/40 focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
+                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-lg px-4 py-3 text-aurora-white placeholder:text-aurora-white/40 focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
               />
             </div>
 
@@ -185,7 +185,7 @@ export default function ConciergeForm() {
                 max="20"
                 value={formData.travelers}
                 onChange={(e) => setFormData({ ...formData, travelers: parseInt(e.target.value) || 1 })}
-                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-lgpx-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
+                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-lg px-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
               />
             </div>
 
@@ -224,11 +224,11 @@ export default function ConciergeForm() {
                 id="budget"
                 value={formData.budget}
                 onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                className="w-full bg-aurora-glass border border-aurora-glass-border rounded-lgpx-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px]"
+                className="w-full bg-[oklch(0.15_0.015_50)] border border-aurora-glass-border rounded-lg px-4 py-3 text-aurora-white focus:border-aurora-cyan focus:ring-1 focus:ring-aurora-cyan/50 focus:outline-none transition-all min-h-[44px] [&>option]:bg-[oklch(0.15_0.015_50)] [&>option]:text-[oklch(0.95_0.012_85)]"
               >
-                <option value="" className="bg-aurora-dark">Select a range</option>
+                <option value="">Select a range</option>
                 {budgetRanges.map((range) => (
-                  <option key={range} value={range} className="bg-aurora-dark">
+                  <option key={range} value={range}>
                     {range}
                   </option>
                 ))}
@@ -253,7 +253,7 @@ export default function ConciergeForm() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-gradient-aurora text-aurora-dark font-heading font-semibold py-4 rounded-lg hover:shadow-glow hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan min-h-[44px]"
+              className="w-full bg-gradient-aurora text-aurora-white font-heading font-semibold py-4 rounded-lg cursor-pointer hover:shadow-glow hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan focus:ring-offset-2 focus:ring-offset-aurora-dark min-h-[44px]"
             >
               Send Request
             </button>

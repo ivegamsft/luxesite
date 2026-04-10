@@ -7,7 +7,7 @@ export const destinations: Destination[] = [
     region: 'Indian Ocean',
     tagline: 'Private Island Paradise',
     price: 12500,
-    currency: '€',
+    currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=1200&h=900&fit=crop',
     quickFacts: [
       'Private villa with infinity pool overlooking turquoise lagoons',
@@ -22,7 +22,7 @@ export const destinations: Destination[] = [
     region: 'Japan',
     tagline: 'Neon Metropolis',
     price: 8900,
-    currency: '€',
+    currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&h=900&fit=crop',
     quickFacts: [
       'Penthouse suite in Roppongi with skyline views',
@@ -37,7 +37,7 @@ export const destinations: Destination[] = [
     region: 'Europe',
     tagline: 'Alpine Grandeur',
     price: 15200,
-    currency: '€',
+    currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&h=900&fit=crop',
     quickFacts: [
       'Private chalet with panoramic Matterhorn views',
@@ -52,7 +52,7 @@ export const destinations: Destination[] = [
     region: 'United Arab Emirates',
     tagline: 'Gilded Skyline',
     price: 11800,
-    currency: '€',
+    currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&h=900&fit=crop',
     quickFacts: [
       'Royal suite at Burj Al Arab with 24k gold interiors',
@@ -67,7 +67,7 @@ export const destinations: Destination[] = [
     region: 'East Africa',
     tagline: 'Savanna Luxe',
     price: 14500,
-    currency: '€',
+    currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&h=900&fit=crop',
     quickFacts: [
       'Exclusive tented camp in the Masai Mara',
@@ -82,7 +82,7 @@ export const destinations: Destination[] = [
     region: 'Southern Europe',
     tagline: 'Azure Drift',
     price: 18900,
-    currency: '€',
+    currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=900&fit=crop',
     quickFacts: [
       'Seven-night voyage aboard a 60-meter superyacht',
