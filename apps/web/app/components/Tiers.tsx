@@ -16,7 +16,7 @@ export default function Tiers() {
     : cardVariants;
 
   return (
-    <section id="membership" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-navy">
+    <section id="membership" className="pt-section-lg pb-[calc(var(--space-section-lg)*1.25)] px-4 sm:px-6 lg:px-12 bg-aurora-navy">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection variant="fade-up">
           <div className="text-center mb-14">

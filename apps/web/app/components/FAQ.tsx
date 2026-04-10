@@ -62,7 +62,7 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-dark">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <AnimatedSection>
           <p className="text-sm font-medium tracking-widest uppercase text-aurora-gold mb-3 text-center">
             Your Questions, Answered

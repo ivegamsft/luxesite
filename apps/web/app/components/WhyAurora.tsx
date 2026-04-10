@@ -9,7 +9,8 @@ import AnimatedSection from './AnimatedSection';
 export default function WhyAurora() {
   const prefersReducedMotion = useReducedMotion();
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activePageIndex, setActivePageIndex] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const totalCards = teamMembers.length;
@@ -21,8 +22,26 @@ export default function WhyAurora() {
     setCanScrollLeft(scrollLeft > 2);
     setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 2);
 
-    // Determine active card by finding the one closest to the left edge
     const cards = Array.from(el.children) as HTMLElement[];
+    if (cards.length === 0) return;
+
+    // Count how many cards fit fully in the visible area
+    let visibleCount = 0;
+    for (const card of cards) {
+      const cardLeft = card.offsetLeft - el.offsetLeft;
+      const cardRight = cardLeft + card.offsetWidth;
+      if (cardRight <= clientWidth + 8) {
+        visibleCount++;
+      } else {
+        break;
+      }
+    }
+    visibleCount = Math.max(1, visibleCount);
+
+    const pages = Math.max(1, totalCards - visibleCount + 1);
+    setTotalPages(pages);
+
+    // Determine active page by closest card to left edge
     let closestIdx = 0;
     let closestDist = Infinity;
     cards.forEach((card, i) => {
@@ -32,8 +51,8 @@ export default function WhyAurora() {
         closestIdx = i;
       }
     });
-    setActiveIndex(closestIdx);
-  }, []);
+    setActivePageIndex(Math.min(closestIdx, pages - 1));
+  }, [totalCards]);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -61,14 +80,14 @@ export default function WhyAurora() {
   }, [prefersReducedMotion]);
 
   const scrollPrev = useCallback(() => {
-    const next = Math.max(0, activeIndex - 1);
+    const next = Math.max(0, activePageIndex - 1);
     scrollToIndex(next);
-  }, [activeIndex, scrollToIndex]);
+  }, [activePageIndex, scrollToIndex]);
 
   const scrollNext = useCallback(() => {
-    const next = Math.min(totalCards - 1, activeIndex + 1);
+    const next = Math.min(totalCards - 1, activePageIndex + 1);
     scrollToIndex(next);
-  }, [activeIndex, totalCards, scrollToIndex]);
+  }, [activePageIndex, totalCards, scrollToIndex]);
 
   const handleCarouselKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'ArrowLeft') {
@@ -144,7 +163,7 @@ export default function WhyAurora() {
                   key={member.id}
                   aria-label={`${member.name}, ${member.title}`}
                   aria-roledescription="slide"
-                  aria-current={i === activeIndex ? 'true' : undefined}
+                  aria-current={i === activePageIndex ? 'true' : undefined}
                   className={`snap-start shrink-0 bg-white border border-aurora-border rounded-lg p-6 transition-shadow duration-200 hover:shadow-[0_4px_6px_rgba(0,0,0,0.1),0_2px_4px_rgba(0,0,0,0.06)] ${
                     isLarge ? 'w-[300px] md:w-[340px]' : 'w-[260px] md:w-[280px]'
                   }`}
@@ -194,17 +213,17 @@ export default function WhyAurora() {
             <div className="hidden lg:block absolute right-0 top-0 bottom-4 w-16 bg-gradient-to-l from-aurora-bg-light to-transparent pointer-events-none" />
           )}
 
-          {/* Dot indicators */}
+          {/* Page indicators */}
           <div className="flex justify-center gap-2 mt-4" role="tablist" aria-label="Carousel navigation">
-            {teamMembers.map((member, i) => (
+            {Array.from({ length: totalPages }, (_, i) => (
               <button
-                key={member.id}
+                key={i}
                 role="tab"
-                aria-selected={i === activeIndex}
-                aria-label={`Go to ${member.name}`}
+                aria-selected={i === activePageIndex}
+                aria-label={`Go to page ${i + 1}`}
                 onClick={() => scrollToIndex(i)}
                 className={`w-2.5 h-2.5 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 ${
-                  i === activeIndex
+                  i === activePageIndex
                     ? 'bg-aurora-gold'
                     : 'bg-aurora-text-muted/30 hover:bg-aurora-text-muted/60'
                 }`}

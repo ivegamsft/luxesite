@@ -209,3 +209,24 @@ Build verified clean.
 - All transitions respect `useReducedMotion`
 
 Build verified clean.
+
+### Issues #137, #138, #140 — Tiers/FAQ spacing, FAQ width, Carousel pagination (2026-04-10)
+
+**Status:** ✅ COMPLETE
+
+**Issue #137 — Tiers-to-FAQ section spacing:**
+- Tiers section: replaced `py-section-lg` with `pt-section-lg pb-[calc(var(--space-section-lg)*1.25)]` for 25% extra bottom breathing room
+
+**Issue #138 — FAQ content width:**
+- Widened FAQ container from `max-w-3xl` (768px) to `max-w-5xl` (1024px)
+
+**Issue #140 — Carousel page indicators:**
+- Replaced per-card dots with per-page dots that dynamically reflect visible cards
+- `totalPages = totalCards - visibleCount + 1`; active dot tracks scroll page, not card index
+
+Build verified clean.
+
+## Learnings
+
+- **Carousel dots should represent pages, not items (2026-04-10):** One dot per card is misleading when multiple cards are visible. Compute `visibleCount` from `clientWidth`, then `totalPages = totalCards - visibleCount + 1`.
+- **Section spacing multipliers via calc() (2026-04-10):** Use `calc(var(--space-section-lg)*1.25)` to add proportional breathing room between sections, keeping spacing fluid.
