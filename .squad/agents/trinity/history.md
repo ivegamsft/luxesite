@@ -46,6 +46,8 @@
 - **Eager loading for near-fold images (2026-04-10):** Mid-page images using `loading="lazy"` may never render in headless/SSR contexts because the IntersectionObserver never triggers. Use `loading="eager"` for the first few images in each grid (index < 3–6) and keep lazy only for truly below-fold content.
 - **Always add fallback bg to image containers (2026-04-10):** When Unsplash or any CDN fails, `next/image` shows a blank rectangle. Adding `bg-aurora-bg-dark` (or `bg-aurora-navy` for hero) to the parent container ensures a styled placeholder instead of nothing.
 - **Dead design tokens create confusion (2026-04-10):** `aurora-sage` was defined in tailwind.config.ts but never used in any component — only its hex value appeared in gradient definitions. Remove unused tokens to keep the design system honest.
+- **Footer top padding should use spacing tokens (2026-04-10):** Fixed `pt-20` → `pt-section-sm` to use the design system's fluid spacing scale. Footer column headings and link lists had inconsistent margins (mb-4 vs mb-5, space-y-2 vs space-y-3) — normalized to mb-6 and space-y-3 across all columns.
+- **Form container padding needs responsive scale (2026-04-10):** ConciergeForm's `p-5 sm:p-6 md:p-8` felt compressed at every breakpoint. Expanded to `p-6 sm:p-8 md:p-10 lg:p-12` with `space-y-8` field gaps for premium breathing room. Section-level padding also added `lg:px-12` to match other sections.
 
 ## Session Activity
 
