@@ -75,6 +75,7 @@ export default function GuideGrid() {
                 className="text-sm font-medium transition-colors duration-200 underline decoration-aurora-gold/40 underline-offset-2 hover:decoration-aurora-gold text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
               >
                 Plan Your Event&nbsp;&rarr;
+              </a>
             </div>
           </div>
         </motion.article>
