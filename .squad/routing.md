@@ -6,12 +6,17 @@ How to decide who handles what.
 
 | Work Type | Route To | Examples |
 |-----------|----------|----------|
-| Architecture & structure | Morpheus | Project scaffolding, folder structure, tech decisions |
-| Components & logic | Trinity | React components, TypeScript, forms, data models, Next.js config |
-| New sections & features | Neo | New component builds from spec, data models, feature implementation |
-| Visual design & animation | Mouse | Tailwind config, Framer Motion, glassmorphism, micro-interactions |
+| Architecture & structure | Morpheus | Project scaffolding, folder structure, tech decisions, dependency graphs |
+| Frontend components & UI | Trinity | React components, TypeScript, forms, data models, Next.js config |
+| Azure infrastructure & APIs | Dozer | Container Apps, APIM, Cosmos DB, PostgreSQL, IaC (Bicep/Terraform), CI/CD pipelines |
+| AI, agents & M365 integration | Niobe | Foundry AI, Copilot agents, Graph API, MCP, Power Platform, Dynamics 365 |
+| Security architecture | Morpheus + Dozer | RBAC, identity, encryption, API security, compliance (collaborate) |
+| Back-office platform | Niobe + Dozer | Power Apps, Power Automate, Document Intelligence (collaborate) |
+| Content management | Trinity + Dozer | CMS frontend (Trinity), CMS APIs and workflow (Dozer) |
+| Visual design & animation | Mouse *(reserve)* | Tailwind config, Framer Motion — recall when implementation starts |
+| New frontend features | Neo *(reserve)* | Complex component builds — recall when implementation starts |
 | Code review | Morpheus | Review PRs, check quality, suggest improvements |
-| Testing & QA | Tank | Write tests, find edge cases, accessibility, verify builds |
+| Testing & QA strategy | Tank | Test strategy, write tests, find edge cases, accessibility, verify builds |
 | Scope & priorities | Morpheus | What to build next, trade-offs, decisions |
 | Session logging | Scribe | Automatic — never needs routing |
 
