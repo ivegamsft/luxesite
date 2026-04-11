@@ -63,3 +63,10 @@
 - Icons: binoculars (wildlife), temple columns (cultural), palm tree + waves (beach), mountain peaks + sun (mountain), wine glass (food-wine), compass rose (adventure), hot air balloon (family), heart (romance)
 - SVGs rendered with `w-8 h-8 text-aurora-gold` styling and `aria-hidden="true"`
 - Build verified clean
+
+### 2026-07 — Issues #150, #155, #156: Luxury positioning overhaul
+- **page.tsx (#150):** Reordered sections for credibility-first flow: Hero → TrustBar → WhyAurora → Destinations → Experiences → Testimonials → Interstitial → Tiers → FAQ → ConciergeForm. Added `SectionBreak` component with gold gradient vertical rule between major acts.
+- **globals.css:** Added three new CSS classes: `.editorial-divider` (3rem gold rule, 50% opacity), `.section-intro` (38rem max-width, muted color, 1.75 line-height), `.section-break` (centered vertical gold gradient line with fluid padding). All additive — no existing tokens modified.
+- **ExperienceList.tsx (#156):** Replaced generic heading with editorial intro block (divider + heading + descriptive paragraph). Changed featured badge from pill/border style to minimal uppercase tracking text. Changed card corners from `rounded-lg` to `rounded-sm` per design decisions. Removed `group-hover:scale-105` image zoom (SaaS pattern). Increased grid gap from 6→8/10, overlay padding from 5→6, region pill tracking added. More generous whitespace throughout.
+- **DestinationGrid.tsx (#155):** Upgraded section heading area: increased bottom margin (8→12/16), added `.editorial-divider` rule, added `.section-intro` paragraph describing curation philosophy, tightened tracking on kicker label to `tracking-[0.2em]`.
+- Key principle: editorial variety per Decision #6 — Destinations uses kicker-above-heading pattern, Experiences uses divider-above-heading pattern. No two sections structurally identical.
