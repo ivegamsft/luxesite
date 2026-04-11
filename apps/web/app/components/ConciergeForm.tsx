@@ -251,11 +251,11 @@ export default function ConciergeForm() {
     'w-full bg-white border border-aurora-border rounded-lg px-4 py-3 text-aurora-text focus:border-aurora-gold focus:ring-2 focus:ring-aurora-gold/50 focus:outline-none transition-all min-h-[44px]';
 
   return (
-    <section id="contact" className="py-section-lg px-4 sm:px-6 bg-aurora-bg-light">
+    <section id="contact" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
       <div className="max-w-7xl mx-auto">
         {/* Section Header — warm, conversational */}
         <AnimatedSection>
-          <div className="mb-12">
+          <div className="mb-16">
             <p className="text-fluid-lg text-aurora-text-muted max-w-[50ch] leading-relaxed">
               Tell us where you dream of going.{' '}
               <span className="text-aurora-text font-heading font-medium">We&rsquo;ll handle every detail from&nbsp;here.</span>
@@ -266,7 +266,7 @@ export default function ConciergeForm() {
 
         {/* Process Steps */}
         <AnimatedSection delay={0.1}>
-          <div className="max-w-2xl mx-auto mb-12">
+          <div className="max-w-2xl mx-auto mb-16">
             <div className="flex items-start gap-4 sm:gap-0 sm:items-center justify-between">
               {[
                 { step: '1', label: 'Share your vision', desc: 'Tell us where and when' },
@@ -294,9 +294,9 @@ export default function ConciergeForm() {
 
         {/* Form Container */}
         <AnimatedSection delay={0.2}>
-          <div className="max-w-2xl mx-auto bg-white border border-aurora-border rounded-lg p-5 sm:p-6 md:p-8 shadow-subtle">
+          <div className="max-w-2xl mx-auto bg-white border border-aurora-border rounded-lg p-6 sm:p-8 md:p-10 lg:p-12 shadow-subtle">
           {/* Trust Badge */}
-          <p className="text-sm text-aurora-text-muted text-center mb-6">
+          <p className="text-sm text-aurora-text-muted text-center mb-8">
             ✓ 4.9/5 on Trustpilot · 1,200+ families trust Aurora Luxe
           </p>
 
@@ -324,7 +324,7 @@ export default function ConciergeForm() {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-8">
             {/* Error Banner */}
             {showErrorBanner && (
               <div role="alert" className="mb-6 flex items-center gap-2 rounded-lg border border-aurora-error/30 bg-aurora-error/10 px-4 py-3 text-sm text-aurora-error">
@@ -411,7 +411,7 @@ export default function ConciergeForm() {
               </button>
 
               {showDetails && (
-                <div className="mt-4 space-y-5 pt-4 border-t border-aurora-border/50">
+                <div className="mt-6 space-y-6 pt-6 border-t border-aurora-border/50">
                   {/* Travel Dates */}
                   <div>
                     <label htmlFor="travelDates" className="block text-sm font-medium text-aurora-text/80 mb-2">

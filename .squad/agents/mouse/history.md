@@ -386,3 +386,15 @@ Price opacity bumped from `/60` to `/80`; region from `/60` to `/70`. All text n
 **Issue #100 (P2) — Pricing shock / tier-form mismatch:** Three changes: (1) Tier prices softened with "From $X" language; Obsidian changed to "By Invitation" with no dollar amount — luxury clients don't shop price lists. (2) ConciergeForm budget field renamed to "Investment per Journey" with ranges aligned to tier pricing, plus a "Let's discuss what's right for me" escape hatch. (3) Section subheading changed to "Every journey is custom-tailored to your vision."
 
 **Key lesson:** Tiers.tsx price display splits on `/` to separate amount from period — when a tier has no `/` (like "By Invitation"), the component now conditionally renders the whole string instead of breaking. Always check string-splitting rendering logic when changing data formats.
+
+### Issues #151, #152, #153, #157 — Bug Sweep: Contrast, Scroll, Border, Readability (2026-04-11)
+
+**Issue #151 — Back-to-top button contrast:** Swapped from g-aurora-gold text-white (fails AA — gold-on-white is ~2.1:1) to g-aurora-navy text-aurora-gold with border accent. Hover inverts to g-aurora-gold text-white. Dark bg + gold icon passes AA comfortably. Active state adds /90 opacity feedback.
+
+**Issue #152 — Destination Quick Facts scroll:** The click-to-expand overlay trapped all pointer events because the parent card was ole="button" with onClick. Added stopPropagation() on the overlay container (both click and keydown) so scrolling the facts list doesn't collapse the card. Also added overscroll-contain to prevent scroll chaining to the page.
+
+**Issue #153 — Tier CTA border:** Non-featured CTA had order border-white/30 — nearly invisible on dark navy. Upgraded to order-2 border-aurora-gold/40 for clear default visibility; hover goes to full order-aurora-gold. Added hover:bg-aurora-gold/10 tint and explicit ocus:border-aurora-gold for accessible focus.
+
+**Issue #157 — FAQ readability:** Heading was 	ext-aurora-text/80 — unnecessary opacity reduction. Set to full 	ext-aurora-text. Card background was g-white/80 (semi-transparent) — changed to opaque g-white for consistent text contrast. Answer text upgraded from 	ext-aurora-text-muted (#6b6458, ~4.8:1 on white) to 	ext-aurora-text/75 (~5.5:1) with explicit 	ext-[0.9375rem] (15px) for comfortable reading size.
+
+**Key lesson:** urora-gold (#c9a76a) fails WCAG AA as a text-on-white color (~2.1:1) and as a background-for-white-text color (~2.1:1). Use it on dark backgrounds (navy, text color) for contrast, or as decorative/border only.
