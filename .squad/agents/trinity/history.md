@@ -48,6 +48,9 @@
 - **Dead design tokens create confusion (2026-04-10):** `aurora-sage` was defined in tailwind.config.ts but never used in any component — only its hex value appeared in gradient definitions. Remove unused tokens to keep the design system honest.
 - **Footer top padding should use spacing tokens (2026-04-10):** Fixed `pt-20` → `pt-section-sm` to use the design system's fluid spacing scale. Footer column headings and link lists had inconsistent margins (mb-4 vs mb-5, space-y-2 vs space-y-3) — normalized to mb-6 and space-y-3 across all columns.
 - **Form container padding needs responsive scale (2026-04-10):** ConciergeForm's `p-5 sm:p-6 md:p-8` felt compressed at every breakpoint. Expanded to `p-6 sm:p-8 md:p-10 lg:p-12` with `space-y-8` field gaps for premium breathing room. Section-level padding also added `lg:px-12` to match other sections.
+- **Design system freezes during content pivots (2026-04-11):** When a business pivots what it sells (travel → experiences), the visual identity (colors, type, spacing, shadows) stays frozen. Only component patterns and content change. Resist the urge to add category-specific colors — icon + typography differentiate categories without palette bloat. Wrote `spec/design-system-update.md` for Issue #196.
+- **Reuse before creation (2026-04-11):** Before adding new CSS utilities, check existing globals.css patterns. `.surface-card`, `.scrollbar-hide`, `bounceX` keyframe, `editorial-divider`, and `section-break` all predate the pivot and remain usable. New CSS classes should be minimal additions, not replacements.
+- **Tailwind v4 CSS-first approach (2026-04-11):** With `@theme inline` in globals.css as the source of truth for Tailwind v4, avoid duplicating tokens in `tailwind.config.ts`. The config already mirrors globals.css — adding more entries creates maintenance debt. CSS custom properties in globals.css are the canonical location.
 
 ## Session Activity
 
@@ -260,3 +263,33 @@ Build verified clean.
 - Error messages are conversational: 'Try something like "March 2025" or "Flexible — sometime this summer"'
 
 Build verified clean.
+
+### Design System Update Spec (2026-04-11, #196)
+
+**Status:** ✅ COMPLETE
+
+Authored comprehensive design system spec for the experience category pivot. Key decisions:
+
+**No Category Accent Colors:** All 6 new categories (Voyages, Celebrations, Adventures, Productions, Junior, Bespoke) use existing `aurora-navy` + `aurora-gold` palette. Icon + typography differentiate categories. Rejected muted tints per category (decorative bloat violating Design Principle #1).
+
+**Visual Identity Frozen:** Brand colors, typography (Space Grotesk + Inter), spacing, and shadows remain unchanged during the pivot. Only component patterns and content evolve.
+
+**3 New CSS Utilities:** `.category-pill`, `.experience-card`, `.featured-experience-card` for consistent styling during migration.
+
+**6 Category Icons:** Monoline SVGs (24×24, stroke-only, currentColor) for Voyages, Celebrations, Adventures, Productions, Junior, Bespoke.
+
+**Motion Specs:** All animations respect `useReducedMotion()`. No reduced-motion bypass.
+
+**Coordination:** Dozer's security spec and Morpheus's documentation spec both reference this design system. No conflicts — all decisions align at the visual identity and governance layer.
+
+## Cross-Agent Impact (Wave 1 Specs)
+
+### Impact from Dozer Security Spec
+- CSP `style-src 'unsafe-inline'` needed for Tailwind CSS builds — design system must remain production-grade even when Phase 1 security headers are added to `next.config.js`
+- PII in consultation form requires encryption at rest — ConciergeForm design includes trust badges acknowledging security ("Trustpilot badge + privacy assurance")
+
+### Impact from Morpheus Documentation Spec
+- All design decisions (color tokens, icon system, motion specs) documented with teaching rationale in component JSDoc and inline comments
+- Visual identity frozen = teaching point about stability during product pivots
+- Content voice guardrails apply to category names and marketing copy
+
