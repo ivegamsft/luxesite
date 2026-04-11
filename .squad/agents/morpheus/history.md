@@ -16,3 +16,4 @@
 - **Monorepo restructure (2026-04-10):** All Next.js code moved to `apps/web/` with its own `package.json` and `node_modules`. Root is project-level only (README, spec/, .squad/, .github/). No npm workspaces — each app is self-contained. User plans to add backend/API apps in other languages.
 - **Path updates for monorepo:** Tests now at `apps/web/app/components/__tests__/`. Config files at `apps/web/` root. All `cd apps/web` before running npm commands.
 - **`.gitignore` pattern:** Changed from root-anchored (`/node_modules`) to recursive (`node_modules/`) patterns to cover any nested app directories.
+- **Section consolidation (#147):** Page reduced from 11 to 8 sections. GuideGrid and PressAwards removed from page.tsx (components retained). WhyAurora refactored from carousel to 3-card editorial grid. Interstitial.tsx added as a full-bleed breathing break. ScrollNav updated to match. UHNW editorial restraint: fewer sections, more breathing room.

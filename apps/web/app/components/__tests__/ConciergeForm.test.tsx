@@ -6,28 +6,27 @@ describe('ConciergeForm', () => {
     jest.clearAllMocks();
   });
 
-  it('renders all form fields', () => {
+  it('renders core form fields', () => {
     render(<ConciergeForm />);
     
-    // Check for form fields
+    // Core visible fields (name, email, notes)
     expect(screen.getByLabelText(/name/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/travel dates/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/number of travelers/i)).toBeInTheDocument();
-    expect(screen.getByText(/interests/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/budget range/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/additional notes/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/tell us about your dream trip/i)).toBeInTheDocument();
   });
 
   it('shows validation errors when submitting empty required fields', async () => {
     render(<ConciergeForm />);
     
-    const submitButton = screen.getByText('Send My Request');
+    const submitButton = screen.getByText('Request Consultation');
     fireEvent.click(submitButton);
     
     await waitFor(() => {
-      expect(screen.getByText('Name is required')).toBeInTheDocument();
-      expect(screen.getByText('Email is required')).toBeInTheDocument();
+      // Errors appear both inline and in aria-live region; use getAllByText
+      const nameErrors = screen.getAllByText(/we'll need your name/i);
+      const emailErrors = screen.getAllByText(/we'll send trip ideas/i);
+      expect(nameErrors.length).toBeGreaterThanOrEqual(1);
+      expect(emailErrors.length).toBeGreaterThanOrEqual(1);
     });
   });
 
@@ -41,23 +40,35 @@ describe('ConciergeForm', () => {
     fireEvent.change(nameInput, { target: { value: 'John Doe' } });
     fireEvent.change(emailInput, { target: { value: 'invalid-email' } });
     
-    const submitButton = screen.getByText('Send My Request');
+    const submitButton = screen.getByText('Request Consultation');
     fireEvent.click(submitButton);
     
-    // Confirmation panel should NOT appear with invalid email
-    expect(screen.queryByText(/Thank you/)).not.toBeInTheDocument();
+    // Success toast should NOT appear with invalid email
+    expect(screen.queryByText(/Request received/)).not.toBeInTheDocument();
+  });
+
+  it('expandable details reveal additional fields', () => {
+    render(<ConciergeForm />);
+    
+    // Click to expand details
+    const expandButton = screen.getByText(/share more details/i);
+    fireEvent.click(expandButton);
+    
+    // Now interest chips should be visible
+    expect(screen.getByText('Beach & Islands')).toBeInTheDocument();
   });
 
   it('interest chips toggle on click', () => {
     render(<ConciergeForm />);
     
+    // Expand details first
+    const expandButton = screen.getByText(/share more details/i);
+    fireEvent.click(expandButton);
+    
     const beachChip = screen.getByText('Beach & Islands');
     
     // Click to select
     fireEvent.click(beachChip);
-    
-    // The chip should have the selected styling (bg-gradient-aurora class)
-    // We can verify it's in the document and clickable
     expect(beachChip).toBeInTheDocument();
     
     // Click again to deselect
@@ -65,7 +76,7 @@ describe('ConciergeForm', () => {
     expect(beachChip).toBeInTheDocument();
   });
 
-  it('successful submission shows confirmation panel', async () => {
+  it('successful submission shows success toast', async () => {
     render(<ConciergeForm />);
     
     // Fill in required fields
@@ -75,16 +86,16 @@ describe('ConciergeForm', () => {
     fireEvent.change(nameInput, { target: { value: 'John Doe' } });
     fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
     
-    const submitButton = screen.getByText('Send My Request');
+    const submitButton = screen.getByText('Request Consultation');
     fireEvent.click(submitButton);
     
     await waitFor(() => {
-      expect(screen.getByText(/Thank you, John/)).toBeInTheDocument();
-      expect(screen.getByText(/dedicated curator/)).toBeInTheDocument();
+      expect(screen.getByText(/Request received/)).toBeInTheDocument();
+      expect(screen.getByText(/specialist will be in touch/i)).toBeInTheDocument();
     });
   });
 
-  it('"Submit another request" resets form', async () => {
+  it('successful submission resets form fields', async () => {
     render(<ConciergeForm />);
     
     // Fill in fields
@@ -94,16 +105,14 @@ describe('ConciergeForm', () => {
     fireEvent.change(nameInput, { target: { value: 'John Doe' } });
     fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
     
-    const submitButton = screen.getByText('Send My Request');
+    const submitButton = screen.getByText('Request Consultation');
     fireEvent.click(submitButton);
     
     await waitFor(() => {
-      expect(screen.getByText(/Thank you, John/)).toBeInTheDocument();
+      expect(screen.getByText(/Request received/)).toBeInTheDocument();
     });
 
-    // Click "Submit another request" to reset
-    fireEvent.click(screen.getByText('Submit another request'));
-
+    // Form should be reset
     await waitFor(() => {
       const resetNameInput = screen.getByLabelText(/name/i) as HTMLInputElement;
       const resetEmailInput = screen.getByLabelText(/email/i) as HTMLInputElement;
@@ -126,7 +135,7 @@ describe('ConciergeForm', () => {
       expect(emailInput).toHaveAttribute('aria-invalid', 'false');
 
       // Submit empty form to trigger validation
-      fireEvent.click(screen.getByText('Send My Request'));
+      fireEvent.click(screen.getByText('Request Consultation'));
 
       await waitFor(() => {
         expect(nameInput).toHaveAttribute('aria-invalid', 'true');
@@ -137,11 +146,15 @@ describe('ConciergeForm', () => {
     it('validation errors have unique IDs', async () => {
       render(<ConciergeForm />);
 
-      fireEvent.click(screen.getByText('Send My Request'));
+      fireEvent.click(screen.getByText('Request Consultation'));
 
       await waitFor(() => {
-        const nameError = screen.getByText('Name is required');
-        const emailError = screen.getByText('Email is required');
+        const nameErrors = screen.getAllByText(/we'll need your name/i);
+        const emailErrors = screen.getAllByText(/we'll send trip ideas/i);
+
+        // Get the inline error elements (the ones with IDs)
+        const nameError = nameErrors.find(el => el.hasAttribute('id'))!;
+        const emailError = emailErrors.find(el => el.hasAttribute('id'))!;
 
         expect(nameError).toHaveAttribute('id');
         expect(emailError).toHaveAttribute('id');
@@ -153,11 +166,12 @@ describe('ConciergeForm', () => {
     it('invalid inputs have aria-describedby pointing to their error message', async () => {
       render(<ConciergeForm />);
 
-      fireEvent.click(screen.getByText('Send My Request'));
+      fireEvent.click(screen.getByText('Request Consultation'));
 
       await waitFor(() => {
         const nameInput = screen.getByLabelText(/name/i);
-        const nameError = screen.getByText('Name is required');
+        const nameErrors = screen.getAllByText(/we'll need your name/i);
+        const nameError = nameErrors.find(el => el.hasAttribute('id'))!;
 
         expect(nameError).toHaveAttribute('id');
         expect(nameInput).toHaveAttribute('aria-describedby', nameError.getAttribute('id'));
@@ -174,6 +188,10 @@ describe('ConciergeForm', () => {
 
     it('interest toggle buttons have aria-pressed', () => {
       render(<ConciergeForm />);
+
+      // Expand details to see interest chips
+      const expandButton = screen.getByText(/share more details/i);
+      fireEvent.click(expandButton);
 
       const beachChip = screen.getByText('Beach & Islands');
       expect(beachChip).toHaveAttribute('aria-pressed', 'false');

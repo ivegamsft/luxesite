@@ -19,11 +19,11 @@ export default function Tiers() {
     <section id="membership" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-navy">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection variant="fade-up">
-          <div className="text-center mb-14">
-            <h2 className="font-heading text-fluid-2xl font-bold tracking-tight leading-tight text-white mb-3">
-              One Standard — Uncompromising
+          <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
+            <h2 className="font-heading text-fluid-lg font-semibold tracking-tight text-white">
+              Membership
             </h2>
-            <p className="text-fluid-base text-white/70">Choose the tier that matches your travel ambitions.</p>
+            <p className="text-sm text-white/50">Every journey is custom-tailored to your vision.</p>
           </div>
         </AnimatedSection>
 
@@ -37,7 +37,7 @@ export default function Tiers() {
             <motion.div
               key={tier.id}
               variants={cardMotionVariants}
-              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}              className={`tier-card relative rounded-sm p-8 md:p-10 flex flex-col transition-all duration-300 hover:scale-[1.02] hover:shadow-xl ${
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}              className={`tier-card relative rounded-sm p-8 md:p-10 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
                 tier.featured
                   ? 'gradient-border z-10 shadow-lift'
                   : 'bg-white/10 border border-white/20 shadow-subtle hover:border-aurora-gold/40'
@@ -52,10 +52,16 @@ export default function Tiers() {
                   {tier.tagline}
                 </p>
                 <div className="text-2xl md:text-3xl font-bold text-white tabular-nums">
-                  {tier.price.split('/')[0]}
-                  <span className="text-sm font-normal text-white/60">
-                    /{tier.price.split('/')[1]}
-                  </span>
+                  {tier.price.includes('/') ? (
+                    <>
+                      {tier.price.split('/')[0]}
+                      <span className="text-sm font-normal text-white/60">
+                        /{tier.price.split('/')[1]}
+                      </span>
+                    </>
+                  ) : (
+                    <span>{tier.price}</span>
+                  )}
                 </div>
                 {tier.perTrip && (
                   <p className="text-xs text-white/50 mt-1">{tier.perTrip}</p>
@@ -80,10 +86,10 @@ export default function Tiers() {
                 className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 min-h-[44px] focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:outline-none ${
                   tier.featured
                     ? 'bg-aurora-gold text-white hover:shadow-lift hover:-translate-y-0.5'
-                    : 'border border-white/30 text-white/80 hover:border-aurora-gold hover:text-white hover:-translate-y-0.5'
+                    : 'border-2 border-aurora-gold/40 text-white hover:border-aurora-gold hover:bg-aurora-gold/10 hover:-translate-y-0.5 focus:border-aurora-gold'
                 }`}
               >
-                Join {tier.name}
+                Begin a Conversation
               </button>
               </div>
             </motion.div>

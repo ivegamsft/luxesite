@@ -1,6 +1,29 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import Hero from '@/app/components/Hero';
 
+// Mock framer-motion
+jest.mock('framer-motion', () => {
+  const React = require('react');
+  function strip({ children, whileInView, viewport, initial, animate, transition, exit, variants, whileHover, whileTap, layout, layoutId, ...rest }: any) {
+    return { children, rest };
+  }
+  return {
+    __esModule: true,
+    motion: {
+      div: React.forwardRef((props: any, ref: any) => { const { children, rest } = strip(props); return React.createElement('div', { ref, ...rest }, children); }),
+      section: React.forwardRef((props: any, ref: any) => { const { children, rest } = strip(props); return React.createElement('section', { ref, ...rest }, children); }),
+      button: React.forwardRef((props: any, ref: any) => { const { children, rest } = strip(props); return React.createElement('button', { ref, ...rest }, children); }),
+      span: React.forwardRef((props: any, ref: any) => { const { children, rest } = strip(props); return React.createElement('span', { ref, ...rest }, children); }),
+      h1: React.forwardRef((props: any, ref: any) => { const { children, rest } = strip(props); return React.createElement('h1', { ref, ...rest }, children); }),
+      p: React.forwardRef((props: any, ref: any) => { const { children, rest } = strip(props); return React.createElement('p', { ref, ...rest }, children); }),
+      ul: React.forwardRef((props: any, ref: any) => { const { children, rest } = strip(props); return React.createElement('ul', { ref, ...rest }, children); }),
+    },
+    AnimatePresence: ({ children }: { children: React.ReactNode }) => React.createElement(React.Fragment, null, children),
+    useInView: () => [React.createRef(), true],
+    useReducedMotion: () => false,
+  };
+});
+
 // Mock scrollIntoView
 Element.prototype.scrollIntoView = jest.fn();
 
@@ -18,7 +41,7 @@ describe('Hero', () => {
 
   it('renders headline', () => {
     render(<Hero />);
-    expect(screen.getByText('Award-Winning Travel Specialists Designing Bespoke Journeys')).toBeInTheDocument();
+    expect(screen.getByText('Journeys Written in Light')).toBeInTheDocument();
   });
 
   it('renders both CTA buttons', () => {

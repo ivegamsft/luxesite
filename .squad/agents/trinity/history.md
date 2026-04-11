@@ -40,6 +40,15 @@
 - **Infinite decorative animations read as restless (2026-04-10):** Background pulses and floating scroll indicators that loop forever feel anxious on a luxury site. Prefer one-shot animations with `animation-iteration-count: 1` and a delay, or remove the animation entirely for static elements.
 - **Type scale consolidation (2026-04-10):** Merged 8-step fluid type scale down to 6 (sm, base, lg, xl, 2xl, 3xl). The 3xl step now covers display/hero use via a wider clamp range. Fewer steps = more consistent hierarchy.
 
+- **CTA honesty over guide detail pages (2026-04-10):** When guide cards link to #contact (no detail pages exist), use action-oriented CTAs like "Plan Your Journey" or "Start planning with our team" instead of "Read Guide" or "Meet all specialists". The CTA text must honestly describe where the link goes.
+- **Mobile-only affordance for tap-interactive cards (2026-04-10):** Desktop cards have hover overlays that signal interactivity. Mobile doesn't. Use `md:hidden` on "Tap to explore" hints so they only appear on touch/mobile, and use a finite animation (3 iterations) to avoid restless loops.
+- **tabIndex={0} on tabpanels (2026-04-10):** WAI-ARIA tabs pattern requires `role="tabpanel"`, `aria-labelledby`, AND `tabIndex={0}` on the content container so keyboard users can tab into the panel content.
+- **Eager loading for near-fold images (2026-04-10):** Mid-page images using `loading="lazy"` may never render in headless/SSR contexts because the IntersectionObserver never triggers. Use `loading="eager"` for the first few images in each grid (index < 3–6) and keep lazy only for truly below-fold content.
+- **Always add fallback bg to image containers (2026-04-10):** When Unsplash or any CDN fails, `next/image` shows a blank rectangle. Adding `bg-aurora-bg-dark` (or `bg-aurora-navy` for hero) to the parent container ensures a styled placeholder instead of nothing.
+- **Dead design tokens create confusion (2026-04-10):** `aurora-sage` was defined in tailwind.config.ts but never used in any component — only its hex value appeared in gradient definitions. Remove unused tokens to keep the design system honest.
+- **Footer top padding should use spacing tokens (2026-04-10):** Fixed `pt-20` → `pt-section-sm` to use the design system's fluid spacing scale. Footer column headings and link lists had inconsistent margins (mb-4 vs mb-5, space-y-2 vs space-y-3) — normalized to mb-6 and space-y-3 across all columns.
+- **Form container padding needs responsive scale (2026-04-10):** ConciergeForm's `p-5 sm:p-6 md:p-8` felt compressed at every breakpoint. Expanded to `p-6 sm:p-8 md:p-10 lg:p-12` with `space-y-8` field gaps for premium breathing room. Section-level padding also added `lg:px-12` to match other sections.
+
 ## Session Activity
 
 ### Impeccable Audit Fixes (2026-04-10T03:42:01Z–03:42:02Z)
@@ -207,5 +216,47 @@ Build verified clean.
 - Featured card (`col-span-2 row-span-2`) always applies to index 0 of visible set
 - Added `AnimatePresence mode="wait"` with opacity fade (0.25s) on tab switch
 - All transitions respect `useReducedMotion`
+
+Build verified clean.
+
+### Issues #137, #138, #140 — Tiers/FAQ spacing, FAQ width, Carousel pagination (2026-04-10)
+
+**Status:** ✅ COMPLETE
+
+**Issue #137 — Tiers-to-FAQ section spacing:**
+- Tiers section: replaced `py-section-lg` with `pt-section-lg pb-[calc(var(--space-section-lg)*1.25)]` for 25% extra bottom breathing room
+
+**Issue #138 — FAQ content width:**
+- Widened FAQ container from `max-w-3xl` (768px) to `max-w-5xl` (1024px)
+
+**Issue #140 — Carousel page indicators:**
+- Replaced per-card dots with per-page dots that dynamically reflect visible cards
+- `totalPages = totalCards - visibleCount + 1`; active dot tracks scroll page, not card index
+
+Build verified clean.
+
+## Learnings
+
+- **Carousel dots should represent pages, not items (2026-04-10):** One dot per card is misleading when multiple cards are visible. Compute `visibleCount` from `clientWidth`, then `totalPages = totalCards - visibleCount + 1`.
+- **Section spacing multipliers via calc() (2026-04-10):** Use `calc(var(--space-section-lg)*1.25)` to add proportional breathing room between sections, keeping spacing fluid.
+- **Freeform date fields need semantic validation, not format enforcement (2026-04-10):** For luxury concierge forms where "March 2025", "Next spring", and "Flexible" are all valid inputs, don't use `type="date"` or strict format patterns. Instead validate that the value contains at least some alphabetic characters (rejects "123!!") and meets a minimum length. Helper text ("A rough timeframe is fine") sets expectations without creating friction.
+
+### Issues #146, #112, #148 — Date validation, form friction, skip-to-content (2026-04-10)
+
+**Status:** ✅ COMPLETE
+
+**Issue #148 — Skip-to-content (WCAG 2.4.1):**
+- Already implemented in previous waves: `<a href="#main-content">` in layout.tsx with sr-only + focus styles, `id="main-content"` on `<main>` in page.tsx. No changes needed.
+
+**Issue #112 — Form friction reduction:**
+- Already addressed in Wave 3 (#36): form has 3 core fields (name, email, dream trip textarea) + collapsible "Share more details" optional section. Polished: increased textarea to 4 rows, more evocative placeholder ("A week in the Maldives for our anniversary…"), label updated to "Tell us about your dream trip".
+
+**Issue #146 — Travel dates validation:**
+- Added `validateTravelDates()` — rejects strings under 3 chars or purely numeric/symbol input
+- Added `onBlur` validation for the travelDates field
+- Added `onChange` error clearing for immediate feedback
+- Added `aria-invalid` + `aria-describedby` for accessibility
+- Added helper text: "A rough timeframe is fine — exact dates aren't needed yet."
+- Error messages are conversational: 'Try something like "March 2025" or "Flexible — sometime this summer"'
 
 Build verified clean.

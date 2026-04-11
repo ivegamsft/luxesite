@@ -110,30 +110,14 @@ body {
   box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
 }
 
-/* Static Conic Gradient Border — featured tier distinction */
+/* Featured Tier — solid gold border with elevated shadow */
 .gradient-border {
   position: relative;
   background: rgba(255,255,255,0.12);
-}
-
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  padding: 2px;
-  background: conic-gradient(
-    from 0deg,
-    #c9a76a,
-    #1a3a52,
-    #f0ebe5,
-    #c9a76a
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  z-index: -1;
+  border: 1.5px solid oklch(0.80 0.12 75);
+  box-shadow:
+    0 4px 24px oklch(0.80 0.12 75 / 0.15),
+    0 1px 3px rgba(0,0,0,0.12);
 }
 
 /* ── Fluid Type Utilities ───────────────────────────────────────────
@@ -153,13 +137,9 @@ body {
   container-type: inline-size;
 }
 
-/* Destination cards — adapt padding and text at narrow containers */
+/* Destination cards — adapt text only; outer card padding breaks image framing */
 @container (max-width: 480px) {
-  .destination-card { padding: 1rem; }
   .destination-card h3 { font-size: var(--fluid-base); }
-}
-@container (min-width: 481px) {
-  .destination-card { padding: 1.5rem; }
 }
 
 /* Experience cards — stack at narrow containers */
@@ -181,6 +161,44 @@ body {
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* ── Editorial Divider — thin gold rule ──────────────────────────── */
+.editorial-divider {
+  width: 3rem;
+  height: 1px;
+  background: var(--aurora-gold);
+  opacity: 0.5;
+}
+
+/* ── Section Intro — editorial subtitle ──────────────────────────── */
+.section-intro {
+  max-width: 38rem;
+  font-size: var(--fluid-base);
+  line-height: 1.75;
+  color: var(--aurora-text-muted);
+  letter-spacing: 0.01em;
+}
+
+/* ── Section Break — decorative breathing room between sections ──── */
+.section-break {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 1.5rem + 2vw, 4rem) 0;
+}
+
+.section-break::before {
+  content: '';
+  width: 1px;
+  height: clamp(2rem, 1.5rem + 2vw, 4rem);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--aurora-gold),
+    transparent
+  );
+  opacity: 0.35;
 }
 
 /* Respect prefers-reduced-motion */

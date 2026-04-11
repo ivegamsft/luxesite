@@ -33,9 +33,9 @@ describe('Navbar', () => {
     expect(screen.getByText('Contact')).toBeInTheDocument();
   });
 
-  it('renders "Request Itinerary" CTA', () => {
+  it('renders "Request Consultation" CTA', () => {
     render(<Navbar />);
-    const ctaButtons = screen.getAllByText('Request Itinerary');
+    const ctaButtons = screen.getAllByText('Request Consultation');
     // Should have at least one CTA button (desktop view)
     expect(ctaButtons.length).toBeGreaterThanOrEqual(1);
   });
