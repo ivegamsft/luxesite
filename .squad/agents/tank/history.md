@@ -32,3 +32,36 @@
 **Orchestration Log:** `.squad/orchestration-log/2026-04-10T03-42-03Z-tank.md`
 
 Added 15 new accessibility and visual regression tests covering audit fixes (keyboard navigation, aria attributes, gradient text removal, layout changes). Test count: 39 → 41 total. All 41 tests pass; comprehensive coverage ensures audit findings remain resolved.
+
+### Brand Pivot E2E Test Fixes (2026-04-10)
+
+**Session:** ivegamsft requested fix for 4 failing Playwright e2e tests after brand pivot.  
+**Status:** ✅ COMPLETE  
+
+Fixed 5 assertions in `apps/web/e2e/homepage.spec.ts` to match post-pivot content:
+- Hero h1: `"Celebrations Written in Light"` → `"Extraordinary Celebrations for Every Age"`
+- Hero CTA: `"Explore Experiences"` → `"Explore Celebrations"`
+- Destinations h2: `"Curated Destinations"` → `"Celebration Spaces"`
+- Experiences h2: `"Signature Experiences"` → `"Signature Celebrations"`
+- Concierge Form details: Updated field IDs (`#travelDates` → `#eventDate`, `#travelers` → `#expectedGuests`), moved `#notes` assertion before the expandable toggle (it's always visible now), fixed toggle button text to `"Share more details (optional)"`.
+
+All 19 Playwright tests pass. Screenshots regenerated.
+
+## Learnings
+
+- **Brand Pivot Content Changes:** The brand pivot renamed travel-themed content to celebration-themed content throughout. Key mapping: Destinations → Celebration Spaces, Experiences → Signature Celebrations, travel dates → event dates, travelers → expected guests. The `#notes` field moved from inside the expandable details section to always-visible. The expandable toggle text changed from `"Share more details"` to `"Share more details (optional)"`.
+- **ConciergeForm Structure Post-Pivot:** The form has `#name`, `#email`, `#notes` always visible. The expandable "Share more details (optional)" section contains `#eventDate` (text), `#expectedGuests` (number input), interests (toggle buttons), and `#budget` (select dropdown).
+
+### E2E Test Suite Refresh (2026-04-11T23:20:15Z)
+
+**Session:** Post-brand-pivot content validation  
+**Status:** ✅ COMPLETE  
+**Orchestration Log:** `.squad/orchestration-log/2026-04-11T23-20-15Z-tank.md`
+
+Ran full E2E suite to validate post-pivot content. All 19 Playwright tests pass. Screenshots regenerated to reflect:
+- Hero heading update
+- Destinations/Celebration Spaces heading
+- Experiences/Signature Celebrations heading
+- ConciergeForm field ID stability
+
+This validated that tier references (One Time/Yearly/Gift model) are stable across the test suite. See `.squad/decisions/decisions.md` for tier architecture changes.

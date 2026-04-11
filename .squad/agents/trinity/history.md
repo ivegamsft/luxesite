@@ -317,3 +317,41 @@ Files changed:
 - pps/web/app/components/__tests__/DestinationGrid.test.tsx — updated price expectations
 
 All tests pass (43/43). Build successful.
+
+### Contrast & Spacing Pass (2026-04-11)
+
+**Status:** ✅ COMPLETE
+
+**Contrast fixes — `bg-aurora-gold text-white` fails WCAG AA (~2.4:1):**
+Gold `#c9a76a` is too light for white text. Changed all gold-background buttons/pills to `text-aurora-text` (#2c2620) which achieves ~5.7:1 contrast ratio (passes AA). Affected components:
+- Hero.tsx — primary CTA button
+- Navbar.tsx — desktop + mobile CTA buttons
+- DestinationGrid.tsx — active region filter tab
+- ConciergeForm.tsx — submit button + selected interest pills
+- Tiers.tsx — featured tier CTA button
+
+Also fixed Tiers.tsx "View full details" links: `text-white/60` on light card backgrounds → `text-aurora-text-muted`.
+
+**Spacing increases for luxury breathing room:**
+- `--space-section-lg`: 5rem/10rem → 6rem/12rem (clamp)
+- `--space-section-md`: 4rem/8rem → 5rem/10rem (clamp)
+- `--space-section-sm`: 3rem/6rem → 3.5rem/7rem (clamp)
+- `.section-break` padding: 1.5rem/3rem → 2.5rem/5rem; divider height: 2rem/4rem → 2.5rem/5rem
+- FAQ + ConciergeForm promoted from `py-section-md` to `py-section-lg`
+
+43/43 tests pass. Build clean.
+
+## Learnings
+
+- **Gold buttons need dark text (2026-04-11):** `#c9a76a` (champagne gold) has ~0.38 relative luminance — too bright for white text (2.4:1). Dark text `#2c2620` on gold achieves 5.7:1. Always check contrast at the actual button background color, not the section background.
+- **Section spacing tokens need luxury margins (2026-04-11):** Minimum 6rem (96px) base for major sections on mobile, scaling to 12rem (192px) on desktop. Section breaks between content blocks should add at least 2.5rem padding with proportional divider height. Luxury = generous whitespace.
+
+### Contrast & Spacing Polish (2026-04-11T23:20:15Z)
+
+**Session:** Post-pivot quality assurance  
+**Status:** ✅ COMPLETE  
+**Orchestration Log:** `.squad/orchestration-log/2026-04-11T23-20-15Z-trinity.md`
+
+Fixed WCAG AA contrast on all gold buttons (changed `text-white` → `text-aurora-text` for 5.7:1 ratio) across Hero, Navbar, DestinationGrid, ConciergeForm, and Tiers. Increased section spacing tokens by ~20% (py-section-* bumped, FAQ/ConciergeForm promoted to py-section-lg). All 43 Jest tests pass; build clean. 
+
+**Note:** This history file has grown to ~29KB (254 lines). Archive old session logs when adding future entries to keep file manageable.

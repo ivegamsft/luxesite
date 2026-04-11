@@ -686,3 +686,80 @@ The One Time / Yearly / Gift tier restructure (PR #202) is treated as a **busine
 
 Keep implementations right-sized. The Gift tier recipient model is a great teaching opportunity for multi-party identity patterns — but implement the simplest version that demonstrates the concept.
 
+---
+
+## Recent Decisions (2026-04-11+)
+
+### Dark Text on Gold Buttons (2026-04-11)
+
+**Author:** Trinity  
+**Date:** 2026-04-11  
+**Status:** Implemented  
+
+#### Context
+
+All `bg-aurora-gold text-white` buttons failed WCAG AA contrast. Gold (#c9a76a) has ~0.38 relative luminance — white text only achieves ~2.4:1 ratio (needs 4.5:1 for normal text, 3:1 for large).
+
+#### Decision
+
+Use `text-aurora-text` (#2c2620) on all `bg-aurora-gold` elements. This achieves ~5.7:1 contrast ratio, passing WCAG AA and AAA for large text.
+
+**Rule:** Any element with `bg-aurora-gold` must use `text-aurora-text` (dark), never `text-white`.
+
+#### Affected Components
+
+Hero, Navbar, DestinationGrid, ConciergeForm, Tiers — all CTA buttons and active state pills.
+
+---
+
+### Tier Architecture — Discriminated Union + Per-Tier APIs (2026-04-12)
+
+**Author:** Morpheus  
+**Date:** 2026-04-12  
+**Issue:** #210 · **PR:** #212  
+**Status:** Proposed — pending team review
+
+#### Decision
+
+Adopt a **discriminated union** (`ServiceTier = OneTimeEvent | YearlySubscription | GiftPurchase`) as the canonical backend/API type for tier data. The three tier types are fundamentally different transaction models, not levels of the same thing.
+
+#### Key Points
+
+1. **Current `MembershipTier` stays** for static frontend rendering — it's the right shape for tier cards.
+2. **`ServiceTier` union** adds per-tier fields (event dates, subscription lifecycle, gift buyer/recipient).
+3. **Booking API uses separate POST endpoints** per tier type — different request bodies, different validation.
+4. **Gift redemption converts to One Time** — no special event type downstream.
+5. **Gift uses code-based activation** — no pre-created recipient accounts.
+6. **ConciergeForm uses progressive disclosure** — one form with tier-conditional fieldsets.
+
+#### Rationale
+
+The old Silver/Black/Obsidian model was a linear hierarchy. The new One Time/Yearly/Gift model represents three distinct transaction types. Treating them as the same shape (with lots of optional fields) would create a confusing API and lose TypeScript's ability to catch missing cases at compile time.
+
+#### Impact
+
+- Specs #203, #204, #205, #206, #208 need tier-type-aware updates (see spike §5)
+- Sample data (#190) needs 10 records across lifecycle states
+- Security (#208) needs gift code generation + two-party identity model
+
+#### Teaching Value
+
+Discriminated unions, progressive disclosure, and RESTful resource modeling are patterns every TypeScript developer should know. This architecture creates natural opportunities to teach all three.
+
+---
+
+### Sprint Reorder Directive (2026-04-11)
+
+**Source:** User directive (via Copilot)  
+**By:** Ivan  
+**Date:** 2026-04-11  
+**Status:** Captured for team memory
+
+#### Request
+
+Reorder sprints so design/frontend work is done first before moving on to harder backend stuff.
+
+#### Rationale
+
+User preference — prioritize visible, testable UI work before tackling backend architecture and integration work.
+
