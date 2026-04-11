@@ -64,7 +64,7 @@ export default function FAQ() {
     <section id="faq" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-dark">
       <div className="max-w-5xl mx-auto">
         <AnimatedSection>
-          <h2 className="font-heading text-fluid-xl font-medium tracking-tight text-aurora-text/80 mb-10">
+          <h2 className="font-heading text-fluid-xl font-medium tracking-tight text-aurora-text mb-10">
             Common Questions
           </h2>
         </AnimatedSection>
@@ -75,7 +75,7 @@ export default function FAQ() {
             
             return (
               <AnimatedSection key={faq.id} delay={index * 0.05}>
-                <div className={`border rounded-lg overflow-hidden transition-all duration-300 ${isOpen ? 'border-aurora-gold/40 bg-white shadow-subtle' : 'border-aurora-border bg-white/80 hover:border-aurora-gold/40 hover:shadow-subtle'}`}>
+                <div className={`border rounded-lg overflow-hidden transition-all duration-300 ${isOpen ? 'border-aurora-gold/40 bg-white shadow-subtle' : 'border-aurora-border bg-white hover:border-aurora-gold/40 hover:shadow-subtle'}`}>
                   <button
                     onClick={() => toggleItem(faq.id)}
                     aria-expanded={isOpen}
@@ -106,7 +106,7 @@ export default function FAQ() {
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       >
                         <div className="px-7 pb-6 border-t border-aurora-gold/20">
-                          <p className="pt-5 text-aurora-text-muted leading-relaxed">
+                          <p className="pt-5 text-aurora-text/75 leading-relaxed text-[0.9375rem]">
                             {faq.answer}
                           </p>
                         </div>

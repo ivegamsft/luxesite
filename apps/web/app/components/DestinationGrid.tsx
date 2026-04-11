@@ -76,13 +76,18 @@ export default function DestinationGrid() {
     <section id="destinations" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection variant="fade-up">
-          <div className="mb-8 md:mb-10">
-            <p className="text-sm font-medium tracking-widest uppercase mb-4 text-aurora-gold">
+          <div className="mb-12 md:mb-16">
+            <p className="text-sm font-medium tracking-[0.2em] uppercase mb-4 text-aurora-gold">
             World-Class Destinations
             </p>
-            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight">
+            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-5">
               Curated Destinations
             </h2>
+            <div className="editorial-divider mb-6" aria-hidden="true"></div>
+            <p className="section-intro">
+              Each destination hand-selected by our specialists for its singular character — 
+              from private island retreats to cultural capitals that reveal themselves only to those who know where to look.
+            </p>
           </div>
         </AnimatedSection>
 
@@ -169,8 +174,12 @@ export default function DestinationGrid() {
                       </div>
 
                       {/* Quick facts overlay — only shown when card is expanded (clicked), not on hover */}
-                      <div className={`absolute inset-x-0 top-0 bottom-28 bg-gradient-to-b from-aurora-text/92 via-aurora-text/84 to-aurora-text/72 transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                        <div className="h-full overflow-y-auto px-5 py-5 md:px-6 md:py-6">
+                      <div
+                        className={`absolute inset-x-0 top-0 bottom-28 bg-gradient-to-b from-aurora-text/92 via-aurora-text/84 to-aurora-text/72 transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                        onClick={(e) => e.stopPropagation()}
+                        onKeyDown={(e) => e.stopPropagation()}
+                      >
+                        <div className="h-full overflow-y-auto overscroll-contain px-5 py-5 md:px-6 md:py-6">
                           <h4 className="font-heading text-base font-semibold mb-3 text-aurora-gold tracking-wide">Quick Facts</h4>
                           <ul className="space-y-2 text-sm text-white/92 pr-2">
                             {destination.quickFacts.map((fact, i) => (

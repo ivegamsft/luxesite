@@ -86,7 +86,7 @@ export default function Tiers() {
                 className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 min-h-[44px] focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:outline-none ${
                   tier.featured
                     ? 'bg-aurora-gold text-white hover:shadow-lift hover:-translate-y-0.5'
-                    : 'border border-white/30 text-white/80 hover:border-aurora-gold hover:text-white hover:-translate-y-0.5'
+                    : 'border-2 border-aurora-gold/40 text-white hover:border-aurora-gold hover:bg-aurora-gold/10 hover:-translate-y-0.5 focus:border-aurora-gold'
                 }`}
               >
                 Begin a Conversation
