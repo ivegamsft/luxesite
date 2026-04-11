@@ -15,13 +15,13 @@ describe('Footer', () => {
 
   it('renders copyright', () => {
     render(<Footer />);
-    expect(screen.getByText(/© 2026 Aurora Luxe Travel/i)).toBeInTheDocument();
+    expect(screen.getByText(/© 2026 Aurora Luxe Events/i)).toBeInTheDocument();
   });
 
   it('renders navigation links', () => {
     render(<Footer />);
-    // Footer has Destinations section heading + Company links
-    expect(screen.getByText('Destinations')).toBeInTheDocument();
+    // Footer has Experiences section heading + Company links
+    expect(screen.getByText('Experiences')).toBeInTheDocument();
     expect(screen.getByText('Our Team')).toBeInTheDocument();
     // Contact appears as both a section heading and a nav link
     const contactElements = screen.getAllByText('Contact');

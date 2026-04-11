@@ -4,13 +4,13 @@ import { useState, useEffect, FormEvent } from 'react';
 import AnimatedSection from './AnimatedSection';
 
 const interestOptions = [
-  'Beach & Islands',
-  'City & Culture',
-  'Adventure',
-  'Gastronomy',
-  'Wellness & Spa',
-  'Winter Sports',
-  'Wildlife & Safari',
+  'Private Galas',
+  'Corporate Events',
+  'Milestone Birthdays',
+  'Weddings',
+  'Festival Experiences',
+  'Wellness Retreats',
+  'Family Celebrations',
   'Yacht & Sailing'
 ];
 
@@ -167,7 +167,7 @@ export default function ConciergeForm() {
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "We'll send trip ideas to your email";
+      newErrors.email = "We'll send event details to your email";
     } else if (!validateEmail(formData.email)) {
       newErrors.email = "That doesn't look like a valid email — please double-check";
     }
@@ -196,7 +196,7 @@ export default function ConciergeForm() {
     }
     if (field === 'email') {
       if (!formData.email.trim()) {
-        newErrors.email = "We'll send trip ideas to your email";
+        newErrors.email = "We'll send event details to your email";
         newValidFields.email = false;
       } else if (!validateEmail(formData.email)) {
         newErrors.email = "That doesn't look like a valid email — please double-check";
@@ -251,13 +251,13 @@ export default function ConciergeForm() {
     'w-full bg-white border border-aurora-border rounded-lg px-4 py-3 text-aurora-text focus:border-aurora-gold focus:ring-2 focus:ring-aurora-gold/50 focus:outline-none transition-all min-h-[44px]';
 
   return (
-    <section id="contact" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
+    <section id="contact" className="py-section-md px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
       <div className="max-w-7xl mx-auto">
         {/* Section Header — warm, conversational */}
         <AnimatedSection>
-          <div className="mb-16">
+          <div className="mb-10">
             <p className="text-fluid-lg text-aurora-text-muted max-w-[50ch] leading-relaxed">
-              Tell us where you dream of going.{' '}
+              Tell us where you dream of celebrating.{' '}
               <span className="text-aurora-text font-heading font-medium">We&rsquo;ll handle every detail from&nbsp;here.</span>
             </p>
             <h2 className="sr-only">Request a Consultation</h2>
@@ -269,9 +269,9 @@ export default function ConciergeForm() {
           <div className="max-w-2xl mx-auto mb-16">
             <div className="flex items-start gap-4 sm:gap-0 sm:items-center justify-between">
               {[
-                { step: '1', label: 'Share your vision', desc: 'Tell us where and when' },
+                { step: '1', label: 'Share your vision', desc: 'Tell us what and when' },
                 { step: '2', label: 'Meet your specialist', desc: 'Matched within 24 hours' },
-                { step: '3', label: 'Receive your itinerary', desc: 'Bespoke, down to every detail' },
+                { step: '3', label: 'Receive your plan', desc: 'Bespoke, down to every detail' },
               ].map((item, i) => (
                 <div key={item.step} className="flex flex-col items-center text-center flex-1">
                   <div className="w-10 h-10 rounded-full border-2 border-aurora-gold/40 flex items-center justify-center text-aurora-gold font-heading font-semibold text-sm mb-2">
@@ -384,7 +384,7 @@ export default function ConciergeForm() {
             {/* Notes — conversational */}
             <div>
               <label htmlFor="notes" className="block text-sm font-medium text-aurora-text/80 mb-2">
-                Tell us about your dream trip
+                Tell us about your dream event
               </label>
               <textarea
                 id="notes"
@@ -393,7 +393,7 @@ export default function ConciergeForm() {
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                 className="w-full bg-white border border-aurora-border rounded-lg px-4 py-3 text-aurora-text placeholder:text-aurora-text-muted focus:border-aurora-gold focus:ring-2 focus:ring-aurora-gold/50 focus:outline-none transition-all resize-none"
-                placeholder="A week in the Maldives for our anniversary… A family safari in Kenya… Just dreaming for now…"
+                placeholder="A milestone birthday at a private estate… A corporate gala for 200 guests… Just exploring options for now…"
               />
             </div>
 
@@ -415,7 +415,7 @@ export default function ConciergeForm() {
                   {/* Travel Dates */}
                   <div>
                     <label htmlFor="travelDates" className="block text-sm font-medium text-aurora-text/80 mb-2">
-                      Travel Dates
+                      Event Date
                     </label>
                     <input
                       type="text"
@@ -440,7 +440,7 @@ export default function ConciergeForm() {
                   {/* Number of Travelers */}
                   <div>
                     <label htmlFor="travelers" className="block text-sm font-medium text-aurora-text/80 mb-2">
-                      Number of Travelers
+                      Number of Guests
                     </label>
                     <input
                       type="number"

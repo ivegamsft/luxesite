@@ -247,8 +247,8 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0 bg-aurora-navy">
         <Image
-          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=2400&h=1400&fit=crop"
-          alt="Luxury beach paradise"
+          src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=2400&h=1400&fit=crop"
+          alt="Luxury celebration with golden lights"
           fill
           className="object-cover"
           priority
@@ -269,7 +269,7 @@ export default function Hero() {
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.1, ease: 'easeOut' }}
           className="font-heading text-fluid-3xl font-bold text-white mb-6 tracking-tight leading-[1.08]"
         >
-          Journeys Written in Light
+          Celebrations Written in Light
         </motion.h1>
 
         {/* Subtext */}
@@ -279,7 +279,7 @@ export default function Hero() {
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.2, ease: 'easeOut' }}
           className="text-fluid-lg text-white/80 max-w-[55ch] mb-10 leading-relaxed"
         >
-          Private shores. Unmarked airstrips. Tables that don&apos;t take reservations.
+          Private estates. Unmarked venues. Tables that don&apos;t take reservations.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -299,7 +299,7 @@ export default function Hero() {
             onClick={handleExploreDestinations}
             className="w-full sm:w-auto border-2 border-white/40 text-white font-semibold px-8 py-4 rounded-lg hover:border-aurora-gold hover:text-aurora-gold hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-navy min-h-[44px]"
           >
-            Explore Destinations
+            Explore Experiences
           </button>
         </motion.div>
 
