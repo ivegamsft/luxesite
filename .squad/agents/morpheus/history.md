@@ -57,3 +57,20 @@ Authored comprehensive documentation governance spec defining content voice, cod
 - Phase 1 (security headers on static site) documented before backend arrives — no surprises during architecture evolution
 - PII handling and encryption specifications inform ConciergeForm documentation and data layer JSDoc
 
+### Tier Restructure Impact Analysis (2026-04-12, PR #202 → Issues #203–#210)
+
+**Status:** ✅ ISSUES CREATED
+
+After PR #202 merged the One Time / Yearly / Gift tier model into code, analyzed all specs and docs for stale references to the old Silver/Black/Obsidian membership model. Created 8 issues:
+
+- **#203 (P0):** `spec/brand-pivot.md` — foundation spec, ~28 stale refs, full business model rewrite needed
+- **#204 (P1):** `spec/site.md` — core site structure, ~13 stale refs
+- **#205 (P1):** `spec/design-system-update.md` + `.impeccable.md` — design layer, tier styling specs
+- **#206 (P1):** `README.md` + `spec/documentation-update.md` + `spec/luxurysite.md` — docs layer
+- **#207 (P2):** `COMPETITIVE_ANALYSIS.md` — competitive set changes with business model
+- **#208 (P2):** `spec/security-architecture.md` — tier RBAC model, Gift tier two-party identity
+- **#209 (P1):** Retitle/update existing issues (#142, #141, #139, etc.) that reference old model
+- **#210 (P1):** Architecture spike — downstream data model, API, and flow impacts of the model change
+
+**Key insight:** This isn't a terminology rename. The old model was a linear privilege hierarchy (Silver < Black < Obsidian). The new model is three fundamentally different transaction types: transactional (One Time), subscription (Yearly), third-party purchase (Gift). This affects data model, consultation flows, API design, and access patterns.
+

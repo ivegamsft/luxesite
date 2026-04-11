@@ -643,3 +643,46 @@ The goal: "So much that you may mortgage your house."
 - Made "Yearly" the featured tier (it's the revenue driver)
 - Price splitting logic in `Tiers.tsx` still works (splits on `/` for yearly pricing)
 - E2E tests likely still pass (they reference button text, not tier names)
+
+
+---
+
+## Tier Restructure Analysis (2026-04-12, PR #202 → Issues #203–#210)
+
+# Decision: Tier Restructure Is a Model Change, Not a Rename
+
+**Author:** Morpheus
+**Date:** 2026-04-12
+**Status:** Proposed
+**Triggered by:** PR #202 tier restructure analysis
+
+## Decision
+
+The One Time / Yearly / Gift tier restructure (PR #202) is treated as a **business model change**, not a terminology update. All downstream specs, issues, and architecture decisions must account for three fundamentally different transaction types rather than three levels of the same membership.
+
+## Rationale
+
+| Old Model | New Model | Difference |
+|-----------|-----------|------------|
+| Silver/Black/Obsidian | One Time/Yearly/Gift | Not levels — different transaction types |
+| Linear privilege hierarchy | Three distinct access patterns | No escalation path |
+| Single enrollment funnel | Per-tier consultation flows | Gift has buyer + recipient |
+| Subscription-only | Transactional + Subscription + Gift | Mixed revenue model |
+
+### Implications for specs and architecture:
+1. **Gift tier** introduces a two-party identity model (buyer ≠ recipient) — affects security, forms, and APIs
+2. **One Time** is event-scoped — access expires after completion
+3. **Yearly** needs subscription lifecycle — renewal, lapse, grace period
+4. Consultation flow (ConciergeForm) may need per-tier branching
+5. API design (#180, #195) must handle three transaction types, not three privilege levels
+
+## Impact
+
+- 8 issues created (#203–#210) covering specs, docs, existing issues, and architecture
+- All agents should treat tier references as model-level changes when updating their domains
+- `.squad/decisions.md` historical references are fine (append-only log)
+
+## Teaching Site Note
+
+Keep implementations right-sized. The Gift tier recipient model is a great teaching opportunity for multi-party identity patterns — but implement the simplest version that demonstrates the concept.
+
