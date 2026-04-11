@@ -540,6 +540,82 @@ Browser-native `<select>` dropdown panels cannot be styled — they break the lu
 
 Currently only in Hero.tsx. If more custom selects are needed, extract `LuxeSelect` to a shared component.
 
+### 21. Design System Update — No Category Accent Colors
+**Author:** Trinity  
+**Date:** 2026-04-11  
+**Issue:** #196  
+**Status:** Proposed  
+**Artifact:** `spec/design-system-update.md`
+
+## Decision
+
+The 6 new experience categories (Voyages, Celebrations, Adventures, Productions, Junior, Bespoke) will **not** receive individual accent colors. All categories use the existing `aurora-navy` + `aurora-gold` palette.
+
+## Rationale
+
+1. **Authority through restraint** (Design Principle #1) — a 6-color category palette would undermine the editorial luxury tone.
+2. **Icons + typography** differentiate categories without color coding.
+3. **Maintenance** — every token added is maintenance forever. The palette scales as-is.
+4. **Category pills** use `aurora-navy` background (matching existing tier badge treatment), providing visual consistency without new tokens.
+
+## Alternatives Considered
+
+- Muted tint per category (e.g., warm rose for Celebrations, sage for Junior) — rejected as decorative accumulation that violates Principle #1.
+- Gold shade variants per category — rejected as too subtle to be useful and too complex to maintain.
+
+## Impact
+
+- No new color tokens in globals.css or tailwind.config.ts
+- CategoryPill component uses existing navy/light color pair
+- Applies to ExperiencePortfolio cards, FeaturedPackages cards, testimonials, and guides
+
+---
+
+### 22. Security Architecture — Two-Provider Auth + Five-Role RBAC
+**Author:** Dozer  
+**Date:** 2026-04-11  
+**Issue:** #187  
+**Status:** Proposed  
+**Artifact:** `spec/security-architecture.md`
+
+## Decision
+
+Defined the security architecture for Aurora Luxe with these key choices:
+
+### 1. Two Identity Providers
+- **Azure AD B2C** for customers (self-service sign-up, social login, password reset)
+- **Azure AD (Entra ID)** for staff (corporate SSO, conditional access, MFA enforcement)
+- Both issue JWTs validated by the same API gateway
+
+### 2. Five-Role RBAC Model
+- Anonymous → Customer → Editor → Admin → System
+- Permission matrix defines exact access per role per resource
+- Server-side enforcement at three points: gateway, middleware, handler
+
+### 3. Phased Implementation
+- Phase 1 (now): Security headers + CSP on static site
+- Phase 2: Auth when backend arrives
+- Phase 3: RBAC when CMS arrives
+- Phase 4: Full infra security (VNet, Key Vault, WAF, monitoring)
+
+### 4. Token Storage
+- Access tokens in memory (never localStorage)
+- Refresh tokens in HttpOnly secure cookies
+
+### 5. Data Protection
+- PII (consultation form data) encrypted at rest, access-logged, retention-limited
+- No PII in logs — ever
+
+## Team Impact
+- **Morpheus:** Security headers can be added to `next.config.js` in Phase 1.
+- **Trinity:** CSP `style-src 'unsafe-inline'` needed for Tailwind. No `dangerouslySetInnerHTML`.
+- **Tank:** Security test plan needed — auth flows, RBAC enforcement, header validation.
+- **Niobe:** AI endpoints rate-limited per role. Service-to-service uses managed identity.
+
+## Needs Review From
+- Morpheus (overall architecture alignment)
+- Tank (testability of security controls)
+
 ---
 
 ## Governance

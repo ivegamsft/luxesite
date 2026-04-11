@@ -308,6 +308,82 @@ Luxury sites should feel confident and still, not restless. Infinite animations 
 
 **Implementation:** Added `{ passive: true }` as third argument to `window.addEventListener('scroll', handleScroll)` in `FloatingCTA.tsx`.
 
+---
+
+### User Directive — Teaching Site Framing (2026-04-11)
+
+**Author:** Ivan (via Copilot)  
+**Date:** 2026-04-11T15-23-47  
+**Status:** Approved  
+
+#### Context
+
+Aurora Luxe is a teaching/demo site. Code must be simple and readable. Site content is fictitious (fake brand, fake data). However, architecture must be production-grade — real CI/CD, real RBAC, real observability, real testing. Teaching mechanics of real production systems using a fake site. Not vibe-coded. Not over-engineered. Right-sized production patterns learners can follow.
+
+#### Decision
+
+All code must balance simplicity with production authenticity:
+- **Code:** Simple, readable, well-commented for learners
+- **Content:** Fictitious brand, fictitious data, clearly fake
+- **Architecture:** Production-grade patterns (CI/CD, RBAC, observability, testing)
+- **Processes:** Real PR workflow, real branch protection, real code review
+- **Complexity:** Teach production mechanics without over-engineering
+
+#### Implications
+
+This foundational framing decision shapes every spec and implementation choice. It means we never sacrifice quality for novelty, and never add complexity for its own sake. The code is the curriculum.
+
+---
+
+### User Directive — Teaching Site Framing (Expanded) (2026-04-11)
+
+**Author:** Ivan (via Copilot)  
+**Date:** 2026-04-11T15-24-17  
+**Status:** Approved  
+**Relates To:** User Directive — Teaching Site Framing
+
+#### Addendum
+
+Aurora Luxe is a teaching/demo site where code is simple and readable, content is fictitious, but architecture is production-grade. Teaching the mechanics of real production systems using a fake site.
+
+---
+
+### Brand Pivot Specification (2026-04-11)
+
+**Author:** Morpheus  
+**Date:** 2026-04-11  
+**Status:** Proposed  
+**Issue:** #181  
+
+#### Context
+
+Specification for pivoting Aurora Luxe from luxury travel concierge to luxury experiential events brand. Full spec at `spec/brand-pivot.md` (~680 lines).
+
+#### Key Decisions
+
+1. **Additive migration, not big-bang rewrite.** New types (`ExperiencePackage`, `CategoryMeta`) created alongside existing types. Old types removed only in Phase 2 after new data is in place.
+
+2. **Four-phase rollout.** Copy/IA → Data model → Consultation flow → New components. Each phase merges independently. No cross-phase blocking dependencies.
+
+3. **Visual identity frozen.** Colors, typography, design principles, and `.impeccable.md` aesthetic direction unchanged. Only content references to "travel" updated.
+
+4. **Two new components replace two old ones.** `ExperiencePortfolio` replaces `DestinationGrid`. `FeaturedPackages` replaces `ExperienceList`. Old components retained in codebase but removed from `page.tsx`.
+
+5. **ConciergeForm expanded, not replaced.** New fields (experience type, audience, scale, safety) added via progressive disclosure. Existing tier pre-fill CustomEvent pattern preserved.
+
+6. **Six-category taxonomy.** Voyages, Celebrations, Adventures, Productions, Junior, Bespoke. Travel becomes one category among many.
+
+#### Impact
+
+- Touches ~25 files across 4 phases
+- No infrastructure changes
+- No new dependencies
+- Test suite updated per phase
+
+#### Teaching Value
+
+Demonstrates spec-first brand pivot, additive schema migration, phased rollout, and progressive form disclosure — all production patterns learners need to see.
+
 **Rationale:** Hero.tsx already uses passive listeners correctly. FloatingCTA was an inconsistency. Passive listeners allow the browser to optimize scroll performance by guaranteeing no `preventDefault()` call will occur. This is a free performance win.
 
 **Impact:** Consistent scroll listener pattern across all components. No performance penalty from non-passive scroll handling.
