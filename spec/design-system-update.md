@@ -13,7 +13,7 @@
 
 ### What Changes
 
-- **`.impeccable.md`** — User persona, brand context, references, anti-references, and travel→experience language (per brand-pivot §7.2)
+- **`.impeccable.md`** — User persona, brand context, references, anti-references, and travel→party platform language
 - **Component patterns** — New CSS patterns for ExperiencePortfolio, FeaturedPackages, category pills, expanded form fields
 - **Icon system** — 6 new category icons
 - **Motion** — Animation patterns for category hover, carousel, progressive disclosure
@@ -122,7 +122,7 @@ Text-transform: uppercase
 Color: aurora-text-muted
 ```
 
-This echoes the metadata treatment on existing destination cards — small, uppercase, muted. Consistent pattern.
+This echoes the metadata treatment on existing event cards — small, uppercase, muted. Consistent pattern.
 
 #### 3.4 Price Display
 
@@ -156,7 +156,7 @@ Border-radius: rounded-full (per Decision #3 — pills get full rounding)
 
 ## 4. Component Patterns
 
-### 4.1 ExperiencePortfolio Card (replaces DestinationGrid)
+### 4.1 ExperiencePortfolio Card (replaces EventGrid)
 
 **Layout:** 2-column grid on desktop (`md:`), single column on mobile. Cards have **varied heights** — the editorial hierarchy principle demands that no two cards feel structurally identical.
 
@@ -191,7 +191,7 @@ Border-radius: rounded-full (per Decision #3 — pills get full rounding)
 - Each card is an `<article>` with `aria-label` describing the category
 - "Explore" link is the only interactive element (no full-card click trap)
 - Image has `alt=""` (decorative — the title carries the meaning)
-- Touch: tap reveals package titles (existing hover→tap pattern from destination cards)
+- Touch: tap reveals package titles (existing hover→tap pattern from event cards)
 - `tabIndex={0}` + `role="link"` on the explore action
 
 ### 4.2 FeaturedPackages Card & Carousel (replaces ExperienceList)
@@ -276,7 +276,38 @@ Background: transparent
 Color: aurora-gold
 ```
 
-### 4.4 Updated Form Field Patterns (ConciergeForm expansion)
+### 4.4 Tier Card Visual Differentiation
+
+The three tiers are **different transaction types**, not levels of a hierarchy. Each tier card should communicate its distinct mindset through visual treatment while sharing the same structural anatomy.
+
+**Shared anatomy (all tiers):**
+```
+┌──────────────────────────────────┐
+│  Tier Name                       │  font-heading, --fluid-xl, weight 700
+│  Tagline                         │  font-sans, --fluid-base, aurora-text-muted
+│  Price                           │  font-heading, --fluid-lg, aurora-gold
+│  ────────────────────────────    │  Divider: aurora-border
+│  Perks list                      │  font-sans, --fluid-base
+│  [CTA Button]                    │  Rounded-lg, tier-specific styling
+└──────────────────────────────────┘
+```
+
+**Per-tier visual treatment:**
+
+| Aspect | One Time | Yearly | Gift |
+|---|---|---|---|
+| **Mindset** | Bold, decisive, event-focused | Warm, relationship-oriented, subscription | Elegant, celebratory, gift-giving |
+| **Card surface** | `aurora-navy` background, light text | `aurora-bg-light` background, featured flag, gold border-top | `aurora-bg-light` background, subtle gold shimmer border |
+| **CTA label** | "Plan My Event" | "Start My Year" | "Send a Gift" |
+| **CTA style** | Solid `aurora-gold` bg, `aurora-navy` text | Solid `aurora-navy` bg, `aurora-bg-light` text | Outline `aurora-gold` border, `aurora-gold` text |
+| **Badge** | None | "Most Popular" — `aurora-gold` bg, `aurora-navy` text | "Gift Experience" — outline pill, `aurora-gold` |
+| **Icon hint** | Single event calendar | Yearly cycle / family silhouette | Gift box / ribbon |
+
+**Why not three radically different designs?** Authority through restraint. The shared anatomy keeps the tier section scannable. The differentiation is in color treatment and copy — not in structural divergence. Learners should see that a design system handles variation through tokens and variants, not through one-off layouts.
+
+**Teaching note:** The One Time tier uses `aurora-navy` as its card background (the same navy used in the hero and footer). This is the "hero treatment" — it signals that One Time is the primary conversion path. The Yearly tier uses the `featured: true` flag to add a gold accent. The Gift tier's outline treatment signals a lighter commitment (buying for someone else).
+
+### 4.5 Updated Form Field Patterns (ConciergeForm expansion)
 
 **New field types needed:**
 
@@ -315,7 +346,7 @@ The existing section spacing tokens provide varied rhythm. New sections map as f
 
 | Section | Spacing Token | Rationale |
 |---|---|---|
-| ExperiencePortfolio | `--space-section-lg` | Major content section — needs room to breathe, same weight as old DestinationGrid |
+| ExperiencePortfolio | `--space-section-lg` | Major content section — needs room to breathe, same weight as old EventGrid |
 | FeaturedPackages | `--space-section-md` | Secondary content section — slightly tighter than portfolio |
 | Between Portfolio → Packages | `--space-section-xs` | Tighter coupling — these are related content blocks |
 
@@ -457,7 +488,12 @@ Ultra-high-net-worth individuals and affluent travelers considering bespoke conc
 
 **Replace with:**
 ```
-Ultra-high-net-worth individuals and affluent experience-seekers considering bespoke luxury experiences — from private-island retreats to city-scale cinematic weekends to supervised backyard adventure builds for kids. They browse aspirationally — often in the evening on high-end devices (MacBook Pro, iPad Pro, iPhone Pro Max). Budget ranges span $3,500 to $100K+ per experience. They compare against luxury event planners, bespoke travel agencies, and high-end production companies — Aman Resorts, Black Tomato, Meow Wolf, Sleep No More. They expect discretion, authority, and white-glove service reflected in every pixel.
+Ultra-high-net-worth individuals and affluent experience-seekers considering bespoke luxury event planning — from landmark galas and milestone birthdays to year-round family celebrations and curated gift experiences. They browse aspirationally — often in the evening on high-end devices (MacBook Pro, iPad Pro, iPhone Pro Max). Budget ranges span $250,000 to $1,200,000+. They compare against elite event planners, luxury concierge services, and high-end production houses. They expect discretion, authority, and white-glove service reflected in every pixel.
+
+Three transaction types, three mindsets:
+- One Time ($500,000) — Decisive clients planning a single landmark event. They want bold vision and flawless execution.
+- Yearly ($1,200,000/yr) — Families investing in a year of celebrations. They want a trusted partner who knows their children's names.
+- Gift ($250,000) — Generous buyers gifting an experience to someone they love. They want elegance, surprise, and effortless giving.
 ```
 
 ### 8.2 Brand Context Update
@@ -469,7 +505,7 @@ Ultra-high-net-worth individuals and affluent experience-seekers considering bes
 
 **Replace with:**
 ```
-**Context**: Single-page marketing site. The job is to convert high-intent visitors into experience design consultations. Secondary job: communicate exclusivity, creative range, and production capability — building enough trust to justify $3,500–$100K+ experience budgets across six categories: Voyages, Celebrations, Adventures, Productions, Junior, and Bespoke.
+**Context**: Single-page marketing site. The job is to convert high-intent visitors into event planning consultations. Secondary job: communicate exclusivity, creative range, and production capability — building enough trust to justify $250K–$1.2M experience commitments across three transaction types: One Time (single event), Yearly (subscription), and Gift (third-party purchase).
 ```
 
 ### 8.3 References Update
@@ -481,7 +517,7 @@ Ultra-high-net-worth individuals and affluent experience-seekers considering bes
 
 **Replace with:**
 ```
-- **References**: Aman Resorts (restraint, materials), Rolls-Royce (authority), Monocle (editorial hierarchy), Aesop (warm minimalism), Four Seasons (light luxury, dark hero overlays), Meow Wolf (immersive scale), Sleep No More (theatrical production), The Ritz-Carlton (service standard)
+- **References**: Aman Resorts (restraint, materials), Rolls-Royce (authority), Monocle (editorial hierarchy), Aesop (warm minimalism), Four Seasons (light luxury, dark hero overlays), The Ritz-Carlton (service standard), Meow Wolf (immersive scale)
 ```
 
 ### 8.4 Anti-References Update
@@ -493,22 +529,24 @@ Ultra-high-net-worth individuals and affluent experience-seekers considering bes
 
 **Replace with:**
 ```
-- **Anti-references**: Generic AI-generated sites (cyan gradients, glass cards, neon-on-dark, 3-column icon+title+desc), cruise ship brochures, overly minimal SaaS landing pages, any site that screams "template", generic event planning sites, children's party template sites, corporate retreat brochures
+- **Anti-references**: Generic AI-generated sites (cyan gradients, glass cards, neon-on-dark, 3-column icon+title+desc), generic event planning sites, children's party template sites, corporate retreat brochures, overly minimal SaaS landing pages, any site that screams "template"
 ```
 
-### 8.5 Travel → Experience Language
+### 8.5 Travel → Party Platform Language
 
-Search-and-replace the following in `.impeccable.md`. **Only** where "travel" refers to the general offering — keep "travel" where it refers specifically to the Voyages category.
+Search-and-replace the following in `.impeccable.md`. Replace all travel-oriented language with party/event planning context.
 
 | Find | Replace | Location |
 |---|---|---|
-| "concierge travel services" | "bespoke luxury experiences" | Users section |
-| "$50K+ trip budgets" | "$3,500–$100K+ experience budgets" | Context section |
-| "concierge requests" | "experience design consultations" | Context section |
-| "luxury travel" (in Theme line) | "luxury experiences" | Aesthetic Direction → Theme |
-| "Designed for luxury travel" (globals.css comment) | "Designed for luxury experiences" | globals.css header comment |
+| "Aurora Luxe Travel" | "Aurora Luxe" | Title |
+| "concierge travel services" | "bespoke luxury event planning" | Users section |
+| "affluent travelers" | "affluent experience-seekers" | Users section |
+| "$5K to $100K+ per trip" | "$250,000 to $1,200,000+" | Users section |
+| "$50K+ trip budgets" | "$250K–$1.2M experience commitments" | Context section |
+| "concierge requests" | "event planning consultations" | Context section |
+| "cruise ship brochures" | "generic event planning sites, children's party template sites, corporate retreat brochures" | Anti-references |
 
-**Note:** The globals.css comment change (`line 5`) is a documentation-only edit, not a functional change. Include it in the Phase 1 PR for consistency.
+**Note:** The `.impeccable.md` updates also add a three-tier mindset section under Users to describe the One Time, Yearly, and Gift transaction types — see §8.1 for full replacement text.
 
 ---
 
