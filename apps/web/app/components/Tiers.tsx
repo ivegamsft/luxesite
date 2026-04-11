@@ -37,7 +37,8 @@ export default function Tiers() {
             <motion.div
               key={tier.id}
               variants={cardMotionVariants}
-              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}              className={`tier-card relative rounded-sm p-8 md:p-10 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className={`tier-card relative rounded-sm p-8 md:p-10 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
                 tier.featured
                   ? 'tier-featured z-10 shadow-lift'
                   : 'bg-aurora-bg-light/95 border border-aurora-border shadow-subtle hover:border-aurora-gold/40'
