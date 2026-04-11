@@ -43,7 +43,6 @@ export default function Home() {
 
         {/* Act 5 — Commitment */}
         <Tiers />
-        <SectionBreak />
         <FAQ />
         <ConciergeForm />
       </main>

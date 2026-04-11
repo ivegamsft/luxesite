@@ -42,15 +42,22 @@ export default function Testimonials() {
   const active = testimonials[activeIndex];
 
   return (
-    <section id="testimonials" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light relative overflow-hidden">
+    <section id="testimonials" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light relative overflow-x-clip">
       {/* Subtle decorative element to break grid monotony */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-aurora-border/30 to-transparent pointer-events-none" aria-hidden="true" />
 
       <div className="max-w-4xl mx-auto relative">
+        {/* Section Label — clear hierarchy for mobile */}
+        <AnimatedSection>
+          <p className="text-sm font-medium tracking-[0.2em] uppercase mb-6 text-aurora-gold">
+            What Our Clients Say
+          </p>
+        </AnimatedSection>
+
         {/* Section Header — editorial, no gold-label pattern */}
         <AnimatedSection>
-          <div className="mb-16">
-            <h2 className="font-heading italic text-fluid-2xl text-aurora-text-muted max-w-[75ch] leading-snug tracking-tight">
+          <div className="mb-10 sm:mb-16">
+            <h2 className="font-heading italic text-fluid-xl sm:text-fluid-2xl text-aurora-text-muted max-w-[75ch] leading-snug tracking-tight">
               &ldquo;The measure of an event is not the spectacle&nbsp;&mdash; it&rsquo;s the silence when you remember.&rdquo;
             </h2>
           </div>
@@ -64,7 +71,7 @@ export default function Testimonials() {
           onKeyDown={handleKeyDown}
           tabIndex={0}
         >
-          <div className="relative min-h-[240px]" aria-live="polite">
+          <div className="relative min-h-[200px] sm:min-h-[240px]" aria-live="polite">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.id}
@@ -107,7 +114,7 @@ export default function Testimonials() {
           </div>
 
           {/* Navigation */}
-          <div className="flex items-center gap-4 mt-8">
+          <div className="flex items-center gap-3 sm:gap-4 mt-8 flex-wrap">
             <button
               onClick={goPrev}
               aria-label="Previous testimonial"

@@ -17,7 +17,7 @@ export default function Tiers() {
     : cardVariants;
 
   return (
-    <section id="membership" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-navy">
+    <section id="membership" className="py-section-md sm:py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-navy">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection variant="fade-up">
           <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
@@ -39,7 +39,7 @@ export default function Tiers() {
               key={tier.id}
               variants={cardMotionVariants}
               transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className={`tier-card relative rounded-sm p-8 md:p-10 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+              className={`tier-card relative rounded-sm p-5 sm:p-8 md:p-10 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
                 tier.featured
                   ? 'tier-featured z-10 shadow-lift'
                   : 'bg-aurora-bg-light/95 border border-aurora-border shadow-subtle hover:border-aurora-gold/40'
@@ -53,7 +53,7 @@ export default function Tiers() {
                 <p className="text-xs md:text-sm text-aurora-text-muted mb-4">
                   {tier.tagline}
                 </p>
-                <div className="text-2xl md:text-3xl font-bold text-aurora-text tabular-nums">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-aurora-text tabular-nums">
                   {tier.price.includes('/') ? (
                     <>
                       {tier.price.split('/')[0]}
@@ -85,7 +85,7 @@ export default function Tiers() {
                 }}
                 className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 min-h-[44px] focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:outline-none ${
                   tier.featured
-                    ? 'bg-aurora-gold text-white hover:shadow-lift hover:-translate-y-0.5'
+                    ? 'bg-aurora-gold text-aurora-text hover:shadow-lift hover:-translate-y-0.5'
                     : 'border-2 border-aurora-gold/40 text-aurora-text hover:border-aurora-gold hover:bg-aurora-gold/10 hover:-translate-y-0.5 focus:border-aurora-gold'
                 }`}
               >
@@ -93,7 +93,7 @@ export default function Tiers() {
               </button>
                 <Link
                   href={`/tiers/${tier.id}`}
-                  className="block w-full text-center py-2 text-sm text-white/60 hover:text-aurora-gold transition-colors"
+                  className="block w-full text-center py-2 text-sm text-aurora-text-muted hover:text-aurora-gold transition-colors"
                 >
                   View full details &rarr;
                 </Link>

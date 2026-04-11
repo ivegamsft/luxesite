@@ -77,12 +77,13 @@ export default function ExperienceList() {
           <div className="mb-16 md:mb-20 max-w-3xl">
             <div className="editorial-divider mb-8" aria-hidden="true"></div>
             <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-5 text-aurora-text">
-              Signature Celebrations
+              Productions, Not Parties
             </h2>
             <p className="section-intro">
-              Beyond venues — these are the moments that define a celebration. 
-              Each experience crafted by our production team to create memories 
-              that last a lifetime, for guests of every age.
+              We don&rsquo;t set tables and hang streamers. We build worlds&nbsp;&mdash; 
+              from a child&rsquo;s enchanted forest to a rooftop gala with a live orchestra 
+              suspended above the skyline. Every experience is a full-scale production 
+              with a story arc, a design team, and a standing ovation.
             </p>
           </div>
         </AnimatedSection>
