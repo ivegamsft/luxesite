@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useMemo, KeyboardEvent } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { destinations } from '../data/destinations';
 import AnimatedSection from './AnimatedSection';
@@ -203,6 +204,13 @@ export default function DestinationGrid() {
                       <p className="text-sm text-white/80 italic mb-2">
                         {destination.tagline}
                       </p>
+                      <Link
+                        href={`/destinations/${destination.slug}`}
+                        className="inline-flex items-center gap-1 text-xs font-medium tracking-wide text-aurora-gold hover:underline underline-offset-4"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        View details &rarr;
+                      </Link>
                       <span
                         className="inline-flex items-center gap-1 text-xs font-medium tracking-wide text-aurora-gold md:hidden"
                         aria-hidden="true"

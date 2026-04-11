@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
 import { teamMembers } from '../data/team';
 import AnimatedSection from './AnimatedSection';
@@ -71,6 +72,12 @@ export default function WhyAurora() {
                   </span>
                 ))}
               </div>
+              <Link
+                href={`/specialists/${member.id}`}
+                className="inline-block mt-5 text-sm font-medium text-aurora-gold hover:underline underline-offset-4 transition-colors"
+              >
+                View full profile &rarr;
+              </Link>
             </motion.article>
           ))}
         </div>
