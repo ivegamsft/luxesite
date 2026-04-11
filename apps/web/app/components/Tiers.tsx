@@ -1,90 +1,91 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { tiers } from '../data/tiers';
 import AnimatedSection from './AnimatedSection';
 
 const cardVariants = {
-  hidden: { opacity: 1, y: 20 },
+  hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0 }
 };
 
 export default function Tiers() {
+  const prefersReducedMotion = useReducedMotion();
+  const cardMotionVariants = prefersReducedMotion
+    ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
+    : cardVariants;
+
   return (
-    <section id="membership" className="py-section-lg px-4 sm:px-6 lg:px-12">
+    <section id="membership" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-navy">
       <div className="max-w-7xl mx-auto">
-        <AnimatedSection>
-          <h2 className="font-heading text-fluid-3xl text-center mb-4">
-            Membership
-          </h2>
-          <p className="text-center text-aurora-white/60 mb-12 max-w-2xl mx-auto text-fluid-sm">
-            Exclusive access to a world beyond ordinary. Choose the tier that unlocks your next chapter.
-          </p>
+        <AnimatedSection variant="fade-up">
+          <div className="text-center mb-14">
+            <h2 className="font-heading text-fluid-2xl font-bold tracking-tight leading-tight text-white mb-3">
+              One Standard — Uncompromising
+            </h2>
+            <p className="text-fluid-base text-white/70">Choose the tier that matches your travel ambitions.</p>
+          </div>
         </AnimatedSection>
 
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          variants={{
-            visible: {
-              transition: {
-                staggerChildren: 0.15,
-              },
-            },
-          }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
+          className="@container grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
         >
           {tiers.map((tier) => (
             <motion.div
               key={tier.id}
-              variants={cardVariants}
-              transition={{ duration: 0.5 }}
-              className={`relative rounded-2xl p-6 md:p-8 transition-all duration-300 ${
+              variants={cardMotionVariants}
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}              className={`tier-card relative rounded-sm p-8 md:p-10 flex flex-col transition-all duration-300 hover:scale-[1.02] hover:shadow-xl ${
                 tier.featured
-                  ? 'animated-border scale-[1.02] md:scale-105 z-10 shadow-glow-purple'
-                  : 'bg-aurora-glass backdrop-blur-glass border border-aurora-glass-border shadow-glass hover:shadow-glow hover:shadow-aurora-cyan/20'
+                  ? 'gradient-border z-10 shadow-lift'
+                  : 'bg-white/10 border border-white/20 shadow-subtle hover:border-aurora-gold/40'
               }`}
             >
-              {tier.featured && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-aurora text-aurora-dark text-xs font-bold px-4 py-1.5 rounded-full">
-                  Most Popular
-                </div>
-              )}
 
-              <div className="mb-6">
-                <h3 className="font-heading text-fluid-xl mb-2 text-aurora-white">
+              <div className="mb-8">
+                <h3 className="font-heading text-fluid-xl font-medium mb-2 text-white">
                   {tier.name}
                 </h3>
-                <p className="text-xs md:text-sm text-aurora-white/60 mb-4">
+                <p className="text-xs md:text-sm text-white/60 mb-4">
                   {tier.tagline}
                 </p>
-                <div className="text-2xl md:text-3xl font-bold text-aurora-white">
+                <div className="text-2xl md:text-3xl font-bold text-white tabular-nums">
                   {tier.price.split('/')[0]}
-                  <span className="text-sm font-normal text-aurora-white/60">
+                  <span className="text-sm font-normal text-white/60">
                     /{tier.price.split('/')[1]}
                   </span>
                 </div>
+                {tier.perTrip && (
+                  <p className="text-xs text-white/50 mt-1">{tier.perTrip}</p>
+                )}
               </div>
 
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3.5 mb-8 flex-1">
                 {tier.perks.map((perk, index) => (
-                  <li key={index} className="flex items-start text-sm text-aurora-white/80">
-                    <span className="text-aurora-cyan mr-2 mt-0.5 flex-shrink-0">✓</span>
+                  <li key={index} className="flex items-start text-sm text-white/80">
+                    <span className="text-aurora-gold mr-2 mt-0.5 flex-shrink-0">✓</span>
                     <span>{perk}</span>
                   </li>
                 ))}
               </ul>
 
-              <button
-                className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 min-h-[44px] ${
+              <div className="mt-auto pt-6">
+                <button
+                onClick={() => {
+                  window.dispatchEvent(new CustomEvent('tier-selected', { detail: { tier: tier.name } }));
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 min-h-[44px] focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:outline-none ${
                   tier.featured
-                    ? 'bg-gradient-aurora text-aurora-dark hover:shadow-glow hover:scale-105'
-                    : 'bg-aurora-glass border border-aurora-glass-border text-aurora-white hover:bg-aurora-glass-border hover:scale-105'
+                    ? 'bg-aurora-gold text-white hover:shadow-lift hover:-translate-y-0.5'
+                    : 'border border-white/30 text-white/80 hover:border-aurora-gold hover:text-white hover:-translate-y-0.5'
                 }`}
               >
                 Join {tier.name}
               </button>
+              </div>
             </motion.div>
           ))}
         </motion.div>

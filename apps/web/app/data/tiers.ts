@@ -5,7 +5,8 @@ export const tiers: MembershipTier[] = [
     id: 'silver',
     name: 'Silver',
     tagline: 'Your Journey Begins',
-    price: '€25,000/year',
+    price: '$25,000/year',
+    perTrip: 'from $5,000 per journey',
     featured: false,
     perks: [
       'Priority booking at partner properties worldwide',
@@ -19,7 +20,8 @@ export const tiers: MembershipTier[] = [
     id: 'black',
     name: 'Black',
     tagline: 'Elevated Beyond Limits',
-    price: '€75,000/year',
+    price: '$75,000/year',
+    perTrip: 'from $15,000 per journey',
     featured: true,
     perks: [
       'Everything in Silver, plus:',
@@ -35,7 +37,8 @@ export const tiers: MembershipTier[] = [
     id: 'obsidian',
     name: 'Obsidian',
     tagline: 'The Rarest Circle',
-    price: '€200,000/year',
+    price: '$200,000/year',
+    perTrip: 'from $50,000 per journey',
     featured: false,
     perks: [
       'Everything in Black, plus:',
@@ -43,7 +46,7 @@ export const tiers: MembershipTier[] = [
       'Unlimited complimentary companion travel for one guest',
       'Private experiences designed exclusively for you',
       'Helicopter transfers in major cities',
-      'Annual bespoke journey (valued at €50,000)',
+      'Annual bespoke journey (valued at $50,000)',
       'Access to Aurora\'s private island in the Seychelles',
       'Lifetime membership after five consecutive years',
       'Your name etched in the Aurora Hall of Explorers'

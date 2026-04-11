@@ -1,55 +1,87 @@
 @import "tailwindcss";
 
-/* ── Aurora Luxe Theme — "Gilded Bordeaux" ───────────────────────────
-   OKLCH palette: warm golds, deep wine, champagne, ivory.
-   Designed for luxury travel — intentionally NOT the AI cyan-on-dark palette. */
+/* ── Aurora Luxe Theme — Light Warmth ────────────────────────────────
+   Hex palette: warm neutrals, champagne gold, navy, sage.
+   Designed for luxury travel — light, refined, editorial. */
 
 :root {
-  /* Backgrounds — wine-tinted darks */
-  --aurora-dark: oklch(0.15 0.015 50);
-  --aurora-darker: oklch(0.11 0.01 50);
+  /* Backgrounds — warm neutrals */
+  --aurora-bg: #f5f3f0;
+  --aurora-bg-light: #faf9f7;
+  --aurora-bg-dark: #f0ebe5;
 
   /* Accents */
-  --aurora-cyan: oklch(0.82 0.105 85);       /* champagne gold — primary */
-  --aurora-purple: oklch(0.42 0.13 20);      /* deep bordeaux wine */
-  --aurora-magenta: oklch(0.70 0.09 30);     /* dusty rose */
-  --aurora-gold: oklch(0.80 0.12 75);        /* burnished antique gold */
+  --aurora-gold: #c9a76a;        /* champagne gold — primary */
+  --aurora-navy: #1a3a52;        /* secondary accent */
+
 
   /* Text */
-  --aurora-white: oklch(0.95 0.012 85);      /* warm ivory */
+  --aurora-text: #2c2620;        /* body text, headings */
+  --aurora-text-muted: #6b6458;  /* labels, captions */
 
-  /* Surfaces — subtle warm tint, NOT heavy glass */
-  --aurora-glass: oklch(0.95 0.01 85 / 0.04);
-  --aurora-glass-border: oklch(0.95 0.01 85 / 0.07);
+  /* Surfaces */
+  --aurora-border: #e8e4df;      /* all borders */
 
-  /* ── Fluid Type Scale (Major Third 1.25) ──────────────────────── */
-  --fluid-sm: clamp(0.875rem, 0.83rem + 0.22vw, 1rem);
-  --fluid-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-  --fluid-lg: clamp(1.25rem, 1.1rem + 0.75vw, 1.563rem);
-  --fluid-xl: clamp(1.563rem, 1.25rem + 1.56vw, 2.25rem);
-  --fluid-2xl: clamp(1.953rem, 1.4rem + 2.76vw, 3.052rem);
-  --fluid-3xl: clamp(2.441rem, 1.6rem + 4.2vw, 3.815rem);
-  --fluid-4xl: clamp(3.052rem, 1.75rem + 6.51vw, 5rem);
-  --fluid-5xl: clamp(3.815rem, 2rem + 9.08vw, 6.5rem);
+  /* Status */
+  --aurora-success: #5a8f4a;
+  --aurora-error: #a85a4a;
+
+  /* ── Fluid Type Scale — Space Grotesk + Inter ─────────────────
+     Targets: h1=48px(3rem), h2=36px(2.25rem), h3=28px(1.75rem),
+     body=16px(1rem), small=14px(0.875rem) */
+  --fluid-sm: clamp(0.8125rem, 0.78rem + 0.16vw, 0.875rem);
+  --fluid-base: clamp(0.9375rem, 0.9rem + 0.19vw, 1rem);
+  --fluid-lg: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem);
+  --fluid-xl: clamp(1.5rem, 1.25rem + 1.25vw, 2.25rem);
+  --fluid-2xl: clamp(1.75rem, 1.4rem + 1.75vw, 3rem);
+  --fluid-3xl: clamp(3rem, 2rem + 5vw, 5rem);
+
+  /* ── Spacing — 8px baseline ──────────────────────────────────── */
+  --space-xs: 0.5rem;    /* 8px */
+  --space-sm: 0.75rem;   /* 12px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+  --space-3xl: 4rem;     /* 64px */
 
   /* ── Section Spacing (varied rhythm) ──────────────────────────── */
-  --space-hero: clamp(6rem, 4rem + 10vw, 12rem);
-  --space-section-lg: clamp(5rem, 3rem + 6vw, 9rem);
-  --space-section-md: clamp(4rem, 2.5rem + 5vw, 7rem);
-  --space-section-sm: clamp(3rem, 2rem + 3vw, 5rem);
-  --space-section-xs: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  --space-hero: clamp(7rem, 5rem + 10vw, 14rem);
+  --space-section-lg: clamp(6rem, 4rem + 8vw, 12rem);
+  --space-section-md: clamp(5rem, 3.5rem + 6vw, 10rem);
+  --space-section-sm: clamp(4rem, 3rem + 4vw, 7rem);
+  --space-section-xs: clamp(3rem, 2rem + 3vw, 5rem);
 }
 
 @theme inline {
-  --font-sans: var(--font-source-sans);
-  --font-heading: var(--font-playfair);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-space-grotesk);
+
+  /* Colors — register for Tailwind v4 utility generation */
+  --color-aurora-bg: #f5f3f0;
+  --color-aurora-bg-light: #faf9f7;
+  --color-aurora-bg-dark: #f0ebe5;
+  --color-aurora-text: #2c2620;
+  --color-aurora-text-muted: #6b6458;
+  --color-aurora-border: #e8e4df;
+  --color-aurora-gold: #c9a76a;
+  --color-aurora-navy: #1a3a52;
+
+  --color-aurora-success: #5a8f4a;
+  --color-aurora-error: #a85a4a;
+
+  /* Box shadows */
+  --shadow-glass: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow-lift: 0 2px 24px oklch(0 0 0 / 0.15);
+  --shadow-subtle: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-medium: 0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
 }
 
 /* Base Styles */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 section[id] {
@@ -57,47 +89,34 @@ section[id] {
 }
 
 body {
-  background-color: var(--aurora-dark);
-  color: var(--aurora-white);
-  font-family: var(--font-sans), "Source Sans 3", system-ui, sans-serif;
+  background-color: var(--aurora-bg);
+  color: var(--aurora-text);
+  font-family: var(--font-sans), "Inter", system-ui, sans-serif;
   font-size: var(--fluid-base);
+  line-height: 1.6;
+  font-kerning: normal;
 }
 
-/* Selection — champagne gold on dark */
+/* Selection — gold on light */
 ::selection {
-  background: oklch(0.82 0.105 85);
-  color: oklch(0.15 0.015 50);
+  background: var(--aurora-gold);
+  color: var(--aurora-bg);
 }
 
-/* ── Surface: Subtle Frosted (reduced glassmorphism) ────────────────
-   Lighter blur + more opaque = works as solid-ish surface for cards.
-   Heavy glass reserved for animated-border (featured tier) only. */
+/* ── Surface: Solid light with subtle border ─────────────────────── */
 .glass {
-  background: oklch(0.17 0.012 50 / 0.7);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid oklch(0.95 0.01 85 / 0.06);
-  box-shadow: 0 4px 20px oklch(0 0 0 / 0.2);
+  background: var(--aurora-bg-light);
+  border: 1px solid var(--aurora-border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
 }
 
-/* Animated Conic Gradient Border — kept for featured tier */
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.animated-border {
+/* Static Conic Gradient Border — featured tier distinction */
+.gradient-border {
   position: relative;
-  background: oklch(0.17 0.012 50 / 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.12);
 }
 
-.animated-border::before {
+.gradient-border::before {
   content: '';
   position: absolute;
   inset: -2px;
@@ -105,16 +124,15 @@ body {
   padding: 2px;
   background: conic-gradient(
     from 0deg,
-    oklch(0.82 0.105 85),
-    oklch(0.42 0.13 20),
-    oklch(0.70 0.09 30),
-    oklch(0.82 0.105 85)
+    #c9a76a,
+    #1a3a52,
+    #f0ebe5,
+    #c9a76a
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  animation: rotate 4s linear infinite;
   z-index: -1;
 }
 
@@ -126,8 +144,44 @@ body {
 .fluid-xl { font-size: var(--fluid-xl); }
 .fluid-2xl { font-size: var(--fluid-2xl); }
 .fluid-3xl { font-size: var(--fluid-3xl); }
-.fluid-4xl { font-size: var(--fluid-4xl); }
-.fluid-5xl { font-size: var(--fluid-5xl); }
+
+/* ── Container Queries ────────────────────────────────────────────
+   Component-level responsiveness via @container. Parents marked
+   with Tailwind's @container class get container-type: inline-size. */
+
+.\@container {
+  container-type: inline-size;
+}
+
+/* Destination cards — adapt padding and text at narrow containers */
+@container (max-width: 480px) {
+  .destination-card { padding: 1rem; }
+  .destination-card h3 { font-size: var(--fluid-base); }
+}
+@container (min-width: 481px) {
+  .destination-card { padding: 1.5rem; }
+}
+
+/* Experience cards — stack at narrow containers */
+@container (max-width: 540px) {
+  .experience-card { flex-direction: column !important; }
+  .experience-card .experience-icon { width: 100%; padding: 1.5rem; }
+}
+
+/* Tier cards — adapt inner spacing */
+@container (max-width: 400px) {
+  .tier-card { padding: 1rem; }
+  .tier-card h3 { font-size: var(--fluid-lg); }
+}
+
+/* ── Scrollbar Hide ─────────────────────────────────────────────── */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
 
 /* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
@@ -140,7 +194,10 @@ body {
     scroll-behavior: auto !important;
   }
   
-  .animated-border::before {
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll-hint {
     animation: none;
   }
 }

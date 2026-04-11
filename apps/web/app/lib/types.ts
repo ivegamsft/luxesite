@@ -14,6 +14,8 @@ export interface Experience {
   title: string;
   description: string;
   icon: string;
+  regions: string[];
+  imageUrl?: string;
 }
 
 export interface MembershipTier {
@@ -23,6 +25,7 @@ export interface MembershipTier {
   price: string;
   featured: boolean;
   perks: string[];
+  perTrip?: string;
 }
 
 export interface Testimonial {
@@ -30,10 +33,41 @@ export interface Testimonial {
   name: string;
   role: string;
   quote: string;
+  location: string;
+  date: string;
   avatar?: string;
+  rating?: number;
+  sourceLink?: string;
+}
+
+export interface TeamMember {
+  id: string;
+  name: string;
+  title: string;
+  bio: string;
+  photoUrl: string;
+  yearsExperience: number;
+  specialties: string[];
 }
 
 export interface NavLink {
   label: string;
   href: string;
+}
+
+export interface TravelGuide {
+  id: string;
+  title: string;
+  excerpt: string;
+  readTime: string;
+  imageUrl: string;
+  link: string;
+  author: string;
+}
+
+export interface PressAward {
+  id: string;
+  name: string;
+  logoText: string;
+  link: string;
 }

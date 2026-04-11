@@ -1,45 +1,52 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Source_Sans_3 } from "next/font/google";
+import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const sourceSans = Source_Sans_3({
-  variable: "--font-source-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Aurora Luxe Travel | Beyond First Class",
-  description: "Ultra-premium concierge travel experiences. Private jets, superyachts, Michelin trails, and bespoke itineraries for the world's most discerning travelers.",
+  title: "Aurora Luxe Travel | Award-Winning Private Travel Specialists",
+  description: "Bespoke luxury travel by specialists. Curated destinations, 24/7 concierge, journeys for you alone.",
   keywords: [
     "luxury travel",
-    "concierge travel",
-    "private jet charter",
-    "superyacht charter",
-    "bespoke travel",
-    "ultra-luxury travel",
-    "Michelin dining experiences",
-    "exclusive destinations",
-    "premium travel services",
+    "bespoke itineraries",
+    "private travel",
+    "safaris",
+    "travel specialists",
+    "curated destinations",
+    "24/7 concierge",
   ],
   openGraph: {
-    title: "Aurora Luxe Travel | Beyond First Class",
-    description: "Ultra-premium concierge travel experiences. Private jets, superyachts, Michelin trails, and bespoke itineraries for the world's most discerning travelers.",
+    title: "Aurora Luxe Travel | Award-Winning Private Travel Specialists",
+    description: "Bespoke luxury travel by specialists. Curated destinations, 24/7 concierge, journeys for you alone.",
     type: "website",
     siteName: "Aurora Luxe Travel",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=630&fit=crop",
+        width: 1200,
+        height: 630,
+        alt: "Aurora Luxe Travel — Bespoke luxury journeys",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aurora Luxe Travel | Beyond First Class",
-    description: "Ultra-premium concierge travel experiences. Private jets, superyachts, Michelin trails, and bespoke itineraries for the world's most discerning travelers.",
+    title: "Aurora Luxe Travel | Award-Winning Private Travel Specialists",
+    description: "Bespoke luxury travel by specialists. Curated destinations, 24/7 concierge, journeys for you alone.",
+    images: ["https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=630&fit=crop"],
   },
 };
 
@@ -51,10 +58,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${sourceSans.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-aurora-dark text-aurora-white font-sans antialiased">
-        <main>{children}</main>
+      <body className="min-h-full flex flex-col bg-aurora-bg text-aurora-text font-sans antialiased">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-aurora-gold focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lift">
+          Skip to content
+        </a>
+        {children}
       </body>
     </html>
   );

@@ -1,41 +1,24 @@
 'use client';
 
-import { useEffect, useRef, useCallback } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export default function Hero() {
-  const contentRef = useRef<HTMLDivElement>(null);
-  const scrollYRef = useRef(0);
-  const rafRef = useRef<number>(0);
+  const prefersReducedMotion = useReducedMotion();
+  const [selectedDest, setSelectedDest] = useState('');
+  const [selectedTiming, setSelectedTiming] = useState('');
 
-  const applyParallax = useCallback(() => {
-    const el = contentRef.current;
-    if (!el) return;
-    const y = scrollYRef.current;
-    el.style.transform = `translateY(${y * 0.3}px)`;
-    el.style.opacity = `${Math.max(0, 1 - y / 500)}`;
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      scrollYRef.current = window.scrollY;
-      if (rafRef.current) return;
-      rafRef.current = requestAnimationFrame(() => {
-        applyParallax();
-        rafRef.current = 0;
-      });
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, [applyParallax]);
-
-  const handleDesignTrip = () => {
+  const handleRequestConsultation = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
+      if (selectedDest || selectedTiming) {
+        window.dispatchEvent(
+          new CustomEvent('hero-discovery', {
+            detail: { destination: selectedDest, timing: selectedTiming },
+          })
+        );
+      }
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
@@ -48,86 +31,113 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center justify-start lg:pl-12 xl:pl-20 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
           src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=2400&h=1400&fit=crop"
           alt="Luxury beach paradise"
           fill
-          className="object-cover opacity-40"
+          className="object-cover"
           priority
           sizes="100vw"
         />
       </div>
 
-      {/* Animated Gradient Overlay */}
-      <div className="absolute inset-0 z-10 bg-gradient-aurora-subtle animate-aurora-pulse" />
+      {/* Dark overlay for hero text contrast */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-r from-aurora-navy/80 via-aurora-navy/50 to-transparent" />
 
-      {/* Noise Texture Overlay (optional) */}
-      <div className="absolute inset-0 z-10 opacity-30" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        backgroundSize: '100px 100px',
-      }} />
-
-      {/* Aurora Blob */}
-      <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-        <div className="w-96 h-96 md:w-[600px] md:h-[600px] bg-gradient-aurora opacity-20 rounded-full blur-[120px] animate-aurora-pulse" />
-      </div>
-
-      {/* Content with parallax — transforms applied via ref to bypass React re-renders */}
       <motion.div 
-        ref={contentRef}
-        className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+        className="relative z-20 max-w-5xl px-4 sm:px-6 lg:px-8 text-left lg:max-w-[50%]"
       >
         {/* Headline */}
         <motion.h1 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-heading text-fluid-5xl font-bold text-aurora-white mb-6 tracking-tight px-4"
+          initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+          className="font-heading text-fluid-3xl font-bold text-white mb-6 tracking-tight leading-[1.08]"
         >
-          Beyond First Class.
+          Where Will Your Story Take You Next?
         </motion.h1>
 
         {/* Subtext */}
         <motion.p 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-fluid-base text-aurora-white/70 max-w-2xl mx-auto mb-10 leading-relaxed px-4"
+          initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.2, ease: 'easeOut' }}
+          className="text-fluid-lg text-white/80 max-w-[55ch] mb-10 leading-relaxed"
         >
-          Experience the pinnacle of luxury travel with Aurora Luxe. From private jets to superyachts, 
-          Michelin-starred dining to exclusive island retreats—every journey is curated to perfection 
-          for the world&apos;s most discerning travelers.
+          130+ destinations, each curated by specialists who&apos;ve walked the ground. Your journey begins with a conversation.
         </motion.p>
 
         {/* CTA Buttons */}
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.3, ease: 'easeOut' }}
+          className="flex flex-col sm:flex-row items-start gap-4"
         >
           <button
-            onClick={handleDesignTrip}
-            className="w-full sm:w-auto bg-gradient-aurora text-aurora-white font-medium px-8 py-4 rounded-2xl hover:shadow-glow hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan focus:ring-offset-2 focus:ring-offset-aurora-dark min-h-[44px]"
+            onClick={handleRequestConsultation}
+            className="w-full sm:w-auto bg-aurora-gold text-white font-semibold px-8 py-4 rounded-lg hover:bg-aurora-gold/85 hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-navy min-h-[44px]"
           >
-            Design My Trip
+            Request Consultation
           </button>
           <button
             onClick={handleExploreDestinations}
-            className="w-full sm:w-auto glass text-aurora-white font-medium px-8 py-4 rounded-2xl hover:border-aurora-cyan transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-cyan focus:ring-offset-2 focus:ring-offset-aurora-dark min-h-[44px]"
+            className="w-full sm:w-auto border-2 border-white/40 text-white font-semibold px-8 py-4 rounded-lg hover:border-aurora-gold hover:text-aurora-gold hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-navy min-h-[44px]"
           >
             Explore Destinations
+          </button>
+        </motion.div>
+
+        {/* Concierge Discovery Row — md+ only */}
+        <motion.div
+          initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.4, ease: 'easeOut' }}
+          className="flex flex-col md:flex-row items-stretch md:items-center gap-3 mt-8 bg-white/80 backdrop-blur-sm border border-aurora-border rounded-lg px-4 py-3"
+        >
+          <select
+            aria-label="Destination"
+            value={selectedDest}
+            onChange={(e) => setSelectedDest(e.target.value)}
+            className="w-full md:flex-1 bg-transparent text-aurora-text text-sm font-medium border-b md:border-b-0 md:border-r border-aurora-border pr-3 py-2 focus:outline-none appearance-none cursor-pointer"
+          >
+            <option value="" disabled>Where to? ▾</option>
+            <option value="maldives">Maldives</option>
+            <option value="santorini">Santorini</option>
+            <option value="kyoto">Kyoto</option>
+            <option value="patagonia">Patagonia</option>
+            <option value="safari">East Africa Safari</option>
+            <option value="other">Somewhere else</option>
+          </select>
+          <select
+            aria-label="Travel timing"
+            value={selectedTiming}
+            onChange={(e) => setSelectedTiming(e.target.value)}
+            className="w-full md:flex-1 bg-transparent text-aurora-text text-sm font-medium border-b md:border-b-0 md:border-r border-aurora-border pr-3 py-2 focus:outline-none appearance-none cursor-pointer"
+          >
+            <option value="" disabled>When? ▾</option>
+            <option value="next-month">Next month</option>
+            <option value="3-months">In 2–3 months</option>
+            <option value="6-months">In 4–6 months</option>
+            <option value="next-year">Next year</option>
+            <option value="flexible">I&apos;m flexible</option>
+          </select>
+          <button
+            onClick={handleRequestConsultation}
+            className="whitespace-nowrap text-sm font-semibold text-aurora-gold hover:text-aurora-gold/85 transition-colors py-2 px-3 focus:outline-none focus:underline min-h-[44px]"
+          >
+            Discuss with a specialist →
           </button>
         </motion.div>
       </motion.div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-float">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-scroll-hint">
         <svg
-          className="w-6 h-6 text-aurora-white/50"
+          className="w-6 h-6 text-white/50"
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"

@@ -17,6 +17,7 @@
 | Mouse | UI/Design Dev | .squad/agents/mouse/charter.md | 🎨 Design |
 | Tank | Tester | .squad/agents/tank/charter.md | 🧪 Tester |
 | Scribe | Session Logger | .squad/agents/scribe/charter.md | 📋 Scribe |
+| Neo | Senior Frontend Dev | .squad/agents/neo/charter.md | ⚛️ Frontend |
 | Ralph | Work Monitor | .squad/agents/ralph/charter.md | 🔄 Monitor |
 
 ## Project Context

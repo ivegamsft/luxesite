@@ -1,12 +1,21 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { testimonials } from '../data/testimonials';
 import AnimatedSection from './AnimatedSection';
 
+function StarRating({ rating }: { rating: number }) {
+  return (
+    <span className="text-aurora-gold text-sm tracking-wide" aria-label={`${rating} out of 5 stars`}>
+      {'★'.repeat(rating)}{'☆'.repeat(5 - rating)}
+    </span>
+  );
+}
+
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
 
   const goTo = useCallback((index: number) => {
     setActiveIndex(index);
@@ -20,93 +29,121 @@ export default function Testimonials() {
     setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   }, []);
 
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      goNext();
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      goPrev();
+    }
+  }, [goNext, goPrev]);
+
   const active = testimonials[activeIndex];
 
   return (
-    <section id="testimonials" className="py-section-md px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header — left-aligned */}
+    <section id="testimonials" className="py-section-lg px-4 sm:px-6 bg-aurora-navy relative overflow-hidden">
+      {/* Subtle decorative element to break grid monotony */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-white/[0.03] to-transparent pointer-events-none" aria-hidden="true" />
+
+      <div className="max-w-4xl mx-auto relative">
+        {/* Section Header — editorial, no gold-label pattern */}
         <AnimatedSection>
           <div className="mb-16">
-            <h2 className="text-fluid-3xl font-heading font-bold mb-4 text-aurora-white">
-              What Our Members Say
+            <h2 className="font-heading italic text-fluid-2xl text-white/50 max-w-[75ch] leading-snug tracking-tight">
+              &ldquo;The measure of a journey is not the distance&nbsp;&mdash; it&rsquo;s the silence when you return.&rdquo;
             </h2>
-            <p className="text-fluid-base text-aurora-white/70 max-w-2xl">
-              Journeys crafted with precision, remembered with wonder.
-            </p>
           </div>
         </AnimatedSection>
 
-        {/* Featured Quote — large, single testimonial with navigation */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-12 items-start">
-          {/* Main quote */}
-          <div className="relative min-h-[260px]">
+        {/* Featured Quote — full width, no sidebar */}
+        <div
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Member testimonials"
+          onKeyDown={handleKeyDown}
+          tabIndex={0}
+        >
+          <div className="relative min-h-[240px]" aria-live="polite">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.id}
-                initial={{ opacity: 0, x: 20 }}
+                initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.4 }}
+                exit={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4 }}
               >
-                {/* Large quote mark */}
-                <div className="text-8xl text-aurora-cyan/15 font-serif leading-none mb-2 select-none">&ldquo;</div>
+                {active.rating && (
+                  <div className="mb-4">
+                    <StarRating rating={active.rating} />
+                  </div>
+                )}
 
-                <p className="text-fluid-xl italic text-aurora-white/90 mb-8 max-w-[50ch] leading-relaxed -mt-6">
-                  {active.quote}
+                <p className="text-fluid-xl italic text-white/90 mb-8 max-w-[55ch] leading-snug">
+                  &ldquo;{active.quote}&rdquo;
                 </p>
 
-                <div className="h-px bg-gradient-aurora opacity-30 mb-6 max-w-xs"></div>
+                <div className="h-px bg-white/15 mb-6 max-w-xs"></div>
 
-                <p className="font-heading font-semibold text-fluid-lg text-aurora-white">
+                <p className="font-heading font-semibold text-fluid-lg text-white">
                   {active.name}
                 </p>
-                <p className="text-fluid-sm text-aurora-white/60">
-                  {active.role}
+                <p className="text-fluid-sm text-white/50">
+                  {active.location} · {active.role}
                 </p>
+
+                {active.sourceLink && (
+                  <a
+                    href={active.sourceLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs text-aurora-gold underline decoration-aurora-gold/40 underline-offset-2 hover:decoration-aurora-gold hover:text-aurora-gold/80 transition-colors mt-3 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
+                  >
+                    Verified on Trustpilot <span aria-hidden="true">&rarr;</span>
+                  </a>
+                )}
               </motion.div>
             </AnimatePresence>
           </div>
 
-          {/* Navigation sidebar — dots + arrows */}
-          <div className="flex lg:flex-col items-center lg:items-start gap-6">
-            {/* Navigation dots */}
-            <div className="flex lg:flex-col gap-3">
+          {/* Navigation */}
+          <div className="flex items-center gap-4 mt-8">
+            <button
+              onClick={goPrev}
+              aria-label="Previous testimonial"
+              className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white/50 hover:text-white hover:border-aurora-gold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-navy"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            <div className="flex gap-1.5">
               {testimonials.map((t, i) => (
                 <button
                   key={t.id}
                   onClick={() => goTo(i)}
                   aria-label={`View testimonial from ${t.name}`}
-                  className={`transition-all duration-300 rounded-full ${
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-navy"
+                >
+                  <span className={`block transition-all duration-300 rounded-full ${
                     i === activeIndex
-                      ? 'w-10 h-3 lg:w-3 lg:h-10 bg-aurora-cyan'
-                      : 'w-3 h-3 bg-aurora-white/20 hover:bg-aurora-white/40'
-                  }`}
-                />
+                      ? 'w-8 h-2.5 bg-aurora-gold'
+                      : 'w-2.5 h-2.5 bg-white/25 hover:bg-white/50'
+                  }`} />
+                </button>
               ))}
             </div>
 
-            {/* Arrow buttons */}
-            <div className="flex gap-3">
-              <button
-                onClick={goPrev}
-                aria-label="Previous testimonial"
-                className="w-11 h-11 rounded-full border border-aurora-glass-border flex items-center justify-center text-aurora-white/60 hover:text-aurora-white hover:border-aurora-cyan transition-all min-h-[44px]"
-              >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button
-                onClick={goNext}
-                aria-label="Next testimonial"
-                className="w-11 h-11 rounded-full border border-aurora-glass-border flex items-center justify-center text-aurora-white/60 hover:text-aurora-white hover:border-aurora-cyan transition-all min-h-[44px]"
-              >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
+            <button
+              onClick={goNext}
+              aria-label="Next testimonial"
+              className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white/50 hover:text-white hover:border-aurora-gold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-navy"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>

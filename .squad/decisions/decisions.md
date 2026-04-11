@@ -152,3 +152,233 @@ luxesite/
 App code must be self-contained in its own directory. The repo will be a monorepo — a backend or API app in another language may be added later. Isolation also helps with CI/CD workflow targeting.
 
 **Rationale:** User request — captured for team memory
+
+---
+
+### Design Critique: Aurora Luxe Travel — Impeccable Evaluation (2026-04-10)
+
+**Author:** Mouse  
+**Agent:** Impeccable  
+**Timestamp:** 2026-04-10T04:00:00Z  
+**Status:** Findings integrated
+
+#### Overall Assessment
+
+**Score: 48/80** — Borderline AI-slop. Aurora Luxe reads as "ambitious startup" rather than "quiet luxury" (Aman-tier). The site successfully communicates aspiration but lacks the human curation and restraint of premium luxury.
+
+**Emotional Resonance:** Mixed
+- Aspiration: Partial (clichés undercut intent)
+- Trust: Weak (no real social proof beyond fabricated testimonials)
+- Desire: Undercut by UI treatment despite strong photography
+- Exclusivity: Actively undermined by "Most Popular" badge and SaaS-style pricing table
+
+#### Dimensional Scores
+
+| Dimension | Score | Status |
+|---|---|---|
+| Typography | 6.5 | 8-step fluid scale too deep; centered headings on 2 consecutive sections |
+| Color & Palette | 7.5 | OKLCH system intentional; Toast component breaks it; error color not branded |
+| Layout & Space | 6.0 | Formulaic section intros; zero `@container` queries; uniform patterns |
+| Visual Details | 5.5 | Emoji icons destroy credibility; gradient pills SaaS-like; `rounded-2xl` everywhere |
+| Motion & Animation | 6.5 | `animate-float` restless; mobile menu instant; Framer Motion ignores prefers-reduced-motion |
+| Interaction Design | 6.5 | Testimonial dots 12px (fail 44px touch target); uniform hover lift mechanical |
+| Responsive Design | 5.0 | No `@container` queries; 2xl breakpoint unused |
+| UX Writing & Copy | 4.5 | Hero subtext cliché; "Most Popular" badge SaaS; section subtitles formulaic |
+
+#### Critical Findings (P0) — 4 items
+
+1. **Emoji icons in ExperienceList** — Destroys premium credibility instantly. Replace with custom SVG icons or photographic elements. *(Visual Details)*
+
+2. **Testimonial nav dots 12px** — `w-3 h-3` fails 44px WCAG touch target by 3.7x. Inaccessible on mobile. *(Interaction Design)*
+
+3. **"Most Popular" badge on pricing tier** — No luxury brand uses this SaaS copywriting. Replace with "Recommended" or remove entirely. *(UX Writing)*
+
+4. **Hero subtext cliché** — "Experience the pinnacle of luxury travel... every journey is curated to perfection for the world's most discerning travelers." Rewrite completely. *(UX Writing)*
+
+#### High Priority (P1) — 5 items
+
+5. **`rounded-2xl` uniformity** — Used on destination cards, experience cards, tier cards, form container, buttons, inputs, interest pills, price badges, floating CTA. Introduce hierarchy: sharp corners for editorial authority, small radius on inputs, rounded-full only for pills. *(Visual Details)*
+
+6. **No `@container` queries** — Impeccable guidelines explicitly require container queries. Zero usage across site. Cards should adapt based on container width. *(Responsive)*
+
+7. **Mobile menu has no animation** — Conditional render instead of AnimatePresence. Menu appears/disappears instantly. For a motion-rich site, this is jarring. *(Motion)*
+
+8. **Framer Motion ignores prefers-reduced-motion** — CSS media query covers CSS animations only. Framer Motion entrance, parallax, testimonial carousel all ignore the preference. Need `useReducedMotion()` hook. *(Motion / Accessibility)*
+
+9. **8-step fluid type scale** — Guidelines specify ~5 steps with 1.25+ ratio. Current 8 steps (sm through 5xl) creates inconsistent usage. Trim to: base, lg, xl, 2xl, 3xl. *(Typography)*
+
+#### Medium Priority (P2) — 5 items
+
+10. **Toast component uses rgba/hex** — ConciergeForm Toaster uses `rgba(255,255,255,0.1)` and `#f0f0f5`, breaking OKLCH-only color system. *(Color)*
+
+11. **Section intros are formulaic** — Every section: `<h2>` → `<p class="text-aurora-white/60 mb-12 max-w-2xl">`. Same opacity, max-width, margin. Vary treatment. *(Layout)*
+
+12. **Centered headings on Membership and ConciergeForm** — Guidelines prefer left-aligned for editorial feel. Two consecutive centered sections feel template-like. *(Typography / Layout)*
+
+13. **Error messages use Tailwind's `text-red-400`** — Not part of OKLCH brand system. Create branded error color in OKLCH. *(Color)*
+
+14. **Hero aurora blob** — Most overused AI hero element. Remove entirely and let photography + noise texture carry atmosphere. *(Visual Details)*
+
+15. **Gradient pill price badges** — `bg-gradient-aurora rounded-full` badges look like SaaS UI. For luxury, use understated text treatment (price in heading font at reduced opacity). *(Visual Details)*
+
+#### Low Priority (P3) — 3 items
+
+16. **`animate-float` on scroll indicator** — Infinite looping bounce feels restless on luxury site. Single downward nudge more appropriate. *(Motion)*
+
+17. **Hover lift on every card** — `hover:-translate-y-1` on destination, experience, and non-featured tier cards. Uniform hover behavior feels mechanical. *(Interaction Design)*
+
+18. **No 2xl breakpoint usage** — Defined in config (`2xl: 2560px`) but never used. Either use it or remove. *(Responsive)*
+
+19. **History.md references wrong fonts** — Stated "Playfair Display + Source Sans 3" but code uses **Bodoni Moda + Libre Franklin**. *(Maintenance)*
+
+20. **Aurora blob `animate-aurora-pulse` loops forever** — Continuous scale(1.05) + opacity oscillation on background adds noise. Should be single entrance or static. *(Motion)*
+
+21. **Token naming mismatch** — `aurora-cyan` maps to champagne gold, `aurora-purple` maps to bordeaux. Semantically confusing for future contributors. *(Maintenance)*
+
+22. **`focus:outline-none` on nav links without ring** — Navbar links use `focus:text-aurora-cyan focus:underline` but no visible focus ring. May be insufficient for keyboard users. *(Accessibility)*
+
+#### What Works Well
+
+- **OKLCH palette is warm and intentional** — No pure black/white; champagne gold + bordeaux + dusty rose feels considered
+- **Bodoni Moda + Libre Franklin** — Strong heading/body pairing with editorial credibility
+- **Custom ease-out-quint** — `[0.22, 1, 0.36, 1]` used consistently in scroll reveals
+- **`animated-border` restraint** — Properly reserved for featured tier only; strong visual emphasis
+- **Testimonials layout** — Asymmetric grid, editorial feel, editorial rhythm
+- **Experience list alternation** — Alternating layout direction (left/right) adds variety
+
+#### Team Action Items
+
+- **Trinity (Frontend):** Wire up `useReducedMotion()` from Framer Motion, add AnimatePresence to mobile menu, implement `@container` queries on card components, fix Toast and error colors, trim type scale to 5 steps
+- **Mouse (Design):** Create corner-radius system (sharp/small/full hierarchy), design custom SVG icons for experiences, redesign price badges, fix token naming semantics
+- **Copywriter/Team:** Full rewrite of hero subtext, section subtitles, tier taglines, "Most Popular" → "Recommended" or remove
+
+#### Intake Plan
+
+22 SQL todos created by Coordinator for team backlog allocation. P0 and P1 items ready for immediate sprint intake.
+
+---
+
+### Trinity: P2+P3 Polish Fixes (2026-04-10)
+
+**Author:** Trinity  
+**Date:** 2026-04-10  
+**Status:** Implemented  
+**Commit:** 1ea6ccb
+
+#### Changes
+
+1. **Removed `animate-aurora-pulse`** from Hero gradient overlay — static gradient, no infinite pulse.
+2. **Replaced `animate-float` with `animate-scroll-hint`** on scroll indicator — one-shot nudge after 2s delay instead of infinite bounce.
+3. **Differentiated hover behavior** across card types:
+   - DestinationGrid: kept `hover:-translate-y-1` (lift to reveal)
+   - ExperienceList: `hover:brightness-110 hover:border-aurora-cyan/30` (subtle glow)
+   - Tiers non-featured: `hover:border-aurora-cyan/40` (border highlight, no lift)
+4. **Added visible focus ring** to desktop nav links: `focus:ring-2 focus:ring-aurora-cyan/50 focus:ring-offset-2`.
+5. **Removed unused `2xl: 2560px` breakpoint** from tailwind.config.ts.
+6. **Replaced `hover:scale-105`** on FloatingCTA with `hover:-translate-y-0.5` (scale was banned).
+
+#### Rationale
+
+Luxury sites should feel confident and still, not restless. Infinite animations on decorative elements (gradient overlays, scroll indicators) add visual noise without value. Varied hover responses give each card type its own personality instead of a uniform mechanical lift.
+
+**Build verified:** `next build` passes cleanly.
+
+---
+
+### Critique Fixes — Visual Rhythm & Passive Scroll (2026-04-10)
+
+**Author:** Mouse  
+**Date:** 2026-04-10  
+**Status:** Implemented  
+**Issues:** #20, #22  
+
+#### Issue #20 — Testimonials Background Alternation
+
+**Decision:** Testimonials section uses `bg-aurora-darker` to break visual monotony.
+
+**Implementation:** Added `bg-aurora-darker` class to the `<section>` element in `Testimonials.tsx`.
+
+**Rationale:** Tiers → Testimonials → ConciergeForm all shared the default aurora-dark background. Three consecutive same-background sections kill visual rhythm and make the lower page feel like a single continuous scroll. Alternating dark/darker/dark creates clear section boundaries without borders or dividers.
+
+**Impact:** Lower page now has clear visual rhythm. Each section reads as a distinct content block.
+
+#### Issue #22 — Passive Scroll Listener on FloatingCTA
+
+**Decision:** All scroll event listeners must use `{ passive: true }` when they don't call `preventDefault()`.
+
+**Implementation:** Added `{ passive: true }` as third argument to `window.addEventListener('scroll', handleScroll)` in `FloatingCTA.tsx`.
+
+**Rationale:** Hero.tsx already uses passive listeners correctly. FloatingCTA was an inconsistency. Passive listeners allow the browser to optimize scroll performance by guaranteeing no `preventDefault()` call will occur. This is a free performance win.
+
+**Impact:** Consistent scroll listener pattern across all components. No performance penalty from non-passive scroll handling.
+
+---
+
+### Critique Fixes — Accessibility & Form Polish (2026-04-10)
+
+**Author:** Trinity  
+**Date:** 2026-04-10  
+**Status:** Implemented  
+**Issues:** #17, #18, #19, #21, #23  
+
+#### Issue #17 — Duplicate h1 Tags (P0)
+
+**Problem:** Navbar and Hero both had `<h1>` tags, violating WCAG heading hierarchy and confusing SEO.
+
+**Solution:** Navbar `<h1>` changed to `<span>` with identical className. Single semantic `<h1>` now only in Hero.
+
+**Impact:** Single clear heading hierarchy per page; SEO compliance; WCAG pass.
+
+#### Issue #18 — CTA Label Unification (P1)
+
+**Problem:** Primary call-to-action buttons used inconsistent labels across the site: "Request Itinerary", "Send Request", "Design My Trip".
+
+**Solution:** All primary CTAs unified to "Design My Trip":
+- Navbar desktop + mobile: "Request Itinerary" → "Design My Trip"
+- FloatingCTA button + aria-label: "Request Itinerary" → "Design My Trip"
+- ConciergeForm submit: "Send Request" → "Send My Request" (secondary, distinct)
+
+**Impact:** Consistent, recognizable call-to-action across entire user flow.
+
+#### Issue #19 — Post-submission Confirmation (P1)
+
+**Problem:** Form submissions showed `react-hot-toast` notifications, which disappear quickly and don't reassure users.
+
+**Solution:** Replaced `react-hot-toast` with inline confirmation panel showing:
+- Personalized thank-you with first name
+- "What happens next" (24-hour curator response expectation)
+- Privacy assurance
+- "Submit another request" reset link
+
+**Implementation:** Removed `react-hot-toast` dependency and `<Toaster>` component. Updated test suite to match new behavior.
+
+**Impact:** Better user reassurance post-submission; clear expectations; improved form completion confidence.
+
+#### Issue #21 — Inline onBlur Validation (P2)
+
+**Problem:** Form validation only occurred on submit, leaving users uncertain about field correctness during input.
+
+**Solution:** Added `validateField()` function with `onBlur` handlers on name and email inputs. Errors clear on `onChange` for immediate user feedback. Submit-time validation retained as safety net.
+
+**Impact:** Earlier error feedback loop; improved form usability; better UX on slow connections.
+
+#### Issue #23 — aria-pressed on Interest Toggles (P3)
+
+**Problem:** Interest toggle buttons in ConciergeForm lacked semantic accessibility markup for screen readers.
+
+**Solution:** Added `aria-pressed={isSelected}` to all interest toggle buttons. Screen reader now announces toggle state correctly.
+
+**Impact:** Full accessibility for screen reader users; toggles semantically correct; added test coverage.
+
+#### Files Modified
+- `apps/web/app/components/Navbar.tsx`
+- `apps/web/app/components/FloatingCTA.tsx`
+- `apps/web/app/components/ConciergeForm.tsx`
+- `apps/web/app/components/__tests__/ConciergeForm.test.tsx`
+
+---
+
+**Follow-Up Logs:**  
+- Orchestration (Mouse): `.squad/orchestration-log/2026-04-10T05-42-30Z-mouse.md`  
+- Orchestration (Trinity): `.squad/orchestration-log/2026-04-10T05-42-30Z-trinity.md`  
+- Session Log: `.squad/log/2026-04-10T05-42-30Z-orchestration-critique-round2.md`

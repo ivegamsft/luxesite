@@ -16,23 +16,23 @@ describe('Hero', () => {
     });
   });
 
-  it('renders headline "Beyond First Class."', () => {
+  it('renders headline', () => {
     render(<Hero />);
-    expect(screen.getByText('Beyond First Class.')).toBeInTheDocument();
+    expect(screen.getByText('Award-Winning Travel Specialists Designing Bespoke Journeys')).toBeInTheDocument();
   });
 
   it('renders both CTA buttons', () => {
     render(<Hero />);
-    expect(screen.getByText('Design My Trip')).toBeInTheDocument();
+    expect(screen.getByText('Request Consultation')).toBeInTheDocument();
     expect(screen.getByText('Explore Destinations')).toBeInTheDocument();
   });
 
   it('CTA links point to correct sections', () => {
     render(<Hero />);
     
-    // Click "Design My Trip" button
-    const designTripButton = screen.getByText('Design My Trip');
-    fireEvent.click(designTripButton);
+    // Click "Request Consultation" button
+    const consultButton = screen.getByText('Request Consultation');
+    fireEvent.click(consultButton);
     
     // Should call getElementById with 'contact'
     expect(mockGetElementById).toHaveBeenCalledWith('contact');
@@ -52,7 +52,7 @@ describe('Hero', () => {
     render(<Hero />);
 
     // The scroll indicator is an SVG arrow at the bottom
-    const svg = document.querySelector('.animate-float svg');
+    const svg = document.querySelector('.animate-scroll-hint svg');
     expect(svg).toBeInTheDocument();
   });
 

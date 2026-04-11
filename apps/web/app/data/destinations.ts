@@ -7,7 +7,7 @@ export const destinations: Destination[] = [
     region: 'Indian Ocean',
     tagline: 'Private Island Paradise',
     price: 12500,
-    currency: '€',
+    currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=1200&h=900&fit=crop',
     quickFacts: [
       'Private villa with infinity pool overlooking turquoise lagoons',
@@ -22,7 +22,7 @@ export const destinations: Destination[] = [
     region: 'Japan',
     tagline: 'Neon Metropolis',
     price: 8900,
-    currency: '€',
+    currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&h=900&fit=crop',
     quickFacts: [
       'Penthouse suite in Roppongi with skyline views',
@@ -37,7 +37,7 @@ export const destinations: Destination[] = [
     region: 'Europe',
     tagline: 'Alpine Grandeur',
     price: 15200,
-    currency: '€',
+    currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&h=900&fit=crop',
     quickFacts: [
       'Private chalet with panoramic Matterhorn views',
@@ -52,7 +52,7 @@ export const destinations: Destination[] = [
     region: 'United Arab Emirates',
     tagline: 'Gilded Skyline',
     price: 11800,
-    currency: '€',
+    currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&h=900&fit=crop',
     quickFacts: [
       'Royal suite at Burj Al Arab with 24k gold interiors',
@@ -67,7 +67,7 @@ export const destinations: Destination[] = [
     region: 'East Africa',
     tagline: 'Savanna Luxe',
     price: 14500,
-    currency: '€',
+    currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&h=900&fit=crop',
     quickFacts: [
       'Exclusive tented camp in the Masai Mara',
@@ -82,13 +82,133 @@ export const destinations: Destination[] = [
     region: 'Southern Europe',
     tagline: 'Azure Drift',
     price: 18900,
-    currency: '€',
+    currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=900&fit=crop',
     quickFacts: [
       'Seven-night voyage aboard a 60-meter superyacht',
       'Private chef and crew of twelve',
       'Island-hopping across Santorini, Capri, and Ibiza',
       'Onboard spa, cinema, and water sports equipment'
+    ]
+  },
+  {
+    slug: 'patagonia',
+    name: 'Patagonia',
+    region: 'South America',
+    tagline: 'Wilderness at the End of the World',
+    price: 9800,
+    currency: '$',
+    imageUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=900&fit=crop',
+    quickFacts: [
+      'Private guided treks through Torres del Paine',
+      'Luxury estancia stays with panoramic glacier views',
+      'Horseback riding across endless steppe with gauchos',
+      'Helicopter excursions over the Southern Patagonian Ice Field'
+    ]
+  },
+  {
+    slug: 'bali',
+    name: 'Bali',
+    region: 'Indonesia',
+    tagline: 'Temple Retreats and Rice Terrace Villas',
+    price: 7400,
+    currency: '$',
+    imageUrl: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&h=900&fit=crop',
+    quickFacts: [
+      'Clifftop villa above Uluwatu with private infinity pool',
+      'Sunrise yoga sessions at ancient water temples',
+      'Private cycling through Tegallalang rice terraces',
+      'Farm-to-table Balinese cooking with a local master chef'
+    ]
+  },
+  {
+    slug: 'amalfi-coast',
+    name: 'Amalfi Coast',
+    region: 'Italy',
+    tagline: 'Cliffside Luxury on the Mediterranean',
+    price: 11200,
+    currency: '$',
+    imageUrl: 'https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=1200&h=900&fit=crop',
+    quickFacts: [
+      'Private terrace suite carved into the cliffs of Positano',
+      'Vintage Riva boat charter along the Amalfi coastline',
+      'Limoncello tasting at a family-run lemon grove',
+      'Private after-hours tour of Pompeii with an archaeologist'
+    ]
+  },
+  {
+    slug: 'santorini',
+    name: 'Santorini',
+    region: 'Greece',
+    tagline: 'White-Washed Elegance Above the Caldera',
+    price: 9500,
+    currency: '$',
+    imageUrl: 'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=1200&h=900&fit=crop',
+    quickFacts: [
+      'Cave suite in Oia with private plunge pool and caldera views',
+      'Sunset catamaran cruise with champagne and fresh seafood',
+      'Private wine tasting at volcanic Assyrtiko vineyards',
+      'Exclusive archaeological tour of ancient Akrotiri'
+    ]
+  },
+  {
+    slug: 'bora-bora',
+    name: 'Bora Bora',
+    region: 'French Polynesia',
+    tagline: 'Overwater Bungalows in Crystal Lagoons',
+    price: 16800,
+    currency: '$',
+    imageUrl: 'https://images.unsplash.com/photo-1589197331516-4d84b72ebde3?w=1200&h=900&fit=crop',
+    quickFacts: [
+      'Overwater bungalow with glass-floor panels and Mount Otemanu views',
+      'Private lagoon snorkelling with manta rays and reef sharks',
+      'Polynesian spa rituals using monoi oil and volcanic stone',
+      'Sunset dinner on a private motu island for two'
+    ]
+  },
+  {
+    slug: 'marrakech',
+    name: 'Marrakech',
+    region: 'Morocco',
+    tagline: 'Riads, Souks, and Desert Stargazing',
+    price: 6900,
+    currency: '$',
+    imageUrl: 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=1200&h=900&fit=crop',
+    quickFacts: [
+      'Restored 18th-century riad with courtyard plunge pool',
+      'Private guided tour of the medina and artisan workshops',
+      'Overnight luxury camp in the Agafay desert under the stars',
+      'Traditional hammam and argan oil spa experience'
+    ]
+  },
+  {
+    slug: 'iceland',
+    name: 'Iceland',
+    region: 'Nordic',
+    tagline: 'Northern Lights and Volcanic Hot Springs',
+    price: 10500,
+    currency: '$',
+    imageUrl: 'https://images.unsplash.com/photo-1504829857797-ddff29c27927?w=1200&h=900&fit=crop',
+    quickFacts: [
+      'Glass-roofed lodge for aurora borealis viewing from bed',
+      'Private super-jeep expedition across glacial highlands',
+      'Geothermal hot spring soaks in remote volcanic valleys',
+      'Helicopter landing on an active volcano rim'
+    ]
+  },
+  {
+    slug: 'seychelles',
+    name: 'Seychelles',
+    region: 'Indian Ocean',
+    tagline: 'Pristine Beaches and Granite Islands',
+    price: 13200,
+    currency: '$',
+    imageUrl: 'https://images.unsplash.com/photo-1589979481223-deb893043163?w=1200&h=900&fit=crop',
+    quickFacts: [
+      'Hilltop villa on a private island with 360-degree ocean views',
+      'Giant tortoise sanctuary visit on Curieuse Island',
+      'Snorkelling at Anse Source d\'Argent — the world\'s most photographed beach',
+      'Creole cooking class with a local Seychellois chef'
     ]
   }
 ];
