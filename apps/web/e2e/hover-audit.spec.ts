@@ -10,8 +10,8 @@ test.describe('Hover State Audit', () => {
     await page.waitForTimeout(2000);
   });
 
-  test('Destination cards hover', async ({ page }) => {
-    // Scroll to destinations section
+  test('Venue cards hover', async ({ page }) => {
+    // Scroll to venues section
     await page.locator('#destinations').scrollIntoViewIfNeeded();
     await page.waitForTimeout(1000);
 
@@ -23,22 +23,22 @@ test.describe('Hover State Audit', () => {
     const firstCard = cards.first();
     await firstCard.scrollIntoViewIfNeeded();
     await page.waitForTimeout(500);
-    await firstCard.screenshot({ path: path.join(screenshotDir, '01-destination-card-default.png') });
+    await firstCard.screenshot({ path: path.join(screenshotDir, '01-venue-card-default.png') });
 
     // Hover over first card
     await firstCard.hover();
     await page.waitForTimeout(500);
-    await firstCard.screenshot({ path: path.join(screenshotDir, '02-destination-card-hover.png') });
+    await firstCard.screenshot({ path: path.join(screenshotDir, '02-venue-card-hover.png') });
 
     // Also screenshot the second card (non-featured) 
     if (cardCount > 1) {
       const secondCard = cards.nth(1);
       await secondCard.scrollIntoViewIfNeeded();
       await page.waitForTimeout(300);
-      await secondCard.screenshot({ path: path.join(screenshotDir, '03-destination-card2-default.png') });
+      await secondCard.screenshot({ path: path.join(screenshotDir, '03-venue-card2-default.png') });
       await secondCard.hover();
       await page.waitForTimeout(500);
-      await secondCard.screenshot({ path: path.join(screenshotDir, '04-destination-card2-hover.png') });
+      await secondCard.screenshot({ path: path.join(screenshotDir, '04-venue-card2-hover.png') });
     }
   });
 
@@ -108,7 +108,7 @@ test.describe('Hover State Audit', () => {
     await first.screenshot({ path: path.join(screenshotDir, '12-faq-hover.png') });
   });
 
-  test('WhyAurora specialist cards hover', async ({ page }) => {
+  test('WhyAurora event architect cards hover', async ({ page }) => {
     await page.locator('#why-aurora').scrollIntoViewIfNeeded();
     await page.waitForTimeout(1000);
 

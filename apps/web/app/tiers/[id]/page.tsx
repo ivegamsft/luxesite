@@ -11,7 +11,7 @@ export function generateMetadata({ params }: { params: { id: string } }): Metada
   const tier = tiers.find((t) => t.id === params.id);
   if (!tier) return {};
   return {
-    title: `${tier.name} Membership | Aurora Luxe`,
+    title: `${tier.name} Tier | Aurora Luxe`,
     description: tier.tagline,
   };
 }
@@ -33,7 +33,7 @@ export default function TierDetailPage({ params }: { params: { id: string } }) {
           >
             &larr; Back to Aurora Luxe
           </Link>
-          <span className="text-sm text-aurora-text-muted">Membership</span>
+          <span className="text-sm text-aurora-text-muted">Tier</span>
         </div>
       </nav>
 

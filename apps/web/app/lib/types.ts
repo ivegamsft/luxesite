@@ -1,4 +1,4 @@
-export interface Destination {
+export interface Venue {
   slug: string;
   name: string;
   region: string;
@@ -9,6 +9,9 @@ export interface Destination {
   quickFacts: string[];
 }
 
+/** @deprecated Use Venue instead */
+export type Destination = Venue;
+
 export interface Experience {
   id: string;
   title: string;
@@ -18,7 +21,7 @@ export interface Experience {
   imageUrl?: string;
 }
 
-export interface MembershipTier {
+export interface EventTier {
   id: string;
   name: string;
   tagline: string;
@@ -27,6 +30,9 @@ export interface MembershipTier {
   perks: string[];
   perTrip?: string;
 }
+
+/** @deprecated Use EventTier instead */
+export type MembershipTier = EventTier;
 
 export interface Testimonial {
   id: string;
@@ -55,7 +61,7 @@ export interface NavLink {
   href: string;
 }
 
-export interface TravelGuide {
+export interface InsiderGuide {
   id: string;
   title: string;
   excerpt: string;
@@ -64,6 +70,9 @@ export interface TravelGuide {
   link: string;
   author: string;
 }
+
+/** @deprecated Use InsiderGuide instead */
+export type TravelGuide = InsiderGuide;
 
 export interface PressAward {
   id: string;

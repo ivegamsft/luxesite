@@ -23,10 +23,10 @@ export default function GuideGrid() {
           <h2
             className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-4 text-aurora-text"
           >
-            Travel Guides
+            Insider Guides
           </h2>
           <p className="mb-12 max-w-[65ch] text-fluid-sm text-aurora-text-muted">
-            In-depth destination intelligence from the specialists who know these places first-hand.
+            In-depth venue and experience intelligence from the event architects who know these places first-hand.
           </p>
         </AnimatedSection>
 
@@ -74,8 +74,7 @@ export default function GuideGrid() {
                 onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
                 className="text-sm font-medium transition-colors duration-200 underline decoration-aurora-gold/40 underline-offset-2 hover:decoration-aurora-gold text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
               >
-                Plan Your Journey&nbsp;&rarr;
-              </a>
+                Plan Your Event&nbsp;&rarr;
             </div>
           </div>
         </motion.article>
@@ -124,7 +123,7 @@ export default function GuideGrid() {
                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
                     className="text-sm font-medium transition-colors duration-200 underline decoration-aurora-gold/40 underline-offset-2 hover:decoration-aurora-gold text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
                   >
-                    Plan Your Journey&nbsp;&rarr;
+                    Plan Your Event&nbsp;&rarr;
                   </a>
                 </div>
               </div>

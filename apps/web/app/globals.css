@@ -2,7 +2,7 @@
 
 /* ── Aurora Luxe Theme — Light Warmth ────────────────────────────────
    Hex palette: warm neutrals, champagne gold, navy, sage.
-   Designed for luxury travel — light, refined, editorial. */
+   Designed for luxury events — light, refined, editorial. */
 
 :root {
   /* Backgrounds — warm neutrals */
@@ -128,7 +128,7 @@ body {
    generates `@container` utility automatically; these @container
    breakpoints add card-level adaptation. */
 
-/* Destination cards — adapt text only; outer card padding breaks image framing */
+/* Venue cards — adapt text only; outer card padding breaks image framing */
 @container (max-width: 480px) {
   .destination-card h3 { font-size: var(--fluid-base); }
 }

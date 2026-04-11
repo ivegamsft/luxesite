@@ -26,9 +26,9 @@ describe('Navbar', () => {
 
   it('renders all navigation links', () => {
     render(<Navbar />);
-    expect(screen.getByText('Destinations')).toBeInTheDocument();
+    expect(screen.getByText('Venues')).toBeInTheDocument();
     expect(screen.getByText('Experiences')).toBeInTheDocument();
-    expect(screen.getByText('Membership')).toBeInTheDocument();
+    expect(screen.getByText('Tiers')).toBeInTheDocument();
     expect(screen.getByText('Testimonials')).toBeInTheDocument();
     expect(screen.getByText('Contact')).toBeInTheDocument();
   });
@@ -45,15 +45,15 @@ describe('Navbar', () => {
     
     // Mobile menu should not be visible initially
     // The mobile menu is rendered conditionally, so links should only appear once initially (desktop)
-    const destinationLinks = screen.getAllByText('Destinations');
-    expect(destinationLinks).toHaveLength(1);
+    const venueLinks = screen.getAllByText('Venues');
+    expect(venueLinks).toHaveLength(1);
 
     // Find and click the mobile menu button
     const menuButton = screen.getByRole('button', { name: /toggle menu/i });
     fireEvent.click(menuButton);
 
     // After clicking, mobile menu should appear with additional links
-    const destinationLinksAfter = screen.getAllByText('Destinations');
-    expect(destinationLinksAfter.length).toBeGreaterThan(1);
+    const venueLinksAfter = screen.getAllByText('Venues');
+    expect(venueLinksAfter.length).toBeGreaterThan(1);
   });
 });

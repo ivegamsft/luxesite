@@ -86,7 +86,7 @@ export default function DestinationGrid() {
             </h2>
             <div className="editorial-divider mb-6" aria-hidden="true"></div>
             <p className="section-intro">
-              Each destination hand-selected by our specialists for its singular character — 
+              Each venue hand-selected by our event architects for its singular character — 
               from private island retreats to cultural capitals that reveal themselves only to those who know where to look.
             </p>
           </div>

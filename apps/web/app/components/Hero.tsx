@@ -227,7 +227,7 @@ export default function Hero() {
       if (selectedDest || selectedTiming) {
         window.dispatchEvent(
           new CustomEvent('hero-discovery', {
-            detail: { destination: selectedDest, timing: selectedTiming },
+            detail: { venue: selectedDest, timing: selectedTiming },
           })
         );
       }
@@ -311,7 +311,7 @@ export default function Hero() {
           className="flex flex-col md:flex-row items-stretch md:items-center gap-3 mt-8 bg-aurora-bg-light border border-aurora-border shadow-subtle rounded-lg px-4 py-3"
         >
           <LuxeSelect
-            label="Destination"
+            label="Venue"
             placeholder="Where to?"
             options={DESTINATIONS}
             value={selectedDest}
@@ -319,7 +319,7 @@ export default function Hero() {
             divider
           />
           <LuxeSelect
-            label="Travel timing"
+            label="Event timing"
             placeholder="When?"
             options={TIMINGS}
             value={selectedTiming}

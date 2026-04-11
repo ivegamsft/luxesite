@@ -1,6 +1,6 @@
-import { MembershipTier } from '../lib/types';
+import { EventTier } from '../lib/types';
 
-export const tiers: MembershipTier[] = [
+export const tiers: EventTier[] = [
   {
     id: 'one-time',
     name: 'One Time',
