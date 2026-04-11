@@ -163,6 +163,44 @@ body {
   display: none;
 }
 
+/* ── Editorial Divider — thin gold rule ──────────────────────────── */
+.editorial-divider {
+  width: 3rem;
+  height: 1px;
+  background: var(--aurora-gold);
+  opacity: 0.5;
+}
+
+/* ── Section Intro — editorial subtitle ──────────────────────────── */
+.section-intro {
+  max-width: 38rem;
+  font-size: var(--fluid-base);
+  line-height: 1.75;
+  color: var(--aurora-text-muted);
+  letter-spacing: 0.01em;
+}
+
+/* ── Section Break — decorative breathing room between sections ──── */
+.section-break {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 1.5rem + 2vw, 4rem) 0;
+}
+
+.section-break::before {
+  content: '';
+  width: 1px;
+  height: clamp(2rem, 1.5rem + 2vw, 4rem);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--aurora-gold),
+    transparent
+  );
+  opacity: 0.35;
+}
+
 /* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   *,

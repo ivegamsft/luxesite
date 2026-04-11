@@ -71,21 +71,30 @@ export default function ExperienceList() {
   return (
     <section id="experiences" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-dark">
       <div className="max-w-7xl mx-auto">
+        {/* Editorial section intro — distinct from Destinations heading style */}
         <AnimatedSection>
-          <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-12">
-            Signature Experiences
-          </h2>
+          <div className="mb-16 md:mb-20 max-w-3xl">
+            <div className="editorial-divider mb-8" aria-hidden="true"></div>
+            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-5 text-aurora-text">
+              Signature Experiences
+            </h2>
+            <p className="section-intro">
+              Beyond destinations — these are the moments that define a journey. 
+              Each experience crafted with local experts who open doors that remain 
+              closed to ordinary travel.
+            </p>
+          </div>
         </AnimatedSection>
 
         {/* Two-column: featured left + stacked right on desktop */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Featured card — tall, full-height */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+          {/* Featured card — tall, editorial hero treatment */}
           <motion.div
             initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -32 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-white border border-aurora-border rounded-lg overflow-hidden hover:shadow-lift hover:-translate-y-1 transition-all duration-300 flex flex-col row-span-full"
+            className="bg-white border border-aurora-border rounded-sm overflow-hidden hover:shadow-lift hover:-translate-y-1 transition-all duration-300 flex flex-col row-span-full"
           >
             {/* Featured image — hero-scale */}
             {featured.imageUrl && (
@@ -103,12 +112,12 @@ export default function ExperienceList() {
             )}
 
             <div className="p-8 lg:p-10 flex flex-col flex-1">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="inline-flex items-center gap-1.5 bg-aurora-gold/10 text-aurora-gold text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-full border border-aurora-gold/20">
+            <div className="flex items-center gap-3 mb-8">
+              <span className="inline-flex items-center gap-1.5 text-aurora-gold text-xs font-medium tracking-[0.15em] uppercase">
                 <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5" aria-hidden="true">
                   <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z" />
                 </svg>
-                Featured
+                Featured Experience
               </span>
             </div>
 
@@ -136,11 +145,11 @@ export default function ExperienceList() {
               ))}
             </ul>
 
-            <div className="flex flex-wrap items-center gap-2 pt-6 border-t border-aurora-border">
+            <div className="flex flex-wrap items-center gap-2 pt-8 border-t border-aurora-border">
               {featured.regions.map((region) => (
                 <span
                   key={region}
-                  className="bg-aurora-bg-light border border-aurora-border text-aurora-text-muted text-xs rounded-full px-2.5 py-0.5"
+                  className="bg-aurora-bg-light border border-aurora-border text-aurora-text-muted text-xs tracking-wide rounded-full px-3 py-1"
                 >
                   {region}
                 </span>
@@ -148,7 +157,7 @@ export default function ExperienceList() {
             </div>
             </div>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
             {rest.map((experience, i) => (
               <motion.div
                 key={experience.id}
@@ -156,7 +165,7 @@ export default function ExperienceList() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, delay: i * 0.04 }}
-                className="group relative rounded-lg overflow-hidden hover:shadow-lift transition-all duration-300 hover:-translate-y-1"
+                className="group relative rounded-sm overflow-hidden hover:shadow-lift transition-all duration-300 hover:-translate-y-1"
               >
                 {/* Full-bleed background image */}
                 {experience.imageUrl && (
@@ -165,7 +174,7 @@ export default function ExperienceList() {
                       src={experience.imageUrl}
                       alt={experience.title}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      className="object-cover transition-transform duration-700 ease-out"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       loading={i < 3 ? 'eager' : 'lazy'}
                     />
@@ -173,23 +182,23 @@ export default function ExperienceList() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
                     {/* Content overlay pinned to bottom */}
-                    <div className="absolute inset-x-0 bottom-0 p-5">
-                      <div className="flex items-center gap-2.5 mb-2">
+                    <div className="absolute inset-x-0 bottom-0 p-6">
+                      <div className="flex items-center gap-2.5 mb-2.5">
                         <span className="text-aurora-gold/90" aria-hidden="true">
                           {experienceIcons[experience.icon]}
                         </span>
-                        <h3 className="font-heading text-fluid-lg font-semibold text-white drop-shadow-md">
+                        <h3 className="font-heading text-fluid-lg font-semibold text-white drop-shadow-md tracking-tight">
                           {experience.title}
                         </h3>
                       </div>
-                      <p className="text-white/75 text-sm leading-relaxed line-clamp-2 drop-shadow-sm">
+                      <p className="text-white/70 text-sm leading-relaxed line-clamp-2 drop-shadow-sm">
                         {experience.description}
                       </p>
-                      <div className="flex flex-wrap gap-1.5 mt-3">
+                      <div className="flex flex-wrap gap-1.5 mt-4">
                         {experience.regions.map((region) => (
                           <span
                             key={region}
-                            className="bg-white/10 backdrop-blur-sm border border-white/15 text-white/80 text-xs rounded-full px-2.5 py-0.5"
+                            className="bg-white/8 backdrop-blur-sm border border-white/12 text-white/75 text-xs tracking-wide rounded-full px-2.5 py-0.5"
                           >
                             {region}
                           </span>
