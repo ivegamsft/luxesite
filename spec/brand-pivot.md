@@ -1,43 +1,55 @@
 # Brand Pivot Specification — Aurora Luxe
 
-> **Issue:** #181  
+> **Issue:** #203 (supersedes #181)  
 > **Author:** Morpheus (Lead/Architect)  
 > **Status:** Draft  
-> **Date:** 2026-04-11  
-> **Scope:** Specs only — no code changes
+> **Date:** 2026-04-14  
+> **Scope:** Specs only — no code changes  
+> **Depends on:** Architecture spike `spec/tier-architecture-spike.md` (#210)
 
 ---
 
 ## 1. Executive Summary
 
-Aurora Luxe is pivoting from a luxury travel concierge brand to a luxury experiential events brand. The company will be repositioned as a "luxury experience architect" — an outfit that designs and produces extraordinary, bespoke experiences across a much wider spectrum than international travel. Travel remains one category, but it now sits alongside futuristic adventures, premium celebrations, kids' engineering builds, cinematic productions, and high-concept bespoke events.
+Aurora Luxe is a **luxury experiential party platform**. We design and produce extraordinary, bespoke celebrations — from half-million-dollar galas to curated children's birthday parties to surprise gift experiences purchased by a third party.
 
-This pivot does **not** change the site's architecture (single-page Next.js), visual identity (warm light theme, champagne gold, editorial tone), or business model (tiered membership + concierge consultation). It changes **what Aurora Luxe sells** — from destinations to experiences — and therefore requires updates to content, data models, information architecture, and the consultation intake flow.
+This spec defines the brand language, data model, consultation flow, and implementation phases for the party platform. It replaces the earlier travel-era spec (#181) and aligns with the three-tier transaction model documented in the architecture spike (#210).
 
-The pivot is a teaching opportunity. Learners will see how a real brand repositioning flows through every layer of a production app — from marketing copy to TypeScript interfaces to form validation — without touching infrastructure. It demonstrates that a well-architected codebase absorbs business pivots gracefully.
+### The Three Service Tiers
+
+Aurora Luxe offers three fundamentally different **service tiers** — not levels of the same thing, but three distinct transaction types:
+
+| Tier | Price | Transaction Type | Who It's For |
+|---|---|---|---|
+| **One Time** | $500,000 | Single event booking | A client who wants one extraordinary event produced |
+| **Yearly** | $1,200,000/yr | Annual subscription | A family that wants cradle-to-pre-teen celebrations managed year-round |
+| **Gift** | $250,000 | Third-party purchase | A buyer purchasing an experience for someone else (buyer ≠ recipient) |
+
+**Why this matters architecturally:** These aren't pricing tiers — they're structurally different products with different data shapes, consultation flows, and API endpoints. The architecture spike (#210) documents the discriminated union pattern (`ServiceTier = OneTimeEvent | YearlySubscription | GiftPurchase`) that models this. This spec translates those architectural decisions into brand language, content strategy, and implementation phases.
+
+This is a **teaching site** — fictitious content, production-grade architecture, simple readable code. Every decision in this spec was chosen because it's a pattern worth learning. Simpler alternatives exist; these patterns earn their complexity.
 
 ---
 
 ## 2. Brand Identity
 
-### 2.1 New Positioning Statement
+### 2.1 Positioning Statement
 
 > **Aurora Luxe: Architects of the Extraordinary.**  
-> We don't book trips. We design experiences that don't exist until you imagine them.
+> We don't plan parties. We produce events that rewrite what's possible.
 
-**Old positioning:** Ultra-premium concierge travel for UHNW individuals.  
-**New positioning:** Ultra-premium bespoke experience design — from private-island retreats to city-scale cinematic weekends to supervised backyard adventure builds for kids. If it can be dreamed, we can produce it.
+**Positioning:** Ultra-premium bespoke event production for UHNW individuals and families. From intimate milestone celebrations to city-scale spectacles to curated children's experiences — if it can be dreamed, we can produce it.
 
 ### 2.2 Brand Voice Guidelines
 
-| Attribute | Before (Travel) | After (Experiences) |
-|---|---|---|
-| **Scope language** | "journeys," "destinations," "itineraries" | "experiences," "productions," "events" |
-| **Expertise signal** | "travel curators," "destination specialists" | "experience architects," "production directors" |
-| **Scale language** | "private villas," "seaplane transfers" | "private venues," "custom-built sets," "bespoke logistics" |
-| **Emotional register** | Aspiration + wanderlust | Aspiration + wonder + imagination |
+| Attribute | Description |
+|---|---|
+| **Scope language** | "events," "productions," "celebrations," "experiences" |
+| **Expertise signal** | "event architects," "production directors," "celebration designers" |
+| **Scale language** | "private venues," "custom-built sets," "bespoke logistics," "white-glove coordination" |
+| **Emotional register** | Aspiration + wonder + imagination |
 
-**Kept from current voice:**
+**Core voice principles (unchanged from previous identity):**
 - Commanding, discreet, bespoke personality
 - No "curated," "discerning," "pinnacle" — ban list unchanged
 - Fragmented, atmospheric copy style (see Decision #3, Hero Copy Direction)
@@ -45,8 +57,9 @@ The pivot is a teaching opportunity. Learners will see how a real brand repositi
 
 **Added to voice:**
 - Playfulness where context allows (kids' events, pet celebrations)
-- Narrative framing — each experience has a "story arc"
+- Narrative framing — each event has a "story arc"
 - Scale vocabulary — "intimate" (2–10 people) to "spectacular" (100+ people)
+- Tier-aware language — copy acknowledges that One Time, Yearly, and Gift clients have different needs
 
 ### 2.3 What Stays the Same
 
@@ -54,21 +67,22 @@ The pivot is a teaching opportunity. Learners will see how a real brand repositi
 - **Typography:** Space Grotesk headings, Inter body, fluid clamp() scale
 - **Design principles:** Authority through restraint, warmth in light, editorial hierarchy, accessible luxury, memorable through craft
 - **Brand name:** Aurora Luxe (no name change)
-- **Business model:** Tiered membership (Silver / Black / Obsidian) + concierge consultation flow
-- **Anti-references:** Generic AI sites, cruise brochures, SaaS landing pages
+- **Anti-references:** Generic AI sites, generic event planning sites, SaaS landing pages
 - **Technical stack:** Next.js, TypeScript, Tailwind CSS, Framer Motion, static data
 
 ### 2.4 What Changes
 
-| Area | Current | New |
+| Area | Previous (Travel Era) | Current (Party Platform) |
 |---|---|---|
-| Company descriptor | "Luxury Travel" | "Luxury Experiences" |
-| Primary content unit | Destination | Experience Package |
-| Category system | Travel regions (Indian Ocean, Europe…) | Experience categories (Adventures, Celebrations, Productions…) |
-| Team titles | "Africa Specialist," "Asia & Pacific Specialist" | "Adventure Architect," "Celebration Director," etc. |
-| Hero CTA | "Explore Destinations" | "Explore Experiences" |
-| Social proof framing | Trip-based testimonials | Experience-based testimonials |
-| FAQ scope | Travel logistics (flights, booking, cancellation) | Experience logistics (planning timelines, safety, venue, scale) |
+| Company descriptor | "Luxury Travel" | "Luxury Experiential Party Platform" |
+| Service model | Linear privilege hierarchy (three levels of the same thing) | Three distinct transaction types (One Time, Yearly, Gift) |
+| Primary content unit | Geographic locations | Event packages and celebration types |
+| Category system | Geographic regions | Event categories (Galas, Milestones, Children's, Corporate, Bespoke) |
+| Team titles | Regional specialists | "Event Architect," "Celebration Director," "Production Lead" |
+| Hero CTA | "Explore destinations" | "Design Your Event" |
+| Social proof framing | Location-based testimonials | Event-based testimonials |
+| FAQ scope | Logistics (flights, booking, cancellation) | Event logistics (planning timelines, safety, venues, scale) |
+| Pricing | Undifferentiated tiers | $500K one-time · $1.2M/yr subscription · $250K gift |
 
 ---
 
@@ -78,63 +92,38 @@ The pivot is a teaching opportunity. Learners will see how a real brand repositi
 
 ```
 page.tsx (Home)
-├── Hero              — "Journeys Written in Light" + destination/timing picker
+├── Hero              — Updated headline/subhead + event type/scale picker
 ├── TrustBar          — Press/award logos
 ├── WhyAurora         — 3-card editorial grid (why choose us)
-├── DestinationGrid   — 14 travel destinations with pricing
-├── ExperienceList    — 8 travel experience categories
-├── Testimonials      — 7 travel-focused testimonials
-├── Interstitial      — Breathing break / visual divider
-├── Tiers             — Silver / Black / Obsidian membership
-├── FAQ               — 8 travel-focused questions
-└── ConciergeForm     — Name, email, dates, travelers, interests, budget, notes
+├── ExperiencePortfolio — Category-driven event browsing
+├── FeaturedPackages   — Curated highlight packages
+├── Testimonials       — Event-focused testimonials spanning tier types
+├── Interstitial       — Breathing break / visual divider
+├── Tiers              — One Time / Yearly / Gift service tiers
+├── FAQ                — 8 event-focused questions
+└── ConciergeForm      — Tier-aware intake with progressive disclosure
 ```
 
-**Navigation (current):** Destinations | Experiences | Our Team | Membership | Testimonials | Contact
+**Navigation:** Events | Packages | Our Team | Service Tiers | Testimonials | Contact
 
-### 3.2 New Sitemap (Post-Pivot)
+### 3.2 Key Structural Notes
 
-```
-page.tsx (Home)
-├── Hero              — Updated headline/subhead + experience type/scale picker
-├── TrustBar          — Updated press references (broader lifestyle press)
-├── WhyAurora         — Updated proof points (experience breadth, not travel depth)
-├── ExperiencePortfolio — NEW: Replaces DestinationGrid. Category-driven browsing.
-├── FeaturedPackages   — NEW: Replaces ExperienceList. Curated highlight packages.
-├── Testimonials       — Updated for experience variety
-├── Interstitial       — Retained (copy update only)
-├── Tiers              — Updated perks language (experiences, not trips)
-├── FAQ                — Updated for experience scope
-└── ConciergeForm      — Expanded with event type, audience, location, scale, safety fields
-```
+1. **Tiers section** displays three cards — but unlike a typical pricing table, each card represents a different *kind* of engagement, not a level of privilege. The card design should visually communicate this (see §7.3).
+2. **ConciergeForm** adapts its fields based on which tier the user selected. This is the progressive disclosure pattern documented in the architecture spike §2.
+3. **ExperiencePortfolio** shows event categories, not locations. Each card links to sample packages within that category.
 
-**Key structural changes:**
-1. **DestinationGrid → ExperiencePortfolio** — Grid of experience categories (not geographic destinations). Each card shows a category with sample packages. Travel-inclusive experiences become one category among many.
-2. **ExperienceList → FeaturedPackages** — Curated set of 6–8 flagship packages across categories. Replaces the region-based experience list.
-3. **ConciergeForm** — Expanded fields for broader intake.
-
-### 3.3 Updated Navigation
-
-```
-Experiences | Packages | Our Team | Membership | Testimonials | Contact
-```
-
-- "Destinations" → "Experiences" (points to ExperiencePortfolio)
-- "Experiences" → "Packages" (points to FeaturedPackages)
-- All other nav items retain targets
-
-### 3.4 Category Taxonomy for Experience Types
+### 3.3 Category Taxonomy for Event Types
 
 Six top-level categories, each with 2–4 sub-types:
 
 | Category | Description | Sub-types |
 |---|---|---|
-| **Voyages** | Travel-based luxury experiences | Private Island Escapes, Cultural Immersions, Expedition Adventures, Yacht Charters |
-| **Celebrations** | Premium events for milestones | Weddings & Proposals, Milestone Birthdays, Anniversary Experiences, Pet Celebrations |
-| **Adventures** | Boundary-pushing experiences | Futuristic/Fictional Narratives, Extreme Environment Expeditions, Survival Challenges, Space-Theme Productions |
-| **Productions** | Cinematic/theatrical-scale events | City-Scale Film Weekends, Private Concert Productions, Immersive Theater, Documentary Experiences |
-| **Junior** | Kid-focused builds and expeditions | Engineering Adventure Builds, Nature Expeditions, Science Camps, Creative Workshops |
-| **Bespoke** | Fully custom, unclassifiable experiences | If you can describe it, we can produce it |
+| **Galas & Spectacles** | Large-scale formal events | Black-tie galas, award ceremonies, launch events, charity spectacles |
+| **Celebrations** | Personal milestone events | Milestone birthdays, anniversary productions, engagement parties, pet celebrations |
+| **Children's** | Kid-focused parties and builds | Themed birthday parties, adventure builds, science camps, creative workshops |
+| **Corporate** | Business entertaining at the highest level | Executive retreats, product launches, team celebrations, client entertainment |
+| **Productions** | Cinematic/theatrical-scale events | City-scale film weekends, private concert productions, immersive theater, documentary events |
+| **Bespoke** | Fully custom, unclassifiable events | If you can describe it, we can produce it |
 
 ---
 
@@ -142,226 +131,207 @@ Six top-level categories, each with 2–4 sub-types:
 
 ### 4.1 Hero Section
 
-**Current headline:** "Journeys Written in Light"  
-**Current subhead:** "Private shores. Unmarked airstrips. Tables that don't take reservations."
-
 **New headline options (pick one during implementation):**
-1. "Experiences That Don't Exist Yet"
+1. "Events That Don't Exist Yet"
 2. "We Build What You Imagine"
-3. "Beyond the Itinerary"
+3. "Beyond the Guest List"
 
 **New subhead options:**
-1. "A rented city. A dog's birthday on a private island. A trip to Mars — almost."
+1. "A rented city block. A six-year-old's robot birthday. A surprise gala for someone who has everything."
 2. "Private productions. Impossible timelines. Events that rewrite the rules."
 3. "From backyard adventure builds to city-scale spectacles. If you can dream it, we produce it."
 
-**Recommendation:** Option 1 for headline, Option 1 for subhead. Maintains the fragmented atmospheric style from Decision #3 while signaling the broader scope.
+**Recommendation:** Option 1 for headline, Option 1 for subhead. Maintains the fragmented atmospheric style from Decision #3 while signaling the breadth of event types.
 
 **Hero discovery row update:**
-- Replace "Where to?" destination dropdown with "What kind?" experience category selector
-- Replace "When?" timing dropdown with "How many guests?" scale selector
-- "Discuss with a specialist →" text unchanged
+- "What kind?" → event category selector (maps to §3.3 taxonomy)
+- "How many guests?" → scale selector
+- "Talk to an architect →" → links to ConciergeForm
 
 ### 4.2 "Why Us" Proof Points
 
-**Current (travel-focused):** Three cards about travel expertise, destination access, and concierge service.
-
-**New proof points (3-card grid retained):**
+**New proof points (3-card grid):**
 
 | Card | Title | Supporting Copy |
 |---|---|---|
-| 1 | **Architects, Not Agents** | "We don't book — we build. Every experience is designed from scratch, with dedicated production teams, bespoke logistics, and white-glove execution." |
+| 1 | **Architects, Not Planners** | "We don't book venues — we build worlds. Every event is designed from scratch, with dedicated production teams, bespoke logistics, and white-glove execution." |
 | 2 | **Every Scale, Every Scene** | "Intimate candlelit proposals. 500-guest spectacles. Supervised backyard builds for a six-year-old's birthday. The scale changes; the standard doesn't." |
 | 3 | **Obsessive Safety & Detail** | "Behind every extraordinary moment is a meticulous operations plan. Licensed vendors, contingency protocols, and real-time coordination — invisible to you, essential to us." |
 
-### 4.3 Experience Categories (ExperiencePortfolio Section)
+### 4.3 Event Categories (ExperiencePortfolio Section)
 
-Each category card displays: icon, title, description, 2–3 sample package titles, price range.
+Each category card displays: icon, title, description, 2–3 sample event titles, price range.
 
-| Category | Sample Packages | Starting Price |
+| Category | Sample Events | Starting Price |
 |---|---|---|
-| **Voyages** | "Maldives Overwater Escape," "Patagonia Glacier Trek," "Tokyo After Dark" | From $7,400 |
-| **Celebrations** | "The Royal Paw Gala" (luxury dog party), "Golden Anniversary: Venice," "Surprise Proposal: Santorini Cliffside" | From $5,000 |
-| **Adventures** | "Mission to Mars: A Three-Day Narrative," "Antarctic Survival Weekend," "Volcano Rim Dining" | From $12,000 |
-| **Productions** | "Rent-a-City: Your Weekend Film," "Private Beyoncé-Scale Concert for 50," "Murder Mystery: Your Estate" | From $25,000 |
-| **Junior** | "Backyard Space Station Build," "Junior Paleontologist Expedition," "Robot Wars: Family Edition" | From $3,500 |
+| **Galas & Spectacles** | "The Midnight Masquerade," "Neon Noir: A Warehouse Gala," "The Floating Ballroom" | From $500,000 |
+| **Celebrations** | "The Royal Paw Gala" (luxury dog party), "Golden Anniversary: A Private Opera," "Surprise 50th: Rooftop Fireworks" | From $250,000 |
+| **Children's** | "Backyard Space Station Build," "Junior Paleontologist Expedition," "Robot Wars: Birthday Edition" | From $50,000 |
+| **Corporate** | "The Boardroom in the Sky," "Product Launch: Immersive Edition," "Team Summit: Arctic Base Camp" | From $300,000 |
+| **Productions** | "Rent-a-City: Your Weekend Film," "Private Concert for 50," "Murder Mystery: Your Estate" | From $500,000 |
 | **Bespoke** | "Tell us your dream. We'll tell you when it's ready." | By Consultation |
 
-### 4.4 Package Tiers — Updated Language
+### 4.4 Service Tiers — Content & Positioning
 
-Tier names (Silver, Black, Obsidian) and price points are **unchanged**. Perks language shifts from travel to experience framing:
+The three tiers are **not levels** — they are fundamentally different transaction types. The content on each tier card must communicate this distinction clearly.
 
-**Silver — "Your Journey Begins" → "Your First Act"**
-- Priority booking at partner venues and properties worldwide
-- Complimentary VIP access at Aurora-partnered events
-- Quarterly experience portfolio and trend intelligence
-- 10% discount on all designed experiences
-- Dedicated concierge hotline
+**One Time — "One Night. Every Detail." ($500,000)**
+- Full-service production for a single extraordinary event
+- Dedicated event architect and production team
+- Venue sourcing, design, build-out, and teardown
+- Complete vendor coordination (catering, entertainment, AV, décor)
+- Day-of production management with real-time coordination
+- Post-event documentation (professional photography, highlight reel)
 
-**Black — "Elevated Beyond Limits" → "Main Stage"**
-- Everything in Silver, plus:
-- Personal experience architect who knows your preferences
-- Complimentary venue upgrades at 500+ partner locations
-- Access to private aviation booking with preferred rates
-- Invitation-only Aurora showcase events in Monaco, Aspen, and Dubai
-- Annual complimentary experience (valued at $15,000)
-- 24/7 emergency production support anywhere in the world
+**Yearly — "Every Milestone. Every Year." ($1,200,000/yr)**
+- Annual subscription covering cradle-to-pre-teen family celebrations
+- Up to 12 produced events per year (birthdays, holidays, milestones)
+- Dedicated family event architect who knows your children's evolving interests
+- Ongoing planning calendar with quarterly check-ins
+- Priority vendor access and venue booking year-round
+- Rollover unused events (up to 3) to the following year
+- Sibling coordination — themed continuity across kids' events
 
-**Obsidian — "The Rarest Circle" → "The Director's Cut"**
-- Everything in Black, plus:
-- Dedicated production team of three specialists
-- Unlimited complimentary companion access for one guest
-- Private experiences designed exclusively for you
-- Helicopter transfers in major cities
-- Annual bespoke production (valued at $50,000)
-- Access to Aurora's private island in the Seychelles
-- Lifetime membership after five consecutive years
-- Your name etched in the Aurora Hall of Legends
+**Gift — "Give the Impossible." ($250,000)**
+- Purchase a single produced event for someone else
+- Buyer and recipient are different people — two-party model
+- Choose a presentation style: physical card, digital reveal, or surprise in-person delivery
+- Recipient activates with a unique gift code and enters the One Time consultation flow
+- 18-month redemption window from purchase date
+- Buyer is notified when the recipient activates
 
-### 4.5 Testimonials — Updated for Variety
+**Why these three?** See architecture spike §1 — each tier carries structurally different data. A One Time event has a date, guest count, and venue. A Yearly subscription has a renewal cycle and event allotment. A Gift has a buyer, a recipient, and a redemption lifecycle. Forcing these into a single "tier" shape would mean a messy interface full of optional fields. The discriminated union pattern keeps each type clean.
 
-Replace current 7 travel-only testimonials with 7 that span categories:
+### 4.5 Testimonials — Updated for Event Variety
 
-| Name | Experience Type | Key Quote Direction |
+Replace previous testimonials with 7 that span tier types and event categories:
+
+| Name | Event Type (Tier) | Key Quote Direction |
 |---|---|---|
-| Sophia Chen | Family Safari (Voyages) | Retained — travel testimonial still valid |
-| Marcus Laurent | Private Venice event (Celebrations) | Shifted from "villa stay" to "anniversary production" |
-| Aisha Rahman | Culinary trail (Voyages) | Retained with minor language shift |
-| Henrik Bjørn | City-scale film weekend (Productions) | New: "They shut down three blocks of Stockholm for our anniversary film" |
-| Olivia Martinez | Luxury dog celebration (Celebrations) | New: "Our golden retriever's birthday party had 40 guests, a three-course dog menu, and a photographer from Vogue" |
-| James Whitfield | Kids' adventure build (Junior) | New: "They built a working zip line and fossil dig in our backyard for our son's 8th birthday" |
-| Yuki Tanaka | Cultural immersion (Voyages) | Retained — already brand-aligned |
+| Sophia Chen | Anniversary gala (One Time) | "They turned a rooftop into Venice for our 25th anniversary" |
+| Marcus Laurent | Surprise 40th birthday (Gift) | "I bought it for my wife — she had no idea until the helicopter landed" |
+| Aisha Rahman | Annual family events (Yearly) | "Our kids' birthday parties are the talk of the school — every single year" |
+| Henrik Bjørn | City-scale production (One Time) | "They shut down three blocks of Stockholm for our company's centennial" |
+| Olivia Martinez | Luxury dog celebration (One Time) | "Our golden retriever's birthday party had 40 guests, a three-course dog menu, and a photographer from Vogue" |
+| James Whitfield | Kids' adventure build (Yearly) | "They built a working zip line and fossil dig in our backyard for our son's 8th birthday" |
+| Yuki Tanaka | Corporate retreat (One Time) | "The product launch felt like a film premiere — because it was" |
 
-### 4.6 FAQ — Updated for Broader Scope
+### 4.6 FAQ — Updated for Party Platform
 
-Replace 8 travel-focused FAQs with 8 experience-focused FAQs:
+Replace previous FAQs with 8 event-focused FAQs:
 
 | ID | Question | Answer Direction |
 |---|---|---|
-| `process` | "How does the design process work?" | Consultation → concept brief → production plan → execution. Replaces "consultation process" travel version |
-| `tiers` | "What's included in each membership tier?" | Updated perk descriptions (see §4.4). Structure unchanged |
-| `lead-time` | "How far in advance should I plan?" | 2–4 weeks for intimate events, 3–6 months for productions, 12+ months for city-scale or travel-based |
-| `modifications` | "Can I change the plan after booking?" | Retained — flexibility messaging applies broadly |
-| `cancellation` | "What if I need to cancel?" | Retained — policy structure applies broadly |
-| `safety` | "How do you handle safety and permits?" | NEW: Licensed vendors, insurance, local permits, contingency plans, on-site safety coordinators |
-| `kids-safety` | "Are kids' experiences supervised?" | NEW: DBS/background-checked staff, age-appropriate risk assessment, parent briefing, 1:4 staff-child ratio |
-| `budget` | "Is there a minimum budget?" | Updated: "Our experiences start at $3,500 for Junior packages and scale to whatever your imagination requires." |
+| `process` | "How does the event design process work?" | Consultation → concept brief → production plan → execution. Flow varies by tier type (see §6) |
+| `tiers` | "What's the difference between One Time, Yearly, and Gift?" | Three different transaction types, not privilege levels. One Time = single event. Yearly = annual subscription for family events. Gift = buy an event for someone else. |
+| `lead-time` | "How far in advance should I plan?" | 4–8 weeks for intimate events, 3–6 months for galas/productions, 12+ months for city-scale spectacles |
+| `modifications` | "Can I change the plan after booking?" | Yes — flexibility is built into every tier. Yearly subscribers can adjust their calendar quarterly. |
+| `cancellation` | "What if I need to cancel?" | Cancellation policies vary by tier. Gift purchases have an 18-month redemption window with no cancellation needed. |
+| `safety` | "How do you handle safety and permits?" | Licensed vendors, insurance, local permits, contingency plans, on-site safety coordinators for every event |
+| `kids-safety` | "Are children's events supervised?" | DBS/background-checked staff, age-appropriate risk assessment, parent briefing, 1:4 staff-child ratio minimum |
+| `gift` | "How does the Gift tier work?" | You purchase, choose a presentation method, and we deliver a gift code. The recipient activates when ready and enters the full consultation flow. Codes are valid for 18 months. |
 
 ### 4.7 CTA Language
 
-| Location | Current | New |
-|---|---|---|
-| Hero primary | "Request Consultation" | "Design Your Experience" |
-| Hero secondary | "Explore Destinations" | "Explore Experiences" |
-| Hero discovery row | "Discuss with a specialist →" | "Talk to an architect →" |
-| Tier cards | "Begin Your Journey" / "Enquire Now" | "Start Designing" / "Talk to Us" |
-| Footer | "Book Your Consultation" | "Design Something Extraordinary" |
-| Navbar CTA (if any) | "Contact" | "Start Here" |
+| Location | CTA Text |
+|---|---|
+| Hero primary | "Design Your Event" |
+| Hero secondary | "Explore Events" |
+| Hero discovery row | "Talk to an architect →" |
+| One Time tier card | "Start Planning" |
+| Yearly tier card | "Subscribe Now" |
+| Gift tier card | "Give an Experience" |
+| Footer | "Design Something Extraordinary" |
+| Navbar CTA | "Start Here" |
+
+**Why tier-specific CTAs?** Each tier enters a different consultation funnel (see §6). The CTA text signals what happens next. "Start Planning" sets up a single-event intake. "Subscribe Now" sets up an annual onboarding. "Give an Experience" sets up the two-party gift flow.
 
 ---
 
 ## 5. Data Model
 
-### 5.1 Current Model (Static .ts Files)
+### 5.1 Service Tier Types (from Architecture Spike #210)
 
-**File:** `apps/web/app/lib/types.ts`
+The architecture spike defines a **discriminated union** for service tiers. This is the canonical type system — all downstream specs and components reference these interfaces.
 
 ```typescript
-// Current interfaces
-interface Destination {
-  slug: string;        // URL-safe identifier
-  name: string;        // Display name
-  region: string;      // Geographic region
-  tagline: string;     // Short descriptor
-  price: number;       // Starting price (numeric)
-  currency: string;    // Currency symbol
-  imageUrl: string;    // Unsplash URL
-  quickFacts: string[]; // 4 bullet points
+// --- Base type (shared across all tiers) ---
+
+type TierType = 'one-time' | 'yearly' | 'gift';
+
+interface ServiceTierBase {
+  id: string;
+  tierType: TierType;
+  name: string;
+  tagline: string;
+  price: string;
+  perks: string[];
+  createdAt: string;  // ISO 8601
 }
 
-interface Experience {
-  id: string;          // Kebab-case identifier
-  title: string;       // Category name
-  description: string; // 2-sentence description
-  icon: string;        // Icon key for SVG map
-  regions: string[];   // Geographic regions
-  imageUrl?: string;   // Optional hero image
+// --- One Time: single event, no ongoing relationship ---
+
+interface OneTimeEvent extends ServiceTierBase {
+  tierType: 'one-time';
+  eventBrief: string;
+  eventDate: string;
+  guestCount: number;
+  status: 'inquiry' | 'planning' | 'confirmed' | 'executed' | 'completed';
 }
 
-interface MembershipTier { ... }  // Unchanged
-interface Testimonial { ... }     // Minor field updates
-interface TeamMember { ... }      // Title/bio updates
-interface NavLink { ... }         // Label updates
-interface TravelGuide { ... }     // Rename to ExperienceGuide
-interface PressAward { ... }      // Unchanged
+// --- Yearly: subscription, recurring family events ---
+
+interface YearlySubscription extends ServiceTierBase {
+  tierType: 'yearly';
+  subscriptionStart: string;
+  subscriptionEnd: string;
+  eventsUsed: number;
+  eventsIncluded: number;  // default: 12
+  status: 'active' | 'paused' | 'cancelled' | 'expired';
+}
+
+// --- Gift: third-party purchase, buyer ≠ recipient ---
+
+interface GiftPurchase extends ServiceTierBase {
+  tierType: 'gift';
+  buyer: ContactInfo;
+  recipient: ContactInfo;
+  redeemed: boolean;
+  expiresAt: string;  // 18 months from purchase
+  status: 'purchased' | 'delivered' | 'activated' | 'redeemed' | 'expired';
+}
+
+// Discriminated union — use tierType to narrow
+type ServiceTier = OneTimeEvent | YearlySubscription | GiftPurchase;
 ```
 
-**Data files (current):**
-- `destinations.ts` — 14 Destination records (travel locations)
-- `experiences.ts` — 8 Experience records (travel categories)
-- `tiers.ts` — 3 MembershipTier records
-- `testimonials.ts` — 7 Testimonial records
-- `team.ts` — 5 TeamMember records
-- `navigation.ts` — 6 NavLink records
-- `guides.ts` — 6 TravelGuide records
-- `awards.ts` — 6 PressAward records
+**Why a discriminated union?** TypeScript's narrowing on `tierType` gives compile-time safety. A `switch` on `tierType` catches missing cases. Learners see a real-world use of discriminated unions — one of TypeScript's most practical patterns. See architecture spike §1 for full field-level documentation.
 
-### 5.2 New ExperiencePackage Type
+**Why `string` dates?** JSON has no Date type. ISO 8601 strings serialize cleanly and parse predictably. A teaching site should model what APIs actually return.
 
-The new primary content unit. Replaces both `Destination` and `Experience`:
+### 5.2 ExperiencePackage Type (Event Catalog)
+
+The primary content unit for the event catalog. Each bookable event template is an `ExperiencePackage`:
 
 ```typescript
-/** A single bookable experience package */
+/** A single bookable event package */
 export interface ExperiencePackage {
-  /** URL-safe identifier (e.g., "mars-mission-narrative") */
-  slug: string;
-
-  /** Display title (e.g., "Mission to Mars: A Three-Day Narrative") */
-  title: string;
-
-  /** 1-2 sentence atmospheric description */
-  tagline: string;
-
-  /** Top-level category from the taxonomy */
-  category: ExperienceCategory;
-
-  /** Optional sub-category for filtering */
-  subCategory?: string;
-
-  /** Starting price in USD (numeric for sorting/filtering) */
-  priceFrom: number;
-
-  /** Price display string (e.g., "From $12,000" or "By Consultation") */
-  priceDisplay: string;
-
-  /** Hero image URL */
-  imageUrl: string;
-
-  /** 3-5 highlight bullet points */
-  highlights: string[];
-
-  /** Estimated duration (e.g., "3 days", "1 evening", "2 weekends") */
-  duration: string;
-
-  /** Guest count range (e.g., "2–10", "50–500", "1 very good dog") */
-  guestRange: string;
-
-  /** Location type */
+  slug: string;                    // URL-safe identifier
+  title: string;                   // Display title
+  tagline: string;                 // 1-2 sentence atmospheric description
+  category: EventCategory;         // Top-level category
+  subCategory?: string;            // Optional sub-category for filtering
+  priceFrom: number;               // Starting price in USD
+  priceDisplay: string;            // e.g., "From $500,000" or "By Consultation"
+  imageUrl: string;                // Hero image URL
+  highlights: string[];            // 3-5 bullet points
+  duration: string;                // e.g., "1 evening", "3 days", "2 weekends"
+  guestRange: string;              // e.g., "2–10", "50–500", "1 very good dog"
   locationType: 'fixed' | 'flexible' | 'remote' | 'client-site';
-
-  /** Location description (e.g., "Maldives", "Your backyard", "Any major city") */
-  location: string;
-
-  /** Age appropriateness */
+  location: string;                // e.g., "Any major city", "Your backyard"
   ageRange?: 'all-ages' | 'adults-only' | 'kids-focused' | 'family';
-
-  /** Safety/logistics tier: how much operational planning is involved */
   complexity: 'intimate' | 'standard' | 'complex' | 'spectacular';
-
-  /** Whether this package is currently featured on homepage */
   featured: boolean;
-
-  /** Sort order within category */
   sortOrder: number;
 }
 ```
@@ -369,36 +339,23 @@ export interface ExperiencePackage {
 ### 5.3 Category Taxonomy Type
 
 ```typescript
-/** Top-level experience categories */
-export type ExperienceCategory =
-  | 'voyages'
+/** Top-level event categories */
+export type EventCategory =
+  | 'galas'
   | 'celebrations'
-  | 'adventures'
+  | 'childrens'
+  | 'corporate'
   | 'productions'
-  | 'junior'
   | 'bespoke';
 
 /** Metadata for each category (used in ExperiencePortfolio section) */
 export interface CategoryMeta {
-  /** Category key */
-  id: ExperienceCategory;
-
-  /** Display name */
+  id: EventCategory;
   label: string;
-
-  /** 1-sentence category description */
   description: string;
-
-  /** Icon key for SVG map */
   icon: string;
-
-  /** Hero image for category card */
   imageUrl: string;
-
-  /** Sub-category labels */
   subCategories: string[];
-
-  /** Display order */
   sortOrder: number;
 }
 ```
@@ -406,114 +363,134 @@ export interface CategoryMeta {
 ### 5.4 Supporting Type Updates
 
 ```typescript
-/** Replaces TravelGuide */
-export interface ExperienceGuide {
-  id: string;
-  title: string;
-  excerpt: string;
-  readTime: string;
-  imageUrl: string;
-  link: string;
-  author: string;
-  category: ExperienceCategory;  // NEW: ties guide to a category
-}
-
 /** TeamMember — updated titles, no structural change */
 export interface TeamMember {
   id: string;
   name: string;
-  title: string;          // e.g., "Adventure Architect" instead of "Africa Specialist"
+  title: string;          // e.g., "Event Architect" instead of regional specialist
   bio: string;
   photoUrl: string;
   yearsExperience: number;
-  specialties: string[];  // Now category-based, not region-based
+  specialties: string[];  // Now category-based (galas, children's, etc.)
 }
 
-/** Testimonial — add category tag */
+/** Testimonial — add tier type and category tag */
 export interface Testimonial {
   id: string;
   name: string;
-  role: string;           // Now describes experience, not trip
+  role: string;           // Describes the event, not a location
   quote: string;
   location: string;
   date: string;
   avatar?: string;
   rating?: number;
   sourceLink?: string;
-  category?: ExperienceCategory;  // NEW: for filtering/display
+  tierType?: TierType;              // NEW: which tier (one-time, yearly, gift)
+  category?: EventCategory;         // NEW: for filtering/display
 }
 ```
 
-### 5.5 Migration Path
+### 5.5 Data Files After Migration
 
-**Strategy:** Additive migration. New types are created alongside old ones. Old data files are replaced in Phase 1–2. No runtime migration needed (static data).
+| File | Records | Notes |
+|---|---|---|
+| `categories.ts` | 6 CategoryMeta | One per event category |
+| `packages.ts` | 18–24 ExperiencePackage | 3–4 per category |
+| `tiers.ts` | 3 ServiceTierBase | One Time, Yearly, Gift — updated names, prices, perks |
+| `testimonials.ts` | 7 Testimonial | Span all three tier types |
+| `team.ts` | 5 TeamMember | Updated titles/bios for party platform |
+| `navigation.ts` | 6 NavLink | Updated labels |
+| `awards.ts` | 6 PressAward | Minor updates for broader event press |
+
+### 5.6 Migration Path
+
+**Strategy:** Additive migration. New types coexist with old types during transition. No runtime migration needed (static data).
 
 | Phase | Action |
 |---|---|
-| Phase 1 | Add new types to `types.ts`. Create `categories.ts` and `packages.ts` data files. Update text in existing data files (testimonials, tiers, FAQ, team, navigation). |
-| Phase 2 | Remove `destinations.ts` — content absorbed into `packages.ts` with `category: 'voyages'`. Remove old `experiences.ts` — replaced by `categories.ts`. Rename `guides.ts` exports. |
-| Phase 3 | Update ConciergeForm to use new category/scale fields. |
-| Phase 4 | Replace DestinationGrid component with ExperiencePortfolio. Replace ExperienceList with FeaturedPackages. |
-
-**New data files after migration:**
-- `categories.ts` — 6 CategoryMeta records
-- `packages.ts` — 18–24 ExperiencePackage records (3–4 per category)
-- `tiers.ts` — 3 records (updated copy)
-- `testimonials.ts` — 7 records (updated copy/categories)
-- `team.ts` — 5 records (updated titles/bios)
-- `navigation.ts` — 6 records (updated labels)
-- `guides.ts` → `experience-guides.ts` — 6 records (updated)
-- `awards.ts` — 6 records (minor updates to broader press)
+| Phase 1 | Add `ServiceTierBase`, `OneTimeEvent`, `YearlySubscription`, `GiftPurchase` types to `types.ts`. Update `tiers.ts` data to One Time / Yearly / Gift. Create `categories.ts` and `packages.ts`. Update copy in testimonials, team, navigation, awards. |
+| Phase 2 | Remove old content types (old category/location types). All data flows through new types. |
+| Phase 3 | Update ConciergeForm with tier-aware progressive disclosure (see §6). |
+| Phase 4 | Replace old section components with ExperiencePortfolio and FeaturedPackages. Update page composition. |
 
 ---
 
 ## 6. Consultation Flow
 
-### 6.1 Current Form Fields
+The architecture spike (#210, §2) documents that the three tier types require **three distinct consultation funnels** after the initial tier selection. This section specifies the form fields and UX patterns.
 
-From `ConciergeForm.tsx`:
+### 6.1 Shared Base Fields (All Tiers)
 
 | Field | Type | Required |
 |---|---|---|
 | Name | text input | Yes |
 | Email | email input | Yes |
-| Travel dates | text input | No (progressive disclosure) |
-| Number of travelers | number input (default: 2) | No (progressive disclosure) |
-| Interests | multi-select checkboxes (8 travel options) | No (progressive disclosure) |
-| Budget | radio select (5 ranges) | No (progressive disclosure) |
-| Notes | textarea (500 char max) | No (progressive disclosure) |
+| Tier selection | card selector | Yes — user picks One Time, Yearly, or Gift |
 
-**Progressive disclosure:** Initial view shows Name + Email. "Tell us more" toggle reveals remaining fields.
+**Progressive disclosure:** The base form shows these 3 fields. After tier selection, tier-specific fields are revealed. This matches the `showDetails` + `selectedTier` pattern already in ConciergeForm — we extend it, not replace it.
 
-### 6.2 New Form Fields
+### 6.2 One Time: Event Brief Flow
 
-| Field | Type | Required | Notes |
-|---|---|---|---|
-| Name | text input | Yes | Unchanged |
-| Email | email input | Yes | Unchanged |
-| **Experience type** | select dropdown | No | Maps to ExperienceCategory taxonomy. Options: Voyage, Celebration, Adventure, Production, Junior Experience, Bespoke / Not Sure |
-| **Audience** | select dropdown | No | "Adults only," "Family with kids," "Corporate group," "Couple," "Solo," "Other" |
-| **Guest count** | number input (default: 2) | No | Replaces "travelers" — broader language |
-| **Preferred location** | text input with suggestions | No | Free text. Replaces fixed destination list. Placeholder: "A city, a country, or 'surprise me'" |
-| **Preferred dates** | text input | No | Unchanged semantics, updated label to "When?" |
-| **Scale** | select dropdown | No | "Intimate (2–10)," "Gathering (10–50)," "Event (50–200)," "Spectacular (200+)" |
-| Budget | radio select | No | Updated ranges: "Under $5,000," "$5,000–$25,000," "$25,000–$100,000," "$100,000+," "Let's discuss" |
-| **Safety considerations** | textarea (300 char max) | No | "Any allergies, mobility needs, age-specific requirements, or safety concerns?" |
-| Notes | textarea (500 char max) | No | Unchanged |
+After selecting the One Time tier, reveal:
 
-### 6.3 Form UX: Progressive Disclosure & Conditional Fields
+| Field | Type | Notes |
+|---|---|---|
+| Event type | select dropdown | Maps to EventCategory. Options: Gala, Celebration, Children's, Corporate, Production, Bespoke |
+| Target date | date input | When the event should happen |
+| Guest count | number input (default: 50) | Drives staffing and venue sizing |
+| Venue preference | text input | Free text. Placeholder: "A rooftop, a warehouse, your backyard, or 'surprise me'" |
+| Budget range | radio select | "$250K–$500K," "$500K–$1M," "$1M+," "Let's discuss" |
+| Special requirements | textarea (500 char) | Dietary, accessibility, entertainment preferences |
 
-**Step 1 (always visible):** Name, Email, Experience Type  
-**Step 2 (revealed on "Tell us more" or after selecting Experience Type):** Audience, Guest Count, Preferred Location, Preferred Dates  
-**Step 3 (revealed on further expansion):** Scale, Budget, Safety Considerations, Notes
+**Flow after submit:** Inquiry → single consultation call → contract + deposit → planning → execution → completion.
 
-**Conditional logic:**
-- If Experience Type = "Junior Experience" → show Safety Considerations immediately (Step 2)
-- If Experience Type = "Production" or "Adventure" → show Scale immediately (Step 2)
-- If Experience Type = "Bespoke" → collapse to Name, Email, Notes only ("Tell us everything")
-- Guest count default adjusts: "Couple" audience → 2, "Family" → 4, "Corporate" → 20
+### 6.3 Yearly: Subscription Onboarding
 
-**Tier pre-fill preserved:** When a user clicks "Start Designing" on a tier card, the form pre-fills budget and notes with tier context (existing CustomEvent pattern retained).
+After selecting the Yearly tier, reveal:
+
+| Field | Type | Notes |
+|---|---|---|
+| Family size | number input | Total family members |
+| Children's ages | text input | Comma-separated ages. Drives event appropriateness. |
+| Important annual dates | textarea | Birthdays, anniversaries, holidays to plan around |
+| Interests | multi-select | Children's current interests (science, adventure, arts, sports, animals) |
+| Dietary/allergy notes | textarea | Applies across all family events |
+| Preferred event scale | select | "Intimate family," "Extended family," "Friends included" |
+
+**Flow after submit:** Family needs assessment → subscription agreement → ongoing planning calendar (12 events/year) → quarterly check-ins.
+
+### 6.4 Gift: Two-Party Intake
+
+After selecting the Gift tier, reveal:
+
+| Field | Type | Notes |
+|---|---|---|
+| Recipient name | text input | Who receives the gift |
+| Recipient email | email input | For gift code delivery |
+| Occasion | text input | "Birthday," "Retirement," "Just because," etc. |
+| Delivery method | select | Physical card, digital reveal, surprise in-person |
+| Personal message | textarea (300 char) | Included with the gift presentation |
+| Surprise preference | checkbox | "Don't tell them who it's from" |
+
+**Flow after submit:** Purchase confirmation → gift presentation designed → gift delivered to recipient → recipient activates with gift code → recipient enters One Time flow.
+
+**Why the Gift tier converts to One Time on redemption:** Once a recipient activates, they need the same consultation flow as a One Time client (event type, date, guests, etc.). Creating a separate "gift event" flow would duplicate logic. Instead, redemption creates a `OneTimeEvent` booking linked to the gift record. See architecture spike §4 for the full data flow diagram.
+
+### 6.5 Form UX: Progressive Disclosure Pattern
+
+```
+Base fields (all tiers):  Name, Email, Tier Selection
+  ├─ one-time:  eventType, targetDate, guestCount, venuePreference, budget, specialRequirements
+  ├─ yearly:    familySize, childrenAges, annualDates, interests, dietaryNotes, preferredScale
+  └─ gift:      recipientName, recipientEmail, occasion, deliveryMethod, personalMessage, surprise
+```
+
+**Why progressive disclosure?** It keeps the initial form approachable (3 fields), then expands based on the user's tier choice. This is a real UX pattern learners should see — and it avoids the "wall of fields" anti-pattern. The architecture spike recommends this exact approach: "Don't build three separate forms. Use progressive disclosure."
+
+**Conditional behaviors:**
+- Gift tier: if "surprise" is checked, hide the "personal message" field (message goes to buyer confirmation only)
+- Yearly tier: if any child is under 5, show an additional "infant considerations" note
+- One Time tier: if event type = "Children's," show a safety considerations field
 
 ---
 
@@ -533,22 +510,28 @@ From `ConciergeForm.tsx`:
 
 | Section | Change |
 |---|---|
-| **Users** | Update from "affluent travelers" to "affluent individuals seeking extraordinary experiences." Add: "They compare against luxury event planners, bespoke travel agencies, and high-end production companies." |
-| **Brand Personality context** | Update "Single-page marketing site" job description. Add: "The job is to convert high-intent visitors into experience design consultations." |
-| **References** | Add experiential luxury references alongside travel ones: "Meow Wolf (immersive scale), Sleep No More (theatrical production), The Ritz-Carlton (service standard)" |
+| **Users** | Update to "affluent individuals and families seeking extraordinary event production." Add: "They compare against luxury event planners, bespoke production companies, and high-end party designers." |
+| **Brand Personality context** | Update job description: "The job is to convert high-intent visitors into event design consultations across three distinct service tiers." |
+| **References** | Add event production references: "Meow Wolf (immersive scale), Sleep No More (theatrical production), The Ritz-Carlton (service standard)" |
 | **Anti-references** | Add: "Generic event planning sites, children's party template sites, corporate retreat brochures" |
-| All "travel" language | Search-and-replace "travel" → "experience" where contextually appropriate. Keep "travel" where it refers specifically to the Voyages category |
+| **Service tier language** | Replace any "privilege hierarchy" or level-based language with three-transaction-type framing |
 
 ### 7.3 New Section Patterns Needed
 
+**Tier card pattern (critical — differs from typical pricing tables):**
+- Three cards, but each communicates a **different kind of engagement**, not a "good/better/best" hierarchy
+- Visual differentiation: One Time gets event imagery, Yearly gets calendar/family imagery, Gift gets wrapping/surprise imagery
+- Each card's CTA is unique (§4.7) because each leads to a different consultation funnel
+- Price display differs: "$500,000" (flat), "$1,200,000/yr" (subscription indicator), "$250,000" (gift framing)
+
 **ExperiencePortfolio pattern:**
 - Category card grid (2 columns on desktop, 1 on mobile)
-- Each card: full-bleed image, category title overlay, 2–3 sample package titles, "Explore →" link
-- Hover: subtle parallax shift on image, package titles fade in
+- Each card: full-bleed image, category title overlay, 2–3 sample event titles, "Explore →" link
+- Hover: subtle parallax shift on image, event titles fade in
 - Follows editorial hierarchy principle — cards should NOT all be the same height
 
 **FeaturedPackages pattern:**
-- Horizontal scroll / carousel of 6–8 featured packages
+- Horizontal scroll / carousel of 6–8 featured event packages
 - Each card: image, title, category pill, price, duration, guest range
 - Should feel like "editorial picks" — not a product grid
 - First card larger than rest (magazine spread feel)
@@ -557,48 +540,48 @@ From `ConciergeForm.tsx`:
 
 ## 8. Implementation Phases
 
-### Phase 1: Brand/Copy/IA Changes (Content Swap, No New Features)
+### Phase 1: Brand/Copy/Data Updates (Content Swap, No New Components)
 **Estimated scope:** 2–3 PRs
 
-- [ ] Update `types.ts` — add new types alongside existing ones
-- [ ] Create `categories.ts` and `packages.ts` data files
-- [ ] Update copy in: `tiers.ts`, `testimonials.ts`, `team.ts`, `navigation.ts`, `awards.ts`
+- [ ] Add discriminated union types to `types.ts` (ServiceTierBase, OneTimeEvent, YearlySubscription, GiftPurchase)
+- [ ] Update `tiers.ts` — replace old tier data with One Time / Yearly / Gift (names, prices, perks)
+- [ ] Create `categories.ts` (6 EventCategory records) and `packages.ts` (18–24 event packages)
+- [ ] Update copy in: `testimonials.ts`, `team.ts`, `navigation.ts`, `awards.ts`
 - [ ] Update inline copy: Hero headline/subhead, WhyAurora proof points, FAQ content, CTA text
 - [ ] Update `.impeccable.md` per §7.2
-- [ ] Update Interstitial copy
-- [ ] Run existing test suite — fix any broken assertions due to copy changes
+- [ ] Run existing test suite — fix any broken assertions due to copy/data changes
 
-**Definition of done:** All existing tests pass. Site renders with new copy. No new components yet.
+**Definition of done:** All existing tests pass. Site renders with new tier names, prices, and copy. No new components yet.
 
-### Phase 2: Data Model Migration (Static .ts → New Types)
+### Phase 2: Data Model Migration (Remove Old Types)
 **Estimated scope:** 1–2 PRs
 
-- [ ] Replace `destinations.ts` with content in `packages.ts` (voyages category)
-- [ ] Replace `experiences.ts` with `categories.ts`
-- [ ] Rename `guides.ts` → `experience-guides.ts`, update type
-- [ ] Remove deprecated type aliases from `types.ts`
-- [ ] Update all component imports
+- [ ] Remove old content type interfaces from `types.ts`
+- [ ] Remove or replace deprecated data files
+- [ ] Update all component imports to use new types
 - [ ] Update/add unit tests for new data structures
 
-**Definition of done:** Old `Destination` and `Experience` types fully removed. All data flows through new types.
+**Definition of done:** All data flows through new types. No references to old type names in codebase.
 
-### Phase 3: Consultation Flow Expansion
+### Phase 3: Consultation Flow — Tier-Aware Progressive Disclosure
 **Estimated scope:** 1–2 PRs
 
-- [ ] Update ConciergeForm with new fields per §6.2
-- [ ] Implement progressive disclosure logic per §6.3
-- [ ] Add conditional field behavior
-- [ ] Update form validation
-- [ ] Update ConciergeForm unit tests
-- [ ] Update e2e tests that interact with the form
+- [ ] Update ConciergeForm: base fields (name, email, tier selection) → tier-specific fieldsets
+- [ ] Implement One Time fields per §6.2
+- [ ] Implement Yearly fields per §6.3
+- [ ] Implement Gift fields per §6.4
+- [ ] Add conditional field behaviors per §6.5
+- [ ] Update form validation for each tier path
+- [ ] Update ConciergeForm unit tests and e2e tests
 
-**Definition of done:** Form captures experience type, audience, location, scale, budget, and safety. Tier pre-fill still works.
+**Definition of done:** Form captures tier-specific data. Each tier funnel works end-to-end. Tier pre-fill from card CTA still works.
 
 ### Phase 4: New Section Patterns
 **Estimated scope:** 2–3 PRs
 
-- [ ] Build ExperiencePortfolio component (replaces DestinationGrid)
-- [ ] Build FeaturedPackages component (replaces ExperienceList)
+- [ ] Build updated Tiers component with three-transaction-type cards (§7.3)
+- [ ] Build ExperiencePortfolio component (category-driven event grid)
+- [ ] Build FeaturedPackages component (editorial event highlights)
 - [ ] Update `page.tsx` section composition
 - [ ] Update ScrollNav section targets
 - [ ] Update Hero discovery row (category + scale selectors)
@@ -609,9 +592,10 @@ From `ConciergeForm.tsx`:
 
 ### Cross-Phase Concerns
 
-- **Test updates:** Each phase must leave the test suite green. Copy changes in Phase 1 will break snapshot-style assertions in Hero, FAQ, Tiers tests — update them.
-- **Accessibility:** New components must meet WCAG AA. Dropdown selectors need keyboard navigation (existing `LuxeSelect` pattern from Hero can be reused).
-- **Git strategy:** One feature branch per phase. Each phase merges to `main` independently. No cross-phase dependencies that block merging.
+- **Test updates:** Each phase must leave the test suite green. Data changes in Phase 1 will break snapshot-style assertions — update them in the same PR.
+- **Accessibility:** New components must meet WCAG AA. Form changes need keyboard navigation and screen reader support.
+- **Git strategy:** One feature branch per phase. Each phase merges to `main` independently. Phases are ordered but not blocking — Phase 3 can begin before Phase 2 merges if types are stable.
+- **Architecture spike alignment:** Every data model and flow decision in this spec must be traceable to the architecture spike (#210). If this spec and the spike disagree, the spike wins — update this spec.
 
 ---
 
@@ -621,62 +605,88 @@ From `ConciergeForm.tsx`:
 
 1. **Brand pivot as a spec-first process.** In production, you don't start coding a rebrand — you write down exactly what changes and what doesn't. This spec is the artifact that a team would review before any PR is opened.
 
-2. **Additive data model migration.** New types coexist with old types during transition. No "big bang" rewrite. Each phase ships independently. This is how real teams migrate schemas without downtime.
+2. **Three transaction types, not three privilege levels.** The most important conceptual shift. Learners should understand why a discriminated union (`ServiceTier = OneTimeEvent | YearlySubscription | GiftPurchase`) is the right pattern when your "tiers" are fundamentally different products. A simple `{ tier: 'gold' | 'platinum' | 'diamond' }` enum works for privilege hierarchies; it doesn't work here.
 
-3. **Phased rollout.** Four phases, each independently mergeable. Phase 1 (copy) can ship while Phase 4 (new components) is still in development. This is CI/CD discipline in practice.
+3. **Additive data model migration.** New types coexist with old types during transition. No "big bang" rewrite. Each phase ships independently. This is how real teams migrate schemas without breaking production.
 
-4. **Content strategy as a technical artifact.** The copy matrix in §4 isn't just marketing — it's the source of truth for what developers put in data files. Ambiguity in copy = bugs in implementation.
+4. **Progressive disclosure in forms.** The consultation flow in §6 shows how to gather complex, tier-specific input without overwhelming users. The base form is 3 fields; tier selection reveals the right fieldset. This is a real UX pattern worth learning.
 
-5. **Form design as progressive disclosure.** The consultation flow in §6 shows how to gather complex input without overwhelming users. Conditional fields based on experience type demonstrate real-world form UX patterns.
+5. **Gift tier as a two-party system.** The Gift tier introduces a buyer ≠ recipient model. Learners see how this affects data shapes (two ContactInfo objects), API design (separate purchase and redemption endpoints), and UX (two distinct flows for buyer and recipient). This is a pattern that appears in real e-commerce (gift cards, corporate gifting, registry systems).
+
+6. **Spec-to-spike traceability.** This spec references the architecture spike (#210) for every data model and API decision. Learners see how specs layer: the spike defines *what* the architecture is; this spec defines *how the brand presents it*.
 
 ### 9.2 What Learners Should Pay Attention To
 
 - **Types first, components second.** Phase 1–2 nail the data model before Phase 3–4 touch components. This prevents rework.
-- **The migration path table (§5.5).** This is how you plan a data migration without losing data or breaking the site mid-transition.
-- **What stays vs. what changes (§2.3 / §2.4).** A good pivot preserves more than it changes. The visual identity, architecture, and business model are untouched — only the content layer moves.
+- **The discriminated union pattern.** `ServiceTier = OneTimeEvent | YearlySubscription | GiftPurchase` is the backbone. Every component that renders tier data should `switch` on `tierType`. See architecture spike §1.
+- **Three distinct consultation funnels.** The ConciergeForm doesn't just swap labels — it shows entirely different fields per tier. This is progressive disclosure driven by a discriminant, not just a "show more" toggle.
+- **Gift redemption converts to One Time.** When a gift recipient activates, they enter the One Time flow. No "gift event" special case downstream. Simplicity through conversion, not duplication.
 - **Test strategy per phase.** Each phase defines its own "done" criteria. Tests are updated in the same PR as the code they test — never deferred.
 
 ### 9.3 Common Pitfalls This Spec Avoids
 
 | Pitfall | How This Spec Avoids It |
 |---|---|
+| Treating tiers as privilege levels | Three distinct transaction types with different data shapes, not "good/better/best" |
 | "Rewrite everything at once" | Four independent phases. Each ships on its own. |
-| Changing the design system during a content pivot | Visual identity is explicitly frozen (§7.1). Only copy and content references change. |
-| Vague data model ("we'll figure it out") | Full TypeScript interfaces with field-level comments (§5.2–5.4). |
-| Form fields without UX rationale | Progressive disclosure rules and conditional logic documented (§6.3). |
-| Breaking tests with copy changes | Phase 1 explicitly calls out test updates as part of the deliverable. |
+| Changing the design system during a content pivot | Visual identity is explicitly frozen (§7.1). Only content, copy, and data types change. |
+| Vague data model ("we'll figure it out") | Full TypeScript discriminated union with field-level documentation (§5.1, architecture spike §1). |
+| Single form for three different products | Tier-aware progressive disclosure — each tier gets its own fieldset (§6.2–6.4). |
+| Breaking tests with data changes | Phase 1 explicitly calls out test updates as part of the deliverable. |
 | Losing the teaching angle | Teaching notes are a first-class section, not an afterthought. |
+| Spec contradicts architecture spike | Explicit traceability: "If this spec and the spike disagree, the spike wins." |
 
 ---
 
-## Appendix: File Impact Summary
+## Appendix A: API Shape (from Architecture Spike)
+
+These are the API endpoints recommended in the architecture spike (#210, §3). Reproduced here for reference — the full rationale lives in the spike.
+
+```
+POST /api/bookings/one-time     → Create one-time event inquiry
+POST /api/bookings/yearly       → Start subscription onboarding
+POST /api/bookings/gift         → Purchase gift (buyer flow)
+POST /api/bookings/gift/redeem  → Activate gift (recipient flow)
+
+GET  /api/bookings/:id          → Booking status (any tier type)
+GET  /api/bookings/:id/timeline → Event/subscription timeline
+
+POST /api/gift/validate-recipient  → Check recipient email isn't already active
+GET  /api/gift/:code               → Gift status lookup (recipient-facing)
+POST /api/gift/:code/activate      → Recipient claims the gift
+```
+
+**Why separate POST endpoints?** Request bodies are different shapes per tier. Validation rules differ. Separate endpoints keep things clean and give learners a real example of RESTful resource modeling.
+
+---
+
+## Appendix B: File Impact Summary
 
 | File | Phase | Change Type |
 |---|---|---|
-| `apps/web/app/lib/types.ts` | 1, 2 | Add new types (P1), remove old types (P2) |
-| `apps/web/app/data/categories.ts` | 1 | NEW file |
-| `apps/web/app/data/packages.ts` | 1 | NEW file |
-| `apps/web/app/data/destinations.ts` | 2 | REMOVED |
-| `apps/web/app/data/experiences.ts` | 2 | REMOVED |
-| `apps/web/app/data/guides.ts` | 2 | RENAMED → `experience-guides.ts` |
-| `apps/web/app/data/tiers.ts` | 1 | Updated copy |
-| `apps/web/app/data/testimonials.ts` | 1 | Updated copy + category field |
-| `apps/web/app/data/team.ts` | 1 | Updated titles/bios |
+| `apps/web/app/lib/types.ts` | 1, 2 | Add discriminated union types (P1), remove old types (P2) |
+| `apps/web/app/data/categories.ts` | 1 | NEW file — 6 EventCategory records |
+| `apps/web/app/data/packages.ts` | 1 | NEW file — 18–24 ExperiencePackage records |
+| `apps/web/app/data/tiers.ts` | 1 | Rewritten — One Time / Yearly / Gift with new prices and perks |
+| `apps/web/app/data/testimonials.ts` | 1 | Updated copy + tierType/category fields |
+| `apps/web/app/data/team.ts` | 1 | Updated titles/bios for event platform |
 | `apps/web/app/data/navigation.ts` | 1 | Updated labels |
 | `apps/web/app/data/awards.ts` | 1 | Minor updates |
 | `apps/web/app/components/Hero.tsx` | 1, 4 | Copy update (P1), discovery row (P4) |
 | `apps/web/app/components/WhyAurora.tsx` | 1 | Updated proof point copy |
 | `apps/web/app/components/FAQ.tsx` | 1 | Updated FAQ data |
-| `apps/web/app/components/Tiers.tsx` | 1 | Updated perk copy |
+| `apps/web/app/components/Tiers.tsx` | 1, 4 | Updated tier data (P1), three-type card redesign (P4) |
 | `apps/web/app/components/Testimonials.tsx` | 1 | Updated testimonial data |
 | `apps/web/app/components/Interstitial.tsx` | 1 | Updated copy |
 | `apps/web/app/components/Footer.tsx` | 1 | Updated CTA copy |
-| `apps/web/app/components/ConciergeForm.tsx` | 3 | Expanded fields, conditional logic |
-| `apps/web/app/components/ExperiencePortfolio.tsx` | 4 | NEW component |
-| `apps/web/app/components/FeaturedPackages.tsx` | 4 | NEW component |
-| `apps/web/app/components/DestinationGrid.tsx` | 4 | REMOVED from page.tsx |
-| `apps/web/app/components/ExperienceList.tsx` | 4 | REMOVED from page.tsx |
+| `apps/web/app/components/ConciergeForm.tsx` | 3 | Tier-aware progressive disclosure, three fieldsets |
+| `apps/web/app/components/ExperiencePortfolio.tsx` | 4 | NEW component — event category grid |
+| `apps/web/app/components/FeaturedPackages.tsx` | 4 | NEW component — editorial event highlights |
 | `apps/web/app/page.tsx` | 4 | Section composition update |
 | `apps/web/app/components/ScrollNav.tsx` | 4 | Section targets update |
 | `.impeccable.md` | 1 | Updated per §7.2 |
 | Tests (multiple) | 1–4 | Updated per phase |
+
+---
+
+*This is a teaching site. Every decision in this spec was chosen because it's a pattern worth learning, not because it's the only way. The three-tier transaction model, discriminated unions, progressive disclosure, and two-party gift flow are all production patterns that appear in real systems. Simpler alternatives exist; these patterns earn their complexity.*
