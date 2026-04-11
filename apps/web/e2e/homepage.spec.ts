@@ -39,7 +39,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
 
     // Main heading
     const heading = hero.locator('h1');
-    await expect(heading).toContainText('Where Will Your Story');
+    await expect(heading).toContainText('Journeys Written in Light');
 
     // CTA buttons
     await expect(hero.getByText('Request Consultation')).toBeVisible();
@@ -99,12 +99,12 @@ test.describe('Homepage — Visual & Content Audit', () => {
 
     // Section heading
     const heading = section.locator('h2');
-    await expect(heading).toContainText('One Standard');
+    await expect(heading).toContainText('Membership');
 
-    // Tier cards with join buttons
-    const joinButtons = section.getByText(/^Join /);
-    await expect(joinButtons.first()).toBeVisible();
-    const tierCount = await joinButtons.count();
+    // Tier cards with CTA buttons
+    const ctaButtons = section.getByText('Begin a Conversation');
+    await expect(ctaButtons.first()).toBeVisible();
+    const tierCount = await ctaButtons.count();
     expect(tierCount).toBeGreaterThan(0);
 
     await section.screenshot({ path: 'e2e/screenshots/section-tiers.png' });
@@ -139,7 +139,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
 
     // Section heading
     const heading = section.locator('h2');
-    await expect(heading).toContainText('Ready to Start Planning');
+    await expect(heading).toContainText('Request a Consultation');
 
     // Form exists
     const form = section.locator('form');
@@ -165,7 +165,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
   });
 
   test('Footer — visible with brand and links', async ({ page }) => {
-    const footer = page.locator('footer');
+    const footer = page.getByRole('contentinfo');
     await footer.scrollIntoViewIfNeeded();
     await page.waitForTimeout(1000);
 
@@ -193,7 +193,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
     await expect(section).toBeVisible();
 
     const heading = section.locator('h2');
-    await expect(heading).toContainText('Frequently Asked Questions');
+    await expect(heading).toContainText('Common Questions');
 
     // Accordion buttons
     const accordionButtons = section.locator('button[aria-expanded]');
@@ -214,7 +214,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
     await section.screenshot({ path: 'e2e/screenshots/section-faq.png' });
   });
 
-  test('WhyAurora — carousel with arrows and dots', async ({ page }) => {
+  test('WhyAurora — specialist grid with team members', async ({ page }) => {
     const section = page.locator('#why-aurora');
     await section.scrollIntoViewIfNeeded();
     await page.waitForTimeout(1000);
@@ -222,24 +222,15 @@ test.describe('Homepage — Visual & Content Audit', () => {
     await expect(section).toBeVisible();
 
     const heading = section.locator('h2');
-    await expect(heading).toContainText('Our Specialists');
+    await expect(heading).toContainText('Designed by Specialists');
 
-    // Carousel arrow buttons
-    const nextButton = section.locator('button[aria-label="Next team member"]');
-    await expect(nextButton).toBeVisible();
+    // Team member cards (article elements)
+    const cards = section.locator('article');
+    const cardCount = await cards.count();
+    expect(cardCount).toBeGreaterThan(0);
 
-    // Dot indicators
-    const dots = section.locator('button[role="tab"]');
-    const dotCount = await dots.count();
-    expect(dotCount).toBeGreaterThan(1);
-
-    // First dot should be selected initially
-    await expect(dots.first()).toHaveAttribute('aria-selected', 'true');
-
-    // Click next arrow and verify the active dot changes
-    await nextButton.click();
-    await page.waitForTimeout(500);
-    await expect(dots.nth(1)).toHaveAttribute('aria-selected', 'true');
+    // First card should have a name
+    await expect(cards.first()).toBeVisible();
 
     await section.screenshot({ path: 'e2e/screenshots/section-whyaurora-carousel.png' });
   });
@@ -297,7 +288,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
     await page.waitForTimeout(1000);
 
     // Click the first "Join" button
-    const joinButton = tiersSection.getByText(/^Join /).first();
+    const joinButton = tiersSection.getByText('Begin a Conversation').first();
     await expect(joinButton).toBeVisible();
     await joinButton.click();
     await page.waitForTimeout(1500);
