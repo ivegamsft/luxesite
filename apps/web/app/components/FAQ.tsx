@@ -18,8 +18,8 @@ const faqData: FAQItem[] = [
   },
   {
     id: 'tiers',
-    question: "What's included in each membership tier?",
-    answer: 'Silver ($25,000/year, from $5,000 per journey) includes priority booking, lounge access, a quarterly destination guide, 10% experience discount, and a dedicated concierge hotline. Black ($75,000/year, from $15,000 per journey) adds a personal travel curator, room upgrades, private jet access, invitation-only events, and 24/7 emergency assistance. Obsidian ($200,000/year, from $50,000 per journey) provides a dedicated three-specialist team, companion travel, private experiences, helicopter transfers, and access to Aurora\'s private island.'
+    question: "What's included in each tier?",
+    answer: 'One Time (from $500,000) is for a single event or experience — dedicated curator, venue scouting across 50+ countries, custom coordination, day-of concierge team, and a post-event memory book. Yearly (from $1,200,000/year) covers up to 12 events per year with a personal family event strategist who knows your kids\' preferences and handles everything from birthdays to graduations, plus seasonal surprise boxes and priority rebooking. Gift (from $250,000) is a beautifully packaged experience card valid for 18 months with full concierge planning included.'
   },
   {
     id: 'booking-advance',
@@ -49,7 +49,7 @@ const faqData: FAQItem[] = [
   {
     id: 'minimum-budget',
     question: 'Is there a minimum budget?',
-    answer: 'Our Silver tier starts at $5,000 per journey. This allows us to deliver the level of personalization, exclusive access, and white-glove service that defines Aurora Luxe. For travelers seeking exceptional experiences with meticulous attention to detail, we deliver unparalleled value.'
+    answer: 'Our Gift tier starts at $250,000 per experience. This allows us to deliver the level of personalization, exclusive access, and white-glove service that defines Aurora Luxe. For those seeking exceptional experiences with meticulous attention to detail, we deliver unparalleled value.'
   }
 ];
 

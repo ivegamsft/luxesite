@@ -293,3 +293,27 @@ Authored comprehensive design system spec for the experience category pivot. Key
 - Visual identity frozen = teaching point about stability during product pivots
 - Content voice guardrails apply to category names and marketing copy
 
+
+
+## Learnings
+
+### Tier Restructure and Pricing Update (2026-04-11)
+
+Restructured pricing tiers from travel memberships (Silver/Black/Obsidian) to event planning services:
+- **One Time** (,000) — single event experiences
+- **Yearly** (,200,000/year) — annual subscription for up to 12 events
+- **Gift** (,000) — gift experience cards
+
+Puffed up all pricing to absurdly expensive levels (~10x increase):
+- Destination prices: ,000 - ,000 range
+- Budget ranges in forms updated to match
+
+Files changed:
+- pps/web/app/data/tiers.ts — completely rewrote tier data, perks, and pricing
+- pps/web/app/data/destinations.ts — multiplied all prices by 10x
+- pps/web/app/components/ConciergeForm.tsx — updated budget ranges and tierBudgetMap
+- pps/web/app/components/FAQ.tsx — rewrote tier and pricing FAQs
+- pps/web/app/components/__tests__/Tiers.test.tsx — updated tier names and price expectations
+- pps/web/app/components/__tests__/DestinationGrid.test.tsx — updated price expectations
+
+All tests pass (43/43). Build successful.
