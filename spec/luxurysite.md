@@ -288,9 +288,9 @@ xs: 8px | sm: 12px | md: 16px | lg: 24px | xl: 32px | 2xl: 48px | 3xl: 64px
 ## 9) SEO & Metadata
 
 **Document meta:**
-- Title: "Aurora Luxe Travel | Award-Winning Private Travel Specialists"
-- Description: "Bespoke luxury travel by specialists. Curated destinations, 24/7 concierge, journeys for you alone."
-- Keywords: luxury travel, bespoke itineraries, private travel, safaris, travel specialists, [regions]
+- Title: "Aurora Luxe | Award-Winning Event Architects & Experience Designers"
+- Description: "Bespoke luxury events and experiences by architects. Curated productions, 24/7 event support, celebrations designed for you alone."
+- Keywords: luxury events, bespoke experiences, party planning, event design, experience architects, [categories]
 - OG: title, description, image (1200×630), type (website)
 - Twitter: summary_large_image
 
