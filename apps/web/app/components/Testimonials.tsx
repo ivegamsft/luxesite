@@ -51,7 +51,7 @@ export default function Testimonials() {
         <AnimatedSection>
           <div className="mb-16">
             <h2 className="font-heading italic text-fluid-2xl text-aurora-text-muted max-w-[75ch] leading-snug tracking-tight">
-              &ldquo;The measure of a journey is not the distance&nbsp;&mdash; it&rsquo;s the silence when you return.&rdquo;
+              &ldquo;The measure of an event is not the spectacle&nbsp;&mdash; it&rsquo;s the silence when you remember.&rdquo;
             </h2>
           </div>
         </AnimatedSection>

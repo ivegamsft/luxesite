@@ -7,10 +7,10 @@ describe('DestinationGrid', () => {
     expect(screen.getByText('Curated Destinations')).toBeInTheDocument();
   });
 
-  it('renders all 6 destination cards', () => {
+  it('renders all 6 venue cards', () => {
     render(<DestinationGrid />);
     
-    // Check for all destination names
+    // Check for all venue names
     expect(screen.getByText('Maldives')).toBeInTheDocument();
     expect(screen.getByText('Tokyo')).toBeInTheDocument();
     expect(screen.getByText('Swiss Alps')).toBeInTheDocument();
@@ -38,15 +38,15 @@ describe('DestinationGrid', () => {
   // --- Touch/Keyboard Accessibility tests (verifying Trinity's fixes) ---
 
   describe('Touch & Keyboard Accessibility', () => {
-    it('destination cards have role="button" for screen readers', () => {
+    it('venue cards have role="button" for screen readers', () => {
       render(<DestinationGrid />);
 
       const buttons = screen.getAllByRole('button');
-      // Each of the 6 destination cards should be a button
+      // Each of the 6 venue cards should be a button
       expect(buttons.length).toBeGreaterThanOrEqual(6);
     });
 
-    it('destination cards are keyboard-focusable', () => {
+    it('venue cards are keyboard-focusable', () => {
       render(<DestinationGrid />);
 
       const maldivesCard = screen.getByText('Maldives').closest('[role="button"]');

@@ -12,7 +12,7 @@ export const experiences: Experience[] = [
   {
     id: 'cultural-immersion',
     title: 'Cultural Immersion',
-    description: 'Step behind the curtain of ancient civilisations. Private temple ceremonies, master artisan workshops, and dinner in homes untouched by tourism—travel that transforms.',
+    description: 'Step behind the curtain of ancient civilisations. Private temple ceremonies, master artisan workshops, and dinner in homes untouched by tourism—experiences that transform.',
     icon: 'cultural',
     regions: ['Japan', 'India', 'Morocco', 'Peru'],
     imageUrl: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&h=600&fit=crop'
@@ -50,8 +50,8 @@ export const experiences: Experience[] = [
     imageUrl: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&h=600&fit=crop'
   },
   {
-    id: 'family-journeys',
-    title: 'Family Journeys',
+    id: 'family-celebrations',
+    title: 'Family Celebrations',
     description: 'Multi-generational adventures designed so every age finds wonder. Junior ranger programmes, gentle hikes, and storytelling around campfires—memories the whole family shares.',
     icon: 'family',
     regions: ['Costa Rica', 'Greece', 'Australia', 'Norway'],

@@ -39,11 +39,11 @@ test.describe('Homepage — Visual & Content Audit', () => {
 
     // Main heading
     const heading = hero.locator('h1');
-    await expect(heading).toContainText('Journeys Written in Light');
+    await expect(heading).toContainText('Celebrations Written in Light');
 
     // CTA buttons
     await expect(hero.getByText('Request Consultation')).toBeVisible();
-    await expect(hero.getByText('Explore Destinations')).toBeVisible();
+    await expect(hero.getByText('Explore Experiences')).toBeVisible();
 
     // Wait for all hero animations to complete
     await page.waitForTimeout(1500);
@@ -61,7 +61,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
     const heading = section.locator('h2');
     await expect(heading).toContainText('Curated Destinations');
 
-    // Destination cards (should have multiple h3 elements)
+    // Venue cards (should have multiple h3 elements)
     const cards = section.locator('h3');
     await expect(cards.first()).toBeVisible();
     const cardCount = await cards.count();
@@ -99,7 +99,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
 
     // Section heading
     const heading = section.locator('h2');
-    await expect(heading).toContainText('Membership');
+    await expect(heading).toContainText('Tiers');
 
     // Tier cards with CTA buttons
     const ctaButtons = section.getByText('Begin a Conversation');
@@ -175,7 +175,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
     await expect(footer.getByText('AURORA LUXE', { exact: true })).toBeVisible();
 
     // Copyright
-    await expect(footer.getByText(/© 2026 Aurora Luxe Travel/)).toBeVisible();
+    await expect(footer.getByText(/© 2026 Aurora Luxe Events/)).toBeVisible();
 
     // Navigation links
     const links = footer.locator('a');
@@ -259,12 +259,12 @@ test.describe('Homepage — Visual & Content Audit', () => {
     expect(scrollY).toBeLessThan(500);
   });
 
-  test('Destination hover — title stays visible during hover', async ({ page }) => {
+  test('Venue hover — title stays visible during hover', async ({ page }) => {
     const section = page.locator('#destinations');
     await section.scrollIntoViewIfNeeded();
     await page.waitForTimeout(1000);
 
-    // Get the first destination card
+    // Get the first venue card
     const card = section.locator('[role="button"]').first();
     await expect(card).toBeVisible();
 
@@ -279,7 +279,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
     // Title should remain visible during hover
     await expect(title).toBeVisible();
 
-    await section.screenshot({ path: 'e2e/screenshots/interaction-destination-hover.png' });
+    await section.screenshot({ path: 'e2e/screenshots/interaction-venue-hover.png' });
   });
 
   test('Tier CTA — Join button scrolls to contact form', async ({ page }) => {

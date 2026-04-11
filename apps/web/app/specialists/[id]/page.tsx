@@ -91,7 +91,7 @@ export default function SpecialistDetailPage({ params }: { params: { id: string 
       <section className="py-section-sm px-4 sm:px-6 lg:px-12 bg-aurora-bg-dark">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="font-heading text-fluid-xl font-semibold text-aurora-text mb-4">
-            Plan Your Journey with {member.name.split(' ')[0]}
+            Plan Your Event with {member.name.split(' ')[0]}
           </h2>
           <p className="text-aurora-text-muted mb-8 max-w-xl mx-auto">
             Share your vision and let {member.name.split(' ')[0]} craft a

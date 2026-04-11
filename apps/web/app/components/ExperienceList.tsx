@@ -80,9 +80,9 @@ export default function ExperienceList() {
               Signature Experiences
             </h2>
             <p className="section-intro">
-              Beyond destinations — these are the moments that define a journey. 
+              Beyond venues — these are the moments that define a celebration. 
               Each experience crafted with local experts who open doors that remain 
-              closed to ordinary travel.
+              closed to ordinary events.
             </p>
           </div>
         </AnimatedSection>

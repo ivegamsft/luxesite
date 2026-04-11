@@ -56,7 +56,7 @@ export default function ConciergeForm() {
       };
       setFormData((prev) => ({
         ...prev,
-        notes: `Interested in ${tier} membership — please include tier details in our consultation.`,
+        notes: `Interested in ${tier} tier — please include tier details in our consultation.`,
         budget: tierBudgetMap[tier] || prev.budget,
       }));
       
@@ -72,8 +72,8 @@ export default function ConciergeForm() {
   // Listen for hero discovery row selections
   useEffect(() => {
     const handleHeroDiscovery = (e: Event) => {
-      const { destination, timing } = (e as CustomEvent).detail as {
-        destination: string;
+      const { venue, timing } = (e as CustomEvent).detail as {
+        venue: string;
         timing: string;
       };
 
@@ -96,7 +96,7 @@ export default function ConciergeForm() {
 
       setFormData((prev) => {
         const parts: string[] = [];
-        if (destination) parts.push(`Interested in: ${destLabels[destination] ?? destination}`);
+        if (venue) parts.push(`Interested in: ${destLabels[venue] ?? venue}`);
         if (timing) parts.push(`Timing: ${timingLabels[timing] ?? timing}`);
         const prefillText = parts.join(' · ');
 
@@ -108,7 +108,7 @@ export default function ConciergeForm() {
           safari: ['Wildlife & Safari'],
         };
 
-        const mappedInterests = destination ? (interestMap[destination] ?? []) : [];
+        const mappedInterests = venue ? (interestMap[venue] ?? []) : [];
         const mergedInterests = Array.from(new Set([...prev.interests, ...mappedInterests]));
 
         return {
@@ -410,7 +410,7 @@ export default function ConciergeForm() {
 
               {showDetails && (
                 <div className="mt-6 space-y-6 pt-6 border-t border-aurora-border/50">
-                  {/* Travel Dates */}
+                  {/* Event Dates */}
                   <div>
                     <label htmlFor="travelDates" className="block text-sm font-medium text-aurora-text/80 mb-2">
                       Event Date
@@ -435,7 +435,7 @@ export default function ConciergeForm() {
                     }
                   </div>
 
-                  {/* Number of Travelers */}
+                  {/* Number of Guests */}
                   <div>
                     <label htmlFor="travelers" className="block text-sm font-medium text-aurora-text/80 mb-2">
                       Number of Guests
@@ -481,7 +481,7 @@ export default function ConciergeForm() {
                   {/* Budget Range */}
                   <div>
                     <label htmlFor="budget" className="block text-sm font-medium text-aurora-text/80 mb-2">
-                      Investment per Journey
+                      Investment per Event
                     </label>
                     <select
                       id="budget"

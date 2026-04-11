@@ -118,8 +118,8 @@ export default function ExperienceDetailPage({ params }: { params: { id: string 
             Experience {experience.title}
           </h2>
           <p className="text-white/70 mb-8 max-w-xl mx-auto">
-            Let our specialists design a bespoke {experience.title.toLowerCase()}{' '}
-            journey crafted around your vision.
+            Let our event architects design a bespoke {experience.title.toLowerCase()}{' '}
+            experience crafted around your vision.
           </p>
           <Link
             href="/#contact"

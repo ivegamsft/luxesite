@@ -5,7 +5,7 @@ describe('Testimonials', () => {
   it('renders section heading', () => {
     render(<Testimonials />);
     // Section heading is now an editorial quote
-    expect(screen.getByText(/the measure of a journey/i)).toBeInTheDocument();
+    expect(screen.getByText(/the measure of an event/i)).toBeInTheDocument();
   });
 
   it('renders testimonial quotes', () => {
@@ -21,7 +21,7 @@ describe('Testimonials', () => {
   it('heading does NOT use gradient text clipping (bg-clip-text)', () => {
     render(<Testimonials />);
 
-    const heading = screen.getByText(/the measure of a journey/i);
+    const heading = screen.getByText(/the measure of an event/i);
     expect(heading).toBeInTheDocument();
     expect(heading.className).not.toMatch(/bg-clip-text/);
   });

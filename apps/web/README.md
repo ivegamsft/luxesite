@@ -52,7 +52,7 @@ npm run lint
 
 ## Key Features
 
-- **Landing Page**: Hero, destinations, experiences, membership tiers
+- **Landing Page**: Hero, venues, experiences, event tiers
 - **Booking System**: Concierge form integration
 - **Responsive Design**: Mobile-first Tailwind CSS
 - **Animations**: Smooth scroll effects and transitions

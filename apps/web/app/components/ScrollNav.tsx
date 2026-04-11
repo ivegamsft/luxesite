@@ -8,7 +8,7 @@ const sections = [
   { id: 'experiences', label: 'Experiences' },
   { id: 'why-aurora', label: 'Our Team' },
   { id: 'testimonials', label: 'Testimonials' },
-  { id: 'membership', label: 'Membership' },
+  { id: 'membership', label: 'Tiers' },
   { id: 'faq', label: 'FAQ' },
   { id: 'contact', label: 'Contact' },
 ];

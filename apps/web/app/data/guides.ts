@@ -1,6 +1,6 @@
-import { TravelGuide } from '../lib/types';
+import { InsiderGuide } from '../lib/types';
 
-export const guides: TravelGuide[] = [
+export const guides: InsiderGuide[] = [
   {
     id: 'guide-botswana',
     title: 'Complete Botswana Safari Guide',
@@ -16,7 +16,7 @@ export const guides: TravelGuide[] = [
     id: 'guide-maldives',
     title: 'Maldives: Beyond the Overwater Villa',
     excerpt:
-      'Underwater restaurants, private sandbank picnics, and bioluminescent night dives — the Maldives experiences most travellers never discover.',
+      'Underwater restaurants, private sandbank picnics, and bioluminescent night dives — the Maldives experiences most guests never discover.',
     readTime: '9 min read',
     imageUrl:
       'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=640&h=480&fit=crop',
