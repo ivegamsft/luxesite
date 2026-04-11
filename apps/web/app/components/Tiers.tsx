@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
+import Link from 'next/link';
 import { tiers } from '../data/tiers';
 import AnimatedSection from './AnimatedSection';
 
@@ -77,7 +78,7 @@ export default function Tiers() {
                 ))}
               </ul>
 
-              <div className="mt-auto pt-6">
+              <div className="mt-auto pt-6 space-y-3">
                 <button
                 onClick={() => {
                   window.dispatchEvent(new CustomEvent('tier-selected', { detail: { tier: tier.name } }));
@@ -91,6 +92,12 @@ export default function Tiers() {
               >
                 Begin a Conversation
               </button>
+                <Link
+                  href={`/tiers/${tier.id}`}
+                  className="block w-full text-center py-2 text-sm text-white/60 hover:text-aurora-gold transition-colors"
+                >
+                  View full details &rarr;
+                </Link>
               </div>
             </motion.div>
           ))}

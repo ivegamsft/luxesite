@@ -2,6 +2,7 @@
 
 import React, { type ReactElement } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
 import { experiences } from '../data/experiences';
 import AnimatedSection from './AnimatedSection';
@@ -155,6 +156,12 @@ export default function ExperienceList() {
                 </span>
               ))}
             </div>
+            <Link
+              href={`/experiences/${featured.id}`}
+              className="inline-block mt-6 text-sm font-medium text-aurora-gold hover:underline underline-offset-4 transition-colors"
+            >
+              Explore this experience &rarr;
+            </Link>
             </div>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
@@ -167,6 +174,7 @@ export default function ExperienceList() {
                 transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, delay: i * 0.04 }}
                 className="group relative rounded-sm overflow-hidden hover:shadow-lift transition-all duration-300 hover:-translate-y-1"
               >
+                <Link href={`/experiences/${experience.id}`} className="absolute inset-0 z-10" aria-label={`View ${experience.title} details`} />
                 {/* Full-bleed background image */}
                 {experience.imageUrl && (
                   <div className="relative h-56 sm:h-64 overflow-hidden bg-aurora-bg-dark">
