@@ -6,7 +6,7 @@ export const destinations: Destination[] = [
     name: 'Maldives',
     region: 'Indian Ocean',
     tagline: 'Private Island Paradise',
-    price: 12500,
+    price: 125000,
     currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=1200&h=900&fit=crop',
     quickFacts: [
@@ -21,7 +21,7 @@ export const destinations: Destination[] = [
     name: 'Tokyo',
     region: 'Japan',
     tagline: 'Neon Metropolis',
-    price: 8900,
+    price: 89000,
     currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&h=900&fit=crop',
     quickFacts: [
@@ -36,7 +36,7 @@ export const destinations: Destination[] = [
     name: 'Swiss Alps',
     region: 'Europe',
     tagline: 'Alpine Grandeur',
-    price: 15200,
+    price: 152000,
     currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1200&h=900&fit=crop',
     quickFacts: [
@@ -51,7 +51,7 @@ export const destinations: Destination[] = [
     name: 'Dubai',
     region: 'United Arab Emirates',
     tagline: 'Gilded Skyline',
-    price: 11800,
+    price: 118000,
     currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&h=900&fit=crop',
     quickFacts: [
@@ -66,7 +66,7 @@ export const destinations: Destination[] = [
     name: 'Kenya',
     region: 'East Africa',
     tagline: 'Savanna Luxe',
-    price: 14500,
+    price: 145000,
     currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&h=900&fit=crop',
     quickFacts: [
@@ -81,7 +81,7 @@ export const destinations: Destination[] = [
     name: 'Mediterranean',
     region: 'Southern Europe',
     tagline: 'Azure Drift',
-    price: 18900,
+    price: 189000,
     currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=900&fit=crop',
     quickFacts: [
@@ -96,7 +96,7 @@ export const destinations: Destination[] = [
     name: 'Patagonia',
     region: 'South America',
     tagline: 'Wilderness at the End of the World',
-    price: 9800,
+    price: 98000,
     currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=900&fit=crop',
     quickFacts: [
@@ -111,7 +111,7 @@ export const destinations: Destination[] = [
     name: 'Bali',
     region: 'Indonesia',
     tagline: 'Temple Retreats and Rice Terrace Villas',
-    price: 7400,
+    price: 74000,
     currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&h=900&fit=crop',
     quickFacts: [
@@ -126,7 +126,7 @@ export const destinations: Destination[] = [
     name: 'Amalfi Coast',
     region: 'Italy',
     tagline: 'Cliffside Luxury on the Mediterranean',
-    price: 11200,
+    price: 112000,
     currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=1200&h=900&fit=crop',
     quickFacts: [
@@ -141,7 +141,7 @@ export const destinations: Destination[] = [
     name: 'Santorini',
     region: 'Greece',
     tagline: 'White-Washed Elegance Above the Caldera',
-    price: 9500,
+    price: 95000,
     currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=1200&h=900&fit=crop',
     quickFacts: [
@@ -156,7 +156,7 @@ export const destinations: Destination[] = [
     name: 'Bora Bora',
     region: 'French Polynesia',
     tagline: 'Overwater Bungalows in Crystal Lagoons',
-    price: 16800,
+    price: 168000,
     currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1589197331516-4d84b72ebde3?w=1200&h=900&fit=crop',
     quickFacts: [
@@ -171,7 +171,7 @@ export const destinations: Destination[] = [
     name: 'Marrakech',
     region: 'Morocco',
     tagline: 'Riads, Souks, and Desert Stargazing',
-    price: 6900,
+    price: 69000,
     currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=1200&h=900&fit=crop',
     quickFacts: [
@@ -186,7 +186,7 @@ export const destinations: Destination[] = [
     name: 'Iceland',
     region: 'Nordic',
     tagline: 'Northern Lights and Volcanic Hot Springs',
-    price: 10500,
+    price: 105000,
     currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1504829857797-ddff29c27927?w=1200&h=900&fit=crop',
     quickFacts: [
@@ -201,7 +201,7 @@ export const destinations: Destination[] = [
     name: 'Seychelles',
     region: 'Indian Ocean',
     tagline: 'Pristine Beaches and Granite Islands',
-    price: 13200,
+    price: 132000,
     currency: '$',
     imageUrl: 'https://images.unsplash.com/photo-1589979481223-deb893043163?w=1200&h=900&fit=crop',
     quickFacts: [

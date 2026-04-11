@@ -2,54 +2,51 @@ import { MembershipTier } from '../lib/types';
 
 export const tiers: MembershipTier[] = [
   {
-    id: 'silver',
-    name: 'Silver',
-    tagline: 'Your Journey Begins',
-    price: 'From $25,000/year',
-    perTrip: 'per-journey pricing tailored to you',
+    id: 'one-time',
+    name: 'One Time',
+    tagline: 'Make Your Moment Legendary',
+    price: 'From $500,000',
+    perTrip: 'single event experience planning',
     featured: false,
     perks: [
-      'Priority booking at partner properties worldwide',
-      'Complimentary airport lounge access',
-      'Quarterly destination guide and travel intelligence',
-      '10% discount on all curated experiences',
-      'Dedicated concierge hotline'
+      'Dedicated event curator assigned to your vision',
+      'Venue scouting across 50+ countries',
+      'Custom catering, entertainment, and décor coordination',
+      'Day-of concierge team (up to 8 staff)',
+      'Post-event highlight reel and memory book',
+      'You dream it, we make it real'
     ]
   },
   {
-    id: 'black',
-    name: 'Black',
-    tagline: 'Elevated Beyond Limits',
-    price: 'From $75,000/year',
-    perTrip: 'per-journey pricing tailored to you',
+    id: 'yearly',
+    name: 'Yearly',
+    tagline: 'Every Event, Every Year',
+    price: 'From $1,200,000/year',
+    perTrip: 'up to 12 events per year included',
     featured: true,
     perks: [
-      'Everything in Silver, plus:',
-      'Personal travel curator who knows your preferences',
-      'Complimentary room upgrades at 500+ luxury hotels',
-      'Access to private jet booking platform with preferred rates',
-      'Invitation-only events in Monaco, Aspen, and Dubai',
-      'Annual complimentary week at an Aurora-owned property',
-      '24/7 emergency travel assistance anywhere in the world'
+      'Everything in One Time for EVERY event, all year',
+      'Personal family event strategist (knows your kids\' names, allergies, friend groups)',
+      'Up to 12 events per year included',
+      'Birthday parties, holiday celebrations, first days of school, graduations',
+      'Seasonal surprise boxes delivered to your door',
+      'Priority rebooking — venue conflicts? We handle it',
+      'Annual family portrait session at a stunning location'
     ]
   },
   {
-    id: 'obsidian',
-    name: 'Obsidian',
-    tagline: 'The Rarest Circle',
-    price: 'By Invitation',
-    perTrip: 'everything is bespoke — we design around you',
+    id: 'gift',
+    name: 'Gift',
+    tagline: 'Give Someone the Aurora Treatment',
+    price: 'From $250,000',
+    perTrip: 'beautifully packaged gift experience',
     featured: false,
     perks: [
-      'Everything in Black, plus:',
-      'Dedicated travel team of three specialists',
-      'Unlimited complimentary companion travel for one guest',
-      'Private experiences designed exclusively for you',
-      'Helicopter transfers in major cities',
-      'Annual bespoke journey (valued at $50,000)',
-      'Access to Aurora\'s private island in the Seychelles',
-      'Lifetime membership after five consecutive years',
-      'Your name etched in the Aurora Hall of Explorers'
+      'Beautifully packaged gift experience card',
+      'Recipient chooses from curated event catalog',
+      'Full concierge planning included',
+      'Valid for 18 months',
+      'Add-on: surprise delivery with champagne and flowers'
     ]
   }
 ];
