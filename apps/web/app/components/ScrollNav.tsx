@@ -7,7 +7,6 @@ const sections = [
   { id: 'destinations', label: 'Destinations' },
   { id: 'experiences', label: 'Experiences' },
   { id: 'why-aurora', label: 'Our Team' },
-  { id: 'guides', label: 'Guides' },
   { id: 'testimonials', label: 'Testimonials' },
   { id: 'membership', label: 'Membership' },
   { id: 'faq', label: 'FAQ' },

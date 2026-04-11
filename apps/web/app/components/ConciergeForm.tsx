@@ -15,11 +15,11 @@ const interestOptions = [
 ];
 
 const budgetRanges = [
-  '$5,000 – $10,000',
-  '$10,000 – $25,000',
-  '$25,000 – $50,000',
-  '$50,000 – $100,000',
-  '$100,000+'
+  'Under $25,000 per journey',
+  '$25,000 – $50,000 per journey',
+  '$50,000 – $100,000 per journey',
+  '$100,000+ per journey',
+  'Let\u2019s discuss what\u2019s right for me'
 ];
 
 const NOTES_MAX_LENGTH = 500;
@@ -50,9 +50,9 @@ export default function ConciergeForm() {
       const { tier } = (e as CustomEvent).detail as { tier: string };
       
       const tierBudgetMap: Record<string, string> = {
-        'Silver': '$5,000 – $10,000',
-        'Black': '$25,000 – $50,000',
-        'Obsidian': '$100,000+',
+        'Silver': 'Under $25,000 per journey',
+        'Black': '$25,000 – $50,000 per journey',
+        'Obsidian': 'Let\u2019s discuss what\u2019s right for me',
       };
       setFormData((prev) => ({
         ...prev,
@@ -152,6 +152,13 @@ export default function ConciergeForm() {
     return emailRegex.test(email);
   };
 
+  const validateTravelDates = (value: string): string | null => {
+    if (!value.trim()) return null; // optional field
+    if (value.trim().length < 3) return 'Please enter a recognizable date — e.g., "March 2025" or "Next spring"';
+    if (/^[\d\W]+$/.test(value.trim())) return 'Try something like "March 2025" or "Flexible — sometime this summer"';
+    return null;
+  };
+
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
 
@@ -163,6 +170,11 @@ export default function ConciergeForm() {
       newErrors.email = "We'll send trip ideas to your email";
     } else if (!validateEmail(formData.email)) {
       newErrors.email = "That doesn't look like a valid email — please double-check";
+    }
+
+    const dateError = validateTravelDates(formData.travelDates);
+    if (dateError) {
+      newErrors.travelDates = dateError;
     }
 
     setErrors(newErrors);
@@ -192,6 +204,14 @@ export default function ConciergeForm() {
       } else {
         delete newErrors.email;
         newValidFields.email = true;
+      }
+    }
+    if (field === 'travelDates') {
+      const dateError = validateTravelDates(formData.travelDates);
+      if (dateError) {
+        newErrors.travelDates = dateError;
+      } else {
+        delete newErrors.travelDates;
       }
     }
     setErrors(newErrors);
@@ -231,23 +251,22 @@ export default function ConciergeForm() {
     'w-full bg-white border border-aurora-border rounded-lg px-4 py-3 text-aurora-text focus:border-aurora-gold focus:ring-2 focus:ring-aurora-gold/50 focus:outline-none transition-all min-h-[44px]';
 
   return (
-    <section id="contact" className="py-section-lg px-4 sm:px-6 bg-aurora-bg-light">
+    <section id="contact" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
+        {/* Section Header — warm, conversational */}
         <AnimatedSection>
-          <div className="mb-12">
-            <h2 className="text-fluid-2xl font-heading font-semibold tracking-tight leading-tight mb-4 text-aurora-text">
-              Ready to Start Planning?
-            </h2>
-            <p className="text-fluid-base text-aurora-text-muted max-w-[65ch]">
-              A specialist will reach out within 24 hours to discuss your vision.
+          <div className="mb-16">
+            <p className="text-fluid-lg text-aurora-text-muted max-w-[50ch] leading-relaxed">
+              Tell us where you dream of going.{' '}
+              <span className="text-aurora-text font-heading font-medium">We&rsquo;ll handle every detail from&nbsp;here.</span>
             </p>
+            <h2 className="sr-only">Request a Consultation</h2>
           </div>
         </AnimatedSection>
 
         {/* Process Steps */}
         <AnimatedSection delay={0.1}>
-          <div className="max-w-2xl mx-auto mb-12">
+          <div className="max-w-2xl mx-auto mb-16">
             <div className="flex items-start gap-4 sm:gap-0 sm:items-center justify-between">
               {[
                 { step: '1', label: 'Share your vision', desc: 'Tell us where and when' },
@@ -275,9 +294,9 @@ export default function ConciergeForm() {
 
         {/* Form Container */}
         <AnimatedSection delay={0.2}>
-          <div className="max-w-2xl mx-auto bg-white border border-aurora-border rounded-lg p-5 sm:p-6 md:p-8 shadow-subtle">
+          <div className="max-w-2xl mx-auto bg-white border border-aurora-border rounded-lg p-6 sm:p-8 md:p-10 lg:p-12 shadow-subtle">
           {/* Trust Badge */}
-          <p className="text-sm text-aurora-text-muted text-center mb-6">
+          <p className="text-sm text-aurora-text-muted text-center mb-8">
             ✓ 4.9/5 on Trustpilot · 1,200+ families trust Aurora Luxe
           </p>
 
@@ -305,7 +324,7 @@ export default function ConciergeForm() {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-8">
             {/* Error Banner */}
             {showErrorBanner && (
               <div role="alert" className="mb-6 flex items-center gap-2 rounded-lg border border-aurora-error/30 bg-aurora-error/10 px-4 py-3 text-sm text-aurora-error">
@@ -362,19 +381,19 @@ export default function ConciergeForm() {
               {errors.email && <p id="email-error" className="mt-1 text-sm text-aurora-error">{errors.email}</p>}
             </div>
 
-            {/* Notes — brief */}
+            {/* Notes — conversational */}
             <div>
               <label htmlFor="notes" className="block text-sm font-medium text-aurora-text/80 mb-2">
-                Tell us about your dream journey
+                Tell us about your dream trip
               </label>
               <textarea
                 id="notes"
-                rows={3}
+                rows={4}
                 maxLength={NOTES_MAX_LENGTH}
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                 className="w-full bg-white border border-aurora-border rounded-lg px-4 py-3 text-aurora-text placeholder:text-aurora-text-muted focus:border-aurora-gold focus:ring-2 focus:ring-aurora-gold/50 focus:outline-none transition-all resize-none"
-                placeholder="Where would you like to go? Any special occasions or preferences?"
+                placeholder="A week in the Maldives for our anniversary… A family safari in Kenya… Just dreaming for now…"
               />
             </div>
 
@@ -392,7 +411,7 @@ export default function ConciergeForm() {
               </button>
 
               {showDetails && (
-                <div className="mt-4 space-y-5 pt-4 border-t border-aurora-border/50">
+                <div className="mt-6 space-y-6 pt-6 border-t border-aurora-border/50">
                   {/* Travel Dates */}
                   <div>
                     <label htmlFor="travelDates" className="block text-sm font-medium text-aurora-text/80 mb-2">
@@ -401,11 +420,21 @@ export default function ConciergeForm() {
                     <input
                       type="text"
                       id="travelDates"
-                      placeholder="e.g., March 2025"
+                      placeholder='e.g., "March 2025" or "Flexible"'
                       value={formData.travelDates}
-                      onChange={(e) => setFormData({ ...formData, travelDates: e.target.value })}
+                      onChange={(e) => {
+                        setFormData({ ...formData, travelDates: e.target.value });
+                        if (errors.travelDates) setErrors((prev) => { const next = { ...prev }; delete next.travelDates; return next; });
+                      }}
+                      onBlur={() => validateField('travelDates')}
                       className={`${inputClass} placeholder:text-aurora-text-muted`}
+                      aria-invalid={!!errors.travelDates}
+                      aria-describedby={errors.travelDates ? 'travelDates-error' : 'travelDates-hint'}
                     />
+                    {errors.travelDates
+                      ? <p id="travelDates-error" className="mt-1 text-sm text-aurora-error">{errors.travelDates}</p>
+                      : <p id="travelDates-hint" className="mt-1 text-xs text-aurora-text-muted">A rough timeframe is fine — exact dates aren&rsquo;t needed yet.</p>
+                    }
                   </div>
 
                   {/* Number of Travelers */}
@@ -454,7 +483,7 @@ export default function ConciergeForm() {
                   {/* Budget Range */}
                   <div>
                     <label htmlFor="budget" className="block text-sm font-medium text-aurora-text/80 mb-2">
-                      Budget Range
+                      Investment per Journey
                     </label>
                     <select
                       id="budget"

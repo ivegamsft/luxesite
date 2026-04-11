@@ -16,12 +16,12 @@ const footerCompany = [
 export default function Footer() {
   return (
     <footer className="bg-aurora-navy text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-20 pb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-section-sm pb-16">
         {/* 4-column grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-20">
           {/* Brand */}
           <div>
-            <div className="font-heading text-fluid-xl font-bold mb-5">
+            <div className="font-heading text-fluid-xl font-bold mb-6">
               AURORA LUXE
             </div>
             <p className="text-sm text-white/80 leading-relaxed max-w-[28ch]">
@@ -31,10 +31,10 @@ export default function Footer() {
 
           {/* Destinations */}
           <div>
-            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider mb-4 text-white/80">
+            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider mb-6 text-white/80">
               Destinations
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {footerDestinations.map((link) => (
                 <li key={link.label}>
                   <a
@@ -50,10 +50,10 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider mb-4 text-white/80">
+            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider mb-6 text-white/80">
               Company
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {footerCompany.map((link) => (
                 <li key={link.label}>
                   <a
@@ -69,7 +69,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider mb-4 text-white/80">
+            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider mb-6 text-white/80">
               Contact
             </h3>
             <ul className="space-y-3 text-sm text-white/80">
@@ -88,7 +88,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Row: Copyright + Credits */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-10 border-t border-white/15 text-sm text-white/70">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-12 border-t border-white/15 text-sm text-white/70">
           <p>© 2026 Aurora Luxe Travel. All rights reserved.</p>
           <p>
             Images via{' '}

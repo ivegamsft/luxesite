@@ -5,8 +5,8 @@ export const tiers: MembershipTier[] = [
     id: 'silver',
     name: 'Silver',
     tagline: 'Your Journey Begins',
-    price: '$25,000/year',
-    perTrip: 'from $5,000 per journey',
+    price: 'From $25,000/year',
+    perTrip: 'per-journey pricing tailored to you',
     featured: false,
     perks: [
       'Priority booking at partner properties worldwide',
@@ -20,8 +20,8 @@ export const tiers: MembershipTier[] = [
     id: 'black',
     name: 'Black',
     tagline: 'Elevated Beyond Limits',
-    price: '$75,000/year',
-    perTrip: 'from $15,000 per journey',
+    price: 'From $75,000/year',
+    perTrip: 'per-journey pricing tailored to you',
     featured: true,
     perks: [
       'Everything in Silver, plus:',
@@ -37,8 +37,8 @@ export const tiers: MembershipTier[] = [
     id: 'obsidian',
     name: 'Obsidian',
     tagline: 'The Rarest Circle',
-    price: '$200,000/year',
-    perTrip: 'from $50,000 per journey',
+    price: 'By Invitation',
+    perTrip: 'everything is bespoke — we design around you',
     featured: false,
     perks: [
       'Everything in Black, plus:',

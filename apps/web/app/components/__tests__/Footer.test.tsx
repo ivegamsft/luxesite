@@ -15,14 +15,17 @@ describe('Footer', () => {
 
   it('renders copyright', () => {
     render(<Footer />);
-    expect(screen.getByText(/© 2025 Aurora Luxe Travel/i)).toBeInTheDocument();
+    expect(screen.getByText(/© 2026 Aurora Luxe Travel/i)).toBeInTheDocument();
   });
 
   it('renders navigation links', () => {
     render(<Footer />);
+    // Footer has Destinations section heading + Company links
     expect(screen.getByText('Destinations')).toBeInTheDocument();
-    expect(screen.getByText('Experiences')).toBeInTheDocument();
-    expect(screen.getByText('Membership')).toBeInTheDocument();
+    expect(screen.getByText('Our Team')).toBeInTheDocument();
+    // Contact appears as both a section heading and a nav link
+    const contactElements = screen.getAllByText('Contact');
+    expect(contactElements.length).toBeGreaterThanOrEqual(1);
   });
 
   // --- Gradient text removal verification (Trinity's fix) ---

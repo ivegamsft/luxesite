@@ -24,15 +24,15 @@ describe('DestinationGrid', () => {
     
     // Check for Maldives card with price
     expect(screen.getByText('Maldives')).toBeInTheDocument();
-    expect(screen.getByText(/from €12,500/i)).toBeInTheDocument();
+    expect(screen.getByText(/from \$12,500/i)).toBeInTheDocument();
     
     // Check for Tokyo card with price
     expect(screen.getByText('Tokyo')).toBeInTheDocument();
-    expect(screen.getByText(/from €8,900/i)).toBeInTheDocument();
+    expect(screen.getByText(/from \$8,900/i)).toBeInTheDocument();
     
     // Check for Swiss Alps card with price
     expect(screen.getByText('Swiss Alps')).toBeInTheDocument();
-    expect(screen.getByText(/from €15,200/i)).toBeInTheDocument();
+    expect(screen.getByText(/from \$15,200/i)).toBeInTheDocument();
   });
 
   // --- Touch/Keyboard Accessibility tests (verifying Trinity's fixes) ---

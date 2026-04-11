@@ -70,6 +70,25 @@
 - All Framer Motion animations: need `useReducedMotion()` hook
 - Global need for `@container` queries on card components
 
+### Issues #110, #108, #103 — Experience Cards + Tier Border + Eyebrow Fix (2026-04-10)
+
+**Issue #110 — Experience cards visual punch:**
+- Rest cards redesigned as image-forward overlay cards (h-56/sm:h-64, up from h-36)
+- Text/regions/icon now overlaid on image with layered scrims for contrast
+- Added hover lift (-translate-y-1) and slower zoom transition (700ms ease-out)
+- Region tags now use glass-style (bg-white/10 backdrop-blur-sm) over image
+- Featured card image bumped to h-64/lg:h-80 with stronger scrim
+
+**Issue #108 — Featured tier border:**
+- Replaced conic-gradient `::before` pseudo-element with solid gold border (1.5px, oklch aurora-gold)
+- Added subtle gold glow shadow (oklch 0.80 0.12 75 / 0.15)
+- Conic gradients are AI-aesthetic — solid gold reads as understated luxury
+
+**Issue #103 — Eyebrow removed:**
+- Removed "Curated by Our Specialists" eyebrow from ExperienceList
+- "Signature Experiences" heading stands alone — consistent with section intro variety decision
+- Not every section needs an eyebrow (per established pattern)
+
 ## Session Activity
 
 ### Impeccable Audit Fixes (2026-04-10T03:42:00Z)
@@ -307,3 +326,75 @@ Price opacity bumped from `/60` to `/80`; region from `/60` to `/70`. All text n
 6. **Component files** — all 10 component files checked. All className strings reference current semantic tokens (`aurora-text`, `aurora-gold`, `aurora-border`, etc.). No stale references.
 
 **Note:** Build has a pre-existing TypeScript error in `experiences.ts` (missing `regions` property) — unrelated to token naming. Filed separately.
+
+### Issue #136: Hero Planner Dropdown Styling (2026-04-11)
+
+**Problem:** Two native `<select>` elements in the hero concierge discovery row rendered browser-default dropdown panels — completely breaking the luxury control bar aesthetic.
+
+**Fix:** Replaced both native `<select>` with a custom `LuxeSelect` component (inline in Hero.tsx). The component uses:
+- `bg-white/90 backdrop-blur-md` + `border-aurora-border` + `shadow-glass` + `rounded-lg` for the dropdown panel — matches the parent control bar's glass treatment
+- Aurora gold highlight for the selected option (`text-aurora-gold font-semibold bg-aurora-gold/8`)
+- `bg-aurora-bg-dark` hover/active state for keyboard navigation
+- Animated chevron (rotate-180 on open) with `text-aurora-text-muted`
+- Framer Motion `AnimatePresence` for smooth open/close transitions (opacity + subtle y-shift)
+
+**Accessibility:** Full keyboard support — ArrowUp/Down, Enter/Space to select, Escape to close, Home/End. ARIA: `role="combobox"` on trigger, `role="listbox"` on panel, `role="option"` on items, `aria-expanded`, `aria-activedescendant`, `aria-selected`. Click-outside-to-close via mousedown listener.
+
+**Test fix:** Hero tests were pre-existing failures (framer-motion mock missing `useReducedMotion`). Added inline `jest.mock('framer-motion')` to Hero.test.tsx with all needed exports. Also updated stale headline assertion. All 5 tests now pass.
+
+**Key files:**
+- `apps/web/app/components/Hero.tsx` — LuxeSelect component + Hero
+- `apps/web/app/components/__tests__/Hero.test.tsx` — fixed framer-motion mock
+- `apps/web/app/__mocks__/framer-motion.tsx` — added useReducedMotion + motion.ul/h1/p
+
+### Issue #145: Section Heading Variety (2026-04-11)
+
+**Problem:** Gold uppercase eyebrow → large h2 → muted subtitle pattern repeated in 6+ sections. This is the #1 AI-template tell — human designers create variety.
+
+**Audit results:** Gold eyebrow pattern found in DestinationGrid, ExperienceList, FAQ, GuideGrid, WhyAurora. Tiers/ConciergeForm had similar centered h2+subtitle without eyebrow. Testimonials was already unique (editorial quote opener).
+
+**Changes (3 files):**
+
+1. **FAQ.tsx** — Removed gold eyebrow ("Your Questions, Answered") and centered h2. Replaced with left-aligned, understated `text-fluid-xl font-medium text-aurora-text/80` heading ("Common Questions"). No eyebrow, no subtitle. The accordion items are the content — the heading just labels the section.
+
+2. **Tiers.tsx** — Replaced centered h2+subtitle block with a flex baseline row: left-aligned `text-fluid-lg` heading ("Membership") + right-aligned muted tagline ("Three tiers. One uncompromising standard."). Cards now lead the visual hierarchy, heading is a section label.
+
+3. **ConciergeForm.tsx** — Replaced formal h2 ("Ready to Start Planning?") with a warm conversational line using mixed weight/color: muted lead-in + emphasized `font-heading font-medium` phrase. Visual h2 moved to `sr-only` for accessibility — screen readers still get proper heading structure.
+
+**Preserved:** DestinationGrid and ExperienceList keep the gold eyebrow pattern (appropriate for discovery sections). GuideGrid and WhyAurora untouched (Morpheus territory, Issue #147).
+
+**Key lesson:** Section heading variety is about matching the heading treatment to the section's purpose. Discovery sections earn the full eyebrow+heading treatment. Utility sections (FAQ, forms) need understated labels. Social proof (testimonials) should let content speak. Pricing should lead with the product.
+
+### Issue Sweep — #82, #89, #92, #98 (2026-04-11)
+
+**4 fixes across 7 files. Build clean.**
+
+**Issue #98 (P3) — AnimatedSection entrance variety:** Most sections were using default `'fade'` variant, creating robotic uniformity. Distributed three variants across sections: `fade-up` for DestinationGrid/Tiers/WhyAurora/FAQ headings, `fade-left` for ExperienceList/Testimonials/ConciergeForm headings, and default `fade` for FAQ accordion items and ConciergeForm form sections. Pattern: directional entrances for primary headings, simple fades for repeated content.
+
+**Issue #92 (P3) — shadow-lift too dark:** Both tailwind.config.ts (`0.35` opacity) and globals.css (`0.15` opacity) had the `lift` shadow defined. Tailwind value was far too heavy for a light theme. Unified both to `0 2px 16px oklch(0 0 0 / 0.10), 0 1px 4px oklch(0 0 0 / 0.06)` — a two-layer shadow that reads as refined editorial elevation, not Material Design.
+
+**Issue #89 (P2) — Featured tier CTA hover:** Button already had correct `bg-aurora-gold text-white` base. Missing was an explicit hover background — added `hover:bg-aurora-gold/90` for a subtle darken on hover, consistent with primary CTA behavior across the site.
+
+**Issue #82 (P2) — ExperienceList featured card gap:** The highlights `<ul>` had `flex-1` which expanded it to fill the `row-span-full` card height, creating an awkward empty zone below the list items and above the region pills. Fix: removed `flex-1` from the list, added `mt-auto` to the region pills wrapper. Content now flows naturally from top; pills anchor to card bottom.
+
+**Key lesson:** When cards use `row-span-full` in a grid, avoid `flex-1` on intermediate content — it stretches to fill the cross-column height. Instead, use `mt-auto` on the final element to anchor it to the bottom while letting content above it size naturally.
+
+### Issues #111 & #100 — Hero Copy + Pricing Anxiety (2026-04-11)
+
+**Issue #111 (P3) — Generic hero copy:** Headline changed from "Where Will Your Story Take You Next?" to "Journeys Written in Light" — ties directly to the Aurora brand identity. Subheadline replaced with the approved fragmented atmospheric style from decisions.md: "Private shores. Unmarked airstrips. Tables that don't take reservations." — under 15 words, no banned luxury clichés.
+
+**Issue #100 (P2) — Pricing shock / tier-form mismatch:** Three changes: (1) Tier prices softened with "From $X" language; Obsidian changed to "By Invitation" with no dollar amount — luxury clients don't shop price lists. (2) ConciergeForm budget field renamed to "Investment per Journey" with ranges aligned to tier pricing, plus a "Let's discuss what's right for me" escape hatch. (3) Section subheading changed to "Every journey is custom-tailored to your vision."
+
+**Key lesson:** Tiers.tsx price display splits on `/` to separate amount from period — when a tier has no `/` (like "By Invitation"), the component now conditionally renders the whole string instead of breaking. Always check string-splitting rendering logic when changing data formats.
+
+### Issues #151, #152, #153, #157 — Bug Sweep: Contrast, Scroll, Border, Readability (2026-04-11)
+
+**Issue #151 — Back-to-top button contrast:** Swapped from g-aurora-gold text-white (fails AA — gold-on-white is ~2.1:1) to g-aurora-navy text-aurora-gold with border accent. Hover inverts to g-aurora-gold text-white. Dark bg + gold icon passes AA comfortably. Active state adds /90 opacity feedback.
+
+**Issue #152 — Destination Quick Facts scroll:** The click-to-expand overlay trapped all pointer events because the parent card was ole="button" with onClick. Added stopPropagation() on the overlay container (both click and keydown) so scrolling the facts list doesn't collapse the card. Also added overscroll-contain to prevent scroll chaining to the page.
+
+**Issue #153 — Tier CTA border:** Non-featured CTA had order border-white/30 — nearly invisible on dark navy. Upgraded to order-2 border-aurora-gold/40 for clear default visibility; hover goes to full order-aurora-gold. Added hover:bg-aurora-gold/10 tint and explicit ocus:border-aurora-gold for accessible focus.
+
+**Issue #157 — FAQ readability:** Heading was 	ext-aurora-text/80 — unnecessary opacity reduction. Set to full 	ext-aurora-text. Card background was g-white/80 (semi-transparent) — changed to opaque g-white for consistent text contrast. Answer text upgraded from 	ext-aurora-text-muted (#6b6458, ~4.8:1 on white) to 	ext-aurora-text/75 (~5.5:1) with explicit 	ext-[0.9375rem] (15px) for comfortable reading size.
+
+**Key lesson:** urora-gold (#c9a76a) fails WCAG AA as a text-on-white color (~2.1:1) and as a background-for-white-text color (~2.1:1). Use it on dark backgrounds (navy, text color) for contrast, or as decorative/border only.
