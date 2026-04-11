@@ -1,10 +1,10 @@
-# Aurora Luxe Travel
+# Aurora Luxe
 
-A futuristic luxury travel website for the world's most discerning travelers. Built as a fictional brand showcase featuring ultra-premium concierge travel experiences.
+A futuristic luxury party and event platform for the world's most discerning hosts. Built as a fictional brand showcase featuring ultra-premium experiential offerings.
 
 ## The Project
 
-**Aurora Luxe** is a single-page, ultra-premium travel concierge brand. Every detail—from the editorial typography to the OKLCH aurora color palette—reflects a commitment to restraint and precision. This is not a SaaS product; this is a luxury brand.
+**Aurora Luxe** is a single-page, ultra-premium party and event design brand. Every detail—from the editorial typography to the OKLCH aurora color palette—reflects a commitment to restraint and precision. This is not a SaaS product; this is a luxury brand.
 
 **Stack:** Next.js 16, React 19, TypeScript, Tailwind CSS 4, Framer Motion  
 **Design Language:** Glassmorphism, editorial restraint, aurora color palette (cyan, magenta, purple, gold)
@@ -60,14 +60,14 @@ The page comprises 8 carefully composed sections (post-P0 consolidation):
 
 1. **Hero** – Atmospheric imagery with restrained copy and ambient scroll parallax
 2. **Trust Bar** – Client logos + credential count (data-driven authority)
-3. **Destination Grid** – Featured luxury retreats with pricing, imagery, and glassmorphic overlays
-4. **Experience List** – 6 curated experiences (private villas, yacht charters, etc.) with monoline SVG icons
+3. **Experience Categories** – Featured luxury experiences with pricing, imagery, and glassmorphic overlays
+4. **Offering List** – 6 curated offerings (bespoke productions, voyages, celebrations, etc.) with monoline SVG icons
 5. **Why Aurora** – 3-card editorial grid; refined alternative to carousel
-6. **Testimonials** – Animated carousel of UHNW guest reviews with dot navigation (WCAG 44px targets)
+6. **Testimonials** – Animated carousel of premium client reviews with dot navigation (WCAG 44px targets)
 7. **Interstitial** – Full-bleed breathing space; editorial pause before final CTA push
-8. **Tiers** – 3 membership levels with animated borders and tiered pricing
+8. **Pricing Tiers** – 3 engagement levels with animated borders and tiered pricing
 9. **FAQ** – Collapsed disclosure accordion
-10. **Concierge Form** – Contact form with validation and toast notifications
+10. **Consultation Form** – Contact form with validation and toast notifications
 
 Plus:
 - **Navbar** – Logo + scroll-aware mobile menu with slide animation

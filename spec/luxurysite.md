@@ -1,10 +1,10 @@
-# AURORA LUXE TRAVEL - Optimized UI Spec
+# AURORA LUXE - Optimized UI Spec
 
 ## 1) Core
 
-**Type:** Single-page, light-theme luxury travel marketing site  
-**Goal:** Convert visitors → concierge requests via credibility-first design  
-**Content-first approach:** Substance over visual effects  
+**Type:** Single-page, light-theme luxury party and event platform marketing site  
+**Goal:** Convert visitors → consultation requests via credibility-first design  
+**Content-first approach:** Substance over visual effects
 
 ---
 
@@ -102,10 +102,10 @@ xs: 8px | sm: 12px | md: 16px | lg: 24px | xl: 32px | 2xl: 48px | 3xl: 64px
 
 ### 5.2 Hero
 **Content:**
-- H1: "Award-Winning Travel Specialists Designing Bespoke Journeys"
-- Subhead: "Hand-curated experiences. 24/7 concierge. Journeys tailored to you alone."
+- H1: "Award-Winning Event Architects Designing Bespoke Experiences"
+- Subhead: "Hand-curated productions. 24/7 event support. Celebrations tailored to you alone."
 - CTA 1: "Request Consultation" → #contact
-- CTA 2: "Explore Destinations" → #destinations
+- CTA 2: "Explore Experiences" → #experiences
 
 **Visual:**
 - Full-bleed 1920×1080 image (16:9 aspect), 4:3 on tablet, 1:1 on mobile
@@ -118,38 +118,38 @@ xs: 8px | sm: 12px | md: 16px | lg: 24px | xl: 32px | 2xl: 48px | 3xl: 64px
 - Team section: 4-6 cards (photo, name, title, years exp, bio, specialties)
 - 3-col lg / 2-col md / 1-col sm
 - Differentiators: 3-column grid with icon + headline + 1-2 sentences
-  - "24/7 Concierge" — Always available
-  - "Hand-Curated" — Every property vetted
-  - "Specialists" — 12+ years avg expertise
+  - "24/7 Event Support" — Always available
+  - "Hand-Curated" — Every experience designed fresh
+  - "Architects" — 12+ years avg expertise
 
 **Background:** aurora-gold-light
 
-### 5.4 Destinations
+### 5.4 Experience Categories
 - 12-15 cards (expand from 6)
 - Image: 640×480 (4:3), lazy-loaded, WebP + JPG
-- Fields: name, region, tagline, price badge, quickFacts (3-4), "Learn More" link
+- Fields: name, category, tagline, price badge, quickFacts (3-4), "Learn More" link
 - Hover: lift 4px, shadow medium
 - Layout: 3-col lg / 2-col md / 1-col sm
 
-### 5.5 Signature Experiences
-- 8 cards: title, description (1-2 sentences), icon, regions
-- Examples: Wildlife Safaris, Cultural Immersion, Beach Retreats, Mountain Trekking, Food & Wine, Adventure, Family, Honeymoon
+### 5.5 Signature Offerings
+- 8 cards: title, description (1-2 sentences), icon, categories
+- Examples: Bespoke Productions, Voyages, Celebrations, Adventures, Junior Experiences, Creative Collaborations
 - Layout: 3-col lg / 2-col md / 1-col sm
 
-### 5.6 Travel Guides (New: Authority)
+### 5.6 Event Guides (New: Authority)
 - 6-8 cards: title, excerpt, read time, featured image, "Read Guide" link
 - Image: 640×480 (4:3), lazy-loaded
 - Fade-in on scroll
 - Layout: 3-col lg / 2-col md / 1-col sm
 
 ### 5.7 Testimonials
-- 5-8 cards: name, location, role, quote (specific trip details), date, optional avatar, optional Trustpilot link
+- 5-8 cards: name, location, role, quote (specific event details), date, optional avatar, optional reference link
 - Include 3+ with third-party source verification
 - Layout: 2-col lg / 1-col md/sm
 
 ### 5.8 Press & Awards (New: Credibility)
-- Logo wall: 4-8 logos (Condé Nast, Travel + Leisure, Forbes, Trustpilot, etc.)
-- Stats below: "2,471 verified reviews on Trustpilot" or similar
+- Logo wall: 4-8 logos (major publications, award bodies, etc.)
+- Stats below: "Trusted by 1,200+ families and organizations" or similar
 - Horizontal scroll mobile, grid desktop
 - All links to source
 
@@ -157,7 +157,7 @@ xs: 8px | sm: 12px | md: 16px | lg: 24px | xl: 32px | 2xl: 48px | 3xl: 64px
 **Context above form:**
 - Headline: "Ready to Start Planning?"
 - Subtitle: "A specialist will reach out within 24 hours to discuss your vision."
-- Trust badge: "✓ 4.9/5 on Trustpilot" or "✓ 1,000+ journeys designed"
+- Trust badge: "✓ Trusted by 1,200+ clients" or "✓ 500+ extraordinary experiences designed"
 
 **Fields:**
 
@@ -165,9 +165,9 @@ xs: 8px | sm: 12px | md: 16px | lg: 24px | xl: 32px | 2xl: 48px | 3xl: 64px
 |-------|------|----------|-------|---------------|
 | Full Name | text | yes | min 2, max 100 chars | "Enter full name (min 2 chars)" |
 | Email | email | yes | RFC 5322 valid | "Enter valid email" |
-| Travel Dates | date/text | no | if filled, future date | "Enter future date" |
-| Travelers | number | no | 1–20 | "1–20 travelers only" |
-| Interests | multi-chip | no | 8 options | — |
+| Event Date | date/text | no | if filled, future date | "Enter future date" |
+| Guest Count | number | no | 1–500 | "1–500 guests" |
+| Experience Type | multi-chip | no | 8 options | — |
 | Budget | select | no | 4 tiers | — |
 | Notes | textarea | no | max 500 chars | "Max 500 characters" |
 
@@ -191,7 +191,7 @@ xs: 8px | sm: 12px | md: 16px | lg: 24px | xl: 32px | 2xl: 48px | 3xl: 64px
 
 ### 5.10 Footer
 - Logo (left)
-- Quick links: Destinations, Guides, About, Contact
+- Quick links: Experiences, Guides, About, Contact
 - Contact: phone + email
 - Optional: social links
 - Copyright + image credits
@@ -288,9 +288,9 @@ xs: 8px | sm: 12px | md: 16px | lg: 24px | xl: 32px | 2xl: 48px | 3xl: 64px
 ## 9) SEO & Metadata
 
 **Document meta:**
-- Title: "Aurora Luxe Travel | Award-Winning Private Travel Specialists"
-- Description: "Bespoke luxury travel by specialists. Curated destinations, 24/7 concierge, journeys for you alone."
-- Keywords: luxury travel, bespoke itineraries, private travel, safaris, travel specialists, [regions]
+- Title: "Aurora Luxe | Award-Winning Event Architects & Experience Designers"
+- Description: "Bespoke luxury events and experiences by architects. Curated productions, 24/7 event support, celebrations designed for you alone."
+- Keywords: luxury events, bespoke experiences, party planning, event design, experience architects, [categories]
 - OG: title, description, image (1200×630), type (website)
 - Twitter: summary_large_image
 

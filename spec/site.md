@@ -1,15 +1,15 @@
-# AURORA LUXE TRAVEL - Reverse-Engineered UI Spec (Design-MD Style)
+# AURORA LUXE - Reverse-Engineered UI Spec (Design-MD Style)
 
 ## 1) Product Summary
 
-Aurora Luxe Travel is a single-page, high-end luxury travel marketing and lead-capture experience.
+Aurora Luxe is a single-page, high-end luxury party and event platform marketing and lead-capture experience.
 
 Primary goal:
-- Convert high-intent visitors into concierge requests via section CTAs and a premium intake form.
+- Convert high-intent visitors into consultation requests via section CTAs and a premium inquiry form.
 
 Secondary goals:
 - Communicate exclusivity, discretion, and bespoke service quality.
-- Showcase curated destinations, signature experiences, and membership tiers.
+- Showcase curated experiences, signature offerings, and pricing tiers.
 
 Current implementation scope:
 - Single landing page composed of 8 stacked sections.
@@ -31,25 +31,25 @@ Interaction principles:
 Section order (top to bottom):
 1. Sticky Navbar
 2. Hero
-3. Destinations
-4. Signature Experiences
-5. Membership
+3. Experience Categories
+4. Signature Offerings
+5. Pricing Tiers
 6. Testimonials
-7. Concierge Form
+7. Consultation Form
 8. Footer
 
 Anchor map:
 - #hero
-- #destinations
 - #experiences
-- #membership
+- #offerings
+- #tiers
 - #testimonials
 - #contact
 
 Global navigation labels:
-- Destinations
 - Experiences
-- Membership
+- Offerings
+- Tiers
 - Testimonials
 - Contact
 
@@ -134,10 +134,10 @@ Actions:
 ### 7.2 Hero
 
 Content:
-- H1: Beyond First Class.
-- Luxury concierge value proposition paragraph.
-- Primary CTA: Design My Trip
-- Secondary CTA: Explore Destinations
+- H1: Architects of the Extraordinary.
+- Luxury party design value proposition paragraph.
+- Primary CTA: Plan an Experience
+- Secondary CTA: Explore Categories
 
 Visual layers:
 - Remote full-bleed background image
@@ -146,17 +146,17 @@ Visual layers:
 - Large blurred aurora blob behind hero copy
 
 Actions:
-- Design My Trip -> #contact
-- Explore Destinations -> #destinations
+- Plan an Experience -> #contact
+- Explore Categories -> #experiences
 
-### 7.3 Destinations
+### 7.3 Experience Categories
 
 Purpose:
-- Showcase 6 curated destination products.
+- Showcase 6 curated experience categories.
 
 Card content model:
 - name
-- region
+- category
 - tagline
 - price + currency (badge, "from ...")
 - imageUrl
@@ -169,10 +169,10 @@ Interactions:
 Current behavior note:
 - Cards are presentational only; no click-through route/modal currently implemented.
 
-### 7.4 Signature Experiences
+### 7.4 Signature Offerings
 
 Purpose:
-- Communicate breadth and uniqueness of concierge offerings.
+- Communicate breadth and uniqueness of party and event design services.
 
 Item model:
 - icon (emoji)
@@ -182,25 +182,25 @@ Item model:
 Layout:
 - Responsive card grid with staggered reveal.
 
-### 7.5 Membership
+### 7.5 Pricing Tiers
 
 Purpose:
-- Present value ladder and promote premium conversion.
+- Present value ladder and promote engagement conversion.
 
 Tiers:
-- Silver
-- Black (featured)
-- Obsidian
+- One Time ($500K)
+- Yearly ($1.2M/yr, featured)
+- Gift ($250K)
 
 Tier model:
 - name
 - tagline
-- price (yearly)
+- price
 - featured flag
 - perks[]
 
 Featured-state treatment:
-- Black tier receives animated conic border, elevated scale, and "Most Popular" badge.
+- Yearly tier receives animated conic border, elevated scale, and "Most Popular" badge.
 
 ### 7.6 Testimonials
 
@@ -215,17 +215,17 @@ Item model:
 Layout:
 - Responsive card grid (2 columns from md upward in current implementation).
 
-### 7.7 Concierge Form
+### 7.7 Consultation Form
 
 Purpose:
-- Capture high-value travel request intent.
+- Capture high-value event and experience inquiry intent.
 
 Fields:
 - name (required)
 - email (required + format validation)
-- travelDates
-- travelers (number, min 1, max 20)
-- interests (multi-select chip buttons)
+- eventDate
+- guestCount (number, min 1, max 500)
+- experienceType (multi-select chip buttons)
 - budget (select)
 - notes (textarea)
 
@@ -252,13 +252,13 @@ Content:
 
 ## 8) Data Contracts
 
-Destination:
-- slug, name, region, tagline, price, currency, imageUrl, quickFacts[]
+ExperienceCategory:
+- slug, name, category, tagline, price, currency, imageUrl, quickFacts[]
 
-Experience:
+Offering:
 - id, title, description, icon
 
-MembershipTier:
+PricingTier:
 - id, name, tagline, price, featured, perks[]
 
 Testimonial:
