@@ -28,7 +28,6 @@ export interface EventTier {
   price: string;
   featured: boolean;
   perks: string[];
-  perTrip?: string;
 }
 
 /** @deprecated Use EventTier instead */
@@ -71,8 +70,6 @@ export interface InsiderGuide {
   author: string;
 }
 
-/** @deprecated Use InsiderGuide instead */
-export type TravelGuide = InsiderGuide;
 
 export interface PressAward {
   id: string;

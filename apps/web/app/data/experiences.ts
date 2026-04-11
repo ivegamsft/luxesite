@@ -2,67 +2,67 @@ import { Experience } from '../lib/types';
 
 export const experiences: Experience[] = [
   {
-    id: 'wildlife-safaris',
-    title: 'Wildlife Safaris',
-    description: 'Track the Big Five across Africa\'s most exclusive private conservancies. From the Great Migration to intimate gorilla encounters, every safari is guided by world-class naturalists.',
-    icon: 'wildlife',
-    regions: ['Botswana', 'Kenya', 'Tanzania', 'South Africa'],
-    imageUrl: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&h=600&fit=crop'
-  },
-  {
-    id: 'cultural-immersion',
-    title: 'Cultural Immersion',
-    description: 'Step behind the curtain of ancient civilisations. Private temple ceremonies, master artisan workshops, and dinner in homes untouched by tourism—experiences that transform.',
-    icon: 'cultural',
-    regions: ['Japan', 'India', 'Morocco', 'Peru'],
-    imageUrl: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&h=600&fit=crop'
-  },
-  {
-    id: 'beach-islands',
-    title: 'Beach & Islands',
-    description: 'Pristine shores reserved for the few. Overwater villas, private island buyouts, and coral reefs explored with marine biologists who know every fish by name.',
-    icon: 'beach',
-    regions: ['Maldives', 'Seychelles', 'Fiji', 'Bora Bora'],
-    imageUrl: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800&h=600&fit=crop'
-  },
-  {
-    id: 'mountain-ski',
-    title: 'Mountain & Ski',
-    description: 'Heli-ski untouched powder fields by day, unwind in thermal spas carved from mountain stone by night. From alpine chalets to Himalayan lodges, elevation redefined.',
-    icon: 'mountain',
-    regions: ['Swiss Alps', 'Patagonia', 'Nepal', 'Whistler'],
-    imageUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop'
-  },
-  {
-    id: 'food-wine',
-    title: 'Food & Wine',
-    description: 'Curated dining tours across Michelin-starred restaurants and hidden trattorias. Private vineyard tastings, truffle hunts, and kitchens opened just for you.',
-    icon: 'food-wine',
-    regions: ['France', 'Italy', 'Japan', 'Spain'],
-    imageUrl: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop'
-  },
-  {
-    id: 'adventure',
-    title: 'Adventure',
-    description: 'For those who seek the extraordinary edge—Antarctic expeditions, volcanic treks, and wildlife encounters in the world\'s most remote wilderness frontiers.',
-    icon: 'adventure',
-    regions: ['Antarctica', 'Galápagos', 'Iceland', 'Borneo'],
-    imageUrl: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&h=600&fit=crop'
-  },
-  {
-    id: 'family-celebrations',
-    title: 'Family Celebrations',
-    description: 'Multi-generational adventures designed so every age finds wonder. Junior ranger programmes, gentle hikes, and storytelling around campfires—memories the whole family shares.',
+    id: 'enchanted-childrens-worlds',
+    title: 'Enchanted Children\'s Worlds',
+    description: 'Themed fantasy environments brought to life with character performers, interactive play zones, and immersive storytelling. From fairy-tale castles to outer-space adventures — we build the worlds kids dream about.',
     icon: 'family',
-    regions: ['Costa Rica', 'Greece', 'Australia', 'Norway'],
-    imageUrl: 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?w=800&h=600&fit=crop'
+    regions: ['Ages 1–12', 'Themed Parties', 'Character Experiences', 'Interactive Play'],
+    imageUrl: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&h=600&fit=crop'
   },
   {
-    id: 'honeymoon-romance',
-    title: 'Honeymoon & Romance',
-    description: 'Begin forever in the world\'s most romantic settings. Cliffside dinners, sunset yacht cruises, and suites where the only sound is the sea—crafted for two.',
+    id: 'milestone-celebrations',
+    title: 'Milestone Celebrations',
+    description: 'Sophisticated birthday productions with surprise elements, live entertainment, and bespoke décor. Sweet 16s, 30th blowouts, 50th golden galas — every milestone deserves its own stage.',
+    icon: 'cultural',
+    regions: ['Sweet 16s', '30th/40th/50th', 'Surprise Parties', 'VIP Experiences'],
+    imageUrl: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=600&fit=crop'
+  },
+  {
+    id: 'corporate-brand-events',
+    title: 'Corporate & Brand Events',
+    description: 'Product launches that make headlines, team celebrations that build culture, and award galas that honor excellence. We produce corporate events people actually want to attend.',
+    icon: 'adventure',
+    regions: ['Product Launches', 'Award Galas', 'Team Celebrations', 'Brand Activations'],
+    imageUrl: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop'
+  },
+  {
+    id: 'wedding-romance',
+    title: 'Wedding & Romance',
+    description: 'Receptions, rehearsal dinners, and engagement parties designed with cinematic attention to detail. Every first dance, every toast, every stolen glance — choreographed to perfection.',
     icon: 'romance',
-    regions: ['Santorini', 'Amalfi Coast', 'Bali', 'Maldives'],
-    imageUrl: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=800&h=600&fit=crop'
+    regions: ['Receptions', 'Rehearsal Dinners', 'Engagement Parties', 'Elopements'],
+    imageUrl: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop'
+  },
+  {
+    id: 'cultural-celebrations',
+    title: 'Cultural Celebrations',
+    description: 'Bar/Bat Mitzvahs, quinceañeras, Diwali parties, Lunar New Year galas, and more — honoring traditions with modern production values and heartfelt authenticity.',
+    icon: 'cultural',
+    regions: ['Bar/Bat Mitzvahs', 'Quinceañeras', 'Diwali', 'Lunar New Year'],
+    imageUrl: 'https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?w=800&h=600&fit=crop'
+  },
+  {
+    id: 'holiday-spectaculars',
+    title: 'Holiday Spectaculars',
+    description: 'New Year\'s Eve countdowns on rooftops, Halloween extravaganzas in transformed warehouses, and holiday parties that make the season unforgettable for every age.',
+    icon: 'mountain',
+    regions: ['New Year\'s Eve', 'Halloween', 'Holiday Parties', 'Seasonal Galas'],
+    imageUrl: 'https://images.unsplash.com/photo-1467810563316-b5476525c0f9?w=800&h=600&fit=crop'
+  },
+  {
+    id: 'family-gatherings',
+    title: 'Family Gatherings',
+    description: 'Reunions, multi-generational celebrations, and anniversary parties designed so every age — from toddlers to grandparents — feels the event was made just for them.',
+    icon: 'family',
+    regions: ['Reunions', 'Anniversaries', 'Multi-Generational', 'Baby Showers'],
+    imageUrl: 'https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=800&h=600&fit=crop'
+  },
+  {
+    id: 'immersive-entertainment',
+    title: 'Immersive Entertainment',
+    description: 'Themed dinner theater, interactive murder mysteries, escape room experiences, and sensory-driven events that blur the line between guest and performer.',
+    icon: 'beach',
+    regions: ['Dinner Theater', 'Murder Mysteries', 'Escape Experiences', 'Sensory Events'],
+    imageUrl: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop'
   }
 ];

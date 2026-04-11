@@ -26,7 +26,7 @@ describe('Navbar', () => {
 
   it('renders all navigation links', () => {
     render(<Navbar />);
-    expect(screen.getByText('Venues')).toBeInTheDocument();
+    expect(screen.getByText('Celebrations')).toBeInTheDocument();
     expect(screen.getByText('Experiences')).toBeInTheDocument();
     expect(screen.getByText('Tiers')).toBeInTheDocument();
     expect(screen.getByText('Testimonials')).toBeInTheDocument();
@@ -45,7 +45,7 @@ describe('Navbar', () => {
     
     // Mobile menu should not be visible initially
     // The mobile menu is rendered conditionally, so links should only appear once initially (desktop)
-    const venueLinks = screen.getAllByText('Venues');
+    const venueLinks = screen.getAllByText('Celebrations');
     expect(venueLinks).toHaveLength(1);
 
     // Find and click the mobile menu button
@@ -53,7 +53,7 @@ describe('Navbar', () => {
     fireEvent.click(menuButton);
 
     // After clicking, mobile menu should appear with additional links
-    const venueLinksAfter = screen.getAllByText('Venues');
+    const venueLinksAfter = screen.getAllByText('Celebrations');
     expect(venueLinksAfter.length).toBeGreaterThan(1);
   });
 });

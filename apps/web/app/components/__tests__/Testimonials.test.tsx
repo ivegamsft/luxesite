@@ -32,7 +32,7 @@ describe('Testimonials', () => {
     render(<Testimonials />);
 
     // First testimonial should be visible
-    expect(screen.getByText('Sophia Chen')).toBeInTheDocument();
+    expect(screen.getByText('Rachel Kim')).toBeInTheDocument();
 
     // Click next
     const nextButton = screen.getByLabelText('Next testimonial');
@@ -50,6 +50,6 @@ describe('Testimonials', () => {
     fireEvent.click(prevButton);
 
     // Last testimonial should now be visible (wrap around)
-    expect(screen.getByText('Yuki Tanaka')).toBeInTheDocument();
+    expect(screen.getByText('Patricia O\'Connor')).toBeInTheDocument();
   });
 });

@@ -13,7 +13,7 @@ const differentiators = [
   },
   {
     headline: 'Hand-Curated',
-    description: 'Every property personally visited and vetted by our specialists.',
+    description: 'Every venue personally scouted and transformed by our specialists.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6" aria-hidden="true">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -23,7 +23,7 @@ const differentiators = [
   },
   {
     headline: 'Specialists',
-    description: '12+ years average expertise — deep regional knowledge you can trust.',
+    description: '12+ years average expertise — deep event production knowledge you can trust.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6" aria-hidden="true">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />

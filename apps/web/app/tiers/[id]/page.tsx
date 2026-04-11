@@ -63,9 +63,7 @@ export default function TierDetailPage({ params }: { params: { id: string } }) {
               <span>{tier.price}</span>
             )}
           </div>
-          {tier.perTrip && (
-            <p className="text-sm text-white/50 mt-2">{tier.perTrip}</p>
-          )}
+
         </div>
       </section>
 

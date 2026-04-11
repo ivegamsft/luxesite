@@ -41,13 +41,13 @@ describe('Hero', () => {
 
   it('renders headline', () => {
     render(<Hero />);
-    expect(screen.getByText('Celebrations Written in Light')).toBeInTheDocument();
+    expect(screen.getByText('Extraordinary Celebrations for Every Age')).toBeInTheDocument();
   });
 
   it('renders both CTA buttons', () => {
     render(<Hero />);
     expect(screen.getByText('Request Consultation')).toBeInTheDocument();
-    expect(screen.getByText('Explore Experiences')).toBeInTheDocument();
+    expect(screen.getByText('Explore Celebrations')).toBeInTheDocument();
   });
 
   it('CTA links point to correct sections', () => {
@@ -63,12 +63,12 @@ describe('Hero', () => {
     // Reset mock
     mockGetElementById.mockClear();
     
-    // Click "Explore Destinations" button
-    const exploreButton = screen.getByText('Explore Experiences');
+    // Click "Explore Celebrations" button
+    const exploreButton = screen.getByText('Explore Celebrations');
     fireEvent.click(exploreButton);
     
-    // Should call getElementById with 'destinations'
-    expect(mockGetElementById).toHaveBeenCalledWith('destinations');
+    // Should call getElementById with 'experiences'
+    expect(mockGetElementById).toHaveBeenCalledWith('experiences');
   });
 
   it('scroll indicator is present', () => {

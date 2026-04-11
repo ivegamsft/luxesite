@@ -6,11 +6,10 @@ export const tiers: EventTier[] = [
     name: 'One Time',
     tagline: 'Make Your Moment Legendary',
     price: 'From $500,000',
-    perTrip: 'single event experience planning',
     featured: false,
     perks: [
-      'Dedicated event curator assigned to your vision',
-      'Venue scouting across 50+ countries',
+      'Dedicated event producer assigned to your vision',
+      'Venue transformation and custom design for your celebration',
       'Custom catering, entertainment, and décor coordination',
       'Day-of concierge team (up to 8 staff)',
       'Post-event highlight reel and memory book',
@@ -22,7 +21,6 @@ export const tiers: EventTier[] = [
     name: 'Yearly',
     tagline: 'Every Event, Every Year',
     price: 'From $1,200,000/year',
-    perTrip: 'up to 12 events per year included',
     featured: true,
     perks: [
       'Everything in One Time for EVERY event, all year',
@@ -31,7 +29,7 @@ export const tiers: EventTier[] = [
       'Birthday parties, holiday celebrations, first days of school, graduations',
       'Seasonal surprise boxes delivered to your door',
       'Priority rebooking — venue conflicts? We handle it',
-      'Annual family portrait session at a stunning location'
+      'Annual family portrait session at a stunning venue'
     ]
   },
   {
@@ -39,14 +37,13 @@ export const tiers: EventTier[] = [
     name: 'Gift',
     tagline: 'Give Someone the Aurora Treatment',
     price: 'From $250,000',
-    perTrip: 'beautifully packaged gift experience',
     featured: false,
     perks: [
       'Beautifully packaged gift experience card',
-      'Recipient chooses from curated event catalog',
+      'Recipient chooses from our full celebration menu',
       'Full concierge planning included',
       'Valid for 18 months',
-      'Add-on: surprise delivery with champagne and flowers'
+      'Add-on: surprise delivery with balloons and a personal note'
     ]
   }
 ];

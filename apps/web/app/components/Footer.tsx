@@ -1,9 +1,9 @@
 const footerDestinations = [
-  { label: 'Private Galas', href: '#destinations' },
+  { label: 'Children\'s Parties', href: '#destinations' },
   { label: 'Milestone Birthdays', href: '#destinations' },
-  { label: 'Corporate Retreats', href: '#destinations' },
-  { label: 'Weddings', href: '#destinations' },
-  { label: 'Festival Experiences', href: '#destinations' },
+  { label: 'Corporate Galas', href: '#experiences' },
+  { label: 'Weddings', href: '#experiences' },
+  { label: 'Holiday Spectaculars', href: '#experiences' },
 ];
 
 const footerCompany = [
@@ -32,7 +32,7 @@ export default function Footer() {
           {/* Destinations */}
           <div>
             <h3 className="font-heading text-sm font-semibold uppercase tracking-wider mb-6 text-white/80">
-              Experiences
+              Celebrations
             </h3>
             <ul className="space-y-3">
               {footerDestinations.map((link) => (

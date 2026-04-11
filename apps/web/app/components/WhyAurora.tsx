@@ -23,7 +23,7 @@ export default function WhyAurora() {
               Designed by Specialists, Not Algorithms
             </h2>
             <p className="text-aurora-text-muted max-w-2xl text-base leading-relaxed">
-              Every Aurora celebration is shaped by an event specialist with over a decade of on-the-ground experience — someone who has scouted the venues, tasted the cuisine, and built the relationships that make the impossible effortless.
+              Every Aurora celebration is shaped by an event specialist with over a decade of production experience — someone who has transformed the venues, curated the entertainment, and built the vendor relationships that make the impossible effortless.
             </p>
           </div>
         </AnimatedSection>

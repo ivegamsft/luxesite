@@ -8,41 +8,41 @@ export const faqs: FAQItem[] = [
   {
     id: 'consultation',
     question: 'How does the consultation process work?',
-    answer: 'We begin with a complimentary consultation where we learn about your celebration dreams, preferences, and requirements. You\'ll be matched with a specialist who has deep expertise in your event type. They\'ll craft a custom plan tailored to your vision, and we\'ll work through revisions together until every detail is perfect.'
+    answer: 'We begin with a complimentary consultation where we learn about your celebration vision, guest list, and preferences. You\'ll be matched with a specialist who has deep expertise in your event type — whether that\'s a children\'s birthday, a corporate gala, or a multi-generational reunion. They\'ll craft a custom plan, and we\'ll refine it together until every detail is perfect.'
   },
   {
     id: 'tiers',
     question: "What's included in each tier?",
-    answer: 'One Time (from $500,000) is for a single event or experience — dedicated curator, venue scouting across 50+ countries, custom coordination, day-of concierge team, and a post-event memory book. Yearly (from $1,200,000/year) covers up to 12 events per year with a personal family event strategist who knows your kids\' preferences and handles everything from birthdays to graduations, plus seasonal surprise boxes and priority rebooking. Gift (from $250,000) is a beautifully packaged experience card valid for 18 months with full concierge planning included.'
+    answer: 'One Time (from $500,000) covers a single spectacular event — dedicated producer, venue transformation and custom design, full catering and entertainment coordination, day-of concierge team, and a post-event memory book. Yearly (from $1,200,000/year) includes up to 12 events per year with a personal family event strategist who knows your kids\' preferences and handles everything from birthdays to graduations, plus seasonal surprise boxes and priority rebooking. Gift (from $250,000) is a beautifully packaged experience card valid for 18 months with full concierge planning included.'
   },
   {
     id: 'booking-advance',
     question: 'How far in advance should I book?',
-    answer: 'We recommend booking 3-6 months in advance for most events. For peak season celebrations, exclusive venues, or complex multi-day experiences, 12+ months advance notice ensures the best availability and rates. However, we can also accommodate last-minute requests when flexibility allows.'
+    answer: 'For most celebrations, 3–6 months gives us plenty of time to secure your ideal venue and coordinate every detail. For holiday-season events, popular Saturday dates, or complex multi-day celebrations, 12+ months ensures the best availability. That said, we specialize in making the impossible possible — we\'ve pulled off stunning events in as little as six weeks.'
   },
   {
-    id: 'modifications',
-    question: 'Can I modify my event after booking?',
-    answer: 'Absolutely. Flexibility is core to our service. We understand that plans change, and we\'re here to adapt your event as needed. Modifications are subject to venue and vendor policies and may incur fees, but we\'ll always work to minimize costs and maximize your experience.'
+    id: 'all-ages',
+    question: 'Can you handle children\'s events AND adult galas?',
+    answer: 'Absolutely — that\'s our specialty. Our team includes a dedicated Children\'s Experience Architect alongside our Production Director who oversees large-scale galas. Whether it\'s a whimsical 5th birthday with character performers or a 500-guest black-tie fundraiser, we bring the same level of creativity and precision.'
   },
   {
-    id: 'cancellation',
-    question: 'What if I need to cancel?',
-    answer: 'We offer flexible cancellation policies that vary by tier and supplier. Many of our partner properties provide generous cancellation windows. We\'ll clearly outline all terms before booking, and our team will advocate on your behalf should unexpected circumstances arise.'
+    id: 'gift-tier',
+    question: 'What\'s included in the Gift tier?',
+    answer: 'The Gift tier ($250,000) is a beautifully packaged experience card that lets the recipient choose from our full celebration menu. It includes full concierge planning — they simply tell us what they\'d like to celebrate, and we handle everything. The card is valid for 18 months, and you can add a surprise delivery with balloons and a personal note.'
   },
   {
-    id: 'transfers',
-    question: 'Do you handle venues and logistics?',
-    answer: 'Yes, we provide comprehensive end-to-end service. This includes venue scouting, catering coordination, entertainment booking, floral design, lighting, and everything in between. We coordinate every element of your celebration so you can enjoy the moment seamlessly.'
+    id: 'catering',
+    question: 'Do you provide catering and food service?',
+    answer: 'Yes. Our Culinary Director works with a curated network of chefs and caterers to design menus for every occasion and dietary need. From whimsical kids\' menus with edible art to 12-course tasting experiences for black-tie affairs, every plate is part of the story. We handle tastings, dietary accommodations, and all food logistics.'
   },
   {
-    id: 'specialist-matching',
-    question: 'How are your specialists matched to my event?',
-    answer: 'Our matching process considers event expertise, venue knowledge, and shared aesthetic sensibilities. If you\'re planning a grand gala in a historic estate, you\'ll work with someone who has deep knowledge of luxury venues and a passion for unforgettable celebrations. This ensures authentic insights and genuine enthusiasm for your event.'
+    id: 'what-ages',
+    question: 'What ages do you serve?',
+    answer: 'All of them — and that\'s the point. We produce events for 1st birthdays and 90th birthdays with equal care. Our team designs age-appropriate experiences at every celebration, so toddlers, teens, parents, and grandparents all feel the event was made for them. Multi-generational celebrations are one of our proudest specialties.'
   },
   {
     id: 'minimum-budget',
     question: 'Is there a minimum budget?',
-    answer: 'Our Gift tier starts at $250,000 per experience. This allows us to deliver the level of personalization, exclusive access, and white-glove service that defines Aurora Luxe. For those seeking exceptional celebrations with meticulous attention to detail, we deliver unparalleled value.'
+    answer: 'Our Gift tier starts at $250,000 per experience. This allows us to deliver the level of personalization, exclusive venue access, and white-glove production that defines Aurora Luxe. For those seeking extraordinary celebrations with meticulous attention to detail, we deliver unparalleled value.'
   }
 ];

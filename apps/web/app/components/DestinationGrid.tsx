@@ -79,22 +79,22 @@ export default function DestinationGrid() {
         <AnimatedSection variant="fade-up">
           <div className="mb-12 md:mb-16">
             <p className="text-sm font-medium tracking-[0.2em] uppercase mb-4 text-aurora-gold">
-            World-Class Destinations
+            Extraordinary Venues
             </p>
             <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-5">
-              Curated Destinations
+              Celebration Spaces
             </h2>
             <div className="editorial-divider mb-6" aria-hidden="true"></div>
             <p className="section-intro">
-              Each venue hand-selected by our event architects for its singular character — 
-              from private island retreats to cultural capitals that reveal themselves only to those who know where to look.
+              Each venue personally scouted and transformed by our event architects for its singular character — 
+              from grand historic ballrooms to enchanted garden settings that become the backdrop for your story.
             </p>
           </div>
         </AnimatedSection>
 
         {/* Region Tabs */}
         <AnimatedSection delay={0.1}>
-          <div className="flex flex-wrap gap-3 mb-12 md:mb-14" role="tablist" aria-label="Filter destinations by region">
+          <div className="flex flex-wrap gap-3 mb-12 md:mb-14" role="tablist" aria-label="Filter venues by category">
             {regionTabs.map((tab) => {
               const isActive = activeRegion === tab.label;
               return (
@@ -232,7 +232,7 @@ export default function DestinationGrid() {
                   onClick={() => setShowAll(true)}
                   className="px-8 py-3 text-sm font-semibold rounded-lg border border-aurora-border text-aurora-text-muted hover:border-aurora-gold hover:text-aurora-gold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
                 >
-                  View All Destinations ({filteredDestinations.length})
+                  View All Venues ({filteredDestinations.length})
                 </button>
               </div>
             )}

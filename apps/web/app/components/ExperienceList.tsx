@@ -35,7 +35,7 @@ const experienceIcons: Record<string, ReactElement> = {
       <circle cx="18" cy="5" r="2" />
     </svg>
   ),
-  'food-wine': (
+  'culinary': (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-aurora-gold" aria-hidden="true">
       <path d="M8 2v5a4 4 0 0 0 8 0V2" /><path d="M12 11v9" /><path d="M8 20h8" />
       <line x1="8" y1="5" x2="16" y2="5" />
@@ -77,12 +77,12 @@ export default function ExperienceList() {
           <div className="mb-16 md:mb-20 max-w-3xl">
             <div className="editorial-divider mb-8" aria-hidden="true"></div>
             <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-5 text-aurora-text">
-              Signature Experiences
+              Signature Celebrations
             </h2>
             <p className="section-intro">
               Beyond venues — these are the moments that define a celebration. 
-              Each experience crafted with local experts who open doors that remain 
-              closed to ordinary events.
+              Each experience crafted by our production team to create memories 
+              that last a lifetime, for guests of every age.
             </p>
           </div>
         </AnimatedSection>
@@ -132,10 +132,10 @@ export default function ExperienceList() {
             {/* Highlights */}
             <ul className="space-y-3 mb-8 flex-1" role="list">
               {[
-                'Private conservancy access with expert naturalist guides',
-                'Great Migration & intimate gorilla encounters',
-                'Luxury mobile camps in untouched wilderness',
-                'Tailored itineraries for every experience level',
+                'Age-appropriate entertainment from toddlers to grandparents',
+                'Bespoke themes designed around your celebration vision',
+                'Full-service production from concept to cleanup',
+                'Dedicated event coordinator for seamless execution',
               ].map((highlight) => (
                 <li key={highlight} className="flex items-start gap-2.5 text-sm text-aurora-text-muted leading-relaxed">
                   <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 mt-0.5 text-aurora-gold shrink-0" aria-hidden="true">

@@ -34,7 +34,7 @@ export default function DestinationDetailPage({ params }: { params: { slug: stri
             href="/#destinations"
             className="text-sm font-medium text-aurora-text-muted hover:text-aurora-gold transition-colors"
           >
-            &larr; All Destinations
+            &larr; All Venues
           </Link>
           <span className="text-sm text-aurora-text-muted">{dest.region}</span>
         </div>
@@ -73,7 +73,7 @@ export default function DestinationDetailPage({ params }: { params: { slug: stri
                 <p className="text-3xl font-bold text-aurora-text tabular-nums">
                   {dest.currency}{dest.price.toLocaleString()}
                 </p>
-                <p className="text-xs text-aurora-text-muted mt-1 mb-6">per person</p>
+                <p className="text-xs text-aurora-text-muted mt-1 mb-6">per event</p>
                 <Link
                   href="/#contact"
                   className="block w-full bg-aurora-gold text-white font-semibold px-6 py-3 rounded-lg hover:shadow-lift hover:-translate-y-0.5 transition-all min-h-[44px] text-center focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:outline-none"
@@ -110,7 +110,7 @@ export default function DestinationDetailPage({ params }: { params: { slug: stri
       <section className="py-section-sm px-4 sm:px-6 lg:px-12 bg-aurora-bg-dark">
         <div className="max-w-5xl mx-auto">
           <h2 className="font-heading text-fluid-lg font-semibold text-aurora-text mb-6">
-            More Destinations
+            More Venues
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {otherDestinations.map((other) => (
