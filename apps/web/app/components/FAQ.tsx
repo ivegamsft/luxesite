@@ -14,7 +14,7 @@ const faqData: FAQItem[] = [
   {
     id: 'consultation',
     question: 'How does the consultation process work?',
-    answer: 'We begin with a complimentary consultation where we learn about your travel dreams, preferences, and requirements. You\'ll be matched with a specialist who has deep expertise in your chosen destinations. They\'ll craft a custom itinerary tailored to your vision, and we\'ll work through revisions together until every detail is perfect.'
+    answer: 'We begin with a complimentary consultation where we learn about your celebration dreams, preferences, and requirements. You\'ll be matched with a specialist who has deep expertise in your event type. They\'ll craft a custom plan tailored to your vision, and we\'ll work through revisions together until every detail is perfect.'
   },
   {
     id: 'tiers',
@@ -24,12 +24,12 @@ const faqData: FAQItem[] = [
   {
     id: 'booking-advance',
     question: 'How far in advance should I book?',
-    answer: 'We recommend booking 3-6 months in advance for most destinations. For peak season travel, exclusive properties, or complex multi-destination itineraries, 12+ months advance notice ensures the best availability and rates. However, we can also accommodate last-minute requests when flexibility allows.'
+    answer: 'We recommend booking 3-6 months in advance for most events. For peak season celebrations, exclusive venues, or complex multi-day experiences, 12+ months advance notice ensures the best availability and rates. However, we can also accommodate last-minute requests when flexibility allows.'
   },
   {
     id: 'modifications',
-    question: 'Can I modify my itinerary after booking?',
-    answer: 'Absolutely. Flexibility is core to our service. We understand that plans change, and we\'re here to adapt your itinerary as needed. Modifications are subject to supplier policies and may incur fees, but we\'ll always work to minimize costs and maximize your experience.'
+    question: 'Can I modify my event after booking?',
+    answer: 'Absolutely. Flexibility is core to our service. We understand that plans change, and we\'re here to adapt your event as needed. Modifications are subject to venue and vendor policies and may incur fees, but we\'ll always work to minimize costs and maximize your experience.'
   },
   {
     id: 'cancellation',
@@ -38,18 +38,18 @@ const faqData: FAQItem[] = [
   },
   {
     id: 'transfers',
-    question: 'Do you handle flights and transfers?',
-    answer: 'Yes, we provide comprehensive door-to-door service. This includes international and domestic flights, private transfers, helicopter charters, yacht bookings, and everything in between. We coordinate every leg of your journey so you can travel seamlessly.'
+    question: 'Do you handle venues and logistics?',
+    answer: 'Yes, we provide comprehensive end-to-end service. This includes venue scouting, catering coordination, entertainment booking, floral design, lighting, and everything in between. We coordinate every element of your celebration so you can enjoy the moment seamlessly.'
   },
   {
     id: 'specialist-matching',
-    question: 'How are your specialists matched to my trip?',
-    answer: 'Our matching process considers regional expertise, personal travel experience, and shared interests. If you\'re planning a safari in Tanzania, you\'ll work with someone who has deep knowledge of East Africa and a passion for wildlife. This ensures authentic insights and genuine enthusiasm for your journey.'
+    question: 'How are your specialists matched to my event?',
+    answer: 'Our matching process considers event expertise, venue knowledge, and shared aesthetic sensibilities. If you\'re planning a grand gala in a historic estate, you\'ll work with someone who has deep knowledge of luxury venues and a passion for unforgettable celebrations. This ensures authentic insights and genuine enthusiasm for your event.'
   },
   {
     id: 'minimum-budget',
     question: 'Is there a minimum budget?',
-    answer: 'Our Gift tier starts at $250,000 per experience. This allows us to deliver the level of personalization, exclusive access, and white-glove service that defines Aurora Luxe. For those seeking exceptional experiences with meticulous attention to detail, we deliver unparalleled value.'
+    answer: 'Our Gift tier starts at $250,000 per experience. This allows us to deliver the level of personalization, exclusive access, and white-glove service that defines Aurora Luxe. For those seeking exceptional celebrations with meticulous attention to detail, we deliver unparalleled value.'
   }
 ];
 
@@ -61,10 +61,10 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-dark">
+    <section id="faq" className="py-section-md px-4 sm:px-6 lg:px-12 bg-aurora-bg-dark">
       <div className="max-w-5xl mx-auto">
         <AnimatedSection>
-          <h2 className="font-heading text-fluid-xl font-medium tracking-tight text-aurora-text mb-10">
+          <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight text-aurora-text mb-10">
             Common Questions
           </h2>
         </AnimatedSection>
@@ -75,14 +75,14 @@ export default function FAQ() {
             
             return (
               <AnimatedSection key={faq.id} delay={index * 0.05}>
-                <div className={`border rounded-lg overflow-hidden transition-all duration-300 ${isOpen ? 'border-aurora-gold/40 bg-white shadow-subtle' : 'border-aurora-border bg-white hover:border-aurora-gold/40 hover:shadow-subtle'}`}>
+                <div className={`border rounded-lg overflow-hidden transition-all duration-300 ${isOpen ? 'border-aurora-gold/40 bg-aurora-bg-light shadow-subtle' : 'border-aurora-border bg-aurora-bg-light hover:border-aurora-gold/40 hover:shadow-subtle'}`}>
                   <button
                     onClick={() => toggleItem(faq.id)}
                     aria-expanded={isOpen}
                     aria-controls={`faq-answer-${faq.id}`}
                     className="w-full flex items-center justify-between px-7 py-6 text-left hover:bg-aurora-bg/30 transition-colors focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-inset"
                   >
-                    <span className="font-heading text-fluid-base font-semibold text-aurora-text pr-8 leading-snug">
+                    <span className="font-heading text-[1.0625rem] font-semibold text-aurora-text pr-8 leading-snug">
                       {faq.question}
                     </span>
                     <span
@@ -106,7 +106,7 @@ export default function FAQ() {
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       >
                         <div className="px-7 pb-6 border-t border-aurora-gold/20">
-                          <p className="pt-5 text-aurora-text/75 leading-relaxed text-[0.9375rem]">
+                          <p className="pt-5 text-aurora-text leading-relaxed text-[0.9375rem]">
                             {faq.answer}
                           </p>
                         </div>

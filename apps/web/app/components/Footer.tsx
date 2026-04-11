@@ -1,9 +1,9 @@
 const footerDestinations = [
-  { label: 'Maldives', href: '#destinations' },
-  { label: 'Santorini', href: '#destinations' },
-  { label: 'Kyoto', href: '#destinations' },
-  { label: 'Patagonia', href: '#destinations' },
-  { label: 'Swiss Alps', href: '#destinations' },
+  { label: 'Private Galas', href: '#destinations' },
+  { label: 'Milestone Birthdays', href: '#destinations' },
+  { label: 'Corporate Retreats', href: '#destinations' },
+  { label: 'Weddings', href: '#destinations' },
+  { label: 'Festival Experiences', href: '#destinations' },
 ];
 
 const footerCompany = [
@@ -16,23 +16,23 @@ const footerCompany = [
 export default function Footer() {
   return (
     <footer className="bg-aurora-navy text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-section-sm pb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-20 pb-12">
         {/* 4-column grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-14 mb-14">
           {/* Brand */}
           <div>
             <div className="font-heading text-fluid-xl font-bold mb-6">
               AURORA LUXE
             </div>
             <p className="text-sm text-white/80 leading-relaxed max-w-[28ch]">
-              Award-winning private travel specialists crafting bespoke journeys since 2012.
+              Award-winning private event specialists crafting bespoke celebrations since 2012.
             </p>
           </div>
 
           {/* Destinations */}
           <div>
             <h3 className="font-heading text-sm font-semibold uppercase tracking-wider mb-6 text-white/80">
-              Destinations
+              Experiences
             </h3>
             <ul className="space-y-3">
               {footerDestinations.map((link) => (
@@ -88,8 +88,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom Row: Copyright + Credits */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-12 border-t border-white/15 text-sm text-white/70">
-          <p>© 2026 Aurora Luxe Travel. All rights reserved.</p>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-10 border-t border-white/15 text-sm text-white/70">
+          <p>© 2026 Aurora Luxe Events. All rights reserved.</p>
           <p>
             Images via{' '}
             <a

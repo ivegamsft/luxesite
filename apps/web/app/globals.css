@@ -47,10 +47,10 @@
 
   /* ── Section Spacing (varied rhythm) ──────────────────────────── */
   --space-hero: clamp(7rem, 5rem + 10vw, 14rem);
-  --space-section-lg: clamp(6rem, 4rem + 8vw, 12rem);
-  --space-section-md: clamp(5rem, 3.5rem + 6vw, 10rem);
-  --space-section-sm: clamp(4rem, 3rem + 4vw, 7rem);
-  --space-section-xs: clamp(3rem, 2rem + 3vw, 5rem);
+  --space-section-lg: clamp(5rem, 3.5rem + 6vw, 10rem);
+  --space-section-md: clamp(4rem, 3rem + 5vw, 8rem);
+  --space-section-sm: clamp(3rem, 2.5rem + 3vw, 6rem);
+  --space-section-xs: clamp(2.5rem, 1.5rem + 3vw, 4rem);
 }
 
 @theme inline {
@@ -107,6 +107,13 @@ body {
   background: var(--aurora-bg-light);
   border: 1px solid var(--aurora-border);
   box-shadow: var(--shadow-subtle);
+}
+
+/* Prevent white bleed-through on surface elements */
+.surface-card,
+.tier-card,
+.tier-featured {
+  isolation: isolate;
 }
 
 /* Featured Tier — solid gold border with elevated shadow */
@@ -181,7 +188,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(2rem, 1.5rem + 2vw, 4rem) 0;
+  padding: clamp(1.5rem, 1rem + 1.5vw, 3rem) 0;
 }
 
 .section-break::before {

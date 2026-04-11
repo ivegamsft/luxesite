@@ -12,7 +12,7 @@ describe('ConciergeForm', () => {
     // Core visible fields (name, email, notes)
     expect(screen.getByLabelText(/name/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/tell us about your dream trip/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/tell us about your dream event/i)).toBeInTheDocument();
   });
 
   it('shows validation errors when submitting empty required fields', async () => {
@@ -24,7 +24,7 @@ describe('ConciergeForm', () => {
     await waitFor(() => {
       // Errors appear both inline and in aria-live region; use getAllByText
       const nameErrors = screen.getAllByText(/we'll need your name/i);
-      const emailErrors = screen.getAllByText(/we'll send trip ideas/i);
+      const emailErrors = screen.getAllByText(/we'll send event details/i);
       expect(nameErrors.length).toBeGreaterThanOrEqual(1);
       expect(emailErrors.length).toBeGreaterThanOrEqual(1);
     });
@@ -55,7 +55,7 @@ describe('ConciergeForm', () => {
     fireEvent.click(expandButton);
     
     // Now interest chips should be visible
-    expect(screen.getByText('Beach & Islands')).toBeInTheDocument();
+    expect(screen.getByText('Private Galas')).toBeInTheDocument();
   });
 
   it('interest chips toggle on click', () => {
@@ -65,7 +65,7 @@ describe('ConciergeForm', () => {
     const expandButton = screen.getByText(/share more details/i);
     fireEvent.click(expandButton);
     
-    const beachChip = screen.getByText('Beach & Islands');
+    const beachChip = screen.getByText('Private Galas');
     
     // Click to select
     fireEvent.click(beachChip);
@@ -150,7 +150,7 @@ describe('ConciergeForm', () => {
 
       await waitFor(() => {
         const nameErrors = screen.getAllByText(/we'll need your name/i);
-        const emailErrors = screen.getAllByText(/we'll send trip ideas/i);
+        const emailErrors = screen.getAllByText(/we'll send event details/i);
 
         // Get the inline error elements (the ones with IDs)
         const nameError = nameErrors.find(el => el.hasAttribute('id'))!;
@@ -193,7 +193,7 @@ describe('ConciergeForm', () => {
       const expandButton = screen.getByText(/share more details/i);
       fireEvent.click(expandButton);
 
-      const beachChip = screen.getByText('Beach & Islands');
+      const beachChip = screen.getByText('Private Galas');
       expect(beachChip).toHaveAttribute('aria-pressed', 'false');
 
       fireEvent.click(beachChip);

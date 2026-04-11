@@ -17,36 +17,36 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Aurora Luxe Travel | Award-Winning Private Travel Specialists",
-  description: "Bespoke luxury travel by specialists. Curated destinations, 24/7 concierge, journeys for you alone.",
+  title: "Aurora Luxe | Award-Winning Private Event & Party Specialists",
+  description: "Bespoke luxury events by specialists. Curated celebrations, 24/7 concierge, experiences crafted for you alone.",
   keywords: [
-    "luxury travel",
-    "bespoke itineraries",
-    "private travel",
-    "safaris",
-    "travel specialists",
-    "curated destinations",
+    "luxury events",
+    "bespoke celebrations",
+    "private parties",
+    "galas",
+    "event specialists",
+    "curated experiences",
     "24/7 concierge",
   ],
   openGraph: {
-    title: "Aurora Luxe Travel | Award-Winning Private Travel Specialists",
-    description: "Bespoke luxury travel by specialists. Curated destinations, 24/7 concierge, journeys for you alone.",
+    title: "Aurora Luxe | Award-Winning Private Event & Party Specialists",
+    description: "Bespoke luxury events by specialists. Curated celebrations, 24/7 concierge, experiences crafted for you alone.",
     type: "website",
-    siteName: "Aurora Luxe Travel",
+    siteName: "Aurora Luxe Events",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=630&fit=crop",
+        url: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=1200&h=630&fit=crop",
         width: 1200,
         height: 630,
-        alt: "Aurora Luxe Travel — Bespoke luxury journeys",
+        alt: "Aurora Luxe — Bespoke luxury celebrations",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aurora Luxe Travel | Award-Winning Private Travel Specialists",
-    description: "Bespoke luxury travel by specialists. Curated destinations, 24/7 concierge, journeys for you alone.",
-    images: ["https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=630&fit=crop"],
+    title: "Aurora Luxe | Award-Winning Private Event & Party Specialists",
+    description: "Bespoke luxury events by specialists. Curated celebrations, 24/7 concierge, experiences crafted for you alone.",
+    images: ["https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=1200&h=630&fit=crop"],
   },
 };
 

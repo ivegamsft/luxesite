@@ -18,11 +18,11 @@ export default function WhyAurora() {
             <p className="text-sm font-medium tracking-widest uppercase text-aurora-gold mb-3">
               Why Aurora
             </p>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-tight text-aurora-text mb-4">
+            <h2 className="font-heading text-fluid-2xl font-bold tracking-tight text-aurora-text mb-4">
               Designed by Specialists, Not Algorithms
             </h2>
             <p className="text-aurora-text-muted max-w-2xl text-base leading-relaxed">
-              Every Aurora journey is shaped by a regional expert with over a decade of on-the-ground experience — someone who has walked the paths, tasted the cuisine, and built the relationships that make the impossible effortless.
+              Every Aurora celebration is shaped by an event specialist with over a decade of on-the-ground experience — someone who has scouted the venues, tasted the cuisine, and built the relationships that make the impossible effortless.
             </p>
           </div>
         </AnimatedSection>
@@ -37,7 +37,7 @@ export default function WhyAurora() {
               viewport={{ once: true, margin: '-60px' }}
               transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: i * 0.1 }}
               aria-label={`${member.name}, ${member.title}`}
-              className="bg-white border border-aurora-border rounded-lg p-8 text-center transition-all duration-200 hover:shadow-medium hover:-translate-y-1 hover:border-aurora-gold/30"
+              className="bg-white border border-aurora-border rounded-lg p-8 text-center transition-all duration-200 hover:shadow-medium hover:-translate-y-1 hover:border-aurora-gold/30 surface-card"
             >
               <div className="relative mx-auto mb-5 w-28 h-28 rounded-full overflow-hidden border-2 border-aurora-border bg-aurora-bg-dark">
                 <Image

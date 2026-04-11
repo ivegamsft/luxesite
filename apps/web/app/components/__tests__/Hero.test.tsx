@@ -41,13 +41,13 @@ describe('Hero', () => {
 
   it('renders headline', () => {
     render(<Hero />);
-    expect(screen.getByText('Journeys Written in Light')).toBeInTheDocument();
+    expect(screen.getByText('Celebrations Written in Light')).toBeInTheDocument();
   });
 
   it('renders both CTA buttons', () => {
     render(<Hero />);
     expect(screen.getByText('Request Consultation')).toBeInTheDocument();
-    expect(screen.getByText('Explore Destinations')).toBeInTheDocument();
+    expect(screen.getByText('Explore Experiences')).toBeInTheDocument();
   });
 
   it('CTA links point to correct sections', () => {
@@ -64,7 +64,7 @@ describe('Hero', () => {
     mockGetElementById.mockClear();
     
     // Click "Explore Destinations" button
-    const exploreButton = screen.getByText('Explore Destinations');
+    const exploreButton = screen.getByText('Explore Experiences');
     fireEvent.click(exploreButton);
     
     // Should call getElementById with 'destinations'
