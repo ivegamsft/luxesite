@@ -137,7 +137,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden bg-white border-t border-aurora-border overflow-hidden"
+            className="md:hidden bg-aurora-bg border-t border-aurora-border overflow-hidden"
           >
           <div className="px-4 pt-4 pb-6 space-y-3">
             <ul className="space-y-3">

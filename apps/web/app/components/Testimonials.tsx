@@ -42,7 +42,7 @@ export default function Testimonials() {
   const active = testimonials[activeIndex];
 
   return (
-    <section id="testimonials" className="py-section-lg px-4 sm:px-6 bg-aurora-bg-light relative overflow-hidden">
+    <section id="testimonials" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light relative overflow-hidden">
       {/* Subtle decorative element to break grid monotony */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-aurora-border/30 to-transparent pointer-events-none" aria-hidden="true" />
 

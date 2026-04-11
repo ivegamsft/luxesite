@@ -123,22 +123,10 @@ body {
   box-shadow: 0 4px 24px rgba(201, 167, 106, 0.15), var(--shadow-subtle);
 }
 
-/* ── Fluid Type Utilities ───────────────────────────────────────────
-   Apply via class or use the custom properties directly. */
-.fluid-sm { font-size: var(--fluid-sm); }
-.fluid-base { font-size: var(--fluid-base); }
-.fluid-lg { font-size: var(--fluid-lg); }
-.fluid-xl { font-size: var(--fluid-xl); }
-.fluid-2xl { font-size: var(--fluid-2xl); }
-.fluid-3xl { font-size: var(--fluid-3xl); }
-
 /* ── Container Queries ────────────────────────────────────────────
-   Component-level responsiveness via @container. Parents marked
-   with Tailwind's @container class get container-type: inline-size. */
-
-.\@container {
-  container-type: inline-size;
-}
+   Component-level responsiveness via @container. Tailwind v4
+   generates `@container` utility automatically; these @container
+   breakpoints add card-level adaptation. */
 
 /* Destination cards — adapt text only; outer card padding breaks image framing */
 @container (max-width: 480px) {
@@ -214,10 +202,7 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
-}
 
-@media (prefers-reduced-motion: reduce) {
   .animate-scroll-hint {
     animation: none;
   }

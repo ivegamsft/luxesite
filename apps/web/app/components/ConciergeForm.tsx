@@ -279,9 +279,7 @@ export default function ConciergeForm() {
                   </div>
                   <p className="text-sm font-heading font-medium text-aurora-text">{item.label}</p>
                   <p className="text-xs text-aurora-text-muted mt-0.5">{item.desc}</p>
-                  {i < 2 && (
-                    <div className="hidden sm:block absolute" style={{ display: 'none' }} />
-                  )}
+
                 </div>
               ))}
             </div>
