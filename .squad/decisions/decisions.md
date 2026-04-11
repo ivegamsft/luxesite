@@ -1,10 +1,7 @@
 # Decisions
 
 **Project:** luxesite  
-**Last Updated:** 2026-04-10T03:18:00Z
-
-**Project:** luxesite  
-**Last Updated:** 2026-04-10T03:18:00Z
+**Last Updated:** 2026-04-11T19:53:05Z
 
 ## Active Decisions
 
@@ -558,3 +555,134 @@ The "Curated by Our Specialists" eyebrow was removed from ExperienceList. The he
 - `apps/web/app/components/ExperienceList.tsx`
 - `apps/web/app/components/Tiers.tsx`
 - `apps/web/app/styles/components.css` (gradient-border class)
+
+---
+
+### Decision: Tier Restructure from Travel to Event Planning (2026-04-11)
+
+**Date:** 2026-04-11  
+**Status:** Implemented  
+**Decided by:** Ivan (Product Owner)  
+**Implemented by:** Trinity (Frontend Developer)
+
+#### Context
+
+Aurora Luxe was originally positioned as a luxury travel membership service with three tiers (Silver, Black, Obsidian) at relatively accessible price points ($25k-$200k/year). The business model needed to pivot to ultra-high-end event planning services with dramatically increased pricing.
+
+#### Decision
+
+Restructured the entire tier system from travel memberships to event planning services:
+
+##### New Tier Structure
+
+1. **One Time** (from $500,000)
+   - Single event/experience planning engagement
+   - Dedicated event curator, venue scouting across 50+ countries
+   - Custom coordination, day-of concierge team, memory book
+
+2. **Yearly** (from $1,200,000/year) — **FEATURED**
+   - Annual subscription covering up to 12 events per year
+   - Personal family event strategist who knows your family
+   - Handles all events: birthdays, holidays, graduations
+   - Seasonal surprise boxes, priority rebooking
+
+3. **Gift** (from $250,000)
+   - Beautifully packaged gift experience card
+   - Recipient chooses from curated event catalog
+   - Valid for 18 months
+
+##### Pricing Philosophy
+
+All pricing increased ~10-20x to "absurdly expensive" levels:
+- Destinations: $69,000 - $189,000 (previously $6,900 - $18,900)
+- Budget ranges: $100k - $1M+ per event (previously $25k - $100k+ per journey)
+- Minimum entry point: $250,000 (previously $5,000)
+
+The goal: "So much that you may mortgage your house."
+
+#### Rationale
+
+- Shifts positioning from travel concierge to ultra-premium event planning
+- "Yearly" as the money-maker (cradle to pre-teen family event subscription)
+- Price points create exclusivity and filter for ultra-high-net-worth clients
+- Gift tier provides entry point and gift-giving option
+
+#### Implementation
+
+##### Files Changed
+
+- `apps/web/app/data/tiers.ts` — Tier IDs, names, taglines, prices, perks
+- `apps/web/app/data/destinations.ts` — All destination prices multiplied by 10x
+- `apps/web/app/components/ConciergeForm.tsx` — Budget ranges and tier mapping
+- `apps/web/app/components/FAQ.tsx` — Tier and pricing FAQ answers
+- `apps/web/app/components/__tests__/Tiers.test.tsx` — Test expectations
+- `apps/web/app/components/__tests__/DestinationGrid.test.tsx` — Price expectations
+
+##### Testing
+
+- All 43 Jest tests pass
+- Next.js production build successful
+- Dynamic rendering in `Tiers.tsx` handles price splitting correctly
+
+#### Consequences
+
+##### Positive
+- Clear service positioning around event planning
+- Subscription model (Yearly) creates recurring revenue
+- Ultra-premium pricing signals extreme quality
+- Gift tier opens up corporate gifting market
+
+##### Negative
+- Radically different business model from original travel focus
+- May require marketing/copy updates beyond component level
+- Pricing may be perceived as satirical or too extreme
+
+#### Notes
+
+- Kept tier IDs as kebab-case: 'one-time', 'yearly', 'gift'
+- Made "Yearly" the featured tier (it's the revenue driver)
+- Price splitting logic in `Tiers.tsx` still works (splits on `/` for yearly pricing)
+- E2E tests likely still pass (they reference button text, not tier names)
+
+
+---
+
+## Tier Restructure Analysis (2026-04-12, PR #202 → Issues #203–#210)
+
+# Decision: Tier Restructure Is a Model Change, Not a Rename
+
+**Author:** Morpheus
+**Date:** 2026-04-12
+**Status:** Proposed
+**Triggered by:** PR #202 tier restructure analysis
+
+## Decision
+
+The One Time / Yearly / Gift tier restructure (PR #202) is treated as a **business model change**, not a terminology update. All downstream specs, issues, and architecture decisions must account for three fundamentally different transaction types rather than three levels of the same membership.
+
+## Rationale
+
+| Old Model | New Model | Difference |
+|-----------|-----------|------------|
+| Silver/Black/Obsidian | One Time/Yearly/Gift | Not levels — different transaction types |
+| Linear privilege hierarchy | Three distinct access patterns | No escalation path |
+| Single enrollment funnel | Per-tier consultation flows | Gift has buyer + recipient |
+| Subscription-only | Transactional + Subscription + Gift | Mixed revenue model |
+
+### Implications for specs and architecture:
+1. **Gift tier** introduces a two-party identity model (buyer ≠ recipient) — affects security, forms, and APIs
+2. **One Time** is event-scoped — access expires after completion
+3. **Yearly** needs subscription lifecycle — renewal, lapse, grace period
+4. Consultation flow (ConciergeForm) may need per-tier branching
+5. API design (#180, #195) must handle three transaction types, not three privilege levels
+
+## Impact
+
+- 8 issues created (#203–#210) covering specs, docs, existing issues, and architecture
+- All agents should treat tier references as model-level changes when updating their domains
+- `.squad/decisions.md` historical references are fine (append-only log)
+
+## Teaching Site Note
+
+Keep implementations right-sized. The Gift tier recipient model is a great teaching opportunity for multi-party identity patterns — but implement the simplest version that demonstrates the concept.
+

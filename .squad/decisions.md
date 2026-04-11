@@ -618,6 +618,72 @@ Defined the security architecture for Aurora Luxe with these key choices:
 
 ---
 
+### 23. Sprint Plan — Aurora Luxe Platform Pivot
+**Author:** Morpheus  
+**Date:** 2026-04-12  
+**Issue:** Sprint planning (37 issues → 4 sprints)  
+**Status:** Approved  
+**Artifact:** `.squad/decisions/inbox/morpheus-sprint-plan.md` (now consolidated here)
+
+## Decision
+
+Sequenced all 37 open issues into 4 sequential 2-week sprints (8 weeks) with explicit dependency graph, team assignments, and parallelization strategy.
+
+### Critical Path
+1. **Sprint 1:** #210 (architecture spike) → #203 (P0 brand rewrite) — gates all downstream work
+2. **Sprint 2:** Tier-impact specs (#204–#209) + security RBAC + Azure architecture (parallel after #203)
+3. **Sprint 3:** Content APIs, back-office, AI agents (parallel after #184 + #187)
+4. **Sprint 4:** Data migration, CI/CD, environments, test strategy (parallel implementation phase)
+
+### Team Assignments
+| Person | Role | Sprint Load | Focus |
+|--------|------|------------|-------|
+| **Morpheus** | Lead/Architect | 7 specs | Architecture, structure, decisions, core specs (#210, #203, #204, #206, #208, #209, #194) |
+| **Trinity** | Frontend/Design | 8 specs + QA | UI components, design system, migration (#181, #196, #205, #207, #190, #199, #191 + UI bugs) |
+| **Dozer** | Backend/Cloud | 9 specs | APIs, cloud, infra, observability (#184, #187, #180, #188, #186, #192, #193, #195, #198) |
+| **Niobe** | AI/M365 | 4 specs | AI agents, back-office (#185, #189, #186, #188) |
+| **Tank** | QA/Testing | 1 spec + verification | Testing strategy (#197) + spot-check others |
+
+### Issue Status Summary
+- **Total:** 37 open issues
+- **Assigned to sprints:** 29 active specs
+- **Parallelizable UI bugs:** 8 (#151, #157–#158, #160–#161, #165, #172–#173)
+- **Deprioritized to stretch:** 2 (#143, #144 — depend on #204)
+- **Retitled (not closed):** 3 (#139, #141, #142 retitled in #209)
+
+### Key Technical Insights
+1. **Three Tier Types Are Fundamentally Different**
+   - Old model: Linear privilege hierarchy (Silver < Black < Obsidian)
+   - New model: Three transaction types (transactional One Time, subscription Yearly, third-party Gift)
+   - Affects: Data model, consultation flows, API design, RBAC (Gift tier has two-party identity)
+
+2. **Data Model Migration Strategy**
+   - New types (`ExperiencePackage`, `CategoryMeta`) coexist with old types during transition
+   - Four-phase rollout: copy → data model → consultation flow → components
+   - Each phase independently mergeable
+
+3. **Risks & Mitigations**
+   - **Architecture gap:** Joint Morpheus + Dozer spike on #210; pre-enumerate unknowns (payment flows, recipient identity, renewal logic)
+   - **RBAC complexity:** Scope #210 spike to include identity contract; decide Auth0/Entra vendor in Sprint 1
+   - **API versioning:** Pre-decide URL vs header strategy; document in #210 spike
+   - **M365 scope creep:** Tank QA each spec; Niobe scope strictly to "backoffice admin"
+   - **Monorepo blocker:** Treat #194 as informational; Dozer proceeds with single-repo assumptions
+
+### Success Criteria (Per Sprint)
+- **Sprint 1:** #210 spike output (architecture diagram, API shape) + #203 rewrite (zero stale tier refs)
+- **Sprint 2:** All tier-impact specs merged + RBAC matrix + Azure architecture
+- **Sprint 3:** Content API schema + back-office draft + sample data pack + A11y/i18n spec
+- **Sprint 4:** Data migration plan + CI/CD design + environment strategy + Phase 2 backlog prioritized
+
+### Teaching-Site Principles (Phase 2)
+1. **Readability over cleverness** — simple, explicit patterns; JSDoc on non-obvious logic
+2. **Decision annotation** — every choice (auth, caching, tier logic) documented with "why"
+3. **Phase colocation** — specs and code in same repo; no separate "design docs"
+4. **Testing as teaching** — test files are examples of how to use the code
+5. **No magic numbers** — all config/thresholds in `.env` or spec'd constants with rationale
+
+---
+
 ## Governance
 
 - All meaningful changes require team consensus
