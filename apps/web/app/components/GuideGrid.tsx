@@ -48,7 +48,7 @@ export default function GuideGrid() {
               loading="eager"
             />
             <span
-              className="absolute top-4 right-4 text-xs font-medium px-3 py-1 rounded-full backdrop-blur-sm bg-white/85 text-aurora-text"
+              className="absolute top-4 right-4 bg-aurora-bg border border-aurora-border text-aurora-text-muted text-xs font-medium px-3 py-1 rounded-full"
             >
               {featured.readTime}
             </span>
@@ -101,7 +101,7 @@ export default function GuideGrid() {
                   loading={i < 3 ? 'eager' : 'lazy'}
                 />
                 <span
-                  className="absolute top-4 right-4 text-xs font-medium px-3 py-1 rounded-full backdrop-blur-sm bg-white/85 text-aurora-text"
+                  className="absolute top-4 right-4 bg-aurora-bg border border-aurora-border text-aurora-text-muted text-xs font-medium px-3 py-1 rounded-full"
                 >
                   {guide.readTime}
                 </span>

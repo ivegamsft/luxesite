@@ -198,7 +198,7 @@ export default function ExperienceList() {
                         {experience.regions.map((region) => (
                           <span
                             key={region}
-                            className="bg-white/8 backdrop-blur-sm border border-white/12 text-white/75 text-xs tracking-wide rounded-full px-2.5 py-0.5"
+                            className="bg-aurora-text/80 text-white text-xs tracking-wide rounded-full px-2.5 py-0.5"
                           >
                             {region}
                           </span>

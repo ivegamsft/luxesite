@@ -159,9 +159,8 @@ function LuxeSelect({ label, placeholder, options, value, onChange, divider }: L
             transition={{ duration: 0.15, ease: 'easeOut' }}
             className="
               absolute left-0 right-0 top-full mt-1.5 z-50
-              bg-white/90 backdrop-blur-md
-              border border-aurora-border rounded-lg
-              shadow-glass overflow-hidden
+              bg-aurora-bg-light border border-aurora-border rounded-lg
+              shadow-subtle overflow-hidden
               py-1 max-h-60 overflow-y-auto
             "
           >
@@ -309,7 +308,7 @@ export default function Hero() {
           initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.4, ease: 'easeOut' }}
-          className="flex flex-col md:flex-row items-stretch md:items-center gap-3 mt-8 bg-white/80 backdrop-blur-sm border border-aurora-border rounded-lg px-4 py-3"
+          className="flex flex-col md:flex-row items-stretch md:items-center gap-3 mt-8 bg-aurora-bg-light border border-aurora-border shadow-subtle rounded-lg px-4 py-3"
         >
           <LuxeSelect
             label="Destination"
