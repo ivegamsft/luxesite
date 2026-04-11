@@ -20,15 +20,8 @@ const config: Config = {
         "aurora-success": "#5a8f4a",
         "aurora-error": "#a85a4a",
       },
-      backgroundImage: {
-        "gradient-aurora":
-          "linear-gradient(135deg, #c9a76a, #1a3a52, #7a8f7f)",
-        "gradient-aurora-subtle":
-          "linear-gradient(135deg, rgba(201,167,106,0.15), rgba(26,58,82,0.15), rgba(122,143,127,0.15))",
-      },
       boxShadow: {
-        glass: "0 4px 20px rgba(0,0,0,0.08)",
-        lift: "0 2px 16px oklch(0 0 0 / 0.10), 0 1px 4px oklch(0 0 0 / 0.06)",
+        lift: "0 2px 16px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06)",
         subtle: "0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04)",
         medium: "0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)",
       },

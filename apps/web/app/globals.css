@@ -71,8 +71,7 @@
   --color-aurora-error: #a85a4a;
 
   /* Box shadows */
-  --shadow-glass: 0 4px 20px rgba(0,0,0,0.08);
-  --shadow-lift: 0 2px 24px oklch(0 0 0 / 0.15);
+  --shadow-lift: 0 2px 24px rgba(0, 0, 0, 0.10);
   --shadow-subtle: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
   --shadow-medium: 0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
 }
@@ -104,20 +103,17 @@ body {
 }
 
 /* ── Surface: Solid light with subtle border ─────────────────────── */
-.glass {
+.surface-card {
   background: var(--aurora-bg-light);
   border: 1px solid var(--aurora-border);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  box-shadow: var(--shadow-subtle);
 }
 
 /* Featured Tier — solid gold border with elevated shadow */
-.gradient-border {
-  position: relative;
-  background: rgba(255,255,255,0.12);
-  border: 1.5px solid oklch(0.80 0.12 75);
-  box-shadow:
-    0 4px 24px oklch(0.80 0.12 75 / 0.15),
-    0 1px 3px rgba(0,0,0,0.12);
+.tier-featured {
+  background: var(--aurora-bg-light);
+  border: 2px solid var(--aurora-gold);
+  box-shadow: 0 4px 24px rgba(201, 167, 106, 0.15), var(--shadow-subtle);
 }
 
 /* ── Fluid Type Utilities ───────────────────────────────────────────

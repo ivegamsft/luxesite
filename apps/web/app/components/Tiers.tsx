@@ -39,23 +39,23 @@ export default function Tiers() {
               variants={cardMotionVariants}
               transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}              className={`tier-card relative rounded-sm p-8 md:p-10 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
                 tier.featured
-                  ? 'gradient-border z-10 shadow-lift'
-                  : 'bg-white/10 border border-white/20 shadow-subtle hover:border-aurora-gold/40'
+                  ? 'tier-featured z-10 shadow-lift'
+                  : 'bg-aurora-bg-light/95 border border-aurora-border shadow-subtle hover:border-aurora-gold/40'
               }`}
             >
 
               <div className="mb-8">
-                <h3 className="font-heading text-fluid-xl font-medium mb-2 text-white">
+                <h3 className="font-heading text-fluid-xl font-medium mb-2 text-aurora-text">
                   {tier.name}
                 </h3>
-                <p className="text-xs md:text-sm text-white/60 mb-4">
+                <p className="text-xs md:text-sm text-aurora-text-muted mb-4">
                   {tier.tagline}
                 </p>
-                <div className="text-2xl md:text-3xl font-bold text-white tabular-nums">
+                <div className="text-2xl md:text-3xl font-bold text-aurora-text tabular-nums">
                   {tier.price.includes('/') ? (
                     <>
                       {tier.price.split('/')[0]}
-                      <span className="text-sm font-normal text-white/60">
+                      <span className="text-sm font-normal text-aurora-text-muted">
                         /{tier.price.split('/')[1]}
                       </span>
                     </>
@@ -64,13 +64,13 @@ export default function Tiers() {
                   )}
                 </div>
                 {tier.perTrip && (
-                  <p className="text-xs text-white/50 mt-1">{tier.perTrip}</p>
+                  <p className="text-xs text-aurora-text-muted mt-1">{tier.perTrip}</p>
                 )}
               </div>
 
               <ul className="space-y-3.5 mb-8 flex-1">
                 {tier.perks.map((perk, index) => (
-                  <li key={index} className="flex items-start text-sm text-white/80">
+                  <li key={index} className="flex items-start text-sm text-aurora-text">
                     <span className="text-aurora-gold mr-2 mt-0.5 flex-shrink-0">✓</span>
                     <span>{perk}</span>
                   </li>
@@ -86,7 +86,7 @@ export default function Tiers() {
                 className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 min-h-[44px] focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:outline-none ${
                   tier.featured
                     ? 'bg-aurora-gold text-white hover:shadow-lift hover:-translate-y-0.5'
-                    : 'border-2 border-aurora-gold/40 text-white hover:border-aurora-gold hover:bg-aurora-gold/10 hover:-translate-y-0.5 focus:border-aurora-gold'
+                    : 'border-2 border-aurora-gold/40 text-aurora-text hover:border-aurora-gold hover:bg-aurora-gold/10 hover:-translate-y-0.5 focus:border-aurora-gold'
                 }`}
               >
                 Begin a Conversation
