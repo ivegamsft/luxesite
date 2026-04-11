@@ -4,14 +4,14 @@ import { useState, useEffect, FormEvent } from 'react';
 import AnimatedSection from './AnimatedSection';
 
 const interestOptions = [
-  'Private Galas',
-  'Corporate Events',
+  'Children\'s Parties',
+  'Corporate Galas',
   'Milestone Birthdays',
-  'Weddings',
-  'Festival Experiences',
-  'Wellness Retreats',
-  'Family Celebrations',
-  'Yacht & Sailing'
+  'Weddings & Receptions',
+  'Holiday Parties',
+  'Cultural Celebrations',
+  'Family Reunions',
+  'Immersive Entertainment'
 ];
 
 const budgetRanges = [
@@ -27,8 +27,8 @@ const NOTES_MAX_LENGTH = 500;
 const initialFormData = {
   name: '',
   email: '',
-  travelDates: '',
-  travelers: 2,
+  eventDate: '',
+  expectedGuests: 50,
   interests: [] as string[],
   budget: '',
   notes: ''
@@ -72,48 +72,47 @@ export default function ConciergeForm() {
   // Listen for hero discovery row selections
   useEffect(() => {
     const handleHeroDiscovery = (e: Event) => {
-      const { venue, timing } = (e as CustomEvent).detail as {
-        venue: string;
-        timing: string;
+      const { occasion, guestCount } = (e as CustomEvent).detail as {
+        occasion: string;
+        guestCount: string;
       };
 
       const destLabels: Record<string, string> = {
-        maldives: 'Maldives',
-        santorini: 'Santorini',
-        kyoto: 'Kyoto',
-        patagonia: 'Patagonia',
-        safari: 'East Africa Safari',
-        other: 'Somewhere else',
+        birthday: 'Birthday Party',
+        gala: 'Gala',
+        corporate: 'Corporate Event',
+        wedding: 'Wedding',
+        holiday: 'Holiday Party',
+        milestone: 'Milestone Celebration',
       };
 
-      const timingLabels: Record<string, string> = {
-        'next-month': 'Next month',
-        '3-months': 'In 2–3 months',
-        '6-months': 'In 4–6 months',
-        'next-year': 'Next year',
-        flexible: "I'm flexible",
+      const guestLabels: Record<string, string> = {
+        intimate: 'Intimate (under 25)',
+        medium: 'Medium (25–100)',
+        grand: 'Grand (100–500)',
+        spectacular: 'Spectacular (500+)',
       };
 
       setFormData((prev) => {
         const parts: string[] = [];
-        if (venue) parts.push(`Interested in: ${destLabels[venue] ?? venue}`);
-        if (timing) parts.push(`Timing: ${timingLabels[timing] ?? timing}`);
+        if (occasion) parts.push(`Occasion: ${destLabels[occasion] ?? occasion}`);
+        if (guestCount) parts.push(`Guest count: ${guestLabels[guestCount] ?? guestCount}`);
         const prefillText = parts.join(' · ');
 
         const interestMap: Record<string, string[]> = {
-          maldives: ['Beach & Islands'],
-          santorini: ['Beach & Islands', 'City & Culture'],
-          kyoto: ['City & Culture'],
-          patagonia: ['Adventure'],
-          safari: ['Wildlife & Safari'],
+          birthday: ['Children\'s Parties', 'Milestone Birthdays'],
+          gala: ['Corporate Galas'],
+          corporate: ['Corporate Galas'],
+          wedding: ['Weddings & Receptions'],
+          holiday: ['Holiday Parties'],
+          milestone: ['Milestone Birthdays'],
         };
 
-        const mappedInterests = venue ? (interestMap[venue] ?? []) : [];
+        const mappedInterests = occasion ? (interestMap[occasion] ?? []) : [];
         const mergedInterests = Array.from(new Set([...prev.interests, ...mappedInterests]));
 
         return {
           ...prev,
-          travelDates: timing ? (timingLabels[timing] ?? prev.travelDates) : prev.travelDates,
           interests: mergedInterests,
           notes: prev.notes ? prev.notes : prefillText,
         };
@@ -152,7 +151,7 @@ export default function ConciergeForm() {
     return emailRegex.test(email);
   };
 
-  const validateTravelDates = (value: string): string | null => {
+  const validateEventDate = (value: string): string | null => {
     if (!value.trim()) return null; // optional field
     if (value.trim().length < 3) return 'Please enter a recognizable date — e.g., "March 2025" or "Next spring"';
     if (/^[\d\W]+$/.test(value.trim())) return 'Try something like "March 2025" or "Flexible — sometime this summer"';
@@ -172,9 +171,9 @@ export default function ConciergeForm() {
       newErrors.email = "That doesn't look like a valid email — please double-check";
     }
 
-    const dateError = validateTravelDates(formData.travelDates);
+    const dateError = validateEventDate(formData.eventDate);
     if (dateError) {
-      newErrors.travelDates = dateError;
+      newErrors.eventDate = dateError;
     }
 
     setErrors(newErrors);
@@ -206,12 +205,12 @@ export default function ConciergeForm() {
         newValidFields.email = true;
       }
     }
-    if (field === 'travelDates') {
-      const dateError = validateTravelDates(formData.travelDates);
+    if (field === 'eventDate') {
+      const dateError = validateEventDate(formData.eventDate);
       if (dateError) {
-        newErrors.travelDates = dateError;
+        newErrors.eventDate = dateError;
       } else {
-        delete newErrors.travelDates;
+        delete newErrors.eventDate;
       }
     }
     setErrors(newErrors);
@@ -257,7 +256,7 @@ export default function ConciergeForm() {
         <AnimatedSection>
           <div className="mb-10">
             <p className="text-fluid-lg text-aurora-text-muted max-w-[50ch] leading-relaxed">
-              Tell us where you dream of celebrating.{' '}
+              Tell us about your dream celebration.{' '}
               <span className="text-aurora-text font-heading font-medium">We&rsquo;ll handle every detail from&nbsp;here.</span>
             </p>
             <h2 className="sr-only">Request a Consultation</h2>
@@ -410,43 +409,43 @@ export default function ConciergeForm() {
 
               {showDetails && (
                 <div className="mt-6 space-y-6 pt-6 border-t border-aurora-border/50">
-                  {/* Event Dates */}
+                  {/* Event Date */}
                   <div>
-                    <label htmlFor="travelDates" className="block text-sm font-medium text-aurora-text/80 mb-2">
+                    <label htmlFor="eventDate" className="block text-sm font-medium text-aurora-text/80 mb-2">
                       Event Date
                     </label>
                     <input
                       type="text"
-                      id="travelDates"
+                      id="eventDate"
                       placeholder='e.g., "March 2025" or "Flexible"'
-                      value={formData.travelDates}
+                      value={formData.eventDate}
                       onChange={(e) => {
-                        setFormData({ ...formData, travelDates: e.target.value });
-                        if (errors.travelDates) setErrors((prev) => { const next = { ...prev }; delete next.travelDates; return next; });
+                        setFormData({ ...formData, eventDate: e.target.value });
+                        if (errors.eventDate) setErrors((prev) => { const next = { ...prev }; delete next.eventDate; return next; });
                       }}
-                      onBlur={() => validateField('travelDates')}
+                      onBlur={() => validateField('eventDate')}
                       className={`${inputClass} placeholder:text-aurora-text-muted`}
-                      aria-invalid={!!errors.travelDates}
-                      aria-describedby={errors.travelDates ? 'travelDates-error' : 'travelDates-hint'}
+                      aria-invalid={!!errors.eventDate}
+                      aria-describedby={errors.eventDate ? 'eventDate-error' : 'eventDate-hint'}
                     />
-                    {errors.travelDates
-                      ? <p id="travelDates-error" className="mt-1 text-sm text-aurora-error">{errors.travelDates}</p>
-                      : <p id="travelDates-hint" className="mt-1 text-xs text-aurora-text-muted">A rough timeframe is fine — exact dates aren&rsquo;t needed yet.</p>
+                    {errors.eventDate
+                      ? <p id="eventDate-error" className="mt-1 text-sm text-aurora-error">{errors.eventDate}</p>
+                      : <p id="eventDate-hint" className="mt-1 text-xs text-aurora-text-muted">A rough timeframe is fine — exact dates aren&rsquo;t needed yet.</p>
                     }
                   </div>
 
-                  {/* Number of Guests */}
+                  {/* Expected Guests */}
                   <div>
-                    <label htmlFor="travelers" className="block text-sm font-medium text-aurora-text/80 mb-2">
-                      Number of Guests
+                    <label htmlFor="expectedGuests" className="block text-sm font-medium text-aurora-text/80 mb-2">
+                      Expected Guests
                     </label>
                     <input
                       type="number"
-                      id="travelers"
+                      id="expectedGuests"
                       min="1"
-                      max="20"
-                      value={formData.travelers}
-                      onChange={(e) => setFormData({ ...formData, travelers: parseInt(e.target.value) || 1 })}
+                      max="5000"
+                      value={formData.expectedGuests}
+                      onChange={(e) => setFormData({ ...formData, expectedGuests: parseInt(e.target.value) || 1 })}
                       className={inputClass}
                     />
                   </div>

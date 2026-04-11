@@ -197,37 +197,36 @@ function LuxeSelect({ label, placeholder, options, value, onChange, divider }: L
 
 /* ─── Option Data ─────────────────────────────────────────────────── */
 
-const DESTINATIONS: LuxeOption[] = [
-  { value: 'maldives', label: 'Maldives' },
-  { value: 'santorini', label: 'Santorini' },
-  { value: 'kyoto', label: 'Kyoto' },
-  { value: 'patagonia', label: 'Patagonia' },
-  { value: 'safari', label: 'East Africa Safari' },
-  { value: 'other', label: 'Somewhere else' },
+const OCCASIONS: LuxeOption[] = [
+  { value: 'birthday', label: 'Birthday' },
+  { value: 'gala', label: 'Gala' },
+  { value: 'corporate', label: 'Corporate' },
+  { value: 'wedding', label: 'Wedding' },
+  { value: 'holiday', label: 'Holiday' },
+  { value: 'milestone', label: 'Milestone' },
 ];
 
-const TIMINGS: LuxeOption[] = [
-  { value: 'next-month', label: 'Next month' },
-  { value: '3-months', label: 'In 2–3 months' },
-  { value: '6-months', label: 'In 4–6 months' },
-  { value: 'next-year', label: 'Next year' },
-  { value: 'flexible', label: "I'm flexible" },
+const GUEST_COUNTS: LuxeOption[] = [
+  { value: 'intimate', label: 'Intimate (under 25)' },
+  { value: 'medium', label: 'Medium (25–100)' },
+  { value: 'grand', label: 'Grand (100–500)' },
+  { value: 'spectacular', label: 'Spectacular (500+)' },
 ];
 
 /* ─── Hero ────────────────────────────────────────────────────────── */
 
 export default function Hero() {
   const prefersReducedMotion = useReducedMotion();
-  const [selectedDest, setSelectedDest] = useState('');
-  const [selectedTiming, setSelectedTiming] = useState('');
+  const [selectedOccasion, setSelectedOccasion] = useState('');
+  const [selectedGuestCount, setSelectedGuestCount] = useState('');
 
   const handleRequestConsultation = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
-      if (selectedDest || selectedTiming) {
+      if (selectedOccasion || selectedGuestCount) {
         window.dispatchEvent(
           new CustomEvent('hero-discovery', {
-            detail: { venue: selectedDest, timing: selectedTiming },
+            detail: { occasion: selectedOccasion, guestCount: selectedGuestCount },
           })
         );
       }
@@ -235,10 +234,10 @@ export default function Hero() {
     }
   };
 
-  const handleExploreDestinations = () => {
-    const destinationsSection = document.getElementById('destinations');
-    if (destinationsSection) {
-      destinationsSection.scrollIntoView({ behavior: 'smooth' });
+  const handleExploreExperiences = () => {
+    const experiencesSection = document.getElementById('experiences');
+    if (experiencesSection) {
+      experiencesSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -269,7 +268,7 @@ export default function Hero() {
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.1, ease: 'easeOut' }}
           className="font-heading text-fluid-3xl font-bold text-white mb-6 tracking-tight leading-[1.08]"
         >
-          Celebrations Written in Light
+          Extraordinary Celebrations for Every Age
         </motion.h1>
 
         {/* Subtext */}
@@ -279,7 +278,7 @@ export default function Hero() {
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.2, ease: 'easeOut' }}
           className="text-fluid-lg text-white/80 max-w-[55ch] mb-10 leading-relaxed"
         >
-          Private estates. Unmarked venues. Tables that don&apos;t take reservations.
+          From whimsical children&apos;s wonderlands to black-tie galas — we produce celebrations that become the stories people tell forever.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -296,10 +295,10 @@ export default function Hero() {
             Request Consultation
           </button>
           <button
-            onClick={handleExploreDestinations}
+            onClick={handleExploreExperiences}
             className="w-full sm:w-auto border-2 border-white/40 text-white font-semibold px-8 py-4 rounded-lg hover:border-aurora-gold hover:text-aurora-gold hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-navy min-h-[44px]"
           >
-            Explore Experiences
+            Explore Celebrations
           </button>
         </motion.div>
 
@@ -311,19 +310,19 @@ export default function Hero() {
           className="flex flex-col md:flex-row items-stretch md:items-center gap-3 mt-8 bg-aurora-bg-light border border-aurora-border shadow-subtle rounded-lg px-4 py-3"
         >
           <LuxeSelect
-            label="Venue"
-            placeholder="Where to?"
-            options={DESTINATIONS}
-            value={selectedDest}
-            onChange={setSelectedDest}
+            label="Occasion"
+            placeholder="What's the occasion?"
+            options={OCCASIONS}
+            value={selectedOccasion}
+            onChange={setSelectedOccasion}
             divider
           />
           <LuxeSelect
-            label="Event timing"
-            placeholder="When?"
-            options={TIMINGS}
-            value={selectedTiming}
-            onChange={setSelectedTiming}
+            label="Guest count"
+            placeholder="How many guests?"
+            options={GUEST_COUNTS}
+            value={selectedGuestCount}
+            onChange={setSelectedGuestCount}
             divider
           />
           <button

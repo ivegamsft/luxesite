@@ -4,35 +4,35 @@ import DestinationGrid from '@/app/components/DestinationGrid';
 describe('DestinationGrid', () => {
   it('renders section heading', () => {
     render(<DestinationGrid />);
-    expect(screen.getByText('Curated Destinations')).toBeInTheDocument();
+    expect(screen.getByText('Celebration Spaces')).toBeInTheDocument();
   });
 
   it('renders all 6 venue cards', () => {
     render(<DestinationGrid />);
     
-    // Check for all venue names
-    expect(screen.getByText('Maldives')).toBeInTheDocument();
-    expect(screen.getByText('Tokyo')).toBeInTheDocument();
-    expect(screen.getByText('Swiss Alps')).toBeInTheDocument();
-    expect(screen.getByText('Dubai')).toBeInTheDocument();
-    expect(screen.getByText('Kenya')).toBeInTheDocument();
-    expect(screen.getByText('Mediterranean')).toBeInTheDocument();
+    // Check for all venue names (first 6 shown by default)
+    expect(screen.getByText('Grand Ballrooms & Historic Estates')).toBeInTheDocument();
+    expect(screen.getByText('Rooftop Terraces & Sky Gardens')).toBeInTheDocument();
+    expect(screen.getByText('Beachfront Pavilions')).toBeInTheDocument();
+    expect(screen.getByText('Garden & Botanical Venues')).toBeInTheDocument();
+    expect(screen.getByText('Private Estates & Mansions')).toBeInTheDocument();
+    expect(screen.getByText('Museum & Gallery Spaces')).toBeInTheDocument();
   });
 
   it('each card shows name and price', () => {
     render(<DestinationGrid />);
     
-    // Check for Maldives card with price
-    expect(screen.getByText('Maldives')).toBeInTheDocument();
-    expect(screen.getByText(/from \$125,000/i)).toBeInTheDocument();
+    // Check for Grand Ballrooms card with price
+    expect(screen.getByText('Grand Ballrooms & Historic Estates')).toBeInTheDocument();
+    expect(screen.getByText(/from \$150,000/i)).toBeInTheDocument();
     
-    // Check for Tokyo card with price
-    expect(screen.getByText('Tokyo')).toBeInTheDocument();
-    expect(screen.getByText(/from \$89,000/i)).toBeInTheDocument();
+    // Check for Rooftop Terraces card with price
+    expect(screen.getByText('Rooftop Terraces & Sky Gardens')).toBeInTheDocument();
+    expect(screen.getByText(/from \$120,000/i)).toBeInTheDocument();
     
-    // Check for Swiss Alps card with price
-    expect(screen.getByText('Swiss Alps')).toBeInTheDocument();
-    expect(screen.getByText(/from \$152,000/i)).toBeInTheDocument();
+    // Check for Beachfront Pavilions card with price
+    expect(screen.getByText('Beachfront Pavilions')).toBeInTheDocument();
+    expect(screen.getByText(/from \$135,000/i)).toBeInTheDocument();
   });
 
   // --- Touch/Keyboard Accessibility tests (verifying Trinity's fixes) ---
@@ -49,60 +49,60 @@ describe('DestinationGrid', () => {
     it('venue cards are keyboard-focusable', () => {
       render(<DestinationGrid />);
 
-      const maldivesCard = screen.getByText('Maldives').closest('[role="button"]');
-      expect(maldivesCard).toBeInTheDocument();
-      expect(maldivesCard).toHaveAttribute('tabindex', '0');
+      const venueCard = screen.getByText('Grand Ballrooms & Historic Estates').closest('[role="button"]');
+      expect(venueCard).toBeInTheDocument();
+      expect(venueCard).toHaveAttribute('tabindex', '0');
     });
 
     it('pressing Enter toggles Quick Facts overlay', () => {
       render(<DestinationGrid />);
 
-      const maldivesCard = screen.getByText('Maldives').closest('[role="button"]');
-      expect(maldivesCard).toBeInTheDocument();
+      const venueCard = screen.getByText('Grand Ballrooms & Historic Estates').closest('[role="button"]');
+      expect(venueCard).toBeInTheDocument();
 
       // Initially aria-expanded should be false
-      expect(maldivesCard).toHaveAttribute('aria-expanded', 'false');
+      expect(venueCard).toHaveAttribute('aria-expanded', 'false');
 
       // Press Enter to open
-      fireEvent.keyDown(maldivesCard!, { key: 'Enter' });
-      expect(maldivesCard).toHaveAttribute('aria-expanded', 'true');
+      fireEvent.keyDown(venueCard!, { key: 'Enter' });
+      expect(venueCard).toHaveAttribute('aria-expanded', 'true');
 
       // Press Enter again to close
-      fireEvent.keyDown(maldivesCard!, { key: 'Enter' });
-      expect(maldivesCard).toHaveAttribute('aria-expanded', 'false');
+      fireEvent.keyDown(venueCard!, { key: 'Enter' });
+      expect(venueCard).toHaveAttribute('aria-expanded', 'false');
     });
 
     it('pressing Space toggles Quick Facts overlay', () => {
       render(<DestinationGrid />);
 
-      const maldivesCard = screen.getByText('Maldives').closest('[role="button"]');
-      expect(maldivesCard).toBeInTheDocument();
+      const venueCard = screen.getByText('Grand Ballrooms & Historic Estates').closest('[role="button"]');
+      expect(venueCard).toBeInTheDocument();
 
       // Press Space to open
-      fireEvent.keyDown(maldivesCard!, { key: ' ' });
-      expect(maldivesCard).toHaveAttribute('aria-expanded', 'true');
+      fireEvent.keyDown(venueCard!, { key: ' ' });
+      expect(venueCard).toHaveAttribute('aria-expanded', 'true');
 
       // Press Space again to close
-      fireEvent.keyDown(maldivesCard!, { key: ' ' });
-      expect(maldivesCard).toHaveAttribute('aria-expanded', 'false');
+      fireEvent.keyDown(venueCard!, { key: ' ' });
+      expect(venueCard).toHaveAttribute('aria-expanded', 'false');
     });
 
     it('aria-expanded attribute reflects toggle state', () => {
       render(<DestinationGrid />);
 
-      const maldivesCard = screen.getByText('Maldives').closest('[role="button"]');
-      expect(maldivesCard).toBeInTheDocument();
+      const venueCard = screen.getByText('Grand Ballrooms & Historic Estates').closest('[role="button"]');
+      expect(venueCard).toBeInTheDocument();
 
       // Default state: collapsed
-      expect(maldivesCard).toHaveAttribute('aria-expanded', 'false');
+      expect(venueCard).toHaveAttribute('aria-expanded', 'false');
 
       // Click to expand
-      fireEvent.click(maldivesCard!);
-      expect(maldivesCard).toHaveAttribute('aria-expanded', 'true');
+      fireEvent.click(venueCard!);
+      expect(venueCard).toHaveAttribute('aria-expanded', 'true');
 
       // Click to collapse
-      fireEvent.click(maldivesCard!);
-      expect(maldivesCard).toHaveAttribute('aria-expanded', 'false');
+      fireEvent.click(venueCard!);
+      expect(venueCard).toHaveAttribute('aria-expanded', 'false');
     });
   });
 });

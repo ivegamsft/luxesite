@@ -20,8 +20,8 @@ describe('Footer', () => {
 
   it('renders navigation links', () => {
     render(<Footer />);
-    // Footer has Experiences section heading + Company links
-    expect(screen.getByText('Experiences')).toBeInTheDocument();
+    // Footer has Celebrations section heading + Company links
+    expect(screen.getByText('Celebrations')).toBeInTheDocument();
     expect(screen.getByText('Our Team')).toBeInTheDocument();
     // Contact appears as both a section heading and a nav link
     const contactElements = screen.getAllByText('Contact');

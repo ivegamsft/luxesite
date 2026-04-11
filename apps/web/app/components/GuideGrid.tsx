@@ -26,7 +26,7 @@ export default function GuideGrid() {
             Insider Guides
           </h2>
           <p className="mb-12 max-w-[65ch] text-fluid-sm text-aurora-text-muted">
-            In-depth venue and experience intelligence from the event architects who know these places first-hand.
+            In-depth planning advice and production insights from the event architects who produce these celebrations first-hand.
           </p>
         </AnimatedSection>
 

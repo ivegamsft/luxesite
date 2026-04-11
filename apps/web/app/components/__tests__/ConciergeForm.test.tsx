@@ -55,7 +55,7 @@ describe('ConciergeForm', () => {
     fireEvent.click(expandButton);
     
     // Now interest chips should be visible
-    expect(screen.getByText('Private Galas')).toBeInTheDocument();
+    expect(screen.getByText('Children\'s Parties')).toBeInTheDocument();
   });
 
   it('interest chips toggle on click', () => {
@@ -65,15 +65,15 @@ describe('ConciergeForm', () => {
     const expandButton = screen.getByText(/share more details/i);
     fireEvent.click(expandButton);
     
-    const beachChip = screen.getByText('Private Galas');
+    const chip = screen.getByText('Children\'s Parties');
     
     // Click to select
-    fireEvent.click(beachChip);
-    expect(beachChip).toBeInTheDocument();
+    fireEvent.click(chip);
+    expect(chip).toBeInTheDocument();
     
     // Click again to deselect
-    fireEvent.click(beachChip);
-    expect(beachChip).toBeInTheDocument();
+    fireEvent.click(chip);
+    expect(chip).toBeInTheDocument();
   });
 
   it('successful submission shows success toast', async () => {
@@ -193,11 +193,11 @@ describe('ConciergeForm', () => {
       const expandButton = screen.getByText(/share more details/i);
       fireEvent.click(expandButton);
 
-      const beachChip = screen.getByText('Private Galas');
-      expect(beachChip).toHaveAttribute('aria-pressed', 'false');
+      const chip = screen.getByText('Children\'s Parties');
+      expect(chip).toHaveAttribute('aria-pressed', 'false');
 
-      fireEvent.click(beachChip);
-      expect(beachChip).toHaveAttribute('aria-pressed', 'true');
+      fireEvent.click(chip);
+      expect(chip).toHaveAttribute('aria-pressed', 'true');
     });
   });
 });

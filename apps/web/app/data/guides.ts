@@ -2,69 +2,69 @@ import { InsiderGuide } from '../lib/types';
 
 export const guides: InsiderGuide[] = [
   {
-    id: 'guide-botswana',
-    title: 'Complete Botswana Safari Guide',
+    id: 'guide-kids-birthdays',
+    title: 'The Ultimate Guide to Children\'s Birthday Spectaculars',
     excerpt:
-      'From the Okavango Delta to the Makgadikgadi Salt Pans — everything you need to plan the ultimate Big Five safari, including timing, camps, and what to pack.',
+      'From choosing age-appropriate themes to coordinating character performers and interactive play zones — everything you need to create a birthday your child will remember forever.',
     readTime: '12 min read',
     imageUrl:
-      'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=640&h=480&fit=crop',
-    link: '/guides/botswana-safari',
-    author: 'Sarah Chen',
+      'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=640&h=480&fit=crop',
+    link: '/guides/kids-birthday-spectaculars',
+    author: 'Maya Rodriguez',
   },
   {
-    id: 'guide-maldives',
-    title: 'Maldives: Beyond the Overwater Villa',
+    id: 'guide-black-tie-gala',
+    title: 'Planning a Black-Tie Gala: From Vision to Standing Ovation',
     excerpt:
-      'Underwater restaurants, private sandbank picnics, and bioluminescent night dives — the Maldives experiences most guests never discover.',
+      'Venue selection, seating strategies, entertainment curation, and the timeline secrets that separate a good gala from an unforgettable one.',
+    readTime: '10 min read',
+    imageUrl:
+      'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=640&h=480&fit=crop',
+    link: '/guides/black-tie-gala',
+    author: 'James Harrington',
+  },
+  {
+    id: 'guide-corporate-events',
+    title: 'Corporate Events That Actually Inspire: Beyond the Boring Ballroom',
+    excerpt:
+      'Why the best product launches and team celebrations ditch the podium for immersive experiences — and how to pitch your leadership on the upgrade.',
     readTime: '9 min read',
     imageUrl:
-      'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=640&h=480&fit=crop',
-    link: '/guides/maldives-beyond',
-    author: 'James Whitford',
+      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=640&h=480&fit=crop',
+    link: '/guides/corporate-events-that-inspire',
+    author: 'David Kim',
   },
   {
-    id: 'guide-ryokans',
-    title: "Japan's Hidden Ryokans",
+    id: 'guide-multi-generational',
+    title: 'Multi-Generational Celebrations: Events Every Age Enjoys',
     excerpt:
-      'Step off the Shinkansen and into centuries-old mountain inns where kaiseki cuisine and onsen bathing are elevated to an art form.',
-    readTime: '10 min read',
-    imageUrl:
-      'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=640&h=480&fit=crop',
-    link: '/guides/japan-ryokans',
-    author: 'Yuki Tanaka',
-  },
-  {
-    id: 'guide-patagonia',
-    title: 'Trekking Patagonia in Style',
-    excerpt:
-      'Glacier hikes by day, fine wine by night. How to experience Torres del Paine without sacrificing comfort — from luxury lodges to private guides.',
+      'Designing a single celebration that delights toddlers, teens, parents, and grandparents. Activity zoning, menu strategies, and the art of inclusive entertainment.',
     readTime: '11 min read',
     imageUrl:
-      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=640&h=480&fit=crop',
-    link: '/guides/patagonia-luxury',
-    author: 'Lucia Fernandez',
+      'https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=640&h=480&fit=crop',
+    link: '/guides/multi-generational-celebrations',
+    author: 'Elena Marchetti',
   },
   {
-    id: 'guide-morocco',
-    title: 'Marrakech Riads & Desert Camps',
+    id: 'guide-themed-parties',
+    title: 'Themed Parties Done Right: Immersive Worlds Your Guests Won\'t Forget',
     excerpt:
-      'Navigate the medina like a local, dine under Saharan stars, and find the city\'s best-kept secret rooftop terraces in this insider\'s guide.',
-    readTime: '8 min read',
-    imageUrl:
-      'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=640&h=480&fit=crop',
-    link: '/guides/marrakech-riads',
-    author: 'Amina El-Fassi',
-  },
-  {
-    id: 'guide-alps',
-    title: 'The Alpine Wellness Circuit',
-    excerpt:
-      'Switzerland, Austria, and the Italian Dolomites — a curated route through Europe\'s finest mountain spas, chalets, and Michelin dining.',
+      'The production secrets behind truly immersive themed events — from scenic design and lighting to costuming, soundscaping, and interactive storytelling.',
     readTime: '10 min read',
     imageUrl:
-      'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=640&h=480&fit=crop',
-    link: '/guides/alpine-wellness',
-    author: 'Elena Richter',
+      'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=640&h=480&fit=crop',
+    link: '/guides/themed-parties-done-right',
+    author: 'Sophia Laurent',
+  },
+  {
+    id: 'guide-surprise-party',
+    title: 'The Art of the Surprise Party: Logistics, Secrets, and Showtime',
+    excerpt:
+      'How to coordinate dozens of guests, manage the guest of honor\'s schedule, and pull off a reveal moment that brings the house down — without a single leak.',
+    readTime: '8 min read',
+    imageUrl:
+      'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=640&h=480&fit=crop',
+    link: '/guides/art-of-surprise-party',
+    author: 'Carlos Vega',
   },
 ];

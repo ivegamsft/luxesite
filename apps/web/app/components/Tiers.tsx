@@ -65,9 +65,7 @@ export default function Tiers() {
                     <span>{tier.price}</span>
                   )}
                 </div>
-                {tier.perTrip && (
-                  <p className="text-xs text-aurora-text-muted mt-1">{tier.perTrip}</p>
-                )}
+
               </div>
 
               <ul className="space-y-3.5 mb-8 flex-1">

@@ -74,7 +74,7 @@ export default function ExperienceDetailPage({ params }: { params: { id: string 
       <section className="py-section-md px-4 sm:px-6 lg:px-12">
         <div className="max-w-3xl mx-auto">
           <h2 className="font-heading text-fluid-xl font-semibold text-aurora-text mb-6">
-            About This Experience
+            About This Celebration
           </h2>
           <p className="text-aurora-text leading-relaxed text-lg mb-10">
             {experience.description}
@@ -96,7 +96,7 @@ export default function ExperienceDetailPage({ params }: { params: { id: string 
 
           {/* Regions */}
           <h3 className="font-heading text-fluid-lg font-semibold text-aurora-text mb-4">
-            Regions
+            Categories
           </h3>
           <div className="flex flex-wrap gap-3 mb-10">
             {experience.regions.map((region) => (
