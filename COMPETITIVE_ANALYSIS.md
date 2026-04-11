@@ -6,18 +6,18 @@
 
 ## What the Competitors Are Doing That We Aren't
 
-From the two accessible competitor references (JamesEdition, VillasOfDistinction) plus `.impeccable.md` reference brands (Aman, Rolls-Royce, Monocle, Aesop):
+From the two accessible competitor references (Minado, Honor Events) plus `.impeccable.md` reference brands (Aman, Rolls-Royce, Monocle, Aesop):
 
 | Signal | Competitor Execution | Aurora Luxe |
 |---|---|---|
-| Authority credential | Phone number + specialist hours prominently displayed; "award-winning concierge travel specialists" | None visible |
-| Social proof | "710,000+ LISTINGS" stat; named client travel stories | No stats, no named testimonials with photos |
-| Discovery moment | Hero search form ("Find Your Perfect Villa") — concierge ritual begins immediately | Scroll-to-form button — passive |
+| Authority credential | Phone number + specialist hours prominently displayed; "award-winning event architects" | None visible |
+| Social proof | "5,200+ events designed" stat; named client event stories | No stats, no named testimonials with photos |
+| Discovery moment | Hero search form ("Plan Your Event") — inquiry ritual begins immediately | Scroll-to-form button — passive |
 | Editorial structure | Each section structurally distinct — hero, then editorial statement, then offset grid, then quote break | Likely hero → grid → tiers → form (SaaS landing pattern) |
-| Copy register | "Where will your story begin?" / sensory narrative ("turquoise waters… azure skies") | "Beyond First Class." (good) + "Private shores. Unmarked airstrips. Tables that don't take reservations." (reads as a bullet list, not a sentence) |
+| Copy register | "Where will your celebration begin?" / sensory narrative ("intimate gatherings… unforgettable moments") | "Architects of the Extraordinary." (good) + pricing-focused, less narrative |
 | Navigation posture | ALL-CAPS nav links + category entry points styled as navigation | Standard mixed-case navbar |
 | Negative space | Both competitors use generous white space as a luxury signal | Unknown — see section layout |
-| Exclusivity frame | "Invite only," "application required," "limited to X families" language | Not present |
+| Exclusivity frame | "By introduction," "curated clients," "limited to X events annually" language | Not present |
 
 ---
 
@@ -39,7 +39,7 @@ className={`... shadow-glow-purple`}    // featured tier card
 // and:
 '... hover:shadow-glow ...'             // featured CTA button
 ```
-**Why it's cheap:** "Glow" shadows are the signature aesthetic of SaaS product pages, gaming UIs, and Figma templates. No luxury hospitality brand uses glow shadows. Aman uses no shadows. Rolls-Royce uses fine architectural drop shadows at <10% opacity. The warm oklch values don't change the glow's essential character.  
+**Why it's cheap:** "Glow" shadows are the signature aesthetic of SaaS product pages, gaming UIs, and Figma templates. No luxury event or hospitality brand uses glow shadows. Aman uses no shadows. Rolls-Royce uses fine architectural drop shadows at <10% opacity. The warm oklch values don't change the glow's essential character.  
 **Fix:** Delete `glow` and `glow-purple` from `tailwind.config.ts`. Replace featured card elevation with a `box-shadow: 0 2px 24px oklch(0 0 0 / 0.35)` fine architectural shadow.
 
 ---
@@ -50,7 +50,7 @@ className={`... shadow-glow-purple`}    // featured tier card
 ```tsx
 'bg-gradient-aurora text-aurora-dark hover:shadow-glow hover:-translate-y-0.5'
 ```
-**Why it's cheap:** A three-stop gradient button (gold → bordeaux → dusty rose) on the featured membership CTA reads as "landing page template." Aman's primary buttons are solid black on white or solid white on black. Rolls-Royce uses a solid beveled dark treatment. A gradient button signals that copy alone couldn't sell the tier.  
+**Why it's cheap:** A three-stop gradient button on the featured tier CTA reads as "landing page template." Premium event brands use solid, elegant button treatments. A gradient button signals that copy alone couldn't sell the tier.  
 **Fix:** Replace `bg-gradient-aurora` with `bg-aurora-champagne` (solid champagne gold) on the button. The gradient can remain in decorative elements like the `.animated-border` ring — just not on a button.
 
 ---
@@ -79,7 +79,7 @@ variants={{
 tier.featured
   ? 'animated-border scale-[1.02] md:scale-105 z-10 shadow-glow-purple'
 ```
-**Why it's cheap:** Scaling the middle card up is *the* canonical SaaS pricing page pattern, used by every startup from 2014–2024. A private members' club would never "highlight" a tier this way — they'd use typographic weight, border treatment, or negative space. The scale effect signals template thinking.  
+**Why it's cheap:** Scaling the middle card up is *the* canonical SaaS pricing page pattern, used by every startup from 2014–2024. A premium event design brand would never "highlight" a tier this way — they'd use typographic weight, border treatment, or negative space. The scale effect signals template thinking.  
 **Fix:** Remove `scale-[1.02] md:scale-105`. Distinguish the featured tier through the existing `.animated-border` conic gradient ring (already warm and tasteful) plus a slightly different background depth and a small "Recommended" or "Most Selected" text badge.
 
 ---
@@ -88,23 +88,23 @@ tier.featured
 
 **File:** `apps/web/app/components/Hero.tsx` (lines 1–100 confirmed)  
 **Evidence:** `text-center` on the content container.  
-**Why it's cheap:** Center-aligned full-screen hero + centered headline + centered CTAs is the universal default layout. JamesEdition, VillasOfDistinction, Aman, Rolls-Royce, Monocle — all left-aligned or asymmetric. Center alignment signals the layout was not designed; it was defaulted. Editorial luxury requires deliberate composition: content left-anchored, large whitespace right, or a deliberate asymmetric offset.  
+**Why it's cheap:** Center-aligned full-screen hero + centered headline + centered CTAs is the universal default layout. Minado, Honor Events, Aman, Rolls-Royce, Monocle — all left-aligned or asymmetric. Center alignment signals the layout was not designed; it was defaulted. Editorial luxury requires deliberate composition: content left-anchored, large whitespace right, or a deliberate asymmetric offset.  
 **Fix:** Left-align the headline and subhead. Anchor the content block to `max-w-[50%]` on desktop, full-width on mobile. This single change has outsized impact on perceived premium quality.
 
 ---
 
 ### 6. No Trust Architecture — Zero Credentials Visible
 
-**Issue:** No phone number. No named specialists. No award badges. No member count. No "by application" or exclusivity signal. No founding date. No press mentions.  
-**Why it's cheap:** Ultra-HNWI clients are exposed to fraud, scam operators, and low-prestige resellers. The credentialing layer — a phone number, a named specialist's photo, an award from a recognized travel body — is not decoration. It is the product. VillasOfDistinction leads with "Award-winning concierge travel specialists" and publishes their phone number and office hours in the hero viewport. Aurora Luxe asks for trust without any basis for trust.  
-**Fix (new component):** A trust bar below the hero containing: a London/NY/HK phone number, one named lead concierge with a photo and title, one award or press credential ("As featured in: Financial Times, Condé Nast Traveller"), and optionally a discreet member count ("Trusted by 1,200 families worldwide").
+**Issue:** No phone number. No named specialists. No award badges. No event count. No "by introduction" or exclusivity signal. No founding date. No press mentions.  
+**Why it's cheap:** Ultra-HNWI event hosts are exposed to fraud, scam operators, and low-prestige resellers. The credentialing layer — a phone number, a named specialist's photo, an award from a recognized event body — is not decoration. It is the product. Honor Events leads with "Award-winning event architects" and publishes their phone number and availability in the hero viewport. Aurora Luxe asks for trust without any basis for trust.  
+**Fix (new component):** A trust bar below the hero containing: a London/NY/HK phone number, one named lead architect with a photo and title, one award or press credential ("As featured in: Architectural Digest, Vogue"), and optionally a discreet event count ("Trusted by 1,200+ families worldwide").
 
 ---
 
-### 7. No Concierge Discovery Moment — Passive Hero
+### 7. No Discovery Moment — Passive Hero
 
-**Why it's cheap:** The hero's primary CTA is "Design Your Trip" which scrolls to a generic contact form. VillasOfDistinction places a functional search (destination type, dates, guests) directly in the hero. This is not just functional — it's a ritual. The client begins designing their journey immediately, in the first viewport. Aurora asks clients to scroll down, read more, and eventually fill out a form.  
-**Fix:** Replace or supplement the "Design Your Trip" scroll-CTA with a 3-part concierge inquiry entry: `[Destination type ▾] [Approximate dates ▾] [Discuss with a specialist →]`. This can be a styled `<select>` row — no JavaScript complexity required. The ritual of beginning the booking journey in the first 10 seconds is the experiential signal that separates "private travel service" from "a website."
+**Why it's cheap:** The hero's primary CTA is "Plan an Experience" which scrolls to a generic contact form. Premium event platforms place a functional discovery interface directly in the hero. This is not just functional — it's a ritual. The client begins designing their event immediately, in the first viewport. Aurora asks clients to scroll down, read more, and eventually fill out a form.  
+**Fix:** Replace or supplement the "Plan an Experience" scroll-CTA with a 3-part event inquiry entry: `[Event Type ▾] [Approximate Date ▾] [Discuss with an architect →]`. This can be a styled `<select>` row — no JavaScript complexity required. The ritual of beginning the event planning in the first 10 seconds is the experiential signal that separates "premium event service" from "a website."
 
 ---
 
@@ -140,7 +140,7 @@ The codebase is in a mid-refactor state. Several significant fixes are already c
 | Fluid type scale | ✅ Fixed | `clamp()` with Major Third ratio implemented throughout |
 | Spinning border | ✅ Fixed | `.animated-border` is now a static conic gradient ring, not an animation |
 | Reduced motion | ✅ Fixed | `useReducedMotion` respected in Hero and Tiers; CSS fallback in globals |
-| Copy voice | ✅ Good | "Beyond First Class." / "Tables that don't take reservations." — authoritative tone |
+| Copy voice | ✅ Good | "Architects of the Extraordinary." — authoritative tone |
 | Glass utility | ✅ Improved | `.glass` is now 70% opacity with warm hue-50 tint — solid-ish surface, not full frosted glass |
 | Bodoni heading in Tiers | ✅ Fixed | `font-heading` applied to tier names |
 
@@ -164,7 +164,7 @@ The codebase is in a mid-refactor state. Several significant fixes are already c
 |---|---|---|---|
 | 6 | All `.tsx` files | Global rename: `aurora-cyan/purple/magenta` → `aurora-champagne/bordeaux/rose` | Semantic clarity, drift prevention |
 | 7 | New component: `TrustBar.tsx` | Phone + named specialist + press credential, below hero | Authority and trust architecture |
-| 8 | `Hero.tsx` | Replace "Design Your Trip" scroll-CTA with 3-part concierge entry row | Discovery ritual, immediate engagement |
+| 8 | `Hero.tsx` | Replace "Plan an Experience" scroll-CTA with 3-part event inquiry entry row | Discovery ritual, immediate engagement |
 | 9 | `Tiers.tsx` | Replace featured card `shadow-glow-purple` with fine architectural drop shadow | Removes last glow remnant |
 
 ### P2 — Editorial Quality (Higher effort, higher payoff)
@@ -172,8 +172,8 @@ The codebase is in a mid-refactor state. Several significant fixes are already c
 | # | Area | Change | What it achieves |
 |---|---|---|---|
 | 10 | Section layout (`page.tsx`) | Introduce structural variation: not every section uses the same grid pattern | Editorial magazine-spread quality |
-| 11 | `Testimonials.tsx` | Named clients with photos, specific trip details, not generic quotes | HNWI social proof standard |
-| 12 | Navbar | Consider ALL-CAPS navigation links (competitor signal: JamesEdition, Aman) | Typographic authority |
+| 11 | `Testimonials.tsx` | Named clients with photos, specific event details, not generic quotes | HNWI social proof standard |
+| 12 | Navbar | Consider ALL-CAPS navigation links (competitor signal: Minado, Aman) | Typographic authority |
 | 13 | `Hero.tsx` | Replace Unsplash stock photo with curated editorial imagery | Prestige imagery standard |
 | 14 | New section | Exclusivity/application framing — "By introduction or application" | Scarcity as luxury signal |
 
@@ -196,10 +196,10 @@ Global find-replace: `aurora-cyan/purple/magenta` → `aurora-champagne/bordeaux
 Two focused changes in `Tiers.tsx`. P0. ~1 hour.
 
 **Issue E: Build TrustBar component**  
-New component: phone number, named lead concierge (photo + name + title), one award/press credential, member count. Insert below Hero. P1. ~3 hours.
+New component: phone number, named lead architect (photo + name + title), one award/press credential, member count. Insert below Hero. P1. ~3 hours.
 
-**Issue F: Concierge discovery entry in hero viewport**  
-3-part inline selector row (destination type, dates, CTA) as alternative entry point in Hero. P1. ~2 hours.
+**Issue F: Event discovery entry in hero viewport**  
+3-part inline selector row (event type, dates, CTA) as alternative entry point in Hero. P1. ~2 hours.
 
 **Issue G: Remove staggered entry animations from Tiers**  
 Replace orchestrated stagger with single-viewport fade-in. P0. ~30 min.
