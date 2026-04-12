@@ -264,7 +264,7 @@ The Gift tier introduces a **two-party identity model**. The security spec needs
 
 ### What Does NOT Need Deep Updates
 
-- **`COMPETITIVE_ANALYSIS.md` (#207):** Terminology swap only. The competitive landscape analysis applies regardless of tier structure.
+- **`docs/competitive-analysis.md` (#207):** Terminology swap only. The competitive landscape analysis applies regardless of tier structure.
 - **Issues #142, #144:** These need retitling (#209) but the architectural approach — three distinct detail pages — was already implied by #210.
 
 ---
