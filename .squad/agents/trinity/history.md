@@ -445,3 +445,22 @@ Restored WhyAurora (Specialists) section with full carousel redesign:
 - **Accessibility:** 44px minimum touch targets; `useReducedMotion` respected throughout
 - **Files modified:** `apps/web/app/data/team.ts`, `apps/web/app/components/WhyAurora.tsx`, `apps/web/app/specialists/[id]/page.tsx`
 - **Verification:** Build clean; all animations responsive
+
+### Feature #248 — Date Picker for ConciergeForm (2026-04-12)
+
+**Status:** ✅ COMPLETE
+
+Replaced free-text event date input with native HTML date picker (`type="date"`) + flexibility dropdown. No external libraries added.
+
+**Changes:**
+- Added `dateFlexibility` field to form state with 4 options: "Exact Date", "Flexible (+/- 1 week)", "Flexible (+/- 1 month)", "No specific date yet"
+- Default flexibility is "No specific date yet" (field is in optional expandable section)
+- Date input hidden when "No specific date yet" selected; labeled "Preferred Date" for flexible options
+- `min` attribute set to today's date; past dates rejected in validation
+- "Exact Date" requires a date; flexible options make date optional; "No specific date yet" skips validation
+- Styling matches existing form inputs (`inputClass`, gold focus ring, option bg for native dropdown)
+- All 47 tests pass; build clean
+
+## Learnings
+
+- **Default optional-section fields to least-restrictive (2026-04-12):** When a form field lives inside a collapsible "optional details" section, default its state to the most permissive option. The date flexibility defaulted to "Exact Date" initially, which broke submission for users who never expanded the section. Changed to "No specific date yet" to match the section's optional nature.
