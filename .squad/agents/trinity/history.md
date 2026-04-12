@@ -51,6 +51,7 @@
 - **Design system freezes during content pivots (2026-04-11):** When a business pivots what it sells (travel → experiences), the visual identity (colors, type, spacing, shadows) stays frozen. Only component patterns and content change. Resist the urge to add category-specific colors — icon + typography differentiate categories without palette bloat. Wrote `spec/design-system-update.md` for Issue #196.
 - **Reuse before creation (2026-04-11):** Before adding new CSS utilities, check existing globals.css patterns. `.surface-card`, `.scrollbar-hide`, `bounceX` keyframe, `editorial-divider`, and `section-break` all predate the pivot and remain usable. New CSS classes should be minimal additions, not replacements.
 - **Tailwind v4 CSS-first approach (2026-04-11):** With `@theme inline` in globals.css as the source of truth for Tailwind v4, avoid duplicating tokens in `tailwind.config.ts`. The config already mirrors globals.css — adding more entries creates maintenance debt. CSS custom properties in globals.css are the canonical location.
+- **H2 type scale bump for luxury hierarchy (2026-04-12):** `--fluid-2xl` was 28-40px — only 1.75x body at mobile. Bumped to `clamp(2rem, 1.5rem + 2.5vw, 3rem)` = 32-48px (2-3x body). All 7 section H2s inherit the change via `text-fluid-2xl`. The scale now has clear steps: body 16px → lg 18-22px → xl 22-30px → 2xl 32-48px → 3xl 36-56px. Minimum 1.33x ratio between adjacent levels at all viewports.
 
 ## Session Activity
 

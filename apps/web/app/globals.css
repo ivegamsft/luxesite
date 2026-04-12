@@ -31,12 +31,12 @@
      Body text is FIXED at 1rem (per typography reference: body text
      should not be fluid). Only headings and display text use clamp().
      Targets: sm=13-14px, base=16px (fixed), lg=18-22px, xl=22-30px,
-     2xl=28-40px, 3xl=36-56px (capped, not 80px) */
+     2xl=32-48px, 3xl=36-56px (capped, not 80px) */
   --fluid-sm: clamp(0.8125rem, 0.78rem + 0.16vw, 0.875rem);    /* 13-14px */
   --fluid-base: 1rem;                                           /* 16px fixed */
   --fluid-lg: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);          /* 18-22px */
   --fluid-xl: clamp(1.375rem, 1.2rem + 0.875vw, 1.875rem);      /* 22-30px */
-  --fluid-2xl: clamp(1.75rem, 1.4rem + 1.75vw, 2.5rem);         /* 28-40px */
+  --fluid-2xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);               /* 32-48px */
   --fluid-3xl: clamp(2.25rem, 1.75rem + 2.5vw, 3.5rem);         /* 36-56px */
 
   /* ── Spacing — 8px baseline ──────────────────────────────────── */
