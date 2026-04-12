@@ -1,4 +1,7 @@
 import { test, expect } from '@playwright/test';
+import path from 'path';
+
+const screenshotDir = path.resolve(__dirname, 'screenshots');
 
 test.describe('Homepage — Visual & Content Audit', () => {
   test.beforeEach(async ({ page }) => {
@@ -11,7 +14,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
     // Small delay for animations to settle
     await page.waitForTimeout(2000);
     await page.screenshot({
-      path: 'e2e/screenshots/full-page.png',
+      path: path.join(screenshotDir, 'full-page.png'),
       fullPage: true,
     });
   });
@@ -30,7 +33,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
     // CTA button
     await expect(nav.getByText('Request Consultation').first()).toBeVisible();
 
-    await nav.screenshot({ path: 'e2e/screenshots/section-navbar.png' });
+    await nav.screenshot({ path: path.join(screenshotDir, 'section-navbar.png') });
   });
 
   test('Hero — visible with heading and CTA', async ({ page }) => {
@@ -47,7 +50,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
 
     // Wait for all hero animations to complete
     await page.waitForTimeout(1500);
-    await hero.screenshot({ path: 'e2e/screenshots/section-hero.png' });
+    await hero.screenshot({ path: path.join(screenshotDir, 'section-hero.png') });
   });
 
   test('Destinations — section visible with cards', async ({ page }) => {
@@ -67,7 +70,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
     const cardCount = await cards.count();
     expect(cardCount).toBeGreaterThan(0);
 
-    await section.screenshot({ path: 'e2e/screenshots/section-destinations.png' });
+    await section.screenshot({ path: path.join(screenshotDir, 'section-destinations.png') });
   });
 
   test('Experiences — section visible with items', async ({ page }) => {
@@ -87,7 +90,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
     const cardCount = await cards.count();
     expect(cardCount).toBeGreaterThan(0);
 
-    await section.screenshot({ path: 'e2e/screenshots/section-experiences.png' });
+    await section.screenshot({ path: path.join(screenshotDir, 'section-experiences.png') });
   });
 
   test('Tiers — section visible with tier cards', async ({ page }) => {
@@ -107,7 +110,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
     const tierCount = await ctaButtons.count();
     expect(tierCount).toBeGreaterThan(0);
 
-    await section.screenshot({ path: 'e2e/screenshots/section-tiers.png' });
+    await section.screenshot({ path: path.join(screenshotDir, 'section-tiers.png') });
   });
 
   test('Testimonials — section visible with quotes', async ({ page }) => {
@@ -127,7 +130,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
     const quoteCount = await quotes.count();
     expect(quoteCount).toBeGreaterThan(0);
 
-    await section.screenshot({ path: 'e2e/screenshots/section-testimonials.png' });
+    await section.screenshot({ path: path.join(screenshotDir, 'section-testimonials.png') });
   });
 
   test('Concierge Form — section visible with form fields', async ({ page }) => {
@@ -163,7 +166,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
     // Submit button
     await expect(section.getByText('Request Consultation')).toBeVisible();
 
-    await section.screenshot({ path: 'e2e/screenshots/section-concierge-form.png' });
+    await section.screenshot({ path: path.join(screenshotDir, 'section-concierge-form.png') });
   });
 
   test('Footer — visible with brand and links', async ({ page }) => {
@@ -184,7 +187,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
     const linkCount = await links.count();
     expect(linkCount).toBeGreaterThan(0);
 
-    await footer.screenshot({ path: 'e2e/screenshots/section-footer.png' });
+    await footer.screenshot({ path: path.join(screenshotDir, 'section-footer.png') });
   });
 
   test('FAQ — accordion with clickable items', async ({ page }) => {
@@ -213,7 +216,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
       await expect(page.locator(`#${firstAnswerId}`)).toBeVisible();
     }
 
-    await section.screenshot({ path: 'e2e/screenshots/section-faq.png' });
+    await section.screenshot({ path: path.join(screenshotDir, 'section-faq.png') });
   });
 
   test('WhyAurora — specialist grid with team members', async ({ page }) => {
@@ -234,7 +237,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
     // First card should have a name
     await expect(cards.first()).toBeVisible();
 
-    await section.screenshot({ path: 'e2e/screenshots/section-whyaurora-carousel.png' });
+    await section.screenshot({ path: path.join(screenshotDir, 'section-whyaurora-carousel.png') });
   });
 
   test('BackToTop — appears after scrolling and returns to top', async ({ page }) => {
@@ -250,7 +253,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
     // Should now be visible
     await expect(backToTop).toBeVisible();
 
-    await page.screenshot({ path: 'e2e/screenshots/interaction-backtotop.png' });
+    await page.screenshot({ path: path.join(screenshotDir, 'interaction-backtotop.png') });
 
     // Click it and wait for smooth scroll to finish
     await backToTop.click();
@@ -281,7 +284,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
     // Title should remain visible during hover
     await expect(title).toBeVisible();
 
-    await section.screenshot({ path: 'e2e/screenshots/interaction-venue-hover.png' });
+    await section.screenshot({ path: path.join(screenshotDir, 'interaction-venue-hover.png') });
   });
 
   test('Tier CTA — Join button scrolls to contact form', async ({ page }) => {
@@ -299,6 +302,6 @@ test.describe('Homepage — Visual & Content Audit', () => {
     const contactSection = page.locator('#contact');
     await expect(contactSection).toBeInViewport();
 
-    await page.screenshot({ path: 'e2e/screenshots/interaction-tier-cta.png' });
+    await page.screenshot({ path: path.join(screenshotDir, 'interaction-tier-cta.png') });
   });
 });

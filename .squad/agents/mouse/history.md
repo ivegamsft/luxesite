@@ -101,6 +101,24 @@
 - "Signature Experiences" heading stands alone — consistent with section intro variety decision
 - Not every section needs an eyebrow (per established pattern)
 
+### Comprehensive Visual Sweep — Issues #238-#246 (2026-04-13)
+
+**Nine visual bugs fixed in one systematic top-to-bottom pass. Build clean.**
+
+**H2 Hierarchy (#238):** Standardized all section headers to consistent eyebrow/H2/body pattern: eyebrow (`text-sm font-medium tracking-[0.2em] uppercase text-aurora-gold-accessible mb-3`), H2 (`font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-4`), body (`section-intro` class). Every section now follows this formula. Testimonials H2 was italic pull-quote — replaced with proper H2 + pull-quote as supporting text. ConciergeForm H2 was sr-only — made visible with eyebrow.
+
+**Section Spacing (#239, #240, #241):** Removed both SectionBreak instances from page.tsx. They created dead-gap transitions (same-bg-to-same-bg with WhyAurora→DestinationGrid, and bg mismatch with DestinationGrid→ExperienceList). Sections now rely on their own py-section-* tokens for spacing rhythm. Key insight: decorative SectionBreaks only add value between visually distinct backgrounds; between same-bg sections they create dead zones.
+
+**Tiers Typography (#243):** Restructured from inline flex row to stacked eyebrow/H2/body. Card heading weight upgraded from font-medium to font-semibold. Price scale reduced from fluid-xl to fluid-lg to differentiate from heading. Section padding normalized to py-section-lg.
+
+**Testimonials Separation (#242):** Added proper H2 "Voices of Celebration" with eyebrow, moved editorial quote to supporting `<p>` below. Cleaned up double AnimatedSection wrappers.
+
+**FAQ Spacing (#244):** Changed from py-section-sm to py-section-lg, added eyebrow/H2 in wrapper div with mb-10.
+
+**ConciergeForm Anchor (#245):** Made H2 visible (was sr-only), added "Get Started" eyebrow, normalized to py-section-lg.
+
+**Footer Separation (#246):** Removed mt-section-sm (ConciergeForm's pb handles the gap), increased inner pt from section-sm to section-md.
+
 ## Session Activity
 
 ### Impeccable Audit Fixes (2026-04-10T03:42:00Z)

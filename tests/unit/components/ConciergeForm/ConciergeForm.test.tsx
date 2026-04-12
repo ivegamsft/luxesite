@@ -200,4 +200,78 @@ describe('ConciergeForm', () => {
       expect(chip).toHaveAttribute('aria-pressed', 'true');
     });
   });
+
+  // --- Guest count sync tests (Issue #247) ---
+
+  describe('Guest count sync', () => {
+    it('hero-discovery event updates Expected Guests field', () => {
+      render(<ConciergeForm />);
+
+      // Dispatch hero-discovery with guestCount 'grand' (100–500)
+      window.dispatchEvent(
+        new CustomEvent('hero-discovery', {
+          detail: { occasion: 'gala', guestCount: 'grand' },
+        })
+      );
+
+      // Expand details to access Expected Guests field
+      const expandButton = screen.getByText(/share more details/i);
+      fireEvent.click(expandButton);
+
+      const guestsInput = screen.getByLabelText(/expected guests/i) as HTMLInputElement;
+      expect(Number(guestsInput.value)).toBe(100);
+    });
+
+    it('intimate tier sets Expected Guests to 12', () => {
+      render(<ConciergeForm />);
+
+      window.dispatchEvent(
+        new CustomEvent('hero-discovery', {
+          detail: { occasion: 'birthday', guestCount: 'intimate' },
+        })
+      );
+
+      const expandButton = screen.getByText(/share more details/i);
+      fireEvent.click(expandButton);
+
+      const guestsInput = screen.getByLabelText(/expected guests/i) as HTMLInputElement;
+      expect(Number(guestsInput.value)).toBe(12);
+    });
+
+    it('manual edit of Expected Guests updates form state', () => {
+      render(<ConciergeForm />);
+
+      // Expand details
+      const expandButton = screen.getByText(/share more details/i);
+      fireEvent.click(expandButton);
+
+      const guestsInput = screen.getByLabelText(/expected guests/i) as HTMLInputElement;
+      fireEvent.change(guestsInput, { target: { value: '200' } });
+      expect(Number(guestsInput.value)).toBe(200);
+    });
+
+    it('subsequent hero-discovery updates override previous guest count', () => {
+      render(<ConciergeForm />);
+
+      // First selection: intimate
+      window.dispatchEvent(
+        new CustomEvent('hero-discovery', {
+          detail: { occasion: 'birthday', guestCount: 'intimate' },
+        })
+      );
+
+      // Second selection: spectacular
+      window.dispatchEvent(
+        new CustomEvent('hero-discovery', {
+          detail: { occasion: 'gala', guestCount: 'spectacular' },
+        })
+      );
+
+      const expandButton = screen.getByText(/share more details/i);
+      fireEvent.click(expandButton);
+
+      const guestsInput = screen.getByLabelText(/expected guests/i) as HTMLInputElement;
+      expect(Number(guestsInput.value)).toBe(500);
+    });
+  });
 });
