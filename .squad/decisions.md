@@ -705,6 +705,117 @@ WCAG AA ratio calculations are a minimum bar. If light text on light backgrounds
 
 ---
 
+### 24. Visual Audit: 4 Remaining Issues Post-Trinity Fix
+**Author:** Tank  
+**Date:** 2026-04-12  
+**Priority:** P0 (contrast), P1 (imagery, spacing), P2 (typography)  
+**Status:** Implemented (by Neo)
+
+## Summary
+
+Screenshots confirmed Trinity's commit 7dc22ae partially addressed issues #232–#235, but 4 problems remained visible on the live site.
+
+## Issues Addressed
+
+### 1. P0 — `text-aurora-gold` Contrast Failures (19+ instances)
+
+Trinity correctly added `aurora-gold-accessible` (#7a6532, 5.34:1) but only applied it in WhyAurora and Testimonials. The original `text-aurora-gold` (#c9a76a, **2.16:1** on light backgrounds) persisted in 16 locations across Hero, Navbar, Tiers, and FAQ.
+
+**Fix:** Replaced all non-decorative `text-aurora-gold` on light backgrounds with `text-aurora-gold-accessible`. SVG icons with `aria-hidden="true"` remain as-is (decorative).
+
+### 2. P1 — Hero Image Contains Wine/Champagne Glasses
+
+`photo-1519671482749-fd09be7ccebf` showed people toasting with wine glasses. Contradicted "Every Age" brand positioning. Also used in OG metadata.
+
+**Fix:** Replaced with celebration photo (confetti, balloons, multi-generational party scene) that's inclusive of all ages.
+
+### 3. P1 — Section Spacing Still Excessive
+
+Trinity reduced min values (~35% cut), but max values remained enormous: `section-lg` max 12rem (192px), `section-md` max 10rem (160px), plus SectionBreak components adding ~80px decorative gaps.
+
+**Fix:** Cut max values by ~50%: `section-lg` max→6rem, `section-md` max→5rem, `section-sm` max→3.5rem.
+
+### 4. P2 — Testimonials h2 Same Size as Quote on Mobile
+
+`Testimonials.tsx:60` used `text-fluid-xl` for h2, same as quote text at mobile width. Only differentiated at `sm:` breakpoint.
+
+**Fix:** Changed h2 to `text-fluid-2xl` unconditionally for clear hierarchy at all breakpoints.
+
+**Agent:** Neo | **Commit:** 96be49e | **Build+Tests:** ✅
+
+---
+
+### 25. Typography System Overhaul
+**Author:** Mouse (UI/Design Dev)  
+**Date:** 2026-04-12  
+**Status:** Implemented ✅
+
+## Problem
+
+Typeset audit revealed systematic typography issues:
+1. Body text scaled below 16px at mobile (readability violation)
+2. Display heading scaled to 80px max (excessive, not refined)
+3. Testimonials h2 same size as quote text on mobile (hierarchy collapse)
+4. FAQ arbitrary font sizes off the scale
+5. Breakpoint-based type jumps instead of fluid scale
+6. Unused Inter weight 300 loaded (performance cost)
+7. Inconsistent heading weights
+
+## Decision
+
+**Fluid Type Scale (globals.css):**
+- `--fluid-base`: **1rem fixed** (not fluid — body text must be readable at minimum)
+- `--fluid-3xl`: Cap at 56px max (not 80px — more refined for luxury brand)
+- Wider ratios between steps for clearer hierarchy at all viewports
+
+**Typography Hierarchy:**
+- h1/hero: `font-bold` (700) + `text-fluid-3xl` (36-56px)
+- h2/section: `font-semibold` (600) + `text-fluid-2xl` (28-40px)
+- h3/card: `font-semibold` (600) + `text-fluid-xl` (22-30px)
+- Subheadings/lead: `text-fluid-lg` (18-22px)
+- Body text: `font-normal` (400) + `text-fluid-base` (16px fixed)
+- Labels/overlines: `font-medium` (500) + `text-sm` or `text-xs`
+
+**All breakpoint-based type → fluid scale:**
+- Interstitial, Navbar, Tiers, GuideGrid converted to use scale tokens
+
+**Font weights cleanup:**
+- Removed unused Inter weight 300
+- Standardized all h2s to `font-semibold`
+
+## Rationale
+
+1. **Body text must be readable:** 16px is the minimum for body copy
+2. **Headings should scale, not body:** Display text benefits from viewport adaptation
+3. **Clear hierarchy at ALL breakpoints:** Prevents h2/quote same-size collapses on mobile
+4. **Modular scale prevents drift:** Every size maps to a scale token
+5. **Performance matters:** Loading unused font weights wastes bandwidth
+
+## Impact
+
+- ✅ All body text now 16px minimum (readability)
+- ✅ Heading max sizes capped at refined levels
+- ✅ Clear hierarchy at mobile, tablet, desktop
+- ✅ No arbitrary off-scale sizes
+- ✅ Consistent weights
+- ✅ Smaller font bundle
+
+## Files Modified
+
+- `apps/web/app/globals.css` — fluid type scale redesign
+- `apps/web/app/layout.tsx` — remove Inter weight 300
+- `apps/web/app/components/Testimonials.tsx` — fix h2 vs quote hierarchy
+- `apps/web/app/components/FAQ.tsx` — replace arbitrary sizes
+- `apps/web/app/components/Interstitial.tsx` — breakpoint → fluid
+- `apps/web/app/components/Navbar.tsx` — breakpoint → fluid
+- `apps/web/app/components/Tiers.tsx` — breakpoint → fluid
+- `apps/web/app/components/WhyAurora.tsx` — h2 bold → semibold
+- `apps/web/app/components/GuideGrid.tsx` — breakpoint → fluid
+
+**Agent:** Mouse | **Commit:** 8624deb | **Build+Tests:** ✅
+
+---
+
 ## Governance
 
 - All meaningful changes require team consensus
