@@ -70,3 +70,10 @@
 - **ExperienceList.tsx (#156):** Replaced generic heading with editorial intro block (divider + heading + descriptive paragraph). Changed featured badge from pill/border style to minimal uppercase tracking text. Changed card corners from `rounded-lg` to `rounded-sm` per design decisions. Removed `group-hover:scale-105` image zoom (SaaS pattern). Increased grid gap from 6→8/10, overlay padding from 5→6, region pill tracking added. More generous whitespace throughout.
 - **DestinationGrid.tsx (#155):** Upgraded section heading area: increased bottom margin (8→12/16), added `.editorial-divider` rule, added `.section-intro` paragraph describing curation philosophy, tightened tracking on kicker label to `tracking-[0.2em]`.
 - Key principle: editorial variety per Decision #6 — Destinations uses kicker-above-heading pattern, Experiences uses divider-above-heading pattern. No two sections structurally identical.
+
+### 2026-07 — Issue #247: Guest-count sync fix
+- **Bug:** `handleHeroDiscovery` event handler received `guestCount` tier (e.g. 'grand') but only wrote it to `notes` text — never updated `formData.expectedGuests`, so the field stayed at default 50
+- **Fix:** Added `guestDefaults` map (intimate→12, medium→25, grand→100, spectacular→500) and wired it into `setFormData` call to update `expectedGuests` alongside interests and notes
+- **Tests:** Added 4 new tests covering: hero-discovery → guests sync, intimate tier default, manual edit persistence, successive tier overrides
+- **Infrastructure:** Fixed `jest.config.js` — added `moduleDirectories: ['node_modules', '<rootDir>/node_modules']` so tests can resolve `framer-motion` from `apps/web/node_modules`
+- Build and all 16 ConciergeForm tests verified passing
