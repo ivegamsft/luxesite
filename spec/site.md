@@ -18,13 +18,13 @@ Current implementation scope:
 ## 2) Experience Principles
 
 Brand expression:
-- Futuristic luxury, low-light palette, glassmorphism surfaces, neon gradient accents.
+- Warm ivory editorial palette, champagne gold accents, restrained elegance.
 - Editorial headline tone with concise premium copy.
 
 Interaction principles:
 - Motion supports clarity (entrance reveals, hover emphasis, scroll context).
 - CTA path is always available (navbar button, hero actions, floating mobile CTA).
-- Perceived quality through subtle depth, blur, glow, and animation timing.
+- Perceived quality through subtle depth, shadow lift, and animation timing.
 
 ## 3) Information Architecture
 
@@ -56,45 +56,39 @@ Global navigation labels:
 ## 4) Visual System
 
 Color tokens (CSS custom properties + Tailwind extension):
-- aurora-dark: #0a0a0f
-- aurora-darker: #050508
-- aurora-cyan: #00e5ff
-- aurora-purple: #8b5cf6
-- aurora-magenta: #d946ef
-- aurora-gold: #fbbf24
-- aurora-white: #f0f0f5
-- aurora-glass: rgba(255,255,255,0.05)
-- aurora-glass-border: rgba(255,255,255,0.1)
-
-Gradients:
-- Primary aurora gradient: cyan -> purple -> magenta
-- Subtle overlay gradient variant for hero atmosphere
+- aurora-bg: #f5f3f0 (warm ivory page background)
+- aurora-bg-light: #faf9f7 (card surfaces)
+- aurora-bg-dark: #f0ebe5 (alternate section backgrounds)
+- aurora-gold: #c9a76a (primary accent, CTAs, hover states)
+- aurora-navy: #1a3a52 (hero overlay, tiers, footer)
+- aurora-sage: #7a8f7f (tertiary accent)
+- aurora-text: #2c2620 (body text, headings)
+- aurora-text-muted: #6b6458 (labels, captions)
+- aurora-border: #e8e4df (all borders)
 
 Typography:
-- Heading: Space Grotesk
-- Body: Inter
-- Headline usage: bold, high tracking discipline, large scale in hero
+- Heading: Space Grotesk (700 weight, fluid clamp() scale for headings)
+- Body: Inter (400 weight, fixed 1rem)
+- Headline usage: bold, restrained tracking, large scale in hero
 
 Surfaces and elevation:
-- Glass cards: translucent fill + backdrop blur + thin border
-- Glow shadows on hover/focus for premium affordance
-- Rounded geometry standardized around xl/2xl radii
+- Cards: warm ivory fill + subtle border + shadow lift on hover
+- Shadows: subtle (resting), medium (hover), lift (interactive)
+- Rounded geometry: sm for cards, lg for buttons/inputs, full for pills
 
 ## 5) Motion and Interaction System
 
 Core motion patterns:
 - Section reveal: fade-up on first viewport entry
 - Grid stagger: child cards animate in sequence
-- Hover lift: slight translate/scale for cards and buttons
-- Glow intensification: hover/active focus on key interactive elements
+- Hover lift: translateY(-4px) + shadow upgrade for cards and buttons
 
 Hero-specific motion:
-- Background atmospheric pulse loop
-- Foreground content parallax-like transform based on scrollY
-- Content opacity reduction with scroll for cinematic fade
+- Optional subtle parallax on desktop only (-15% offset)
+- Content entrance fade on load
 
 Special effects:
-- Conic animated border utility for featured/priority surfaces
+- Featured tier receives visual emphasis (scale, border treatment)
 - Floating scroll indicator in hero
 
 Reduced motion policy:
@@ -108,8 +102,8 @@ Breakpoint strategy:
 Key adaptations:
 - Navbar collapses to hamburger menu below md.
 - CTA buttons stack vertically on small screens in hero.
-- Destination/experience/tier/testimonial grids collapse to single-column on small screens.
-- Floating Request Itinerary CTA appears on mobile only after passing hero height.
+- Experience/tier/testimonial grids collapse to single-column on small screens.
+- Floating Request Consultation CTA appears on mobile only after passing hero height.
 
 Touch/access sizing:
 - Interactive controls target min-height of 44px across primary touch elements.
@@ -124,12 +118,12 @@ Purpose:
 Behavior:
 - Sticks to top with glass treatment.
 - Active section highlighting is driven by IntersectionObserver.
-- Desktop: inline nav + Request Itinerary CTA.
+- Desktop: inline nav + Request Consultation CTA.
 - Mobile: toggle menu, section links, full-width CTA.
 
 Actions:
 - All nav links smooth-scroll to anchors.
-- Request Itinerary scrolls to #contact.
+- Request Consultation scrolls to #contact.
 
 ### 7.2 Hero
 
@@ -279,12 +273,12 @@ Implemented strengths:
 Known gaps/opportunities:
 - Form errors are not announced via aria-live region.
 - Footer nav links currently use anchor href only (no smooth scroll handler there).
-- Destination cards do not yet support keyboard-open details since no click action exists.
+- Experience cards do not yet support keyboard-open details since no click action exists.
 
 ## 10) Media and Asset Strategy
 
 Images:
-- Remote-hosted Unsplash assets in hero and destination cards.
+- Remote-hosted Unsplash assets in hero and experience cards.
 
 Allowed image domains configured:
 - source.unsplash.com
@@ -297,8 +291,8 @@ Credits:
 ## 11) SEO and Metadata
 
 Document metadata present:
-- Title: Aurora Luxe Travel | Beyond First Class
-- Description and keyword list for luxury travel intent
+- Title: Aurora Luxe | Architects of the Extraordinary
+- Description and keyword list for luxury experiential events
 - Open Graph title/description/siteName/type
 - Twitter summary_large_image metadata
 
@@ -317,7 +311,7 @@ Styling architecture:
 ## 13) Future Iteration Backlog (Spec-Level)
 
 High-value enhancements:
-- Add destination details modal/route with keyboard/focus trap support.
+- Add experience details modal/route with keyboard/focus trap support.
 - Add explicit form success and error live regions for improved screen reader announcements.
 - Add analytics events for CTA click funnels and form completion.
 - Expand testimonial component into optional carousel mode on mobile.

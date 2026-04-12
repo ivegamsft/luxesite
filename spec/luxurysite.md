@@ -206,7 +206,7 @@ xs: 8px | sm: 12px | md: 16px | lg: 24px | xl: 32px | 2xl: 48px | 3xl: 64px
 | Image | Width × Height | Aspect | Format | Max Size | Count |
 |-------|---|---|---|---|---|
 | Hero | 1920×1080 | 16:9 | JPG/WebP | 300KB | 1–2 |
-| Destination card | 640×480 | 4:3 | JPG/WebP | 150KB | 12–15 |
+| Experience card | 640×480 | 4:3 | JPG/WebP | 150KB | 12–15 |
 | Guide featured | 640×480 | 4:3 | JPG/WebP | 150KB | 6–8 |
 | Team headshot | 400×400 | 1:1 | JPG/WebP | 100KB | 4–6 |
 | Testimonial avatar | 64×64 or 120×120 | 1:1 | JPG/PNG | 30KB | optional |
@@ -222,7 +222,7 @@ xs: 8px | sm: 12px | md: 16px | lg: 24px | xl: 32px | 2xl: 48px | 3xl: 64px
 
 **Sourcing:**
 - Hero: commission OR premium stock (Shutterstock, iStock) OR curated Unsplash/Pexels
-- Destinations: commission OR tourism boards OR stock OR high-quality free sources
+- Experiences: commission OR premium stock OR high-quality free sources
 - Team: professional photographer (required for credibility)
 - Other: Unsplash/Pexels OK with attribution
 
@@ -232,43 +232,43 @@ xs: 8px | sm: 12px | md: 16px | lg: 24px | xl: 32px | 2xl: 48px | 3xl: 64px
 
 ### Team Member
 ```json
-{ "id": "team-001", "name": "Sarah Chen", "title": "Africa Specialist", 
-  "bio": "14 years...", "photoUrl": "/img/team/sarah.jpg", 
-  "yearsExperience": 14, "specialties": ["Botswana", "Kenya", ...] }
+{ "id": "team-001", "name": "Sarah Chen", "title": "Event Architect", 
+  "bio": "14 years designing extraordinary celebrations...", "photoUrl": "/img/team/sarah.jpg", 
+  "yearsExperience": 14, "specialties": ["Galas", "Corporate Spectacles", "Milestone Celebrations"] }
 ```
 
-### Destination
+### Experience
 ```json
-{ "id": "dest-001", "slug": "okavango-delta", "name": "Okavango Delta", 
-  "region": "Botswana", "tagline": "Big Five Safaris at Dawn", 
-  "imageUrl": "/img/dest/okavango.jpg", "fromPrice": 8500, "currency": "USD",
-  "quickFacts": ["Best time: April–October", "4–7 days", ...] }
+{ "id": "exp-001", "slug": "enchanted-garden-gala", "name": "Enchanted Garden Gala", 
+  "category": "Milestone Celebrations", "tagline": "Where nature meets opulence", 
+  "imageUrl": "/img/exp/enchanted-garden.jpg", "fromPrice": 500000, "currency": "USD",
+  "quickFacts": ["Up to 200 guests", "Indoor/outdoor venues", "Full production team"] }
 ```
 
-### Travel Guide
+### Event Guide
 ```json
-{ "id": "guide-001", "title": "Complete Botswana Safari Guide", 
-  "excerpt": "...", "readTime": "12 min read", "imageUrl": "/img/guides/bot.jpg", 
-  "link": "/guides/botswana", "author": "Sarah Chen" }
+{ "id": "guide-001", "title": "The Art of the Unforgettable Gala", 
+  "excerpt": "...", "readTime": "12 min read", "imageUrl": "/img/guides/gala.jpg", 
+  "link": "/guides/unforgettable-gala", "author": "Sarah Chen" }
 ```
 
 ### Testimonial
 ```json
 { "id": "testimonial-001", "name": "James & Margaret", "location": "NY", 
-  "role": "Honeymoon Kenya/Tanzania", "quote": "Sarah designed...", 
+  "role": "Anniversary Celebration", "quote": "Sarah designed...", 
   "date": "2024-01-15", "rating": 5, "sourceLink": "https://trustpilot..." }
 ```
 
-### Experience
+### Offering
 ```json
-{ "id": "exp-001", "title": "Wildlife Safaris", "description": "Led by...", 
-  "icon": "safari-binoculars", "regions": ["Botswana", "Kenya", ...] }
+{ "id": "offering-001", "title": "Bespoke Productions", "description": "Full-service event design...", 
+  "icon": "production-clapboard", "categories": ["Galas", "Corporate", "Milestone"] }
 ```
 
 ### Press/Award
 ```json
-{ "id": "award-001", "name": "Condé Nast Traveler", 
-  "logo": "/img/awards/conde-nast.png", "link": "https://..." }
+{ "id": "award-001", "name": "Event Design Awards", 
+  "logo": "/img/awards/event-design.png", "link": "https://..." }
 ```
 
 ---
@@ -303,9 +303,9 @@ xs: 8px | sm: 12px | md: 16px | lg: 24px | xl: 32px | 2xl: 48px | 3xl: 64px
 ## 10) Content Checklist (Before Launch)
 
 - [ ] 4–6 team bios with photos (professional headshots)
-- [ ] 12–15 destinations with high-quality images, taglines, quickFacts
+- [ ] 12–15 experience packages with high-quality images, taglines, quickFacts
 - [ ] 5–8 testimonials (names, dates, specific details, Trustpilot links if available)
-- [ ] 6–8 travel guides (title, excerpt, featured image, link)
+- [ ] 6–8 event guides (title, excerpt, featured image, link)
 - [ ] Credibility claims documented (avg years exp, awards, certifications)
 - [ ] 4–8 press logos with source links (Condé Nast, Forbes, etc.)
 - [ ] Hero image (1920×1080, high quality)
@@ -318,7 +318,7 @@ xs: 8px | sm: 12px | md: 16px | lg: 24px | xl: 32px | 2xl: 48px | 3xl: 64px
 **Components:**
 - Navbar (sticky, light)
 - Hero (image-centric)
-- TeamGrid, WhyUs, DestinationGrid, ExperienceGrid, GuideGrid, TestimonialGrid, AwardsSection, Form, Footer
+- TeamGrid, WhyUs, ExperienceGrid, OfferingGrid, GuideGrid, TestimonialGrid, AwardsSection, Form, Footer
 
 **Styling:**
 - Tailwind config: extend with aurora color tokens, shadows (subtle), radius (8px default)
@@ -334,5 +334,5 @@ xs: 8px | sm: 12px | md: 16px | lg: 24px | xl: 32px | 2xl: 48px | 3xl: 64px
 
 ## 12) Future Phases
 
-**Phase 2:** Destination detail pages, expanded guides, testimonial videos, blog, backend integration, analytics  
-**Phase 3:** Interactive itinerary builder, personalized recommendations, live chat, client portal
+**Phase 2:** Experience detail pages, expanded guides, testimonial videos, blog, backend integration, analytics  
+**Phase 3:** Interactive event builder, personalized recommendations, live chat, client portal

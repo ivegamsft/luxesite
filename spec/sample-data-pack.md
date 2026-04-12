@@ -13,7 +13,7 @@ The teaching site requires realistic sample data across all event types and cust
 
 ### Yearly Subscriptions  
 1. **Active**: Premium subscriber, joined 3 months ago, $8,500/year, renewal in 9 months
-2. **Renewal Due**: Platinum member, renewal due in 7 days, sends renewal reminder email
+2. **Renewal Due**: Yearly member, renewal due in 7 days, sends renewal reminder email
 3. **Expired**: Gold tier, expired 2 weeks ago, displays upgrade/reactivate messaging
 
 ### Gift Purchases
@@ -23,27 +23,27 @@ The teaching site requires realistic sample data across all event types and cust
 
 ## Specialist Profiles (3+)
 
-- **Concierge Head**: Sophie, 8+ years luxury events, bio, professional photo
-- **Destination Manager**: Marcus, specialist in European destinations
-- **Experience Curator**: Aisha, expert in culinary/gastronomic experiences
+- **Head of Production**: Sophie, 8+ years luxury events, bio, professional photo
+- **Event Architect**: Marcus, specialist in large-scale celebrations and galas
+- **Celebration Curator**: Aisha, expert in culinary/gastronomic experiences
 
 *Each includes: name, title, bio (100 chars), photo, specialization tags*
 
 ## Experience Catalog Entries (5+)
 
-- Wine tasting in Bordeaux
-- Private beach dinner in Maldives
-- Ski chalet morning in Aspen
-- Cultural immersion in Tokyo
-- Wellness retreat in Bali
+- Enchanted garden gala (outdoor venue transformation)
+- Private yacht celebration under the stars
+- Mountaintop dinner party for intimate gatherings
+- Cultural immersion evening with live performances
+- Adventure experience — helicopter arrival + surprise reveal
 
 *Each includes: title, description, price range, duration, region, 2-3 imagery URLs, capacity*
 
 ## Testimonials (5+)
 
-- High-value client (Platinum): "Aurora transformed our anniversary into unforgettable memories."
+- High-value client (Yearly tier): "Aurora transformed our anniversary into unforgettable memories."
 - Corporate event organizer: "Seamless from booking to execution."
-- Repeat customer: "Finally, a concierge service that understands luxury."
+- Repeat customer (One Time tier): "Finally, an event production team that understands luxury."
 - Young professional: "Worth every penny."
 - International client: "Exceptional attention to detail."
 
