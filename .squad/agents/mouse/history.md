@@ -5,6 +5,11 @@
 - **Stack:** Next.js (latest stable), TypeScript, Tailwind CSS, Framer Motion, next/image
 - **Created:** 2026-04-10
 
+## Team Updates
+
+- **H2 Typography Scale Bump (2026-04-12):** Trinity bumped `--fluid-2xl` from 28-40px to 32-48px, strengthening H2 hierarchy across all 7 section headings. Single token change cascades automatically to all components. Commit 085c808.
+- **Section Alignment & Footer Polish (2026-04-12):** Mouse standardized all section containers to `max-w-7xl` for horizontal heading alignment. FAQ and Testimonials containers adjusted accordingly. Footer now uses `pt-section-lg` with `border-t border-white/10` separator. Commit 2f351e8. Issues #249-252 resolved.
+
 ## Learnings
 
 <!-- Append new learnings below. Each entry is something lasting about the project. -->

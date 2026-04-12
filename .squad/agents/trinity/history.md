@@ -9,6 +9,8 @@
 
 - **Monorepo Structure (2026-04-10):** App code moved to `apps/web/` (by Morpheus). All CI/CD and test runs now target `apps/web/` path. Backend/API apps can be added to `apps/` in future. See `.squad/decisions/decisions.md` for full rationale.
 - **Playwright E2E Suite (2026-04-10):** Tank set up Playwright with Chromium, covering 8 sections + full-page screenshot. All 9/9 tests pass. This audit discovered P0 (sections invisible below hero due to Framer Motion opacity gating) and P1 (navbar clipping). Both issues now fixed in Trinity's UI fixes and animation visibility work.
+- **H2 Typography Scale Bump (2026-04-12):** Trinity bumped `--fluid-2xl` from 28-40px to 32-48px, strengthening H2 hierarchy across all 7 section headings. Single token change cascades automatically to all components. Commit 085c808.
+- **Section Alignment & Footer Polish (2026-04-12):** Mouse standardized all section containers to `max-w-7xl` for horizontal heading alignment. FAQ and Testimonials containers adjusted accordingly. Footer now uses `pt-section-lg` with `border-t border-white/10` separator. Commits 2f351e8. Issues #249-252 resolved.
 
 ## Learnings
 
