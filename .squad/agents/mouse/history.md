@@ -504,3 +504,34 @@ Price opacity bumped from `/60` to `/80`; region from `/60` to `/70`. All text n
 ### Issue #237 — Test Screenshot Path Cleanup (2026-04-12)
 
 Reorganized test screenshot artifacts out of public/ directory tree. Updated hover-audit.spec.ts path references and .gitignore to reflect new screenshot storage location. Removed 81 files from git tracking that were being unnecessarily bundled with production assets. Result: cleaner public directory structure, faster build times, improved asset organization.
+
+### Tailwind v4 @theme Spacing Token Registration Fix (2026-04-13)
+
+**Problem:** All `py-section-*` and `pt-section-*` utilities produced ZERO CSS output. Sections rendered with no vertical padding — stacked directly on top of each other.
+
+**Root cause:** Section spacing tokens (`--space-section-lg`, etc.) were defined in `:root` but **never registered** in the `@theme inline` block as `--spacing-*` variables. In Tailwind v4, utilities like `py-section-lg` require `--spacing-section-lg` to exist inside `@theme`. Without it, Tailwind silently ignores the utility class — no error, no output.
+
+**Fix:**
+1. Added 5 `--spacing-*` tokens to `@theme inline` block, each referencing the `:root` `--space-*` variable:
+   - `--spacing-section-lg`, `--spacing-section-md`, `--spacing-section-sm`, `--spacing-section-xs`, `--spacing-hero`
+2. Bumped mobile minimums on section spacing to avoid cramped feel:
+   - `section-lg`: 28→32px min (was too tight for luxury brand)
+   - `section-md`: 20→24px min
+   - `section-xs`: 12→16px min
+
+**Key insight:** In Tailwind v4, `@theme inline` is the authoritative token registry. Even if `tailwind.config.ts` defines spacing extensions, they may not apply correctly when `@theme inline` is present. **Always register custom spacing tokens in `@theme inline` using the `--spacing-*` namespace.**
+
+**Spacing verification table (revised values):**
+
+| Transition | Section A (bottom) | Section B (top) | Token | Combined @375px | Combined @1440px |
+|---|---|---|---|---|---|
+| Hero → TrustBar | — | — | (no section padding) | — | — |
+| TrustBar → WhyAurora | — | section-lg | py-section-lg | 32px | 60px |
+| WhyAurora → DestinationGrid | section-lg | section-lg | py-section-lg + py-section-lg | 64px | 120px |
+| DestinationGrid → ExperienceList | section-lg | section-md/lg | py-section-lg + py-section-md(sm)/lg | 56-64px | 120px |
+| ExperienceList → Testimonials | section-md/lg | section-lg | same | 56-64px | 120px |
+| Testimonials → Interstitial | section-lg | — | py-section-lg | 32px | 60px |
+| Interstitial → Tiers | — | section-lg | py-section-lg | 32px | 60px |
+| Tiers → FAQ | section-lg | section-lg | py-section-lg + py-section-lg | 64px | 120px |
+| FAQ → ConciergeForm | section-lg | section-lg | py-section-lg + py-section-lg | 64px | 120px |
+| ConciergeForm → Footer | section-lg | section-md | py-section-lg + pt-section-md | 56px | 104px |
