@@ -159,7 +159,16 @@ test.describe('Homepage — Visual & Content Audit', () => {
     const detailsToggle = section.getByText('Share more details (optional)');
     await detailsToggle.click();
     await page.waitForTimeout(300);
+
+    // dateFlexibility selector is always visible when expanded
+    await expect(section.locator('#dateFlexibility')).toBeVisible();
+
+    // eventDate only renders when a specific date option is selected
+    // Default is "No specific date yet" — select "Flexible" to reveal it
+    await section.locator('#dateFlexibility').selectOption('Flexible (+/- 1 week)');
+    await page.waitForTimeout(200);
     await expect(section.locator('#eventDate')).toBeVisible();
+
     await expect(section.locator('#expectedGuests')).toBeVisible();
     await expect(section.locator('#budget')).toBeVisible();
 
