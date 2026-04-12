@@ -9,6 +9,18 @@
 
 <!-- Append new learnings below. Each entry is something lasting about the project. -->
 
+### Visual Polish: Spacing, Imagery, & Typography (2026-04-12)
+
+**Three sequential tasks addressing visual refinement across spacing, imagery, and section separation:**
+
+1. **Section Spacing & Padding:** Fixed SectionBreak background color and padding adjustments in globals.css. Increased top padding on WhyAurora, DestinationGrid, and Testimonials components. Created proper visual separation between sections without excessive whitespace. Key insight: Section spacing should use consistent token-based rhythm; SectionBreak padding should be proportional to page spacing, not arbitrary.
+
+2. **Distinct Imagery:** Replaced duplicate Interstitial image (was same as Hero) with a celebration photo inclusive of all ages (confetti, balloons, multi-generational scene). Updated OG metadata accordingly. Key insight: Each narrative section should have distinct visual treatment — reusing hero imagery in Interstitial undermines the story progression.
+
+3. **Footer Visual Separation:** Added top margin to Footer component for improved section separation from Testimonials. Bundled with image fix in single commit. Key insight: Footer needs breathing room from preceding content to signal page terminus — visual hierarchy must extend to layout spacing.
+
+**Outcome:** Three parallel fixes (spacing tokens, imagery replacement, margin adjustment) improved overall page visual composition while maintaining clean code structure and build compliance.
+
 ### Visual Redesign — "Gilded Bordeaux" (2026-04-10)
 
 **Palette:** Replaced the AI-default cyan/purple/magenta-on-dark with an OKLCH warm luxury palette:

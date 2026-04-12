@@ -816,6 +816,25 @@ Typeset audit revealed systematic typography issues:
 
 ---
 
+### 26. Typography System Overhaul (Duplicate Entry)
+**Author:** Mouse (UI/Design Dev)  
+**Date:** 2026-04-12  
+**Status:** Implemented ✅
+
+*Note: This entry was consolidated from .squad/decisions/inbox/mouse-typography-system.md. See Decision #25 for the primary record.*
+
+---
+
+### 27. Visual Audit: 4 Remaining Issues Post-Trinity Fix (Duplicate Entry)
+**Author:** Tank  
+**Date:** 2026-04-12  
+**Priority:** P0 (contrast), P1 (imagery, spacing), P2 (typography)  
+**Status:** Implemented (by Neo)
+
+*Note: This entry was consolidated from .squad/decisions/inbox/tank-visual-audit-remaining-issues.md. See Decision #24 for the primary record.*
+
+---
+
 ## Governance
 
 - All meaningful changes require team consensus
