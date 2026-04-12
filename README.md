@@ -50,7 +50,7 @@ luxesite/
 │   └── jest.setup.ts          ← Jest configuration
 ├── .squad/                    ← Squad team configuration
 ├── .github/workflows/         ← CI/CD automation
-└── This README + repo_story.md
+└── This README + docs/repo-story.md
 ```
 
 ## Getting Started

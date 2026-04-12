@@ -67,7 +67,7 @@ After PR #202 merged the One Time / Yearly / Gift tier model into code, analyzed
 - **#204 (P1):** `spec/site.md` — core site structure, ~13 stale refs
 - **#205 (P1):** `spec/design-system-update.md` + `.impeccable.md` — design layer, tier styling specs
 - **#206 (P1):** `README.md` + `spec/documentation-update.md` + `spec/luxurysite.md` — docs layer
-- **#207 (P2):** `COMPETITIVE_ANALYSIS.md` — competitive set changes with business model
+- **#207 (P2):** `docs/competitive-analysis.md` — competitive set changes with business model
 - **#208 (P2):** `spec/security-architecture.md` — tier RBAC model, Gift tier two-party identity
 - **#209 (P1):** Retitle/update existing issues (#142, #141, #139, etc.) that reference old model
 - **#210 (P1):** Architecture spike — downstream data model, API, and flow impacts of the model change
@@ -123,7 +123,7 @@ Audited and refreshed core site documentation to align with current implementati
 - Included design system documentation: fluid typography (clamp()-based), OKLCH color palette, spacing hierarchy, radius discipline, accessibility
 - Clarified test structure at repo root (jest.config.js, playwright.config.ts, tests/unit/, tests/e2e/)
 - Created "What's Next" section mapping to spec priorities: Platform APIs, Security & Identity, Content & AI, Operations & Quality
-- Created `repo_story.md` — 12KB narrative of project evolution from April 2026 foundation through current state
+- Created `docs/repo-story.md` — 12KB narrative of project evolution from April 2026 foundation through current state
   - 10 phases documented: Foundation, Design Polish, A11y Hardening, Monorepo Restructure, Architecture Spike, Brand Pivot, Documentation Governance, Sprint Planning, Visual Polish, Current State
   - Key learnings captured: architecture precedes code, brand is architecture, A11y non-negotiable, design discipline kills AI aesthetics, teaching requires transparency, Squad structure scales
 
@@ -132,10 +132,10 @@ Audited and refreshed core site documentation to align with current implementati
 - ✅ Documentation structure consistent and easy to navigate
 - ✅ No stale screenshot references found
 - ✅ "What's Next" maps spec priorities across 4 categories (platform, security, content, ops)
-- ✅ repo_story.md exists at repo root with 10-phase narrative, 1-2 page format
+- ✅ docs/repo-story.md exists at repo root with 10-phase narrative, 1-2 page format
 
 **Impact:**
-- Future team members can onboard via narrative (repo_story.md) then dive into spec/ for details
+- Future team members can onboard via narrative (docs/repo-story.md) then dive into spec/ for details
 - README now reflects current reality (party platform, three tiers, experiential focus) instead of legacy travel framing
 - Design system documentation explicit in README — new contributors understand token strategy without hunting globals.css
 - "What's Next" aligns marketing docs with engineering roadmap (24 specs across Sprint 2-4)

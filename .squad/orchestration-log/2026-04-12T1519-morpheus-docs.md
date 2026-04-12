@@ -1,7 +1,7 @@
 # Morpheus Docs Refresh — Session 2026-04-12T15:19
 
 **Agent:** Morpheus (claude-haiku-4.5, background)  
-**Task:** Docs refresh for Issue #260 — README rewrite, repo_story.md creation, What's Next section  
+**Task:** Docs refresh for Issue #260 — README rewrite, docs/repo-story.md creation, What's Next section  
 **Status:** ✅ Complete  
 **Commits:** 84a8b67, 4e07bd9  
 
@@ -15,7 +15,7 @@
 - Updated development and deployment instructions
 - Aligned with current project structure and tooling
 
-### 2. repo_story.md Creation (Commit 84a8b67)
+### 2. docs/repo-story.md Creation (Commit 84a8b67)
 - New strategic document created
 - Contains project narrative and business context
 - Documents key milestones and product decisions
