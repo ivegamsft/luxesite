@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import path from 'path';
 
-const screenshotDir = path.resolve(__dirname, '../public/screenshots/hover');
+const screenshotDir = path.resolve(__dirname, 'screenshots/hover');
 
 test.describe('Hover State Audit', () => {
   test.beforeEach(async ({ page }) => {
