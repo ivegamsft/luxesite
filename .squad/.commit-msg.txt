@@ -1,6 +1,0 @@
-docs: Scribe log typeset audit session
-
-- Record Mouse typography audit session (2026-04-12T15:03)
-- Merge typeset decision from inbox to decisions.md
-- 12 components + globals.css standardized
-- Typography system now production-ready
