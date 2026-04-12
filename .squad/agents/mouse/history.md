@@ -465,3 +465,7 @@ Price opacity bumped from `/60` to `/80`; region from `/60` to `/70`. All text n
 **Issue #157 — FAQ readability:** Heading was 	ext-aurora-text/80 — unnecessary opacity reduction. Set to full 	ext-aurora-text. Card background was g-white/80 (semi-transparent) — changed to opaque g-white for consistent text contrast. Answer text upgraded from 	ext-aurora-text-muted (#6b6458, ~4.8:1 on white) to 	ext-aurora-text/75 (~5.5:1) with explicit 	ext-[0.9375rem] (15px) for comfortable reading size.
 
 **Key lesson:** urora-gold (#c9a76a) fails WCAG AA as a text-on-white color (~2.1:1) and as a background-for-white-text color (~2.1:1). Use it on dark backgrounds (navy, text color) for contrast, or as decorative/border only.
+
+### Issue #237 — Test Screenshot Path Cleanup (2026-04-12)
+
+Reorganized test screenshot artifacts out of public/ directory tree. Updated hover-audit.spec.ts path references and .gitignore to reflect new screenshot storage location. Removed 81 files from git tracking that were being unnecessarily bundled with production assets. Result: cleaner public directory structure, faster build times, improved asset organization.
