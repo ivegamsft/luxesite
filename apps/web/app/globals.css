@@ -107,10 +107,10 @@ body {
   font-kerning: normal;
 }
 
-/* Selection — gold on light */
+/* Selection — dark text on gold */
 ::selection {
   background: var(--aurora-gold);
-  color: var(--aurora-bg);
+  color: var(--aurora-text);
 }
 
 /* ── Surface: Solid light with subtle border ─────────────────────── */

@@ -169,7 +169,7 @@ export default function DestinationGrid() {
                       <div className="absolute top-0 right-0 w-2/3 h-1/3 bg-gradient-to-bl from-aurora-text/24 to-transparent pointer-events-none"></div>
 
                       <div className="absolute top-5 right-5">
-                        <span className="font-heading text-base tracking-wide text-white/80 tabular-nums">
+                        <span className="font-heading text-base tracking-wide text-white tabular-nums bg-aurora-text/60 backdrop-blur-sm rounded-full px-3 py-1">
                           from {destination.currency}{destination.price.toLocaleString()}
                         </span>
                       </div>

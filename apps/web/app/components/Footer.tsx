@@ -97,7 +97,7 @@ export default function Footer() {
               href="https://unsplash.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-aurora-gold/70 hover:text-aurora-gold focus:text-white focus:underline focus:outline-none focus:ring-2 focus:ring-aurora-gold transition-colors"
+              className="text-aurora-gold hover:text-aurora-gold/90 focus:text-white focus:underline focus:outline-none focus:ring-2 focus:ring-aurora-gold transition-colors"
             >
               Unsplash
             </a>

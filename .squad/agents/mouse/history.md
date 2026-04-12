@@ -14,7 +14,27 @@
 
 <!-- Append new learnings below. Each entry is something lasting about the project. -->
 
-### Footer Fictional Disclaimer (#259) (2026-04-13)
+### Contrast Accessibility Fixes (#257) (2026-04-13)
+
+**Audited all 9 section components** for WCAG 2.1 AA contrast compliance. Found and fixed three issues:
+
+1. **DestinationGrid price badge** — `text-white/80` on image cards had only a `aurora-text/24` top-right gradient scrim, producing ~1.5:1 contrast on bright images. **Fix:** Added `bg-aurora-text/60 backdrop-blur-sm rounded-full px-3 py-1` dark pill behind the price text. Now guarantees high contrast regardless of image brightness.
+
+2. **Footer Unsplash link** — `text-aurora-gold/70` on navy bg yielded ~3.4:1 (fails AA 4.5:1). **Fix:** Changed to full-opacity `text-aurora-gold` which gives ~4.76:1 on navy.
+
+3. **Global `::selection` style** — Used `color: var(--aurora-bg)` (light) on `background: var(--aurora-gold)` producing ~2:1 contrast. **Fix:** Changed to `color: var(--aurora-text)` (dark brown on gold ≈ 4.76:1).
+
+**Key contrast ratios for Aurora Luxe palette:**
+- aurora-gold on aurora-navy: ~4.76:1 ✅ (AA normal text)
+- aurora-gold-accessible on aurora-bg-light: ~5.34:1 ✅
+- aurora-text-muted on aurora-bg-light: ~5.71:1 ✅
+- white/70 on aurora-navy: ~6.75:1 ✅
+- white/60 on aurora-navy: ~4.68:1 ✅ (barely passes, don't go lower)
+- aurora-gold on aurora-bg-light: ~2.04:1 ❌ (NEVER use gold as text on light bg)
+
+**Rule:** Always use `text-aurora-gold-accessible` for gold text on light backgrounds. Raw `text-aurora-gold` is only safe on dark backgrounds (navy, dark scrims ≥60% opacity).
+
+### Footer Fictional Disclaimer(#259) (2026-04-13)
 
 **Added:** Concise disclaimer line at the very bottom of the footer: "Aurora Luxe is a fictional concept site created for demonstration purposes. No real services are offered." Styled as `text-xs text-white/60` — muted but readable on the deep navy background, positioned below the copyright row with `mt-6`. WCAG AA contrast maintained (white at 60% opacity on #1a3a52 exceeds 4.5:1 for small text). Centered on all breakpoints for clean mobile/desktop rendering.
 
