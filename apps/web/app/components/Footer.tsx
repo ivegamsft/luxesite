@@ -32,7 +32,7 @@ export default function Footer() {
 
           {/* Destinations */}
           <div>
-            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider mb-6 text-white/80">
+            <h3 className="font-heading text-sm font-semibold uppercase tracking-wide mb-6 text-white/80">
               Celebrations
             </h3>
             <ul className="space-y-3">
@@ -51,7 +51,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider mb-6 text-white/80">
+            <h3 className="font-heading text-sm font-semibold uppercase tracking-wide mb-6 text-white/80">
               Company
             </h3>
             <ul className="space-y-3">
@@ -70,7 +70,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider mb-6 text-white/80">
+            <h3 className="font-heading text-sm font-semibold uppercase tracking-wide mb-6 text-white/80">
               Contact
             </h3>
             <ul className="space-y-3 text-sm text-white/80">

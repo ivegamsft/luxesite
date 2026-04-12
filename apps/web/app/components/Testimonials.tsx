@@ -49,10 +49,10 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto relative">
         <AnimatedSection variant="fade-up">
           <div className="mb-12 md:mb-16">
-            <p className="text-sm font-medium tracking-[0.2em] uppercase text-aurora-gold-accessible mb-3">
+            <p className="text-sm font-medium tracking-[0.15em] uppercase text-aurora-gold-accessible mb-3">
               What Our Clients Say
             </p>
-            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight text-aurora-text mb-4">
+            <h2 className="font-heading text-fluid-2xl font-bold tracking-tight leading-tight text-aurora-text mb-4">
               Voices of Celebration
             </h2>
             <p className="font-heading italic text-fluid-lg text-aurora-text-muted max-w-[60ch] leading-snug">

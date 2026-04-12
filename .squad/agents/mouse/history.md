@@ -636,3 +636,28 @@ DestinationGrid card overlays completely redesigned from dual-absolute to flexbo
 **Key fix:** Replaced dual-absolute positioning with flexbox so zone collisions never occur regardless of card height or content length. Flex's `min-h-0` + `flex-1` pattern gives expandable zone exactly the space between fixed zones.
 
 **Verification:** No zone collisions; all text passes WCAG AA; expand/collapse smooth; build clean.
+
+### Typography Audit & Refinement (typeset skill) (2026-04-15)
+
+**Comprehensive audit of typography system across all components and globals.css.** Focus: hierarchy, weight strategy, letter-spacing, line-height, and consistency. Fonts unchanged (Space Grotesk + Inter per brand spec).
+
+**Key improvements implemented:**
+
+1. **Body line-height**: Increased from 1.6 to 1.65 for better readability in luxury editorial context
+2. **H1 display text**: Changed tracking from 	racking-tight to 	racking-tighter (-0.025em) for large display sizes (fluid-3xl: 36-56px). Line-height increased from 1.08 to 1.1 for better legibility
+3. **H2 weight consistency**: All section headings standardized to ont-bold (700) instead of mixed ont-semibold (600). Affected 7 components: WhyAurora, DestinationGrid, ExperienceList, Testimonials, Tiers, FAQ, ConciergeForm
+4. **Uppercase label tracking**: Reduced from 	racking-[0.2em] to 	racking-[0.15em] across all section eyebrows (8 instances). More elegant, less aggressive
+5. **Navbar link tracking**: Reduced from 	racking-wider to 	racking-wide on text-xs labels for better readability
+6. **Footer heading tracking**: Reduced from 	racking-wider to 	racking-wide on uppercase section headings
+7. **Section intro max-width**: Changed from max-w-[38rem] to max-w-[60ch] for content-based sizing (better responsive behavior)
+
+**Verification notes:**
+- Tabular-nums already correctly applied on pricing (Tiers, DestinationGrid)
+- TrustBar intentionally uses fixed small sizes (text-sm/xs) — compact utility bar shouldn't use fluid scale
+- Type scale is intentionally fluid with compression at small viewports — not a strict modular ratio
+- Line-heights appropriately varied: tighter for headings (1.1-1.2), looser for body (1.65-1.75)
+- Max-widths on text containers use ch units where appropriate (55ch, 60ch)
+
+**Impact:** Typography now feels more intentional, with stronger hierarchy (bold H2s), better readability (increased line-height), and more refined letter-spacing. All changes honor the existing brand direction (commanding, discreet, editorial).
+
+**Build:** Clean ✅ | **Tests:** All passing ✅

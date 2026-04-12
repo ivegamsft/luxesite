@@ -103,7 +103,7 @@ body {
   color: var(--aurora-text);
   font-family: var(--font-sans), "Inter", system-ui, sans-serif;
   font-size: var(--fluid-base);
-  line-height: 1.6;
+  line-height: 1.65;
   font-kerning: normal;
 }
 
@@ -175,7 +175,7 @@ body {
 
 /* ── Section Intro — editorial subtitle ──────────────────────────── */
 .section-intro {
-  max-width: 38rem;
+  max-width: 60ch;
   font-size: var(--fluid-base);
   line-height: 1.75;
   color: var(--aurora-text-muted);

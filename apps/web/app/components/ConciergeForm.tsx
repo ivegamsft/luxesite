@@ -284,10 +284,10 @@ export default function ConciergeForm() {
         {/* Section Header */}
         <AnimatedSection>
           <div className="mb-10 md:mb-14">
-            <p className="text-sm font-medium tracking-[0.2em] uppercase text-aurora-gold-accessible mb-3">
+            <p className="text-sm font-medium tracking-[0.15em] uppercase text-aurora-gold-accessible mb-3">
               Get Started
             </p>
-            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight text-aurora-text mb-4">
+            <h2 className="font-heading text-fluid-2xl font-bold tracking-tight leading-tight text-aurora-text mb-4">
               Request a Consultation
             </h2>
             <p className="section-intro">

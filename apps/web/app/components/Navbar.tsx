@@ -74,7 +74,7 @@ export default function Navbar() {
                         e.preventDefault();
                         handleNavClick(link.href);
                       }}
-                      className={`uppercase tracking-wider text-xs font-medium transition-all duration-300 hover:text-aurora-gold-accessible focus:outline-none focus:text-aurora-gold-accessible focus:underline focus:ring-2 focus:ring-aurora-gold/50 focus:ring-offset-2 focus:ring-offset-white focus:rounded-sm ${
+                      className={`uppercase tracking-wide text-xs font-medium transition-all duration-300 hover:text-aurora-gold-accessible focus:outline-none focus:text-aurora-gold-accessible focus:underline focus:ring-2 focus:ring-aurora-gold/50 focus:ring-offset-2 focus:ring-offset-white focus:rounded-sm ${
                         isActive
                           ? 'text-aurora-gold-accessible underline decoration-2 underline-offset-4'
                           : 'text-aurora-text'
@@ -151,7 +151,7 @@ export default function Navbar() {
                         e.preventDefault();
                         handleNavClick(link.href);
                       }}
-                      className={`block uppercase tracking-wider text-xs font-medium transition-colors py-3 focus:outline-none focus:text-aurora-gold-accessible min-h-[44px] ${
+                      className={`block uppercase tracking-wide text-xs font-medium transition-colors py-3 focus:outline-none focus:text-aurora-gold-accessible min-h-[44px] ${
                         isActive
                           ? 'text-aurora-gold-accessible'
                           : 'text-aurora-text hover:text-aurora-gold-accessible'

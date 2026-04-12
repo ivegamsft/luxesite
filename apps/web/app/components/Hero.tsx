@@ -266,7 +266,7 @@ export default function Hero() {
           initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.1, ease: 'easeOut' }}
-          className="font-heading text-fluid-3xl font-bold text-white mb-6 tracking-tight leading-[1.08]"
+          className="font-heading text-fluid-3xl font-bold text-white mb-6 tracking-tighter leading-[1.1]"
         >
           Extraordinary Celebrations for Every Age
         </motion.h1>
