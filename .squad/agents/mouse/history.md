@@ -14,7 +14,11 @@
 
 <!-- Append new learnings below. Each entry is something lasting about the project. -->
 
-### Section Spacing Token Rebalance (2026-04-12)
+### Footer Fictional Disclaimer (#259) (2026-04-13)
+
+**Added:** Concise disclaimer line at the very bottom of the footer: "Aurora Luxe is a fictional concept site created for demonstration purposes. No real services are offered." Styled as `text-xs text-white/60` — muted but readable on the deep navy background, positioned below the copyright row with `mt-6`. WCAG AA contrast maintained (white at 60% opacity on #1a3a52 exceeds 4.5:1 for small text). Centered on all breakpoints for clean mobile/desktop rendering.
+
+### Section Spacing Token Rebalance(2026-04-12)
 
 **Problem:** Sections using `py-section-lg` stacked double-padding (top + bottom of adjacent sections), producing 128-224px combined gaps on desktop — nearly 2× the industry-standard 80-120px.
 
