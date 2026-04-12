@@ -79,7 +79,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
 
     // Section heading
     const heading = section.locator('h2');
-    await expect(heading).toContainText('Signature Celebrations');
+    await expect(heading).toContainText('Productions, Not Parties');
 
     // Experience cards
     const cards = section.locator('h3');
