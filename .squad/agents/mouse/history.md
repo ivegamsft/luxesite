@@ -136,6 +136,18 @@ Mobile/tablet minimums deliberately tighter per user request. Hero spacing (`--s
 
 **Footer Separation (#246):** Removed mt-section-sm (ConciergeForm's pb handles the gap), increased inner pt from section-sm to section-md.
 
+### Alignment & Spacing Fixes — Issues #249, #250, #252 (2026-04-13)
+
+**Three alignment/spacing issues fixed. Build clean.**
+
+**FAQ H2 Alignment (#250):** FAQ section used `max-w-5xl` container — narrower than the `max-w-7xl` standard used by WhyAurora, DestinationGrid, Tiers. This caused H2 heading to sit inward compared to other sections. Fixed: `max-w-5xl` → `max-w-7xl`, added `variant="fade-up"` to AnimatedSection, normalized header margin to `mb-12 md:mb-16`.
+
+**Testimonials Alignment (#249):** Same pattern — used `max-w-4xl` instead of `max-w-7xl`. H2 and content misaligned with all other sections. Fixed: `max-w-4xl` → `max-w-7xl`, added `variant="fade-up"` to AnimatedSection, normalized header margin from `mb-10 sm:mb-14` to `mb-12 md:mb-16`.
+
+**Footer Top Spacing (#252):** Gap between ConciergeForm and Footer was too tight — Footer used `pt-section-md`. Bumped to `pt-section-lg` and added a subtle `border-t border-white/10` separator div to visually distinguish the footer zone.
+
+**Key insight:** All sections must use `max-w-7xl mx-auto` for their outer container to maintain horizontal alignment of headings. Content within can be constrained further, but the heading container must match.
+
 ## Session Activity
 
 ### Impeccable Audit Fixes (2026-04-10T03:42:00Z)

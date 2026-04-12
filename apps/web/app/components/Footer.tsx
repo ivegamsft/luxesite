@@ -16,7 +16,8 @@ const footerCompany = [
 export default function Footer() {
   return (
     <footer className="bg-aurora-navy text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-section-md pb-12">
+      <div className="border-t border-white/10" aria-hidden="true" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-section-lg pb-12">
         {/* 4-column grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-14 mb-14">
           {/* Brand */}

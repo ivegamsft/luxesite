@@ -46,9 +46,9 @@ export default function Testimonials() {
       {/* Subtle decorative element to break grid monotony */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-aurora-border/30 to-transparent pointer-events-none" aria-hidden="true" />
 
-      <div className="max-w-4xl mx-auto relative">
-        <AnimatedSection>
-          <div className="mb-10 sm:mb-14">
+      <div className="max-w-7xl mx-auto relative">
+        <AnimatedSection variant="fade-up">
+          <div className="mb-12 md:mb-16">
             <p className="text-sm font-medium tracking-[0.2em] uppercase text-aurora-gold-accessible mb-3">
               What Our Clients Say
             </p>
