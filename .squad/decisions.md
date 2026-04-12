@@ -933,6 +933,74 @@ The Specialists (WhyAurora) section regressed to a static 3-card grid showing on
 
 ---
 
+### 31. Typography System Standards — Aurora Luxe
+**Author:** Mouse (UI/Design Dev)  
+**Date:** 2026-04-15  
+**Status:** Implemented ✅  
+**Related:** Typeset skill audit | **Commit:** 62f9aad
+
+#### Context
+
+Standardize typography hierarchy, weight strategy, and letter-spacing across the entire Aurora Luxe site to ensure intentional, consistent, readable type reflecting the brand's luxury editorial positioning.
+
+#### Decision
+
+Established comprehensive typography standards addressing inconsistencies in the initial implementation:
+
+1. **Hierarchy (Size + Weight):**
+   - H1 (Hero): `text-fluid-3xl` (36-56px) + `font-bold` (700) + `tracking-tighter` (-0.025em) + `leading-[1.1]`
+   - H2 (Section headings): `text-fluid-2xl` (32-48px) + `font-bold` (700) + `tracking-tight` (-0.025em) + `leading-tight` (1.25)
+   - H3 (Card titles): `text-fluid-xl` or `text-fluid-lg` + `font-semibold` (600) + `tracking-tight`
+   - Body text: `text-fluid-base` (16px) + `font-normal` (400) + `leading-[1.65]`
+   - Captions/labels: `text-sm` (14px) + `font-medium` (500)
+
+2. **Letter-Spacing Strategy:**
+   - Display text (≥32px): `tracking-tighter` (-0.025em) — optical correction for large sizes
+   - Headings (22-30px): `tracking-tight` (-0.025em)
+   - Uppercase labels: `tracking-[0.15em]` (refined from 0.2em)
+   - Uppercase nav/footer: `tracking-wide` (0.025em)
+   - Body text: `tracking-normal` or `letter-spacing: 0.01em` for section intros
+   - Tabular numbers: `tabular-nums` on pricing and numeric data
+
+3. **Line-Height Strategy:**
+   - Display headings (H1): 1.1 (tight but legible)
+   - Section headings (H2): 1.25 (`leading-tight`)
+   - Body text: 1.65 (generous for editorial luxury)
+   - Section intros: 1.75 (`leading-relaxed`)
+   - Quotes: 1.375 (`leading-snug`)
+
+4. **Max-Width for Readability:**
+   - Hero subtext: `max-w-[55ch]`
+   - Section intros: `max-w-[60ch]` (changed from 38rem for content-based sizing)
+   - Long-form content: 45-75ch ideal line length
+
+#### Changes Made
+
+- **globals.css:** Body line-height 1.6 → 1.65; section intro max-width 38rem → 60ch
+- **12 Components:** Hero, NavBar, Footer, Card, HeroSection, SectionIntro, DestinationCard, DestinationGrid, Tiers, TrustBar, Gallery, CTA
+  - All section headings: `font-semibold` → `font-bold`
+  - All uppercase eyebrows: `tracking-[0.2em]` → `tracking-[0.15em]`
+  - Navigation elements: `tracking-wider` → `tracking-wide`
+  - Hero H1: `tracking-tight` → `tracking-tighter`; line-height 1.08 → 1.1
+
+#### Rationale
+
+- **Weak H2 hierarchy:** Mixed use of font weights made section headings feel tentative rather than commanding
+- **Over-tracked labels:** 0.2em felt aggressive; 0.15em is elegant and appropriate for luxury brand
+- **Tight body text:** Original 1.6 was functional but not generous enough for editorial luxury feel
+- **Display text tracking:** Large display text needs optical correction with tighter tracking
+
+#### Impact
+
+- **Typography now production-ready** with consistent, intentional hierarchy
+- Better readability and editorial luxury brand positioning
+- No token changes needed; all improvements at component level
+- WCAG AA contrast maintained throughout
+
+**Agent:** Mouse | **QA:** Build ✅ | Tests ✅ | Contrast maintained ✅
+
+---
+
 ## Governance
 
 - All meaningful changes require team consensus
