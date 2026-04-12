@@ -1,7 +1,7 @@
 # Decisions
 
 **Project:** luxesite  
-**Last Updated:** 2026-04-11T19:53:05Z
+**Last Updated:** 2026-04-12T06:56:00Z
 
 ## Active Decisions
 
@@ -788,4 +788,112 @@ Added `aurora-gold-accessible` (#7a6532) as a new design token registered in bot
 #### Impact
 
 All team members creating components with gold text on light backgrounds must use `text-aurora-gold-accessible` instead of `text-aurora-gold`.
+
+---
+
+### Decision: Rebalance Section Spacing Tokens (2026-04-12)
+
+**Author:** Mouse  
+**Date:** 2026-04-12  
+**Status:** Implemented
+
+#### Context
+
+Section spacing tokens (`--space-section-lg` through `--space-section-xs`) in `globals.css` were too generous. Because every section uses symmetric `py-section-*` padding, adjacent sections stack their bottom + top padding, producing combined gaps of 128-224px on desktop — nearly double the 80-120px industry standard.
+
+#### Decision
+
+Reduce all four section spacing tokens so that stacked `py-section-lg` sections produce ~80-120px combined gaps on desktop, with tighter mobile/tablet values:
+
+```css
+--space-section-lg: clamp(1.75rem, 1.25rem + 2.5vw, 3.75rem);  /* 28→60px */
+--space-section-md: clamp(1.25rem, 0.875rem + 2vw, 2.75rem);   /* 20→44px */
+--space-section-sm: clamp(1rem, 0.625rem + 1.5vw, 2rem);       /* 16→32px */
+--space-section-xs: clamp(0.75rem, 0.5rem + 1vw, 1.5rem);      /* 12→24px */
+```
+
+Hero spacing (`--space-hero`) is unchanged — it's intentionally cinematic.
+
+#### Rationale
+
+- Stacked gaps now hit 80-120px on desktop (luxury standard)
+- Mobile gaps are 32-56px — comfortable but not wasteful
+- All 8 affected components reviewed: internal spacing (headings, grids, cards) is self-contained and unaffected
+- Build passes cleanly
+
+#### Consequences
+
+- Pages will feel more cohesive with tighter vertical rhythm
+- If a future section needs extra breathing room, use `py-section-lg` + additional `mt-*` rather than inflating the token
+
+---
+
+### Decision: Remove SectionBreak, Standardize H2 Pattern (2026-04-13)
+
+**Author:** Mouse  
+**Date:** 2026-04-13  
+**Issues:** #238-#246
+
+#### Decision
+
+1. **SectionBreak removed from page.tsx.** Decorative gold-line dividers between sections have been removed. Sections now own their own spacing via `py-section-*` tokens. SectionBreak CSS remains in globals.css for potential future use but is no longer rendered on the homepage.
+
+2. **Canonical section header pattern established:** Every section now follows eyebrow → H2 → body copy, using:
+   - Eyebrow: `text-sm font-medium tracking-[0.2em] uppercase text-aurora-gold-accessible mb-3`
+   - H2: `font-heading text-fluid-2xl font-semibold tracking-tight leading-tight text-aurora-text mb-4`
+   - Body: `section-intro` class or `text-base text-aurora-text-muted leading-relaxed max-w-2xl`
+   - On dark backgrounds (Tiers): eyebrow uses `text-aurora-gold`, H2 uses `text-white`
+
+3. **All sections use `py-section-lg`** for consistent vertical rhythm. No more mixed `py-section-sm sm:py-section-lg` or `pt-section-sm sm:pt-section-lg pb-section-md` patterns.
+
+#### Rationale
+
+SectionBreaks created dead zones between same-bg sections and bg mismatches at light→dark transitions. Removing them and letting sections own their spacing produces cleaner visual flow. The standardized H2 pattern ensures scannable hierarchy across the entire page.
+
+#### Impact
+
+- **Trinity:** If adding new sections, follow the eyebrow/H2/body pattern above.
+- **All agents:** SectionBreak component is unused. If re-introducing decorative dividers, build them as section-internal elements, not standalone components.
+
+---
+
+### Decision: Guest-count tier → numeric mapping for ConciergeForm (2026-07)
+
+**Issue:** #247  
+**Author:** Neo  
+**Date:** 2026-07
+
+#### Context
+
+The hero-discovery custom event sends a guest-count tier string (`intimate`, `medium`, `grand`, `spectacular`) to the ConciergeForm. Previously this was only injected into the notes textarea as display text — the `expectedGuests` numeric field was never updated.
+
+#### Decision
+
+Map each tier to a **sensible default** at the low end of its range:
+- `intimate` → 12 (midpoint of 1–25)
+- `medium` → 25 (floor of 25–100)
+- `grand` → 100 (floor of 100–500)
+- `spectacular` → 500 (floor of 500+)
+
+Using the floor value was chosen over midpoint because:
+1. Lower values are a safer default — users can always increase
+2. For open-ended ranges like "500+", a midpoint doesn't exist
+3. Consistent logic across all tiers
+
+#### Impact
+
+- ConciergeForm `handleHeroDiscovery` handler now sets `expectedGuests` alongside `interests` and `notes`
+- Manual edits to Expected Guests still work and persist (no bidirectional tier re-mapping — that would be overengineered)
+- No new state variables needed; uses existing `formData.expectedGuests`
+
+---
+
+### User Directive: Test File Structure (2026-04-12T03:55:32Z)
+
+**Captured By:** Copilot (ivegamsft)  
+**Status:** Approved
+
+Tests should be in a separate folder outside of the app code. No test files inside `apps/web/app/`.
+
+**Why:** User request — captured for team memory
 
