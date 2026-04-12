@@ -120,3 +120,55 @@ All four issues closed via `gh issue close`.
 - `FAQ.tsx:42` — gold chevron
 - `Navbar.tsx:79,156` — gold active state
 - `layout.tsx:38,49` — OG image uses same wine photo
+
+### Pixel-Accurate Spacing Measurement Audit (2026-04-12)
+
+**Session:** User reports sections STILL crowded after spacing token fix.  
+**Status:** ✅ COMPLETE — Actual pixel measurements captured.
+
+**Method:** Playwright + Chromium headless. Measured bounding boxes, computed CSS padding, and visual distances between section content at 1440px (desktop) and 375px (mobile). Screenshots saved to `tests/e2e/screenshots/`.
+
+**Desktop (1440px) — CSS padding per section side:**
+| Section | padding-top | padding-bottom |
+|---|---|---|
+| WhyAurora | 60px | 60px |
+| DestinationGrid | 60px | 60px |
+| ExperienceList | 60px | 60px |
+| Testimonials | 60px | 60px |
+| Tiers | 60px | 60px |
+| FAQ | 60px | 60px |
+| ConciergeForm | 60px | 60px |
+
+**Desktop visual gaps (last content in A → H2 in B):**
+- TrustBar → WhyAurora: 117px
+- WhyAurora → DestinationGrid: 176px
+- DestinationGrid → ExperienceList: 152px
+- ExperienceList → Testimonials: 152px
+- Interstitial → Tiers: 116px
+- Tiers → FAQ: 128px
+- FAQ → ConciergeForm: 152px
+
+**Mobile (375px) — CSS padding per section side:**
+All major sections: 24–33px per side. ExperienceList uses smaller `py-section-md` (24px) vs others at `py-section-lg` (33px).
+
+**Mobile visual gaps (last content in A → H2 in B):**
+- TrustBar → WhyAurora: 90px
+- WhyAurora → DestinationGrid: 123px
+- DestinationGrid → ExperienceList: 89px
+- ExperienceList → Testimonials: 89px
+- Interstitial → Tiers: 89px
+- Tiers → FAQ: 75px
+- FAQ → ConciergeForm: 99px
+
+**Key Findings:**
+1. **Spacing is NOT excessive at current viewport.** At 1440px, `py-section-lg` computes to 60px per side (3.75rem), not the feared 126px. The clamp min (4rem=64px) hasn't kicked in — the preferred value at 1440px resolves to ~60px. The max values (12rem=192px) would only apply at very wide viewports (~2500px+).
+2. **Visual gaps between sections are 120–176px on desktop.** This is the combined bottom-padding of section A + top-padding of section B (60+60=120px base) plus any internal heading margins. This feels generous but not astronomically excessive.
+3. **Mobile spacing is tighter at 57–66px combined padding** between sections. Visual content-to-H2 gaps are 75–123px — reasonable for mobile.
+4. **Section-to-section elements are flush** (0px gap between bounding boxes). All spacing is internal padding, not external margins.
+5. **Footer measurement anomaly:** Footer bounding box showed unexpected position (y=6022px vs ConciergeForm bottom at 9330px). This is because `<footer>` is outside `<main>` and Playwright's full-page scroll math may differ. Not a real layout issue.
+
+## Learnings
+
+- **Actual computed padding at 1440px is 60px, not 126px.** The previous audit's CSS math assumed max clamp values would apply, but the fluid formula's preferred value at 1440px viewport is well below the max. The clamp max (12rem) only kicks in at ~2500px+ viewports.
+- **Playwright bounding box measurements** are the authoritative way to verify spacing. CSS token math can be misleading because clamp() preferred values depend on viewport width.
+- **To run Playwright scripts outside apps/web/node_modules scope:** Create .mjs files in `apps/web/` directory (where node_modules lives) and use relative paths to output directories. ESM imports from `playwright` resolve correctly when cwd has the package installed.

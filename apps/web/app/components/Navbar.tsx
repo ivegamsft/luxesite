@@ -62,7 +62,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6 overflow-visible">
+          <div className="hidden lg:flex items-center space-x-6 overflow-visible">
             <ul className="flex items-center space-x-6">
               {navLinks.map((link) => {
                 const isActive = activeSection === link.href.replace('#', '');
@@ -74,7 +74,7 @@ export default function Navbar() {
                         e.preventDefault();
                         handleNavClick(link.href);
                       }}
-                      className={`uppercase tracking-wider text-xs font-medium transition-all duration-300 hover:text-aurora-gold-accessible focus:outline-none focus:text-aurora-gold-accessible focus:underline focus:ring-2 focus:ring-aurora-gold/50 focus:ring-offset-2 focus:ring-offset-white focus:rounded-sm ${
+                      className={`uppercase tracking-wide text-xs font-medium transition-all duration-300 hover:text-aurora-gold-accessible focus:outline-none focus:text-aurora-gold-accessible focus:underline focus:ring-2 focus:ring-aurora-gold/50 focus:ring-offset-2 focus:ring-offset-white focus:rounded-sm ${
                         isActive
                           ? 'text-aurora-gold-accessible underline decoration-2 underline-offset-4'
                           : 'text-aurora-text'
@@ -102,7 +102,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="text-aurora-text hover:text-aurora-gold-accessible focus:outline-none focus:text-aurora-gold-accessible transition-colors p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
@@ -137,7 +137,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden bg-aurora-bg border-t border-aurora-border overflow-hidden"
+            className="lg:hidden bg-aurora-bg border-t border-aurora-border overflow-hidden"
           >
           <div className="px-4 pt-4 pb-6 space-y-3">
             <ul className="space-y-3">
@@ -151,7 +151,7 @@ export default function Navbar() {
                         e.preventDefault();
                         handleNavClick(link.href);
                       }}
-                      className={`block uppercase tracking-wider text-xs font-medium transition-colors py-3 focus:outline-none focus:text-aurora-gold-accessible min-h-[44px] ${
+                      className={`block uppercase tracking-wide text-xs font-medium transition-colors py-3 focus:outline-none focus:text-aurora-gold-accessible min-h-[44px] ${
                         isActive
                           ? 'text-aurora-gold-accessible'
                           : 'text-aurora-text hover:text-aurora-gold-accessible'

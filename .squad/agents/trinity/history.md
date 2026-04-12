@@ -9,6 +9,8 @@
 
 - **Monorepo Structure (2026-04-10):** App code moved to `apps/web/` (by Morpheus). All CI/CD and test runs now target `apps/web/` path. Backend/API apps can be added to `apps/` in future. See `.squad/decisions/decisions.md` for full rationale.
 - **Playwright E2E Suite (2026-04-10):** Tank set up Playwright with Chromium, covering 8 sections + full-page screenshot. All 9/9 tests pass. This audit discovered P0 (sections invisible below hero due to Framer Motion opacity gating) and P1 (navbar clipping). Both issues now fixed in Trinity's UI fixes and animation visibility work.
+- **H2 Typography Scale Bump (2026-04-12):** Trinity bumped `--fluid-2xl` from 28-40px to 32-48px, strengthening H2 hierarchy across all 7 section headings. Single token change cascades automatically to all components. Commit 085c808.
+- **Section Alignment & Footer Polish (2026-04-12):** Mouse standardized all section containers to `max-w-7xl` for horizontal heading alignment. FAQ and Testimonials containers adjusted accordingly. Footer now uses `pt-section-lg` with `border-t border-white/10` separator. Commits 2f351e8. Issues #249-252 resolved.
 
 ## Learnings
 
@@ -46,11 +48,14 @@
 - **Eager loading for near-fold images (2026-04-10):** Mid-page images using `loading="lazy"` may never render in headless/SSR contexts because the IntersectionObserver never triggers. Use `loading="eager"` for the first few images in each grid (index < 3–6) and keep lazy only for truly below-fold content.
 - **Always add fallback bg to image containers (2026-04-10):** When Unsplash or any CDN fails, `next/image` shows a blank rectangle. Adding `bg-aurora-bg-dark` (or `bg-aurora-navy` for hero) to the parent container ensures a styled placeholder instead of nothing.
 - **Dead design tokens create confusion (2026-04-10):** `aurora-sage` was defined in tailwind.config.ts but never used in any component — only its hex value appeared in gradient definitions. Remove unused tokens to keep the design system honest.
+- **Nav collapse breakpoint must cover tablets (2026-04-12):** `md:` (768px) is too low for the desktop nav breakpoint — at tablet widths (768–1024px) nav items + CTA overflow and crowd. Use `lg:` (1024px) so the hamburger menu covers all tablet viewports (iPad Air 820px, iPad Mini 768px). For luxury sites, collapse earlier rather than later to keep things feeling premium.
 - **Footer top padding should use spacing tokens (2026-04-10):** Fixed `pt-20` → `pt-section-sm` to use the design system's fluid spacing scale. Footer column headings and link lists had inconsistent margins (mb-4 vs mb-5, space-y-2 vs space-y-3) — normalized to mb-6 and space-y-3 across all columns.
 - **Form container padding needs responsive scale (2026-04-10):** ConciergeForm's `p-5 sm:p-6 md:p-8` felt compressed at every breakpoint. Expanded to `p-6 sm:p-8 md:p-10 lg:p-12` with `space-y-8` field gaps for premium breathing room. Section-level padding also added `lg:px-12` to match other sections.
 - **Design system freezes during content pivots (2026-04-11):** When a business pivots what it sells (travel → experiences), the visual identity (colors, type, spacing, shadows) stays frozen. Only component patterns and content change. Resist the urge to add category-specific colors — icon + typography differentiate categories without palette bloat. Wrote `spec/design-system-update.md` for Issue #196.
 - **Reuse before creation (2026-04-11):** Before adding new CSS utilities, check existing globals.css patterns. `.surface-card`, `.scrollbar-hide`, `bounceX` keyframe, `editorial-divider`, and `section-break` all predate the pivot and remain usable. New CSS classes should be minimal additions, not replacements.
 - **Tailwind v4 CSS-first approach (2026-04-11):** With `@theme inline` in globals.css as the source of truth for Tailwind v4, avoid duplicating tokens in `tailwind.config.ts`. The config already mirrors globals.css — adding more entries creates maintenance debt. CSS custom properties in globals.css are the canonical location.
+- **H2 type scale bump for luxury hierarchy (2026-04-12):** `--fluid-2xl` was 28-40px — only 1.75x body at mobile. Bumped to `clamp(2rem, 1.5rem + 2.5vw, 3rem)` = 32-48px (2-3x body). All 7 section H2s inherit the change via `text-fluid-2xl`. The scale now has clear steps: body 16px → lg 18-22px → xl 22-30px → 2xl 32-48px → 3xl 36-56px. Minimum 1.33x ratio between adjacent levels at all viewports.
+- **404 page uses brand tokens, not layout shell (2026-04-12):** The not-found page is a standalone page (no shared nav/footer) so it manually applies `bg-aurora-bg`, `font-heading`, and brand colors. Uses `rounded-lg` on the CTA button per design system decisions. Gold CTA transitions to navy on hover for visual hierarchy.
 
 ## Session Activity
 
@@ -411,3 +416,51 @@ Build: ✅ (Next.js 16.2.3). Tests: ✅ 43/43 pass.
 
 - **Two gold tokens for contrast (2026-04-11):** `aurora-gold` (#c9a76a) for decorative use (borders, backgrounds, text on dark bg) and `aurora-gold-accessible` (#7a6532) for text on light backgrounds. The accessible variant achieves ~4.5:1 on #faf9f7 (WCAG AA). Never use original gold for text on any aurora-bg-* surface.
 - **Section spacing needs responsive tiers (2026-04-11):** Generous desktop spacing (12rem) compresses poorly on mobile via clamp() alone. Use `py-section-md sm:py-section-lg` pattern to pick appropriate spacing per breakpoint tier, rather than relying on a single clamp() to serve both 375px and 1440px.
+- **Carousel pagination with responsive cardsPerView (2026-04-12):** `useCardsPerView()` hook + `Math.ceil(total / cardsPerView)` for page count. Must clamp page index on resize (cardsPerView shrinks = totalPages grows, but cardsPerView grows = page may exceed new totalPages). AnimatePresence `mode="wait"` prevents layout flash between pages.
+- **Initials avatars over external images (2026-04-12):** Placeholder avatars using gradient backgrounds + initials text eliminate external image dependencies, load instantly, and maintain visual consistency. Gradient palette per card index avoids monotony. Pattern: `bg-gradient-to-br` + `font-heading text-2xl` initials.
+
+## Batch Orchestration — Batch 1–3 Deliverables (2026-04-12)
+
+### Batch 1: 404 Page Creation (#253)
+**Commit:** 8482d38  
+**Status:** ✅ Complete
+
+Created branded 404 error page with home navigation link. Maintains Aurora Luxe aesthetic and typography. Build verified clean.
+
+### Batch 2: Nav Breakpoint Adjustment (#254)
+**Commit:** 7a454fb  
+**Status:** ✅ Complete
+
+Navigation menu breakpoint bumped from `md` → `lg` for tablet collapse. Gives tablet layouts more breathing room before menu collapses to hamburger. Responsive behavior tested at all breakpoints; mobile menu functions correctly; desktop nav remains horizontal.
+
+### Batch 3: Specialists Carousel Restoration (#255)
+**Commit:** TBD  
+**Status:** ✅ Complete
+
+Restored WhyAurora (Specialists) section with full carousel redesign:
+- **Carousel:** Framer Motion with `AnimatePresence mode="wait"` and horizontal slide transitions
+- **Responsive:** 3 cards desktop, 2 tablet, 1 mobile; prev/next arrows + dot indicators; touch swipe support
+- **7 Specialists:** Expanded from 5 generic profiles to 7 luxury experiential specialists with unique roles (Creative Director, Production Director, Immersive Design Lead, Culinary Experience Director, Entertainment Curator, Concierge Lead, Floral & Environmental Designer)
+- **Avatars:** Gradient-background initials avatars eliminate external dependencies; loads instantly
+- **Accessibility:** 44px minimum touch targets; `useReducedMotion` respected throughout
+- **Files modified:** `apps/web/app/data/team.ts`, `apps/web/app/components/WhyAurora.tsx`, `apps/web/app/specialists/[id]/page.tsx`
+- **Verification:** Build clean; all animations responsive
+
+### Feature #248 — Date Picker for ConciergeForm (2026-04-12)
+
+**Status:** ✅ COMPLETE
+
+Replaced free-text event date input with native HTML date picker (`type="date"`) + flexibility dropdown. No external libraries added.
+
+**Changes:**
+- Added `dateFlexibility` field to form state with 4 options: "Exact Date", "Flexible (+/- 1 week)", "Flexible (+/- 1 month)", "No specific date yet"
+- Default flexibility is "No specific date yet" (field is in optional expandable section)
+- Date input hidden when "No specific date yet" selected; labeled "Preferred Date" for flexible options
+- `min` attribute set to today's date; past dates rejected in validation
+- "Exact Date" requires a date; flexible options make date optional; "No specific date yet" skips validation
+- Styling matches existing form inputs (`inputClass`, gold focus ring, option bg for native dropdown)
+- All 47 tests pass; build clean
+
+## Learnings
+
+- **Default optional-section fields to least-restrictive (2026-04-12):** When a form field lives inside a collapsible "optional details" section, default its state to the most permissive option. The date flexibility defaulted to "Exact Date" initially, which broke submission for users who never expanded the section. Changed to "No specific date yet" to match the section's optional nature.

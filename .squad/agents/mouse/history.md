@@ -5,9 +5,69 @@
 - **Stack:** Next.js (latest stable), TypeScript, Tailwind CSS, Framer Motion, next/image
 - **Created:** 2026-04-10
 
+## Team Updates
+
+- **H2 Typography Scale Bump (2026-04-12):** Trinity bumped `--fluid-2xl` from 28-40px to 32-48px, strengthening H2 hierarchy across all 7 section headings. Single token change cascades automatically to all components. Commit 085c808.
+- **Section Alignment & Footer Polish (2026-04-12):** Mouse standardized all section containers to `max-w-7xl` for horizontal heading alignment. FAQ and Testimonials containers adjusted accordingly. Footer now uses `pt-section-lg` with `border-t border-white/10` separator. Commit 2f351e8. Issues #249-252 resolved.
+
 ## Learnings
 
 <!-- Append new learnings below. Each entry is something lasting about the project. -->
+
+### Card Overlay Zone Redesign (#256) (2026-04-14)
+
+**Problem:** Destination card overlays had three compounding issues: (1) bottom text zone (`absolute bottom-0`) and quick-facts panel (`absolute top-0 bottom-28`) used independent absolute positioning causing overlap collisions, (2) white text on light image regions failed WCAG AA — the `aurora-text/78` scrim was insufficient on bright photos (Alpine snow, Dubai skyline), (3) the quick-facts scrollable panel had no containment boundary and bled into the title area.
+
+**Solution — Flexbox zone architecture:**
+Replaced the dual-absolute overlay system with a single `absolute inset-0 flex flex-col` container that divides the card into three non-overlapping zones:
+- **Top zone** (`flex-shrink-0`): Price badge with `bg-black/50 backdrop-blur-sm` pill
+- **Middle zone** (`flex-1 min-h-0`): Quick facts in a contained `bg-black/70 backdrop-blur-sm rounded-sm` panel with `overflow-y-auto` — only visible when expanded
+- **Bottom zone** (`flex-shrink-0`): Title, region, tagline, CTA — always visible
+
+**Scrim strategy:** Switched from `aurora-text/78` (brown, ~3.8:1 on bright images) to `black/70` gradient which guarantees ≥7:1 contrast ratio for white text on any image. Top-right corner scrim at `black/30` protects the price badge zone.
+
+**Key insight:** Card overlays with both "always visible" and "toggle visible" content zones must use flexbox, not stacked absolutes. Flex's `min-h-0` + `flex-1` pattern gives the expandable zone exactly the space between fixed zones, preventing collision regardless of card height or content length.
+
+### Contrast Accessibility Fixes (#257)(2026-04-13)
+
+**Audited all 9 section components** for WCAG 2.1 AA contrast compliance. Found and fixed three issues:
+
+1. **DestinationGrid price badge** — `text-white/80` on image cards had only a `aurora-text/24` top-right gradient scrim, producing ~1.5:1 contrast on bright images. **Fix:** Added `bg-aurora-text/60 backdrop-blur-sm rounded-full px-3 py-1` dark pill behind the price text. Now guarantees high contrast regardless of image brightness.
+
+2. **Footer Unsplash link** — `text-aurora-gold/70` on navy bg yielded ~3.4:1 (fails AA 4.5:1). **Fix:** Changed to full-opacity `text-aurora-gold` which gives ~4.76:1 on navy.
+
+3. **Global `::selection` style** — Used `color: var(--aurora-bg)` (light) on `background: var(--aurora-gold)` producing ~2:1 contrast. **Fix:** Changed to `color: var(--aurora-text)` (dark brown on gold ≈ 4.76:1).
+
+**Key contrast ratios for Aurora Luxe palette:**
+- aurora-gold on aurora-navy: ~4.76:1 ✅ (AA normal text)
+- aurora-gold-accessible on aurora-bg-light: ~5.34:1 ✅
+- aurora-text-muted on aurora-bg-light: ~5.71:1 ✅
+- white/70 on aurora-navy: ~6.75:1 ✅
+- white/60 on aurora-navy: ~4.68:1 ✅ (barely passes, don't go lower)
+- aurora-gold on aurora-bg-light: ~2.04:1 ❌ (NEVER use gold as text on light bg)
+
+**Rule:** Always use `text-aurora-gold-accessible` for gold text on light backgrounds. Raw `text-aurora-gold` is only safe on dark backgrounds (navy, dark scrims ≥60% opacity).
+
+### Footer Fictional Disclaimer(#259) (2026-04-13)
+
+**Added:** Concise disclaimer line at the very bottom of the footer: "Aurora Luxe is a fictional concept site created for demonstration purposes. No real services are offered." Styled as `text-xs text-white/60` — muted but readable on the deep navy background, positioned below the copyright row with `mt-6`. WCAG AA contrast maintained (white at 60% opacity on #1a3a52 exceeds 4.5:1 for small text). Centered on all breakpoints for clean mobile/desktop rendering.
+
+### Section Spacing Token Rebalance(2026-04-12)
+
+**Problem:** Sections using `py-section-lg` stacked double-padding (top + bottom of adjacent sections), producing 128-224px combined gaps on desktop — nearly 2× the industry-standard 80-120px.
+
+**Solution:** Halved all four section spacing tokens so stacked sections land in the correct range:
+
+| Token | Old (mobile→desktop) | New (mobile→desktop) | Stacked desktop |
+|-------|----------------------|----------------------|-----------------|
+| `--space-section-lg` | 64→112px | 28→60px | ≈56-120px |
+| `--space-section-md` | 48→80px  | 20→44px | ≈40-88px  |
+| `--space-section-sm` | 32→56px  | 16→32px | ≈32-64px  |
+| `--space-section-xs` | 24→40px  | 12→24px | ≈24-48px  |
+
+Mobile/tablet minimums deliberately tighter per user request. Hero spacing (`--space-hero`) unchanged.
+
+**Key insight:** Section padding tokens must be designed for the *stacked* case (py-top + py-bottom = gap), not the single-section case. Always reason about combined gaps when setting symmetric padding.
 
 ### Visual Polish: Spacing, Imagery, & Typography (2026-04-12)
 
@@ -118,6 +178,18 @@
 **ConciergeForm Anchor (#245):** Made H2 visible (was sr-only), added "Get Started" eyebrow, normalized to py-section-lg.
 
 **Footer Separation (#246):** Removed mt-section-sm (ConciergeForm's pb handles the gap), increased inner pt from section-sm to section-md.
+
+### Alignment & Spacing Fixes — Issues #249, #250, #252 (2026-04-13)
+
+**Three alignment/spacing issues fixed. Build clean.**
+
+**FAQ H2 Alignment (#250):** FAQ section used `max-w-5xl` container — narrower than the `max-w-7xl` standard used by WhyAurora, DestinationGrid, Tiers. This caused H2 heading to sit inward compared to other sections. Fixed: `max-w-5xl` → `max-w-7xl`, added `variant="fade-up"` to AnimatedSection, normalized header margin to `mb-12 md:mb-16`.
+
+**Testimonials Alignment (#249):** Same pattern — used `max-w-4xl` instead of `max-w-7xl`. H2 and content misaligned with all other sections. Fixed: `max-w-4xl` → `max-w-7xl`, added `variant="fade-up"` to AnimatedSection, normalized header margin from `mb-10 sm:mb-14` to `mb-12 md:mb-16`.
+
+**Footer Top Spacing (#252):** Gap between ConciergeForm and Footer was too tight — Footer used `pt-section-md`. Bumped to `pt-section-lg` and added a subtle `border-t border-white/10` separator div to visually distinguish the footer zone.
+
+**Key insight:** All sections must use `max-w-7xl mx-auto` for their outer container to maintain horizontal alignment of headings. Content within can be constrained further, but the heading container must match.
 
 ## Session Activity
 
@@ -487,3 +559,105 @@ Price opacity bumped from `/60` to `/80`; region from `/60` to `/70`. All text n
 ### Issue #237 — Test Screenshot Path Cleanup (2026-04-12)
 
 Reorganized test screenshot artifacts out of public/ directory tree. Updated hover-audit.spec.ts path references and .gitignore to reflect new screenshot storage location. Removed 81 files from git tracking that were being unnecessarily bundled with production assets. Result: cleaner public directory structure, faster build times, improved asset organization.
+
+### Tailwind v4 @theme Spacing Token Registration Fix (2026-04-13)
+
+**Problem:** All `py-section-*` and `pt-section-*` utilities produced ZERO CSS output. Sections rendered with no vertical padding — stacked directly on top of each other.
+
+**Root cause:** Section spacing tokens (`--space-section-lg`, etc.) were defined in `:root` but **never registered** in the `@theme inline` block as `--spacing-*` variables. In Tailwind v4, utilities like `py-section-lg` require `--spacing-section-lg` to exist inside `@theme`. Without it, Tailwind silently ignores the utility class — no error, no output.
+
+**Fix:**
+1. Added 5 `--spacing-*` tokens to `@theme inline` block, each referencing the `:root` `--space-*` variable:
+   - `--spacing-section-lg`, `--spacing-section-md`, `--spacing-section-sm`, `--spacing-section-xs`, `--spacing-hero`
+2. Bumped mobile minimums on section spacing to avoid cramped feel:
+   - `section-lg`: 28→32px min (was too tight for luxury brand)
+   - `section-md`: 20→24px min
+   - `section-xs`: 12→16px min
+
+**Key insight:** In Tailwind v4, `@theme inline` is the authoritative token registry. Even if `tailwind.config.ts` defines spacing extensions, they may not apply correctly when `@theme inline` is present. **Always register custom spacing tokens in `@theme inline` using the `--spacing-*` namespace.**
+
+**Spacing verification table (revised values):**
+
+| Transition | Section A (bottom) | Section B (top) | Token | Combined @375px | Combined @1440px |
+|---|---|---|---|---|---|
+| Hero → TrustBar | — | — | (no section padding) | — | — |
+| TrustBar → WhyAurora | — | section-lg | py-section-lg | 32px | 60px |
+| WhyAurora → DestinationGrid | section-lg | section-lg | py-section-lg + py-section-lg | 64px | 120px |
+| DestinationGrid → ExperienceList | section-lg | section-md/lg | py-section-lg + py-section-md(sm)/lg | 56-64px | 120px |
+| ExperienceList → Testimonials | section-md/lg | section-lg | same | 56-64px | 120px |
+| Testimonials → Interstitial | section-lg | — | py-section-lg | 32px | 60px |
+| Interstitial → Tiers | — | section-lg | py-section-lg | 32px | 60px |
+| Tiers → FAQ | section-lg | section-lg | py-section-lg + py-section-lg | 64px | 120px |
+| FAQ → ConciergeForm | section-lg | section-lg | py-section-lg + py-section-lg | 64px | 120px |
+| ConciergeForm → Footer | section-lg | section-md | py-section-lg + pt-section-md | 56px | 104px |
+
+### Testimonial Carousel Layout Shift Fix (#258) (2026-04-13)
+
+**Problem:** Carousel slides were in normal document flow inside AnimatePresence. Different content heights (varying quote lengths, optional rating/source link) caused visible layout jumps on page transitions.
+
+**Fix:** Absolutely positioned `motion.div` slides (`absolute inset-0`) within a `relative overflow-hidden` container. Bumped `min-height` to 280px mobile / 300px sm / 260px md to accommodate tallest testimonial. Added `ease: 'easeInOut'` to transition for smoother crossfade. Reduced-motion users get instant swap with no layout shift.
+
+**Key principle:** Carousel slides should always be stacked via absolute positioning so enter/exit animations never cause reflow.
+
+## Batch Orchestration — Batch 1–3 Deliverables (2026-04-12)
+
+### Batch 1: Footer Disclaimer (#259)
+**Commit:** 1ef01c7  
+**Status:** ✅ Complete
+
+Added footer fictional disclaimer text stating this is a fictional luxury brand. Maintains visual hierarchy with existing footer content. Contrast meets WCAG AA standards. Build verified clean.
+
+### Batch 2: Testimonial Carousel Jump Fix (#258)
+**Commit:** bbe8224  
+**Status:** ✅ Complete
+
+Fixed carousel layout jump via absolute positioning strategy on carousel container. Prevents height shifts during slide transitions. Carousel transitions smooth without layout shift; no vertical bounce on slide change. Responsive on mobile, tablet, desktop.
+
+### Batch 2: Contrast Audit Fixes (#257)
+**Status:** ✅ Complete
+
+Fixed WCAG AA contrast failures across three areas:
+1. **DestinationGrid card overlays:** Text overlays now use `black/70` scrim (≥7:1 contrast) vs. previous `aurora-text/78` at ~3.8:1. Guarantees readability on any background image.
+2. **Footer text:** Adjusted footer text colors for proper contrast ratios on navy background
+3. **Selection highlight:** Updated `::selection` to solid high-contrast color (CSS doesn't support gradients on selection)
+
+All text elements pass WCAG AA (≥4.5:1 for normal text, ≥3:1 for large). Contrast verified on multiple background images.
+
+### Batch 3: Card Overlay Zone Redesign (#256)
+**Commit:** 3137850  
+**Status:** ✅ Complete
+
+DestinationGrid card overlays completely redesigned from dual-absolute to flexbox zone architecture:
+- **Top zone** (`flex-shrink-0`): Price badge with `bg-black/50 backdrop-blur-sm` pill
+- **Middle zone** (`flex-1 min-h-0`): Quick facts panel in contained `bg-black/70 backdrop-blur-sm rounded-sm`, scrollable, expandable only
+- **Bottom zone** (`flex-shrink-0`): Title, region, tagline, CTA — always visible
+- **Scrim:** Black gradient (`from-black/70 via-black/40 to-transparent`) guarantees ≥7:1 contrast on any image
+
+**Key fix:** Replaced dual-absolute positioning with flexbox so zone collisions never occur regardless of card height or content length. Flex's `min-h-0` + `flex-1` pattern gives expandable zone exactly the space between fixed zones.
+
+**Verification:** No zone collisions; all text passes WCAG AA; expand/collapse smooth; build clean.
+
+### Typography Audit & Refinement (typeset skill) (2026-04-15)
+
+**Comprehensive audit of typography system across all components and globals.css.** Focus: hierarchy, weight strategy, letter-spacing, line-height, and consistency. Fonts unchanged (Space Grotesk + Inter per brand spec).
+
+**Key improvements implemented:**
+
+1. **Body line-height**: Increased from 1.6 to 1.65 for better readability in luxury editorial context
+2. **H1 display text**: Changed tracking from 	racking-tight to 	racking-tighter (-0.025em) for large display sizes (fluid-3xl: 36-56px). Line-height increased from 1.08 to 1.1 for better legibility
+3. **H2 weight consistency**: All section headings standardized to ont-bold (700) instead of mixed ont-semibold (600). Affected 7 components: WhyAurora, DestinationGrid, ExperienceList, Testimonials, Tiers, FAQ, ConciergeForm
+4. **Uppercase label tracking**: Reduced from 	racking-[0.2em] to 	racking-[0.15em] across all section eyebrows (8 instances). More elegant, less aggressive
+5. **Navbar link tracking**: Reduced from 	racking-wider to 	racking-wide on text-xs labels for better readability
+6. **Footer heading tracking**: Reduced from 	racking-wider to 	racking-wide on uppercase section headings
+7. **Section intro max-width**: Changed from max-w-[38rem] to max-w-[60ch] for content-based sizing (better responsive behavior)
+
+**Verification notes:**
+- Tabular-nums already correctly applied on pricing (Tiers, DestinationGrid)
+- TrustBar intentionally uses fixed small sizes (text-sm/xs) — compact utility bar shouldn't use fluid scale
+- Type scale is intentionally fluid with compression at small viewports — not a strict modular ratio
+- Line-heights appropriately varied: tighter for headings (1.1-1.2), looser for body (1.65-1.75)
+- Max-widths on text containers use ch units where appropriate (55ch, 60ch)
+
+**Impact:** Typography now feels more intentional, with stronger hierarchy (bold H2s), better readability (increased line-height), and more refined letter-spacing. All changes honor the existing brand direction (commanding, discreet, editorial).
+
+**Build:** Clean ✅ | **Tests:** All passing ✅

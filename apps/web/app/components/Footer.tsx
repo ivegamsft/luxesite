@@ -16,7 +16,8 @@ const footerCompany = [
 export default function Footer() {
   return (
     <footer className="bg-aurora-navy text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-section-md pb-12">
+      <div className="border-t border-white/10" aria-hidden="true" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-section-lg pb-12">
         {/* 4-column grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-14 mb-14">
           {/* Brand */}
@@ -31,7 +32,7 @@ export default function Footer() {
 
           {/* Destinations */}
           <div>
-            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider mb-6 text-white/80">
+            <h3 className="font-heading text-sm font-semibold uppercase tracking-wide mb-6 text-white/80">
               Celebrations
             </h3>
             <ul className="space-y-3">
@@ -50,7 +51,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider mb-6 text-white/80">
+            <h3 className="font-heading text-sm font-semibold uppercase tracking-wide mb-6 text-white/80">
               Company
             </h3>
             <ul className="space-y-3">
@@ -69,7 +70,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider mb-6 text-white/80">
+            <h3 className="font-heading text-sm font-semibold uppercase tracking-wide mb-6 text-white/80">
               Contact
             </h3>
             <ul className="space-y-3 text-sm text-white/80">
@@ -96,12 +97,17 @@ export default function Footer() {
               href="https://unsplash.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-aurora-gold/70 hover:text-aurora-gold focus:text-white focus:underline focus:outline-none focus:ring-2 focus:ring-aurora-gold transition-colors"
+              className="text-aurora-gold hover:text-aurora-gold/90 focus:text-white focus:underline focus:outline-none focus:ring-2 focus:ring-aurora-gold transition-colors"
             >
               Unsplash
             </a>
           </p>
         </div>
+
+        {/* Fictional disclaimer */}
+        <p className="mt-6 text-center text-xs text-white/60 leading-relaxed">
+          Aurora Luxe is a fictional concept site created for demonstration purposes. No real services are offered.
+        </p>
       </div>
     </footer>
   );

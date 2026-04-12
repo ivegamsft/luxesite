@@ -1,13 +1,13 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  testDir: '../../tests/e2e',
-  outputDir: '../../tests/e2e/test-results',
+  testDir: './tests/e2e',
+  outputDir: './tests/e2e/test-results',
   fullyParallel: false,
   retries: 0,
   workers: 1,
   reporter: [
-    ['html', { outputFolder: '../../tests/e2e/playwright-report' }],
+    ['html', { outputFolder: './tests/e2e/playwright-report' }],
     ['list'],
   ],
   use: {
@@ -23,6 +23,7 @@ export default defineConfig({
   ],
   webServer: {
     command: 'npm run dev',
+    cwd: './apps/web',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

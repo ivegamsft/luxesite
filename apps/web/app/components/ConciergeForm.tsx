@@ -24,10 +24,20 @@ const budgetRanges = [
 
 const NOTES_MAX_LENGTH = 500;
 
+const dateFlexibilityOptions = [
+  'Exact Date',
+  'Flexible (+/- 1 week)',
+  'Flexible (+/- 1 month)',
+  'No specific date yet'
+] as const;
+
+type DateFlexibility = typeof dateFlexibilityOptions[number];
+
 const initialFormData = {
   name: '',
   email: '',
   eventDate: '',
+  dateFlexibility: 'No specific date yet' as DateFlexibility,
   expectedGuests: 50,
   interests: [] as string[],
   budget: '',
@@ -160,10 +170,20 @@ export default function ConciergeForm() {
     return emailRegex.test(email);
   };
 
-  const validateEventDate = (value: string): string | null => {
-    if (!value.trim()) return null; // optional field
-    if (value.trim().length < 3) return 'Please enter a recognizable date — e.g., "March 2025" or "Next spring"';
-    if (/^[\d\W]+$/.test(value.trim())) return 'Try something like "March 2025" or "Flexible — sometime this summer"';
+  const getTodayString = (): string => {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
+  };
+
+  const validateEventDate = (value: string, flexibility?: DateFlexibility): string | null => {
+    const flex = flexibility ?? formData.dateFlexibility;
+    if (flex === 'No specific date yet') return null;
+    if (flex === 'Exact Date' && !value) return 'Please select a date for your event';
+    if (value) {
+      const selected = new Date(value);
+      const today = new Date(getTodayString());
+      if (selected < today) return 'Please choose a future date';
+    }
     return null;
   };
 
@@ -180,7 +200,7 @@ export default function ConciergeForm() {
       newErrors.email = "That doesn't look like a valid email — please double-check";
     }
 
-    const dateError = validateEventDate(formData.eventDate);
+    const dateError = validateEventDate(formData.eventDate, formData.dateFlexibility);
     if (dateError) {
       newErrors.eventDate = dateError;
     }
@@ -215,7 +235,7 @@ export default function ConciergeForm() {
       }
     }
     if (field === 'eventDate') {
-      const dateError = validateEventDate(formData.eventDate);
+      const dateError = validateEventDate(formData.eventDate, formData.dateFlexibility);
       if (dateError) {
         newErrors.eventDate = dateError;
       } else {
@@ -264,10 +284,10 @@ export default function ConciergeForm() {
         {/* Section Header */}
         <AnimatedSection>
           <div className="mb-10 md:mb-14">
-            <p className="text-sm font-medium tracking-[0.2em] uppercase text-aurora-gold-accessible mb-3">
+            <p className="text-sm font-medium tracking-[0.15em] uppercase text-aurora-gold-accessible mb-3">
               Get Started
             </p>
-            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight text-aurora-text mb-4">
+            <h2 className="font-heading text-fluid-2xl font-bold tracking-tight leading-tight text-aurora-text mb-4">
               Request a Consultation
             </h2>
             <p className="section-intro">
@@ -425,27 +445,63 @@ export default function ConciergeForm() {
                 <div className="mt-6 space-y-6 pt-6 border-t border-aurora-border/50">
                   {/* Event Date */}
                   <div>
-                    <label htmlFor="eventDate" className="block text-sm font-medium text-aurora-text/80 mb-2">
-                      Event Date
+                    <label htmlFor="dateFlexibility" className="block text-sm font-medium text-aurora-text/80 mb-2">
+                      Event Timing
                     </label>
-                    <input
-                      type="text"
-                      id="eventDate"
-                      placeholder='e.g., "March 2025" or "Flexible"'
-                      value={formData.eventDate}
+                    <select
+                      id="dateFlexibility"
+                      value={formData.dateFlexibility}
                       onChange={(e) => {
-                        setFormData({ ...formData, eventDate: e.target.value });
+                        const flex = e.target.value as DateFlexibility;
+                        setFormData((prev) => ({
+                          ...prev,
+                          dateFlexibility: flex,
+                          eventDate: flex === 'No specific date yet' ? '' : prev.eventDate,
+                        }));
                         if (errors.eventDate) setErrors((prev) => { const next = { ...prev }; delete next.eventDate; return next; });
                       }}
-                      onBlur={() => validateField('eventDate')}
-                      className={`${inputClass} placeholder:text-aurora-text-muted`}
-                      aria-invalid={!!errors.eventDate}
-                      aria-describedby={errors.eventDate ? 'eventDate-error' : 'eventDate-hint'}
-                    />
-                    {errors.eventDate
-                      ? <p id="eventDate-error" className="mt-1 text-sm text-aurora-error">{errors.eventDate}</p>
-                      : <p id="eventDate-hint" className="mt-1 text-xs text-aurora-text-muted">A rough timeframe is fine — exact dates aren&rsquo;t needed yet.</p>
-                    }
+                      className={`${inputClass} [&>option]:bg-white [&>option]:text-aurora-text`}
+                    >
+                      {dateFlexibilityOptions.map((opt) => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+
+                    {formData.dateFlexibility !== 'No specific date yet' && (
+                      <div className="mt-3">
+                        <label htmlFor="eventDate" className="block text-sm font-medium text-aurora-text/80 mb-2">
+                          {formData.dateFlexibility.startsWith('Flexible') ? 'Preferred Date' : 'Event Date'}
+                          {formData.dateFlexibility === 'Exact Date' && <span className="text-aurora-gold-accessible ml-1">*</span>}
+                        </label>
+                        <input
+                          type="date"
+                          id="eventDate"
+                          value={formData.eventDate}
+                          min={getTodayString()}
+                          onChange={(e) => {
+                            setFormData({ ...formData, eventDate: e.target.value });
+                            if (errors.eventDate) setErrors((prev) => { const next = { ...prev }; delete next.eventDate; return next; });
+                          }}
+                          onBlur={() => validateField('eventDate')}
+                          className={`${inputClass}`}
+                          aria-invalid={!!errors.eventDate}
+                          aria-describedby={errors.eventDate ? 'eventDate-error' : 'eventDate-hint'}
+                          required={formData.dateFlexibility === 'Exact Date'}
+                        />
+                        {errors.eventDate
+                          ? <p id="eventDate-error" className="mt-1 text-sm text-aurora-error">{errors.eventDate}</p>
+                          : <p id="eventDate-hint" className="mt-1 text-xs text-aurora-text-muted">
+                              {formData.dateFlexibility === 'Exact Date'
+                                ? 'Select the date for your event.'
+                                : 'Optional — helps us check venue availability.'}
+                            </p>
+                        }
+                      </div>
+                    )}
+
+                    {formData.dateFlexibility === 'No specific date yet' && (
+                      <p className="mt-2 text-xs text-aurora-text-muted">No worries — we&rsquo;ll help you find the perfect timing.</p>
+                    )}
                   </div>
 
                   {/* Expected Guests */}

@@ -1,7 +1,7 @@
 # Decisions
 
 **Project:** luxesite  
-**Last Updated:** 2026-04-11T19:53:05Z
+**Last Updated:** 2026-04-12T09:30:00Z
 
 ## Active Decisions
 
@@ -788,4 +788,287 @@ Added `aurora-gold-accessible` (#7a6532) as a new design token registered in bot
 #### Impact
 
 All team members creating components with gold text on light backgrounds must use `text-aurora-gold-accessible` instead of `text-aurora-gold`.
+
+---
+
+### Decision: Rebalance Section Spacing Tokens (2026-04-12)
+
+**Author:** Mouse  
+**Date:** 2026-04-12  
+**Status:** Implemented
+
+#### Context
+
+Section spacing tokens (`--space-section-lg` through `--space-section-xs`) in `globals.css` were too generous. Because every section uses symmetric `py-section-*` padding, adjacent sections stack their bottom + top padding, producing combined gaps of 128-224px on desktop — nearly double the 80-120px industry standard.
+
+#### Decision
+
+Reduce all four section spacing tokens so that stacked `py-section-lg` sections produce ~80-120px combined gaps on desktop, with tighter mobile/tablet values:
+
+```css
+--space-section-lg: clamp(1.75rem, 1.25rem + 2.5vw, 3.75rem);  /* 28→60px */
+--space-section-md: clamp(1.25rem, 0.875rem + 2vw, 2.75rem);   /* 20→44px */
+--space-section-sm: clamp(1rem, 0.625rem + 1.5vw, 2rem);       /* 16→32px */
+--space-section-xs: clamp(0.75rem, 0.5rem + 1vw, 1.5rem);      /* 12→24px */
+```
+
+Hero spacing (`--space-hero`) is unchanged — it's intentionally cinematic.
+
+#### Rationale
+
+- Stacked gaps now hit 80-120px on desktop (luxury standard)
+- Mobile gaps are 32-56px — comfortable but not wasteful
+- All 8 affected components reviewed: internal spacing (headings, grids, cards) is self-contained and unaffected
+- Build passes cleanly
+
+#### Consequences
+
+- Pages will feel more cohesive with tighter vertical rhythm
+- If a future section needs extra breathing room, use `py-section-lg` + additional `mt-*` rather than inflating the token
+
+---
+
+### Decision: Remove SectionBreak, Standardize H2 Pattern (2026-04-13)
+
+**Author:** Mouse  
+**Date:** 2026-04-13  
+**Issues:** #238-#246
+
+#### Decision
+
+1. **SectionBreak removed from page.tsx.** Decorative gold-line dividers between sections have been removed. Sections now own their own spacing via `py-section-*` tokens. SectionBreak CSS remains in globals.css for potential future use but is no longer rendered on the homepage.
+
+2. **Canonical section header pattern established:** Every section now follows eyebrow → H2 → body copy, using:
+   - Eyebrow: `text-sm font-medium tracking-[0.2em] uppercase text-aurora-gold-accessible mb-3`
+   - H2: `font-heading text-fluid-2xl font-semibold tracking-tight leading-tight text-aurora-text mb-4`
+   - Body: `section-intro` class or `text-base text-aurora-text-muted leading-relaxed max-w-2xl`
+   - On dark backgrounds (Tiers): eyebrow uses `text-aurora-gold`, H2 uses `text-white`
+
+3. **All sections use `py-section-lg`** for consistent vertical rhythm. No more mixed `py-section-sm sm:py-section-lg` or `pt-section-sm sm:pt-section-lg pb-section-md` patterns.
+
+#### Rationale
+
+SectionBreaks created dead zones between same-bg sections and bg mismatches at light→dark transitions. Removing them and letting sections own their spacing produces cleaner visual flow. The standardized H2 pattern ensures scannable hierarchy across the entire page.
+
+#### Impact
+
+- **Trinity:** If adding new sections, follow the eyebrow/H2/body pattern above.
+- **All agents:** SectionBreak component is unused. If re-introducing decorative dividers, build them as section-internal elements, not standalone components.
+
+---
+
+### Decision: Guest-count tier → numeric mapping for ConciergeForm (2026-07)
+
+**Issue:** #247  
+**Author:** Neo  
+**Date:** 2026-07
+
+#### Context
+
+The hero-discovery custom event sends a guest-count tier string (`intimate`, `medium`, `grand`, `spectacular`) to the ConciergeForm. Previously this was only injected into the notes textarea as display text — the `expectedGuests` numeric field was never updated.
+
+#### Decision
+
+Map each tier to a **sensible default** at the low end of its range:
+- `intimate` → 12 (midpoint of 1–25)
+- `medium` → 25 (floor of 25–100)
+- `grand` → 100 (floor of 100–500)
+- `spectacular` → 500 (floor of 500+)
+
+Using the floor value was chosen over midpoint because:
+1. Lower values are a safer default — users can always increase
+2. For open-ended ranges like "500+", a midpoint doesn't exist
+3. Consistent logic across all tiers
+
+#### Impact
+
+- ConciergeForm `handleHeroDiscovery` handler now sets `expectedGuests` alongside `interests` and `notes`
+- Manual edits to Expected Guests still work and persist (no bidirectional tier re-mapping — that would be overengineered)
+- No new state variables needed; uses existing `formData.expectedGuests`
+
+---
+
+### User Directive: Test File Structure (2026-04-12T03:55:32Z)
+
+**Captured By:** Copilot (ivegamsft)  
+**Status:** Approved
+
+Tests should be in a separate folder outside of the app code. No test files inside `apps/web/app/`.
+
+**Why:** User request — captured for team memory
+
+---
+
+### Decision: Section Container Width Standardization (2026-04-12)
+
+**Author:** Mouse  
+**Date:** 2026-04-12  
+**Issues:** #249, #250, #252  
+**Status:** Implemented  
+**Commit:** 2f351e8
+
+#### Context
+
+FAQ and Testimonials sections used narrower containers (`max-w-5xl` and `max-w-4xl`) than other sections (`max-w-7xl`), causing their H2 headings to be visually misaligned. Footer lacked sufficient top spacing from ConciergeForm.
+
+#### Decision
+
+1. **All sections must use `max-w-7xl mx-auto` for their outer container.** This ensures horizontal alignment of headings across the page. Content within sections may use narrower containers if needed, but the heading wrapper must be at standard width.
+
+2. **Section header divs should use `mb-12 md:mb-16`** as the standard bottom margin pattern (matching WhyAurora, DestinationGrid, Tiers).
+
+3. **AnimatedSection wrapping headers should include `variant="fade-up"`** for consistent entrance animation.
+
+4. **Footer uses `pt-section-lg`** (not `pt-section-md`) with a `border-t border-white/10` visual separator to create a distinct zone break from the preceding section.
+
+#### Files Changed
+
+- `apps/web/app/components/FAQ.tsx` — container `max-w-5xl` → `max-w-7xl`, header margin normalized, fade-up added
+- `apps/web/app/components/Testimonials.tsx` — container `max-w-4xl` → `max-w-7xl`, header margin normalized, fade-up added
+- `apps/web/app/components/Footer.tsx` — `pt-section-md` → `pt-section-lg`, added top border separator
+
+#### Verification
+
+- ✅ All H2 headings horizontally aligned across page
+- ✅ Footer visually distinct with top padding and border
+- ✅ Build passes, tests pass
+
+---
+
+### Decision: Bump `--fluid-2xl` for stronger H2 hierarchy (2026-04-12)
+
+**Author:** Trinity  
+**Date:** 2026-04-12  
+**Issue:** #251  
+**Status:** Implemented  
+**Commit:** 085c808
+
+#### Context
+
+All 7 section H2s (WhyAurora, DestinationGrid, ExperienceList, Testimonials, Tiers, FAQ, ConciergeForm) use `text-fluid-2xl`. The old value `clamp(1.75rem, 1.4rem + 1.75vw, 2.5rem)` resolved to 28-40px — only 1.75x body text at mobile. Luxury sites need dramatic type hierarchy.
+
+#### Decision
+
+Bumped `--fluid-2xl` from `clamp(1.75rem, 1.4rem + 1.75vw, 2.5rem)` (28-40px) to `clamp(2rem, 1.5rem + 2.5vw, 3rem)` (32-48px).
+
+**Revised typography scale:**
+| Token | Range | Ratio to body |
+|-------|-------|---------------|
+| sm | 13-14px | 0.8-0.875x |
+| base | 16px | 1x |
+| lg | 18-22px | 1.125-1.375x |
+| xl | 22-30px | 1.375-1.875x |
+| **2xl** | **32-48px** | **2-3x** |
+| 3xl | 36-56px | 2.25-3.5x |
+
+#### What changed
+
+- `apps/web/app/globals.css`: Updated `--fluid-2xl` clamp value and comment
+
+#### What did NOT change
+
+- Hero heading (`text-fluid-3xl`) — untouched per constraint
+- No component files changed — all H2s inherit via the CSS custom property
+- H2s already use `font-heading` (Space Grotesk) and `font-semibold` — correct for hierarchy
+
+#### Risk
+
+Low. Single token change. All 7 section H2s inherit automatically. Build passes.
+
+---
+
+### Decision: Register All Custom Spacing Tokens in @theme inline (2026-04-13)
+
+**Author:** Mouse  
+**Date:** 2026-04-13  
+**Status:** Implemented
+
+#### Context
+
+Tailwind v4 uses `@theme inline` as the authoritative token registry for utility class generation. Custom spacing tokens defined only in `:root` (or only in `tailwind.config.ts`) are **silently ignored** — no error, no CSS output. This caused all `py-section-*` and `pt-section-*` utilities to produce zero padding, making sections stack with no vertical spacing.
+
+#### Decision
+
+**Every custom spacing token used as a Tailwind utility MUST be registered in the `@theme inline` block using the `--spacing-*` namespace.**
+
+Example pattern:
+```css
+:root {
+  --space-section-lg: clamp(2rem, 1.5rem + 2.5vw, 3.75rem);
+}
+
+@theme inline {
+  --spacing-section-lg: var(--space-section-lg);
+}
+```
+
+This enables `py-section-lg`, `pt-section-lg`, `pb-section-lg`, `mt-section-lg`, etc. to all generate valid CSS.
+
+#### Tokens Registered
+
+| @theme token | References | Utility examples |
+|---|---|---|
+| `--spacing-section-lg` | `var(--space-section-lg)` | `py-section-lg` |
+| `--spacing-section-md` | `var(--space-section-md)` | `py-section-md`, `pt-section-md` |
+| `--spacing-section-sm` | `var(--space-section-sm)` | `py-section-sm` |
+| `--spacing-section-xs` | `var(--space-section-xs)` | `py-section-xs` |
+| `--spacing-hero` | `var(--space-hero)` | `py-hero` |
+
+#### Consequence
+
+Any future custom spacing token added to `:root` MUST also be added to `@theme inline` as `--spacing-<name>: var(--space-<name>)` or the corresponding Tailwind utility will silently fail.
+
+---
+
+### Spacing Pixel Measurements Audit (2026-04-12)
+
+**Author:** Tank  
+**Date:** 2026-04-12  
+**Status:** Completed
+
+#### Summary
+
+Playwright-measured actual pixel distances between all homepage sections at 1440px desktop and 375px mobile. Screenshots and JSON data saved to `tests/e2e/screenshots/`.
+
+#### Key Finding: Spacing is NOT as extreme as CSS math suggested
+
+Previous audit calculated `section-lg` padding at ~126px per side at 1440px based on clamp max values. **Actual measured computed padding is 60px per side** (3.75rem). The clamp() preferred value at 1440px viewport is well below the max — the 12rem max only applies at ~2500px+ viewports.
+
+#### Desktop (1440px) Measurements
+
+| Transition | CSS gap (pb+pt) | Visual gap (content→H2) |
+|---|---|---|
+| TrustBar → WhyAurora | 60px (0+60) | 117px |
+| WhyAurora → DestinationGrid | 120px (60+60) | 176px |
+| DestinationGrid → ExperienceList | 120px (60+60) | 152px |
+| ExperienceList → Testimonials | 120px (60+60) | 152px |
+| Testimonials → Interstitial | 60px (60+0) | N/A |
+| Interstitial → Tiers | 60px (0+60) | 116px |
+| Tiers → FAQ | 120px (60+60) | 128px |
+| FAQ → ConciergeForm | 120px (60+60) | 152px |
+
+#### Mobile (375px) Measurements
+
+| Transition | CSS gap (pb+pt) | Visual gap (content→H2) |
+|---|---|---|
+| TrustBar → WhyAurora | 33px (0+33) | 90px |
+| WhyAurora → DestinationGrid | 66px (33+33) | 123px |
+| DestinationGrid → ExperienceList | 57px (33+24) | 89px |
+| ExperienceList → Testimonials | 57px (24+33) | 89px |
+| Interstitial → Tiers | 33px (0+33) | 89px |
+| Tiers → FAQ | 66px (33+33) | 75px |
+| FAQ → ConciergeForm | 66px (33+33) | 99px |
+
+#### Recommendation
+
+The 120px combined CSS gap (60+60) between major sections at 1440px desktop is generous but not extreme for a luxury brand site. If the team still feels sections are too spread out, the fix should target **the preferred value in the clamp formula** — not the max. Reducing the `section-lg` preferred value by ~20% (e.g., from the current slope to yield ~48px at 1440px instead of 60px) would bring combined gaps to ~96px, which is more typical for premium sites.
+
+However, the original complaint may have been about **perceived crowding** (too tight), not excessive spacing. At 60px padding per side, sections have breathing room. The real visual issue might be that heading margins (56–116px from section top to H2) add extra visual weight on top of padding, making some transitions feel uneven.
+
+#### Files
+
+- `tests/e2e/screenshots/spacing-audit-desktop.png` — Full-page desktop screenshot
+- `tests/e2e/screenshots/spacing-audit-mobile.png` — Full-page mobile screenshot
+- `tests/e2e/screenshots/spacing-measurements.json` — Raw measurement data
+- `tests/e2e/screenshots/run-spacing-audit.mjs` — Reusable measurement script
 

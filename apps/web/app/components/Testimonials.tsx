@@ -46,13 +46,13 @@ export default function Testimonials() {
       {/* Subtle decorative element to break grid monotony */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-aurora-border/30 to-transparent pointer-events-none" aria-hidden="true" />
 
-      <div className="max-w-4xl mx-auto relative">
-        <AnimatedSection>
-          <div className="mb-10 sm:mb-14">
-            <p className="text-sm font-medium tracking-[0.2em] uppercase text-aurora-gold-accessible mb-3">
+      <div className="max-w-7xl mx-auto relative">
+        <AnimatedSection variant="fade-up">
+          <div className="mb-12 md:mb-16">
+            <p className="text-sm font-medium tracking-[0.15em] uppercase text-aurora-gold-accessible mb-3">
               What Our Clients Say
             </p>
-            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight text-aurora-text mb-4">
+            <h2 className="font-heading text-fluid-2xl font-bold tracking-tight leading-tight text-aurora-text mb-4">
               Voices of Celebration
             </h2>
             <p className="font-heading italic text-fluid-lg text-aurora-text-muted max-w-[60ch] leading-snug">
@@ -69,14 +69,15 @@ export default function Testimonials() {
           onKeyDown={handleKeyDown}
           tabIndex={0}
         >
-          <div className="relative min-h-[200px] sm:min-h-[240px]" aria-live="polite">
+          <div className="relative min-h-[280px] sm:min-h-[300px] md:min-h-[260px] overflow-hidden" aria-live="polite">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.id}
+                className="absolute inset-0"
                 initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, ease: 'easeInOut' }}
               >
                 {active.rating && (
                   <div className="mb-4">

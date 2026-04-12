@@ -1,7 +1,10 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import { teamMembers } from '../../data/team';
+
+function getInitials(name: string) {
+  return name.split(' ').map((n) => n[0]).join('').toUpperCase();
+}
 import type { Metadata } from 'next';
 
 export function generateStaticParams() {
@@ -41,15 +44,10 @@ export default function SpecialistDetailPage({ params }: { params: { id: string 
       {/* Profile Hero */}
       <section className="py-section-md px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-10">
-          <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-aurora-border bg-aurora-bg-dark flex-shrink-0">
-            <Image
-              src={member.photoUrl}
-              alt={`${member.name}, ${member.title}`}
-              fill
-              sizes="192px"
-              className="object-cover"
-              priority
-            />
+          <div className="w-40 h-40 md:w-48 md:h-48 rounded-full border-2 border-aurora-border bg-gradient-to-br from-aurora-gold/20 to-[#1a2744]/10 flex-shrink-0 flex items-center justify-center">
+            <span className="font-heading text-4xl md:text-5xl font-semibold text-aurora-text/60 select-none">
+              {getInitials(member.name)}
+            </span>
           </div>
           <div className="text-center md:text-left">
             <h1 className="font-heading text-fluid-2xl font-bold text-aurora-text mb-2">
@@ -119,14 +117,10 @@ export default function SpecialistDetailPage({ params }: { params: { id: string 
                 href={`/specialists/${other.id}`}
                 className="group block p-5 bg-aurora-bg-light border border-aurora-border rounded-sm text-center hover:border-aurora-gold/40 hover:shadow-subtle transition-all"
               >
-                <div className="relative mx-auto mb-3 w-20 h-20 rounded-full overflow-hidden border border-aurora-border bg-aurora-bg-dark">
-                  <Image
-                    src={other.photoUrl}
-                    alt={other.name}
-                    fill
-                    sizes="80px"
-                    className="object-cover"
-                  />
+                <div className="mx-auto mb-3 w-20 h-20 rounded-full border border-aurora-border bg-gradient-to-br from-aurora-gold/20 to-[#1a2744]/10 flex items-center justify-center">
+                  <span className="font-heading text-xl font-semibold text-aurora-text/60 select-none">
+                    {getInitials(other.name)}
+                  </span>
                 </div>
                 <h3 className="font-heading text-sm font-semibold text-aurora-text group-hover:text-aurora-gold-accessible transition-colors">
                   {other.name}

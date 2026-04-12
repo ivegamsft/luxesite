@@ -110,3 +110,33 @@ Sequenced all 37 open issues into 4 sprints (8 weeks) with clear dependencies an
 5. Teaching-site framing: all decisions annotated with rationale for learners
 6. No specs closed; #139/#141/#142 retitled in #209 (not closed)
 
+### Documentation Audit & Refresh (#260, 2026-04-14)
+
+**Status:** ✅ COMPLETE
+
+Audited and refreshed core site documentation to align with current implementation and brand pivot.
+
+**Changes:**
+- Updated `README.md` with current stack (Next.js 16, React 19, Tailwind v4, Framer Motion), architectural clarity, and teaching-site framing
+- Documented brand pivot from travel-only to experiential party packages (three tier transaction types)
+- Added comprehensive section architecture overview (8-section page: Hero → TrustBar → WhyAurora → DestinationGrid → ExperienceList → Testimonials → Interstitial → Tiers → FAQ → ConciergeForm → Footer)
+- Included design system documentation: fluid typography (clamp()-based), OKLCH color palette, spacing hierarchy, radius discipline, accessibility
+- Clarified test structure at repo root (jest.config.js, playwright.config.ts, tests/unit/, tests/e2e/)
+- Created "What's Next" section mapping to spec priorities: Platform APIs, Security & Identity, Content & AI, Operations & Quality
+- Created `repo_story.md` — 12KB narrative of project evolution from April 2026 foundation through current state
+  - 10 phases documented: Foundation, Design Polish, A11y Hardening, Monorepo Restructure, Architecture Spike, Brand Pivot, Documentation Governance, Sprint Planning, Visual Polish, Current State
+  - Key learnings captured: architecture precedes code, brand is architecture, A11y non-negotiable, design discipline kills AI aesthetics, teaching requires transparency, Squad structure scales
+
+**Acceptance Criteria:**
+- ✅ Core docs updated for current stack, section architecture, pivoted brand
+- ✅ Documentation structure consistent and easy to navigate
+- ✅ No stale screenshot references found
+- ✅ "What's Next" maps spec priorities across 4 categories (platform, security, content, ops)
+- ✅ repo_story.md exists at repo root with 10-phase narrative, 1-2 page format
+
+**Impact:**
+- Future team members can onboard via narrative (repo_story.md) then dive into spec/ for details
+- README now reflects current reality (party platform, three tiers, experiential focus) instead of legacy travel framing
+- Design system documentation explicit in README — new contributors understand token strategy without hunting globals.css
+- "What's Next" aligns marketing docs with engineering roadmap (24 specs across Sprint 2-4)
+

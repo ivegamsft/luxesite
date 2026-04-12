@@ -21,10 +21,10 @@ export default function Tiers() {
       <div className="max-w-7xl mx-auto">
         <AnimatedSection variant="fade-up">
           <div className="mb-12 md:mb-16">
-            <p className="text-sm font-medium tracking-[0.2em] uppercase text-aurora-gold mb-3">
+            <p className="text-sm font-medium tracking-[0.15em] uppercase text-aurora-gold mb-3">
               Membership
             </p>
-            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight text-white mb-4">
+            <h2 className="font-heading text-fluid-2xl font-bold tracking-tight leading-tight text-white mb-4">
               Three Tiers. One Standard.
             </h2>
             <p className="text-base text-white/70 max-w-xl leading-relaxed">Every event is custom-tailored to your vision.</p>
