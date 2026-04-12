@@ -9,6 +9,23 @@
 
 <!-- Append new learnings below. Each entry is something lasting about the project. -->
 
+### Section Spacing Token Rebalance (2026-04-12)
+
+**Problem:** Sections using `py-section-lg` stacked double-padding (top + bottom of adjacent sections), producing 128-224px combined gaps on desktop — nearly 2× the industry-standard 80-120px.
+
+**Solution:** Halved all four section spacing tokens so stacked sections land in the correct range:
+
+| Token | Old (mobile→desktop) | New (mobile→desktop) | Stacked desktop |
+|-------|----------------------|----------------------|-----------------|
+| `--space-section-lg` | 64→112px | 28→60px | ≈56-120px |
+| `--space-section-md` | 48→80px  | 20→44px | ≈40-88px  |
+| `--space-section-sm` | 32→56px  | 16→32px | ≈32-64px  |
+| `--space-section-xs` | 24→40px  | 12→24px | ≈24-48px  |
+
+Mobile/tablet minimums deliberately tighter per user request. Hero spacing (`--space-hero`) unchanged.
+
+**Key insight:** Section padding tokens must be designed for the *stacked* case (py-top + py-bottom = gap), not the single-section case. Always reason about combined gaps when setting symmetric padding.
+
 ### Visual Polish: Spacing, Imagery, & Typography (2026-04-12)
 
 **Three sequential tasks addressing visual refinement across spacing, imagery, and section separation:**
