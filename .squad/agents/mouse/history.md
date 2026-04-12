@@ -277,6 +277,49 @@ Price opacity bumped from `/60` to `/80`; region from `/60` to `/70`. All text n
 
 ---
 
+### Systematic Typography Overhaul (2026-04-12)
+
+**Task:** Fixed all typography issues from typeset audit findings (comprehensive scale, hierarchy, weights, readability).
+
+**Fluid Type Scale Redesign (globals.css):**
+- **OLD:** `--fluid-base` at mobile = 15px (below 16px readability minimum), `--fluid-3xl` max = 80px (excessive for headings)
+- **NEW:** Cleaner modular scale (~1.25 major third ratio):
+  - `sm`: 13-14px (captions/labels)
+  - `base`: 16px **FIXED** (no clamp — per typography reference: "Body text should be fixed even on marketing pages")
+  - `lg`: 18-22px (subheadings, lead text)
+  - `xl`: 22-30px (section headings h3)
+  - `2xl`: 28-40px (major headings h2)
+  - `3xl`: 36-56px (hero/display h1 — capped at 56px, not 80px)
+
+**Hierarchy Fixes:**
+- **Testimonials.tsx:** h2 heading used `text-fluid-xl sm:text-fluid-2xl`, same size as quote text on mobile → now h2 uses `text-fluid-2xl` (always larger), quote uses `text-fluid-lg` (clear hierarchy at ALL breakpoints)
+- **FAQ.tsx:** Replaced arbitrary `text-[1.0625rem]` (17px) and `text-[0.9375rem]` (15px, below minimum) → now question uses `text-fluid-base font-heading font-semibold`, answer uses `text-fluid-base`
+
+**Breakpoint → Fluid Conversions:**
+- **Interstitial.tsx:** `text-2xl md:text-3xl lg:text-4xl` → `text-fluid-2xl`
+- **Navbar.tsx:** `text-xl md:text-2xl` logo → `text-fluid-lg`
+- **Tiers.tsx:** `text-xl sm:text-2xl md:text-3xl` price → `text-fluid-xl`
+- **GuideGrid.tsx:** `text-xl md:text-2xl` → `text-fluid-xl`
+
+**Performance:** Removed unused Inter weight 300 from layout.tsx font imports (was never used anywhere in codebase).
+
+**Weight Standardization:**
+- Established hierarchy: h1=bold (700), h2/h3=semibold (600), labels=medium (500), body=normal (400)
+- Fixed WhyAurora.tsx h2 from `font-bold` → `font-semibold` (consistency with all other h2s)
+
+**Files modified:** `globals.css`, `layout.tsx`, `Testimonials.tsx`, `FAQ.tsx`, `Interstitial.tsx`, `Navbar.tsx`, `Tiers.tsx`, `WhyAurora.tsx`, `GuideGrid.tsx`
+
+**Build & Tests:** ✅ `npx next build` passed, ✅ All 43 tests passed
+
+**Key takeaways:**
+- Body text (`--fluid-base`) should ALWAYS be fixed at 1rem, not fluid — only headings and display text benefit from viewport scaling
+- Heading max sizes should be reasonable (56px cap for h1, not 80px+)
+- Typography scale needs clear 1-2 step gaps between hierarchy levels (h2 vs body, h2 vs quote, etc.)
+- Arbitrary pixel values (`text-[1.0625rem]`) break the modular scale and make maintenance harder
+- Weight consistency across heading levels prevents visual chaos
+
+---
+
 ## Cross-Agent Coordination
 
 ### Trinity's Contrast Token Decision (2026-04-12)
