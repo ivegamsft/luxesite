@@ -65,3 +65,23 @@ Ran full E2E suite to validate post-pivot content. All 19 Playwright tests pass.
 - ConciergeForm field ID stability
 
 This validated that tier references (One Time/Yearly/Gift model) are stable across the test suite. See `.squad/decisions/decisions.md` for tier architecture changes.
+
+### Issues #232–#235 Verification (2026-04-12)
+
+**Session:** Verify Trinity's commit 7dc22ae fixing issues #232–#235  
+**Status:** ✅ ALL VERIFIED
+
+**Results:**
+- **Tests:** 43/43 passed (7 suites), no regressions
+- **Build:** Next.js 16.2.3 production build clean, all routes generated
+- **#232 Typography hierarchy:** Fluid scale at 375px: h1=38.1px, h2=29.1px, h3=22.8px. Ratios 1.31x and 1.28x — clear differentiation ✅
+- **#233 Content cleanup:** Zero matches for "cocktail reception", "cocktail lounge", "adult gala" across entire codebase ✅
+- **#234 Spacing reduction:** section-lg min=4rem (was 6rem), section-md min=3rem (was 5rem) — ~35% reduction confirmed ✅
+- **#235 Contrast fix:** `aurora-gold-accessible` (#7a6532) registered in globals.css and tailwind.config.ts. Contrast ratio 5.34:1 on #faf9f7 — WCAG AA pass ✅
+
+All four issues closed via `gh issue close`.
+
+## Learnings
+
+- **Fluid Type Verification Math:** At 375px viewport, 1vw = 3.75px. For `clamp(min, base + slope*vw, max)`, compute preferred = (base_rem * 16) + (slope * 3.75), then clamp between min and max in px. Useful for verifying responsive typography without a browser.
+- **WCAG Contrast Formula:** Use relative luminance formula with sRGB linearization, then ratio = (L_lighter + 0.05) / (L_darker + 0.05). #7a6532 on #faf9f7 = 5.34:1, comfortably above 4.5:1 AA threshold.

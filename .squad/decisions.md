@@ -684,6 +684,27 @@ Sequenced all 37 open issues into 4 sequential 2-week sprints (8 weeks) with exp
 
 ---
 
+### 23. User Directives — Visual Quality & Test Hygiene
+**By:** ivegamsft (via Copilot)  
+**Date:** 2026-04-12  
+**Status:** Active Guidance
+
+**Directive 1 — Test artifacts must never live in `public/`:**
+Test screenshots, diagnostic images, and any test output must go in `apps/web/e2e/screenshots/` or `apps/web/test-results/`, NEVER in `apps/web/public/`. The `public/` folder ships to production. Existing screenshots in `public/screenshots/` must be moved and gitignored.
+
+**Directive 2 — Visual verification requires actual screenshots:**
+Code review alone is not sufficient to verify visual fixes. Typography, spacing, contrast, and imagery issues MUST be verified with Playwright screenshots at both desktop (1440px) and mobile (375px) widths. "Tests pass" and "build clean" is necessary but not sufficient.
+
+**Directive 3 — Family-friendly imagery and content:**
+Aurora Luxe caters to families including kids. No wine glasses, cocktails, alcohol imagery, or adult-only visual content on the homepage. Text references were fixed (commit 7dc22ae) but imagery must also be audited.
+
+**Directive 4 — Contrast must be visually verified, not just computed:**
+WCAG AA ratio calculations are a minimum bar. If light text on light backgrounds is still visible to the user, the fix isn't done regardless of what the math says. Always screenshot-verify contrast fixes.
+
+**Why:** User repeatedly flagged visual issues that passed code review but failed visual inspection. These directives prevent recurrence.
+
+---
+
 ## Governance
 
 - All meaningful changes require team consensus
