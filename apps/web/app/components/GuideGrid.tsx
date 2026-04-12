@@ -58,7 +58,7 @@ export default function GuideGrid() {
               Featured Guide
             </p>
             <h3
-              className="font-heading text-xl md:text-2xl font-semibold leading-snug mb-3 text-aurora-text"
+              className="font-heading text-fluid-xl font-semibold leading-snug mb-3 text-aurora-text"
             >
               {featured.title}
             </h3>

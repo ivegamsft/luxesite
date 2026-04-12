@@ -19,7 +19,7 @@ export const guides: InsiderGuide[] = [
       'Venue selection, seating strategies, entertainment curation, and the timeline secrets that separate a good gala from an unforgettable one.',
     readTime: '10 min read',
     imageUrl:
-      'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=640&h=480&fit=crop',
+      'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=640&h=480&fit=crop',
     link: '/guides/black-tie-gala',
     author: 'James Harrington',
   },

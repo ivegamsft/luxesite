@@ -85,3 +85,38 @@ All four issues closed via `gh issue close`.
 
 - **Fluid Type Verification Math:** At 375px viewport, 1vw = 3.75px. For `clamp(min, base + slope*vw, max)`, compute preferred = (base_rem * 16) + (slope * 3.75), then clamp between min and max in px. Useful for verifying responsive typography without a browser.
 - **WCAG Contrast Formula:** Use relative luminance formula with sRGB linearization, then ratio = (L_lighter + 0.05) / (L_darker + 0.05). #7a6532 on #faf9f7 = 5.34:1, comfortably above 4.5:1 AA threshold.
+
+### Visual Audit — Post-Trinity Fixes (2026-04-12)
+
+**Session:** User reports issues still visible after commit 7dc22ae  
+**Status:** ✅ COMPLETE — 4 findings documented
+
+**Method:** Playwright screenshots (desktop 1440px + mobile 375px + 8 section screenshots), CSS source analysis, WCAG contrast calculations.
+
+**Findings:**
+
+1. **Typography Hierarchy — PARTIALLY FIXED, minor issue remains.**  
+   The fluid type scale is correct (h1=38px, h2=29px, h3=23px at 375px — ratios 1.31x/1.28x). However, `Testimonials.tsx:60` uses `text-fluid-xl` for the h2 section heading on mobile (<sm), which is the same size as the quote text (`text-fluid-xl` at line 89). This makes the section heading and body quote visually identical at mobile width. It upgrades to `text-fluid-2xl` at `sm:` breakpoint, so desktop is fine.
+
+2. **Spacing — STILL EXCESSIVE.** Trinity's fix reduced `section-lg` min from 6rem→4rem and `section-md` min from 5rem→3rem. But the *max* values remain astronomical: `section-lg` max=12rem (192px), `section-md` max=10rem (160px), `section-sm` max=7rem (112px). At 1440px desktop, computed section-lg padding is ~126px per side = 252px total gap between sections. Plus `SectionBreak` components add another ~80px decorative gap on top. The desktop full-page screenshot shows vast empty areas between sections. Recommended: cut max values by ~50% (section-lg max→6rem, section-md max→5rem, section-sm max→3.5rem).
+
+3. **Contrast — `text-aurora-gold` (#c9a76a) STILL FAILING on light backgrounds.** Trinity added `aurora-gold-accessible` (#7a6532, 5.34:1) and used it in WhyAurora and Testimonials. But 19+ instances of plain `text-aurora-gold` remain on light backgrounds across homepage components:
+   - `Hero.tsx:182` — selected dropdown option text on bg-aurora-bg-light (2.16:1)
+   - `Hero.tsx:330` — "Discuss with a specialist →" on bg-aurora-bg-light (2.16:1) **← interactive text, P0**
+   - `Tiers.tsx:74` — "✓" checkmarks on bg-aurora-bg-light (2.16:1) — conveys meaning
+   - `FAQ.tsx:42` — chevron icon on bg-aurora-bg-dark (1.92:1)
+   - `Navbar.tsx:79,156` — active nav link on white (2.28:1) **← interactive text, P0**
+   - `ExperienceList.tsx:13-60` — SVG icons, but `aria-hidden="true"` so decorative (acceptable)
+   - `PressAwards.tsx:43,60` — hover/focus states only (borderline acceptable)
+   - `DestinationGrid.tsx:209,215` — on dark image overlay (OK)
+   All non-decorative `text-aurora-gold` on light backgrounds should be `text-aurora-gold-accessible`.
+
+4. **Imagery — HERO IMAGE SHOWS WINE GLASSES.** The hero background (`photo-1519671482749-fd09be7ccebf`) clearly shows people holding wine/champagne glasses. Visible in mobile-hero screenshot. This contradicts the brand pivot to "every age" celebrations. The Interstitial image (`photo-1533174072545-7a4b6ad7a6c3`) shows a concert crowd — no alcohol concern. Destination/experience images are venue/event photos without visible alcohol. Only the hero and OG metadata images need replacement.
+
+**Files with remaining issues:**
+- `globals.css:51-53` — section spacing max values too high
+- `Hero.tsx:182,249,330` — gold contrast + wine imagery
+- `Tiers.tsx:74` — gold checkmarks
+- `FAQ.tsx:42` — gold chevron
+- `Navbar.tsx:79,156` — gold active state
+- `layout.tsx:38,49` — OG image uses same wine photo

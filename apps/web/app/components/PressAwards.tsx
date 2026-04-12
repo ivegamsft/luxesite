@@ -40,7 +40,7 @@ export default function PressAwards() {
                   href={award.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`block transition-colors duration-200 whitespace-nowrap text-aurora-text-muted/70 hover:text-aurora-gold focus:text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 ${awardStyles[award.id] || 'text-sm font-heading font-semibold tracking-widest'}`}
+                  className={`block transition-colors duration-200 whitespace-nowrap text-aurora-text-muted/70 hover:text-aurora-gold-accessible focus:text-aurora-gold-accessible focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 ${awardStyles[award.id] || 'text-sm font-heading font-semibold tracking-widest'}`}
                   aria-label={`Visit ${award.name}`}
                 >
                   {award.logoText}
@@ -57,7 +57,7 @@ export default function PressAwards() {
                 href={award.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`shrink-0 transition-colors duration-200 text-aurora-text-muted/70 hover:text-aurora-gold focus:text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 ${awardStyles[award.id] || 'text-xs font-heading font-semibold tracking-widest'}`}
+                className={`shrink-0 transition-colors duration-200 text-aurora-text-muted/70 hover:text-aurora-gold-accessible focus:text-aurora-gold-accessible focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 ${awardStyles[award.id] || 'text-xs font-heading font-semibold tracking-widest'}`}
                 aria-label={`Visit ${award.name}`}
               >
                 {award.logoText}

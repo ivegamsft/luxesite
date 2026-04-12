@@ -30,7 +30,7 @@ export default function ExperienceDetailPage({ params }: { params: { id: string 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 py-4 flex items-center justify-between">
           <Link
             href="/"
-            className="text-sm font-medium text-aurora-text-muted hover:text-aurora-gold transition-colors"
+            className="text-sm font-medium text-aurora-text-muted hover:text-aurora-gold-accessible transition-colors"
           >
             &larr; Back to Aurora Luxe
           </Link>
@@ -155,7 +155,7 @@ export default function ExperienceDetailPage({ params }: { params: { id: string 
                   </div>
                 )}
                 <div className="p-5">
-                  <h3 className="font-heading text-base font-semibold text-aurora-text group-hover:text-aurora-gold transition-colors">
+                  <h3 className="font-heading text-base font-semibold text-aurora-text group-hover:text-aurora-gold-accessible transition-colors">
                     {other.title}
                   </h3>
                   <p className="text-sm text-aurora-text-muted mt-1 line-clamp-2">
@@ -172,7 +172,7 @@ export default function ExperienceDetailPage({ params }: { params: { id: string 
       <div className="py-8 px-4 text-center border-t border-aurora-border">
         <Link
           href="/"
-          className="text-sm text-aurora-text-muted hover:text-aurora-gold transition-colors"
+          className="text-sm text-aurora-text-muted hover:text-aurora-gold-accessible transition-colors"
         >
           &larr; Return to Aurora Luxe
         </Link>

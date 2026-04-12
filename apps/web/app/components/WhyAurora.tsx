@@ -19,7 +19,7 @@ export default function WhyAurora() {
             <p className="text-sm font-medium tracking-widest uppercase text-aurora-gold-accessible mb-3">
               Why Aurora
             </p>
-            <h2 className="font-heading text-fluid-2xl font-bold tracking-tight text-aurora-text mb-4">
+            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight text-aurora-text mb-4">
               Designed by Specialists, Not Algorithms
             </h2>
             <p className="text-aurora-text-muted max-w-2xl text-base leading-relaxed">

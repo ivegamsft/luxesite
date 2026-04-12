@@ -30,7 +30,7 @@ export default function SpecialistDetailPage({ params }: { params: { id: string 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 py-4 flex items-center justify-between">
           <Link
             href="/"
-            className="text-sm font-medium text-aurora-text-muted hover:text-aurora-gold transition-colors"
+            className="text-sm font-medium text-aurora-text-muted hover:text-aurora-gold-accessible transition-colors"
           >
             &larr; Back to Aurora Luxe
           </Link>
@@ -55,7 +55,7 @@ export default function SpecialistDetailPage({ params }: { params: { id: string 
             <h1 className="font-heading text-fluid-2xl font-bold text-aurora-text mb-2">
               {member.name}
             </h1>
-            <p className="text-lg text-aurora-gold font-medium mb-1">
+            <p className="text-lg text-aurora-gold-accessible font-medium mb-1">
               {member.title}
             </p>
             <p className="text-sm text-aurora-text-muted mb-6">
@@ -128,7 +128,7 @@ export default function SpecialistDetailPage({ params }: { params: { id: string 
                     className="object-cover"
                   />
                 </div>
-                <h3 className="font-heading text-sm font-semibold text-aurora-text group-hover:text-aurora-gold transition-colors">
+                <h3 className="font-heading text-sm font-semibold text-aurora-text group-hover:text-aurora-gold-accessible transition-colors">
                   {other.name}
                 </h3>
                 <p className="text-xs text-aurora-text-muted mt-0.5">
@@ -144,7 +144,7 @@ export default function SpecialistDetailPage({ params }: { params: { id: string 
       <div className="py-8 px-4 text-center border-t border-aurora-border">
         <Link
           href="/"
-          className="text-sm text-aurora-text-muted hover:text-aurora-gold transition-colors"
+          className="text-sm text-aurora-text-muted hover:text-aurora-gold-accessible transition-colors"
         >
           &larr; Return to Aurora Luxe
         </Link>

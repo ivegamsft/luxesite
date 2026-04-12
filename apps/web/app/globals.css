@@ -27,15 +27,17 @@
   --aurora-error: #a85a4a;
 
   /* ── Fluid Type Scale — Space Grotesk + Inter ─────────────────
-     Targets: h1=48px(3rem), h2=36px(2.25rem), h3=28px(1.75rem),
-     body=16px(1rem), small=14px(0.875rem)
-     Min values spread wider for clear hierarchy at 375px viewport */
-  --fluid-sm: clamp(0.8125rem, 0.78rem + 0.16vw, 0.875rem);
-  --fluid-base: clamp(0.9375rem, 0.9rem + 0.19vw, 1rem);
-  --fluid-lg: clamp(1.125rem, 0.95rem + 0.875vw, 1.75rem);
-  --fluid-xl: clamp(1.375rem, 1.1rem + 1.375vw, 2.25rem);
-  --fluid-2xl: clamp(1.75rem, 1.35rem + 2vw, 3rem);
-  --fluid-3xl: clamp(2.25rem, 1.5rem + 3.75vw, 5rem);
+     Modular scale (~1.25 major third ratio).
+     Body text is FIXED at 1rem (per typography reference: body text
+     should not be fluid). Only headings and display text use clamp().
+     Targets: sm=13-14px, base=16px (fixed), lg=18-22px, xl=22-30px,
+     2xl=28-40px, 3xl=36-56px (capped, not 80px) */
+  --fluid-sm: clamp(0.8125rem, 0.78rem + 0.16vw, 0.875rem);    /* 13-14px */
+  --fluid-base: 1rem;                                           /* 16px fixed */
+  --fluid-lg: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);          /* 18-22px */
+  --fluid-xl: clamp(1.375rem, 1.2rem + 0.875vw, 1.875rem);      /* 22-30px */
+  --fluid-2xl: clamp(1.75rem, 1.4rem + 1.75vw, 2.5rem);         /* 28-40px */
+  --fluid-3xl: clamp(2.25rem, 1.75rem + 2.5vw, 3.5rem);         /* 36-56px */
 
   /* ── Spacing — 8px baseline ──────────────────────────────────── */
   --space-xs: 0.5rem;    /* 8px */
@@ -48,10 +50,10 @@
 
   /* ── Section Spacing (varied rhythm — generous for luxury feel) ─ */
   --space-hero: clamp(5rem, 3.5rem + 8vw, 14rem);
-  --space-section-lg: clamp(4rem, 2.5rem + 6vw, 12rem);
-  --space-section-md: clamp(3rem, 2rem + 5vw, 10rem);
-  --space-section-sm: clamp(2rem, 1.25rem + 3vw, 7rem);
-  --space-section-xs: clamp(1.5rem, 1rem + 2vw, 4rem);
+  --space-section-lg: clamp(4rem, 2.5rem + 4vw, 7rem);
+  --space-section-md: clamp(3rem, 2rem + 3vw, 5rem);
+  --space-section-sm: clamp(2rem, 1.25rem + 2vw, 3.5rem);
+  --space-section-xs: clamp(1.5rem, 1rem + 1.5vw, 2.5rem);
 }
 
 @theme inline {
@@ -178,13 +180,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(1.5rem, 1rem + 2vw, 5rem) 0;
+  padding: clamp(1rem, 0.75rem + 1.5vw, 2.5rem) 0;
 }
 
 .section-break::before {
   content: '';
   width: 1px;
-  height: clamp(2.5rem, 2rem + 2vw, 5rem);
+  height: clamp(2rem, 1.5rem + 1.5vw, 3rem);
   background: linear-gradient(
     to bottom,
     transparent,

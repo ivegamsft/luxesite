@@ -32,7 +32,7 @@ export default function DestinationDetailPage({ params }: { params: { slug: stri
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 py-4 flex items-center justify-between">
           <Link
             href="/#destinations"
-            className="text-sm font-medium text-aurora-text-muted hover:text-aurora-gold transition-colors"
+            className="text-sm font-medium text-aurora-text-muted hover:text-aurora-gold-accessible transition-colors"
           >
             &larr; All Venues
           </Link>
@@ -94,7 +94,7 @@ export default function DestinationDetailPage({ params }: { params: { slug: stri
                     key={index}
                     className="flex items-start gap-4 p-5 bg-aurora-bg-light border border-aurora-border rounded-sm"
                   >
-                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-aurora-gold/10 text-aurora-gold font-semibold text-sm">
+                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-aurora-gold/10 text-aurora-gold-accessible font-semibold text-sm">
                       {index + 1}
                     </span>
                     <span className="text-aurora-text leading-relaxed">{fact}</span>
@@ -129,11 +129,11 @@ export default function DestinationDetailPage({ params }: { params: { slug: stri
                   />
                 </div>
                 <div className="p-4 bg-aurora-bg-light">
-                  <h3 className="font-heading text-base font-semibold text-aurora-text group-hover:text-aurora-gold transition-colors">
+                  <h3 className="font-heading text-base font-semibold text-aurora-text group-hover:text-aurora-gold-accessible transition-colors">
                     {other.name}
                   </h3>
                   <p className="text-xs text-aurora-text-muted">{other.region}</p>
-                  <p className="text-sm font-medium text-aurora-gold mt-1">
+                  <p className="text-sm font-medium text-aurora-gold-accessible mt-1">
                     from {other.currency}{other.price.toLocaleString()}
                   </p>
                 </div>
@@ -147,7 +147,7 @@ export default function DestinationDetailPage({ params }: { params: { slug: stri
       <div className="py-8 px-4 text-center border-t border-aurora-border">
         <Link
           href="/"
-          className="text-sm text-aurora-text-muted hover:text-aurora-gold transition-colors"
+          className="text-sm text-aurora-text-muted hover:text-aurora-gold-accessible transition-colors"
         >
           &larr; Return to Aurora Luxe
         </Link>

@@ -24,7 +24,7 @@ export default function Interstitial() {
       <div className="absolute inset-0 flex items-center justify-center px-6">
         <AnimatedSection variant="fade-up">
           <blockquote className="text-center max-w-2xl">
-            <p className="font-heading text-2xl md:text-3xl lg:text-4xl italic text-white leading-snug tracking-tight">
+            <p className="font-heading text-fluid-2xl italic text-white leading-snug tracking-tight">
               &ldquo;A great party is a book of memories — every detail a page worth remembering.&rdquo;
             </p>
             <footer className="mt-4 text-sm text-white/60 tracking-widest uppercase">

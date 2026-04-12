@@ -29,7 +29,7 @@ export default function TierDetailPage({ params }: { params: { id: string } }) {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 py-4 flex items-center justify-between">
           <Link
             href="/"
-            className="text-sm font-medium text-aurora-text-muted hover:text-aurora-gold transition-colors"
+            className="text-sm font-medium text-aurora-text-muted hover:text-aurora-gold-accessible transition-colors"
           >
             &larr; Back to Aurora Luxe
           </Link>
@@ -79,7 +79,7 @@ export default function TierDetailPage({ params }: { params: { id: string } }) {
                 key={index}
                 className="flex items-start gap-4 p-5 bg-aurora-bg-light border border-aurora-border rounded-sm"
               >
-                <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-aurora-gold/10 text-aurora-gold font-semibold text-sm">
+                <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-aurora-gold/10 text-aurora-gold-accessible font-semibold text-sm">
                   {index + 1}
                 </span>
                 <span className="text-aurora-text leading-relaxed">{perk}</span>
@@ -127,7 +127,7 @@ export default function TierDetailPage({ params }: { params: { id: string } }) {
                 <p className="text-sm text-aurora-text-muted mb-2">
                   {other.tagline}
                 </p>
-                <span className="text-sm font-semibold text-aurora-gold">
+                <span className="text-sm font-semibold text-aurora-gold-accessible">
                   {other.price}
                 </span>
               </Link>
@@ -140,7 +140,7 @@ export default function TierDetailPage({ params }: { params: { id: string } }) {
       <div className="py-8 px-4 text-center border-t border-aurora-border">
         <Link
           href="/"
-          className="text-sm text-aurora-text-muted hover:text-aurora-gold transition-colors"
+          className="text-sm text-aurora-text-muted hover:text-aurora-gold-accessible transition-colors"
         >
           &larr; Return to Aurora Luxe
         </Link>

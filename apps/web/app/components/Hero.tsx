@@ -179,7 +179,7 @@ function LuxeSelect({ label, placeholder, options, value, onChange, divider }: L
                   px-3.5 py-2.5 text-sm cursor-pointer
                   transition-colors duration-100 select-none
                   ${opt.value === value
-                    ? 'text-aurora-gold font-semibold bg-aurora-gold/8'
+                    ? 'text-aurora-gold-accessible font-semibold bg-aurora-gold/8'
                     : 'text-aurora-text font-medium'
                   }
                   ${i === activeIndex ? 'bg-aurora-bg-dark' : ''}
@@ -246,8 +246,8 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0 bg-aurora-navy">
         <Image
-          src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=2400&h=1400&fit=crop"
-          alt="Luxury celebration with golden lights"
+          src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=2400&h=1400&fit=crop"
+          alt="Colorful celebration with confetti and lights"
           fill
           className="object-cover"
           priority
@@ -290,7 +290,7 @@ export default function Hero() {
         >
           <button
             onClick={handleRequestConsultation}
-            className="w-full sm:w-auto bg-aurora-gold text-white font-semibold px-8 py-4 rounded-lg hover:bg-aurora-gold/85 hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-navy min-h-[44px]"
+            className="w-full sm:w-auto bg-aurora-gold text-aurora-text font-semibold px-8 py-4 rounded-lg hover:bg-aurora-gold/85 hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-aurora-navy min-h-[44px]"
           >
             Request Consultation
           </button>
@@ -327,7 +327,7 @@ export default function Hero() {
           />
           <button
             onClick={handleRequestConsultation}
-            className="whitespace-nowrap text-sm font-semibold text-aurora-gold hover:text-aurora-gold/85 transition-colors py-2 px-3 focus:outline-none focus:underline min-h-[44px]"
+            className="whitespace-nowrap text-sm font-semibold text-aurora-gold-accessible hover:text-aurora-gold-accessible/85 transition-colors py-2 px-3 focus:outline-none focus:underline min-h-[44px]"
           >
             Discuss with a specialist →
           </button>

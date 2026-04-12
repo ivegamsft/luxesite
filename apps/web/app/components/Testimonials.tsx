@@ -57,7 +57,7 @@ export default function Testimonials() {
         {/* Section Header — editorial, no gold-label pattern */}
         <AnimatedSection>
           <div className="mb-10 sm:mb-16">
-            <h2 className="font-heading italic text-fluid-xl sm:text-fluid-2xl text-aurora-text-muted max-w-[75ch] leading-snug tracking-tight">
+            <h2 className="font-heading italic text-fluid-2xl text-aurora-text-muted max-w-[75ch] leading-snug tracking-tight">
               &ldquo;The measure of an event is not the spectacle&nbsp;&mdash; it&rsquo;s the silence when you remember.&rdquo;
             </h2>
           </div>
@@ -86,7 +86,7 @@ export default function Testimonials() {
                   </div>
                 )}
 
-                <p className="text-fluid-xl italic text-aurora-text mb-8 max-w-[55ch] leading-snug">
+                <p className="text-fluid-lg italic text-aurora-text mb-8 max-w-[55ch] leading-snug">
                   &ldquo;{active.quote}&rdquo;
                 </p>
 

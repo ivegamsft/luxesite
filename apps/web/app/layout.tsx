@@ -12,7 +12,7 @@ const spaceGrotesk = Space_Grotesk({
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: "Aurora Luxe Events",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=1200&h=630&fit=crop",
+        url: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1200&h=630&fit=crop",
         width: 1200,
         height: 630,
         alt: "Aurora Luxe — Bespoke luxury celebrations",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Aurora Luxe | Award-Winning Private Event & Party Specialists",
     description: "Bespoke luxury events by specialists. Curated celebrations, 24/7 concierge, experiences crafted for you alone.",
-    images: ["https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=1200&h=630&fit=crop"],
+    images: ["https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1200&h=630&fit=crop"],
   },
 };
 

@@ -56,7 +56,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <span className="font-heading text-xl md:text-2xl font-bold uppercase tracking-wider text-aurora-text">
+            <span className="font-heading text-fluid-lg font-bold uppercase tracking-wider text-aurora-text">
               Aurora Luxe
             </span>
           </div>
@@ -74,9 +74,9 @@ export default function Navbar() {
                         e.preventDefault();
                         handleNavClick(link.href);
                       }}
-                      className={`uppercase tracking-wider text-xs font-medium transition-all duration-300 hover:text-aurora-gold focus:outline-none focus:text-aurora-gold focus:underline focus:ring-2 focus:ring-aurora-gold/50 focus:ring-offset-2 focus:ring-offset-white focus:rounded-sm ${
+                      className={`uppercase tracking-wider text-xs font-medium transition-all duration-300 hover:text-aurora-gold-accessible focus:outline-none focus:text-aurora-gold-accessible focus:underline focus:ring-2 focus:ring-aurora-gold/50 focus:ring-offset-2 focus:ring-offset-white focus:rounded-sm ${
                         isActive
-                          ? 'text-aurora-gold underline decoration-2 underline-offset-4'
+                          ? 'text-aurora-gold-accessible underline decoration-2 underline-offset-4'
                           : 'text-aurora-text'
                       }`}
                     >
@@ -95,7 +95,7 @@ export default function Navbar() {
                   contactSection.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="shrink-0 whitespace-nowrap bg-aurora-gold text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-aurora-gold/85 hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-white min-h-[44px]"
+              className="shrink-0 whitespace-nowrap bg-aurora-gold text-aurora-text font-semibold px-5 py-2.5 rounded-lg hover:bg-aurora-gold/85 hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2 focus:ring-offset-white min-h-[44px]"
             >
               Request Consultation
             </button>
@@ -105,7 +105,7 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-aurora-text hover:text-aurora-gold focus:outline-none focus:text-aurora-gold transition-colors p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="text-aurora-text hover:text-aurora-gold-accessible focus:outline-none focus:text-aurora-gold-accessible transition-colors p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Toggle menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -151,10 +151,10 @@ export default function Navbar() {
                         e.preventDefault();
                         handleNavClick(link.href);
                       }}
-                      className={`block uppercase tracking-wider text-xs font-medium transition-colors py-3 focus:outline-none focus:text-aurora-gold min-h-[44px] ${
+                      className={`block uppercase tracking-wider text-xs font-medium transition-colors py-3 focus:outline-none focus:text-aurora-gold-accessible min-h-[44px] ${
                         isActive
-                          ? 'text-aurora-gold'
-                          : 'text-aurora-text hover:text-aurora-gold'
+                          ? 'text-aurora-gold-accessible'
+                          : 'text-aurora-text hover:text-aurora-gold-accessible'
                       }`}
                     >
                       {link.label}
@@ -171,7 +171,7 @@ export default function Navbar() {
                 }
                 setMobileMenuOpen(false);
               }}
-              className="w-full bg-aurora-gold text-white font-semibold px-6 py-3 rounded-lg hover:bg-aurora-gold/85 hover:-translate-y-0.5 transition-all duration-300 mt-4 focus:outline-none focus:ring-2 focus:ring-aurora-gold min-h-[44px]"
+              className="w-full bg-aurora-gold text-aurora-text font-semibold px-6 py-3 rounded-lg hover:bg-aurora-gold/85 hover:-translate-y-0.5 transition-all duration-300 mt-4 focus:outline-none focus:ring-2 focus:ring-aurora-gold min-h-[44px]"
             >
               Request Consultation
             </button>

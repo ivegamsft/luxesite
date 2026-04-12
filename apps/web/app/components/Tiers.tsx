@@ -53,7 +53,7 @@ export default function Tiers() {
                 <p className="text-xs md:text-sm text-aurora-text-muted mb-4">
                   {tier.tagline}
                 </p>
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-aurora-text tabular-nums">
+                <div className="text-fluid-xl font-bold text-aurora-text tabular-nums">
                   {tier.price.includes('/') ? (
                     <>
                       {tier.price.split('/')[0]}
@@ -71,7 +71,7 @@ export default function Tiers() {
               <ul className="space-y-3.5 mb-8 flex-1">
                 {tier.perks.map((perk, index) => (
                   <li key={index} className="flex items-start text-sm text-aurora-text">
-                    <span className="text-aurora-gold mr-2 mt-0.5 flex-shrink-0">✓</span>
+                    <span className="text-aurora-gold-accessible mr-2 mt-0.5 flex-shrink-0">✓</span>
                     <span>{perk}</span>
                   </li>
                 ))}
@@ -93,7 +93,7 @@ export default function Tiers() {
               </button>
                 <Link
                   href={`/tiers/${tier.id}`}
-                  className="block w-full text-center py-2 text-sm text-aurora-text-muted hover:text-aurora-gold transition-colors"
+                  className="block w-full text-center py-2 text-sm text-aurora-text-muted hover:text-aurora-gold-accessible transition-colors"
                 >
                   View full details &rarr;
                 </Link>

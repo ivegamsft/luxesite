@@ -230,7 +230,7 @@ export default function DestinationGrid() {
               <div className="mt-10 text-center">
                 <button
                   onClick={() => setShowAll(true)}
-                  className="px-8 py-3 text-sm font-semibold rounded-lg border border-aurora-border text-aurora-text-muted hover:border-aurora-gold hover:text-aurora-gold transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
+                  className="px-8 py-3 text-sm font-semibold rounded-lg border border-aurora-border text-aurora-text-muted hover:border-aurora-gold hover:text-aurora-gold-accessible transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
                 >
                   View All Venues ({filteredDestinations.length})
                 </button>

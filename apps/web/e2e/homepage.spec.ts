@@ -39,11 +39,11 @@ test.describe('Homepage — Visual & Content Audit', () => {
 
     // Main heading
     const heading = hero.locator('h1');
-    await expect(heading).toContainText('Celebrations Written in Light');
+    await expect(heading).toContainText('Extraordinary Celebrations for Every Age');
 
     // CTA buttons
     await expect(hero.getByText('Request Consultation')).toBeVisible();
-    await expect(hero.getByText('Explore Experiences')).toBeVisible();
+    await expect(hero.getByText('Explore Celebrations')).toBeVisible();
 
     // Wait for all hero animations to complete
     await page.waitForTimeout(1500);
@@ -59,7 +59,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
 
     // Section heading
     const heading = section.locator('h2');
-    await expect(heading).toContainText('Curated Destinations');
+    await expect(heading).toContainText('Celebration Spaces');
 
     // Venue cards (should have multiple h3 elements)
     const cards = section.locator('h3');
@@ -79,7 +79,7 @@ test.describe('Homepage — Visual & Content Audit', () => {
 
     // Section heading
     const heading = section.locator('h2');
-    await expect(heading).toContainText('Signature Experiences');
+    await expect(heading).toContainText('Signature Celebrations');
 
     // Experience cards
     const cards = section.locator('h3');
@@ -149,14 +149,16 @@ test.describe('Homepage — Visual & Content Audit', () => {
     await expect(section.locator('#name')).toBeVisible();
     await expect(section.locator('#email')).toBeVisible();
 
+    // Notes field — always visible (not inside expandable section)
+    await expect(section.locator('#notes')).toBeVisible();
+
     // Optional fields — hidden by default, expand first
-    const detailsToggle = section.getByText('Share more details');
+    const detailsToggle = section.getByText('Share more details (optional)');
     await detailsToggle.click();
     await page.waitForTimeout(300);
-    await expect(section.locator('#travelDates')).toBeVisible();
-    await expect(section.locator('#travelers')).toBeVisible();
+    await expect(section.locator('#eventDate')).toBeVisible();
+    await expect(section.locator('#expectedGuests')).toBeVisible();
     await expect(section.locator('#budget')).toBeVisible();
-    await expect(section.locator('#notes')).toBeVisible();
 
     // Submit button
     await expect(section.getByText('Request Consultation')).toBeVisible();

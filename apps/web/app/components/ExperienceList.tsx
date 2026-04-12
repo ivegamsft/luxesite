@@ -10,46 +10,46 @@ import AnimatedSection from './AnimatedSection';
 /* ── SVG icon map (24×24, stroke style) ── */
 const experienceIcons: Record<string, ReactElement> = {
   wildlife: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-aurora-gold" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8" aria-hidden="true">
       <circle cx="8" cy="8" r="3" /><circle cx="16" cy="8" r="3" />
       <path d="M5 8V6a3 3 0 0 1 6 0v2M13 8V6a3 3 0 0 1 6 0v2M3 14l4-3 2 2 3-3 3 3 2-2 4 3" />
       <rect x="3" y="14" width="18" height="6" rx="1" />
     </svg>
   ),
   cultural: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-aurora-gold" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8" aria-hidden="true">
       <path d="M12 2L8 6h8l-4-4zM6 6l-2 4h16l-2-4M4 10v2h16v-2" />
       <path d="M6 12v7M10 12v7M14 12v7M18 12v7M3 19h18M4 21h16" />
     </svg>
   ),
   beach: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-aurora-gold" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8" aria-hidden="true">
       <path d="M14 4c0 0 2 1 2 4s-2 5-2 5" /><path d="M14 4c0 0-2.5 1.5-3 5s1 4 1 4" />
       <path d="M14 4c0 0-4-1-6 3s0 6 0 6" /><line x1="14" y1="4" x2="14" y2="22" />
       <path d="M2 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0" /><path d="M2 22c2-2 4-2 6 0s4 2 6 0 4-2 6 0" />
     </svg>
   ),
   mountain: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-aurora-gold" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8" aria-hidden="true">
       <path d="M8 21l4-10 4 10" /><path d="M2 21l6-14 3.5 7" /><path d="M15.5 14L22 21H2" />
       <circle cx="18" cy="5" r="2" />
     </svg>
   ),
   'culinary': (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-aurora-gold" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8" aria-hidden="true">
       <path d="M8 2v5a4 4 0 0 0 8 0V2" /><path d="M12 11v9" /><path d="M8 20h8" />
       <line x1="8" y1="5" x2="16" y2="5" />
     </svg>
   ),
   adventure: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-aurora-gold" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8" aria-hidden="true">
       <circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="3" />
       <path d="M12 3v3M12 18v3M3 12h3M18 12h3" />
       <path d="M5.6 5.6l2.15 2.15M16.25 16.25l2.15 2.15M5.6 18.4l2.15-2.15M16.25 7.75l2.15-2.15" />
     </svg>
   ),
   family: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-aurora-gold" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8" aria-hidden="true">
       <path d="M12 2C8 2 5 7 5 12h14c0-5-3-10-7-10z" />
       <rect x="10" y="12" width="4" height="8" rx="1" />
       <path d="M9 22h6" /><circle cx="12" cy="5" r="1" />
@@ -57,7 +57,7 @@ const experienceIcons: Record<string, ReactElement> = {
     </svg>
   ),
   romance: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-aurora-gold" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8" aria-hidden="true">
       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
     </svg>
   ),
@@ -220,7 +220,7 @@ export default function ExperienceList() {
                 {/* Fallback for no-image cards */}
                 {!experience.imageUrl && (
                   <div className="bg-white border border-aurora-border p-5 flex flex-col h-56 sm:h-64">
-                    <div className="mb-3" aria-hidden="true">
+                    <div className="mb-3 text-aurora-gold-accessible" aria-hidden="true">
                       {experienceIcons[experience.icon]}
                     </div>
                     <h3 className="font-heading text-fluid-base font-medium mb-2 text-aurora-text">

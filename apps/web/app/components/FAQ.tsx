@@ -35,11 +35,11 @@ export default function FAQ() {
                     aria-controls={`faq-answer-${faq.id}`}
                     className="w-full flex items-center justify-between px-7 py-6 text-left hover:bg-aurora-bg/30 transition-colors focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-inset"
                   >
-                    <span className="font-heading text-[1.0625rem] font-semibold text-aurora-text pr-8 leading-snug">
+                    <span className="font-heading text-fluid-base font-semibold text-aurora-text pr-8 leading-snug">
                       {faq.question}
                     </span>
                     <span
-                      className={`flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-aurora-gold/30 text-aurora-gold transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
+                      className={`flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border border-aurora-gold/30 text-aurora-gold-accessible transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
                       aria-hidden="true"
                     >
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -58,7 +58,7 @@ export default function FAQ() {
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       >
                         <div className="px-7 pb-6 border-t border-aurora-gold/20">
-                          <p className="pt-5 text-aurora-text leading-relaxed text-[0.9375rem]">
+                          <p className="pt-5 text-aurora-text leading-relaxed text-fluid-base">
                             {faq.answer}
                           </p>
                           <Link
