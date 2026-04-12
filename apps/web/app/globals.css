@@ -181,6 +181,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: clamp(1rem, 0.75rem + 1.5vw, 2.5rem) 0;
+  background-color: var(--aurora-bg-light);
 }
 
 .section-break::before {

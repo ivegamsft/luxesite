@@ -10,8 +10,8 @@ export default function Interstitial() {
       className="relative w-full h-[60vh] min-h-[400px] max-h-[600px] overflow-hidden bg-aurora-bg-dark"
     >
       <Image
-        src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1920&h=1080&fit=crop"
-        alt="Grand celebration venue with dramatic lighting at golden hour"
+        src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1920&h=1080&fit=crop"
+        alt="Vibrant celebration with dramatic lighting and joyful atmosphere"
         fill
         sizes="100vw"
         className="object-cover"

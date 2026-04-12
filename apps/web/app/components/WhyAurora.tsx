@@ -12,7 +12,7 @@ export default function WhyAurora() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section id="why-aurora" className="py-section-md sm:py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
+    <section id="why-aurora" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection variant="fade-up">
           <div className="mb-14 lg:mb-16">
