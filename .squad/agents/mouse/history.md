@@ -274,6 +274,18 @@ Price opacity bumped from `/60` to `/80`; region from `/60` to `/70`. All text n
 - Changed `color-scheme: dark` → `color-scheme: light` in globals.css
 - Simplified `.glass` utility — removed backdrop-blur, now solid #faf9f7 with #e8e4df border
 - Updated `.animated-border` — gold/navy/sage conic gradient, no backdrop-blur
+
+---
+
+## Cross-Agent Coordination
+
+### Trinity's Contrast Token Decision (2026-04-12)
+
+**Decision:** "Dual Gold Color Tokens for WCAG AA Compliance"  
+**Status:** Implemented in Trinity's fixes (issues #232–#235, commit 7dc22ae)  
+**Impact on Mouse:** When applying gold accent text in future design work, use `text-aurora-gold-accessible` (#7a6532) for text on light backgrounds (aurora-bg-light, aurora-bg, aurora-bg-dark). Use `text-aurora-gold` (#c9a76a) only for text on dark backgrounds (aurora-navy) or decorative elements.
+
+**Reference:** `.squad/decisions/decisions.md` → "Dual Gold Color Tokens for WCAG AA Compliance"
 - Updated `::selection` for light theme (gold on cream)
 - Updated gradients to use new gold/navy/sage palette
 - Added `subtle` and `medium` shadow tokens for light-theme elevation hierarchy

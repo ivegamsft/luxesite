@@ -763,3 +763,29 @@ Reorder sprints so design/frontend work is done first before moving on to harder
 
 User preference — prioritize visible, testable UI work before tackling backend architecture and integration work.
 
+---
+
+### Dual Gold Color Tokens for WCAG AA Compliance (2026-04-11)
+
+**Author:** Trinity  
+**Date:** 2026-04-11  
+**Status:** Implemented  
+**Commit:** 7dc22ae
+
+#### Context
+
+`text-aurora-gold` (#c9a76a) on light backgrounds (aurora-bg-light #faf9f7, aurora-bg #f5f3f0, aurora-bg-dark #f0ebe5) produces ~2.3:1 contrast ratio, failing WCAG AA (4.5:1 for normal text).
+
+#### Decision
+
+Added `aurora-gold-accessible` (#7a6532) as a new design token registered in both `globals.css @theme inline` and `tailwind.config.ts`. This achieves ~4.5:1 contrast on the lightest background.
+
+**Usage rules:**
+- `text-aurora-gold-accessible` — ALL text on light backgrounds (labels, links, accent text)
+- `text-aurora-gold` — text on dark backgrounds (aurora-navy), decorative borders, background fills
+- Never use `text-aurora-gold` for readable text on any aurora-bg-* surface
+
+#### Impact
+
+All team members creating components with gold text on light backgrounds must use `text-aurora-gold-accessible` instead of `text-aurora-gold`.
+
