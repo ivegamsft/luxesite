@@ -5,7 +5,7 @@ import React from 'react';
 const trustSignals = [
   {
     id: 'phone',
-    label: (<a href="tel:+18882005893" className="hover:text-aurora-gold transition-colors">+1 (888) 200-LUXE</a>),
+    label: (<a href="tel:+18882005893" className="hover:text-aurora-gold-accessible transition-colors">+1 (888) 200-LUXE</a>),
     sublabel: 'Available 24/7',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
@@ -69,11 +69,11 @@ export default function TrustBar() {
                 <div className="w-px h-8 bg-aurora-border shrink-0" aria-hidden="true" />
               )}
               <div className="flex items-center gap-3 min-w-0">
-                <span className={signal.highlight ? 'text-aurora-gold' : 'text-aurora-text-muted'}>
+                <span className={signal.highlight ? 'text-aurora-gold-accessible' : 'text-aurora-text-muted'}>
                   {signal.icon}
                 </span>
                 <div className="min-w-0">
-                  <p className={`text-sm font-medium leading-tight truncate ${signal.highlight ? 'text-aurora-gold' : 'text-aurora-text'}`}>
+                  <p className={`text-sm font-medium leading-tight truncate ${signal.highlight ? 'text-aurora-gold-accessible' : 'text-aurora-text'}`}>
                     {signal.label}
                   </p>
                   <p className="text-xs text-aurora-text-muted leading-tight truncate">
@@ -89,11 +89,11 @@ export default function TrustBar() {
         <div className="grid grid-cols-2 gap-4 md:hidden">
           {trustSignals.map((signal) => (
             <div key={signal.id} className="flex items-start gap-2.5">
-              <span className={`mt-0.5 shrink-0 ${signal.highlight ? 'text-aurora-gold' : 'text-aurora-text-muted'}`}>
+              <span className={`mt-0.5 shrink-0 ${signal.highlight ? 'text-aurora-gold-accessible' : 'text-aurora-text-muted'}`}>
                 {signal.icon}
               </span>
               <div className="min-w-0">
-                <p className={`text-sm font-medium leading-tight ${signal.highlight ? 'text-aurora-gold' : 'text-aurora-text'}`}>
+                <p className={`text-sm font-medium leading-tight ${signal.highlight ? 'text-aurora-gold-accessible' : 'text-aurora-text'}`}>
                   {signal.label}
                 </p>
                 <p className="text-xs text-aurora-text-muted leading-tight">

@@ -37,7 +37,7 @@ export const testimonials: Testimonial[] = [
     location: 'London, United Kingdom',
     date: 'October 2023',
     rating: 5,
-    quote: 'Four generations, ages 2 to 89, and every single person told me it was the best party they\'d ever attended. Aurora set up a kids\' adventure zone that kept the little ones thrilled, a cocktail lounge for the adults, and a memory wall where everyone pinned family photos. My 89-year-old mother danced. That says everything.'
+    quote: 'Four generations, ages 2 to 89, and every single person told me it was the best party they\'d ever attended. Aurora set up a kids\' adventure zone that kept the little ones thrilled, a lounge for the adults, and a memory wall where everyone pinned family photos. My 89-year-old mother danced. That says everything.'
   },
   {
     id: 'madison-taylor',

@@ -16,6 +16,7 @@ const config: Config = {
         "aurora-text-muted": "#6b6458",
         "aurora-border": "#e8e4df",
         "aurora-gold": "#c9a76a",
+        "aurora-gold-accessible": "#7a6532",
         "aurora-navy": "#1a3a52",
         "aurora-success": "#5a8f4a",
         "aurora-error": "#a85a4a",

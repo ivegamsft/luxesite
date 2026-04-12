@@ -70,7 +70,7 @@ export default function ExperienceList() {
   const rest = experiences.slice(1);
 
   return (
-    <section id="experiences" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-dark">
+    <section id="experiences" className="py-section-md sm:py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-dark">
       <div className="max-w-7xl mx-auto">
         {/* Editorial section intro — distinct from Destinations heading style */}
         <AnimatedSection>
@@ -115,7 +115,7 @@ export default function ExperienceList() {
 
             <div className="p-8 lg:p-10 flex flex-col flex-1">
             <div className="flex items-center gap-3 mb-8">
-              <span className="inline-flex items-center gap-1.5 text-aurora-gold text-xs font-medium tracking-[0.15em] uppercase">
+              <span className="inline-flex items-center gap-1.5 text-aurora-gold-accessible text-xs font-medium tracking-[0.15em] uppercase">
                 <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5" aria-hidden="true">
                   <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z" />
                 </svg>
@@ -139,7 +139,7 @@ export default function ExperienceList() {
                 'Dedicated event coordinator for seamless execution',
               ].map((highlight) => (
                 <li key={highlight} className="flex items-start gap-2.5 text-sm text-aurora-text-muted leading-relaxed">
-                  <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 mt-0.5 text-aurora-gold shrink-0" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 mt-0.5 text-aurora-gold-accessible shrink-0" aria-hidden="true">
                     <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143z" clipRule="evenodd" />
                   </svg>
                   {highlight}
@@ -159,7 +159,7 @@ export default function ExperienceList() {
             </div>
             <Link
               href={`/experiences/${featured.id}`}
-              className="inline-block mt-6 text-sm font-medium text-aurora-gold hover:underline underline-offset-4 transition-colors"
+              className="inline-block mt-6 text-sm font-medium text-aurora-gold-accessible hover:underline underline-offset-4 transition-colors"
             >
               Explore this experience &rarr;
             </Link>

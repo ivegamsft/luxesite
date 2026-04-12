@@ -273,7 +273,7 @@ export default function ConciergeForm() {
                 { step: '3', label: 'Receive your plan', desc: 'Bespoke, down to every detail' },
               ].map((item) => (
                 <div key={item.step} className="flex sm:flex-col items-center sm:text-center gap-4 sm:gap-0 flex-1">
-                  <div className="w-10 h-10 rounded-full border-2 border-aurora-gold/40 flex items-center justify-center text-aurora-gold font-heading font-semibold text-sm sm:mb-2 shrink-0">
+                  <div className="w-10 h-10 rounded-full border-2 border-aurora-gold/40 flex items-center justify-center text-aurora-gold-accessible font-heading font-semibold text-sm sm:mb-2 shrink-0">
                     {item.step}
                   </div>
                   <div>
@@ -302,7 +302,7 @@ export default function ConciergeForm() {
           {prefillBanner && (
             <div
               role="status"
-              className="mb-6 flex items-center gap-2 rounded-lg border border-aurora-gold/30 bg-aurora-gold/10 px-4 py-3 text-sm text-aurora-gold"
+              className="mb-6 flex items-center gap-2 rounded-lg border border-aurora-gold/30 bg-aurora-gold/10 px-4 py-3 text-sm text-aurora-gold-accessible"
             >
               <span className="shrink-0">✦</span>
               {tierIndicator 
@@ -400,7 +400,7 @@ export default function ConciergeForm() {
               <button
                 type="button"
                 onClick={() => setShowDetails(!showDetails)}
-                className="flex items-center gap-2 text-sm text-aurora-gold hover:text-aurora-gold/80 transition-colors font-medium"
+                className="flex items-center gap-2 text-sm text-aurora-gold-accessible hover:text-aurora-gold-accessible/80 transition-colors font-medium"
               >
                 <svg className={`w-4 h-4 transition-transform ${showDetails ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

@@ -63,7 +63,7 @@ export default function FAQ() {
                           </p>
                           <Link
                             href={`/faq/${faq.id}`}
-                            className="inline-block mt-4 text-xs font-medium text-aurora-gold hover:underline underline-offset-4 transition-colors"
+                            className="inline-block mt-4 text-xs font-medium text-aurora-gold-accessible hover:underline underline-offset-4 transition-colors"
                           >
                             Permalink to this question &rarr;
                           </Link>

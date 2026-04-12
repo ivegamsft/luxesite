@@ -12,11 +12,11 @@ export default function WhyAurora() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section id="why-aurora" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
+    <section id="why-aurora" className="py-section-md sm:py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection variant="fade-up">
           <div className="mb-14 lg:mb-16">
-            <p className="text-sm font-medium tracking-widest uppercase text-aurora-gold mb-3">
+            <p className="text-sm font-medium tracking-widest uppercase text-aurora-gold-accessible mb-3">
               Why Aurora
             </p>
             <h2 className="font-heading text-fluid-2xl font-bold tracking-tight text-aurora-text mb-4">
@@ -53,7 +53,7 @@ export default function WhyAurora() {
               <h3 className="font-heading text-lg font-semibold text-aurora-text">
                 {member.name}
               </h3>
-              <p className="text-sm text-aurora-gold font-medium mt-0.5">
+              <p className="text-sm text-aurora-gold-accessible font-medium mt-0.5">
                 {member.title}
               </p>
               <p className="text-xs text-aurora-text-muted mt-1 mb-4">
@@ -74,7 +74,7 @@ export default function WhyAurora() {
               </div>
               <Link
                 href={`/specialists/${member.id}`}
-                className="inline-block mt-5 text-sm font-medium text-aurora-gold hover:underline underline-offset-4 transition-colors"
+                className="inline-block mt-5 text-sm font-medium text-aurora-gold-accessible hover:underline underline-offset-4 transition-colors"
               >
                 View full profile &rarr;
               </Link>
@@ -88,7 +88,7 @@ export default function WhyAurora() {
             <a
               href="#contact"
               onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
-              className="inline-flex items-center gap-2 text-sm font-medium text-aurora-gold underline decoration-aurora-gold/40 underline-offset-4 hover:decoration-aurora-gold transition-colors focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
+              className="inline-flex items-center gap-2 text-sm font-medium text-aurora-gold-accessible underline decoration-aurora-gold/40 underline-offset-4 hover:decoration-aurora-gold transition-colors focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
             >
               Start planning with our team&nbsp;&rarr;
             </a>

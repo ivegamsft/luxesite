@@ -42,7 +42,7 @@ export default function Differentiators() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {differentiators.map((item) => (
             <div key={item.headline} className="text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-aurora-gold/10 text-aurora-gold mb-4">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-aurora-gold/10 text-aurora-gold-accessible mb-4">
                 {item.icon}
               </div>
               <h3 className="font-heading text-lg font-semibold text-aurora-text mb-2">

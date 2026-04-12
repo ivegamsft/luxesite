@@ -12,11 +12,11 @@ export default function GuideGrid() {
   const remaining = guides.slice(1);
 
   return (
-    <section id="guides" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg">
+    <section id="guides" className="py-section-md sm:py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection variant="fade-up">
           <p
-            className="text-sm font-medium tracking-widest uppercase mb-3 text-aurora-gold"
+            className="text-sm font-medium tracking-widest uppercase mb-3 text-aurora-gold-accessible"
           >
             Expert Knowledge
           </p>
@@ -54,7 +54,7 @@ export default function GuideGrid() {
             </span>
           </div>
           <div className="p-6 sm:p-8 md:p-10 flex flex-col justify-center">
-            <p className="text-xs font-medium tracking-widest uppercase mb-3 text-aurora-gold">
+            <p className="text-xs font-medium tracking-widest uppercase mb-3 text-aurora-gold-accessible">
               Featured Guide
             </p>
             <h3
@@ -72,7 +72,7 @@ export default function GuideGrid() {
               <a
                 href="#contact"
                 onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
-                className="text-sm font-medium transition-colors duration-200 underline decoration-aurora-gold/40 underline-offset-2 hover:decoration-aurora-gold text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
+                className="text-sm font-medium transition-colors duration-200 underline decoration-aurora-gold/40 underline-offset-2 hover:decoration-aurora-gold text-aurora-gold-accessible focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
               >
                 Plan Your Event&nbsp;&rarr;
               </a>
@@ -122,7 +122,7 @@ export default function GuideGrid() {
                   <a
                     href="#contact"
                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
-                    className="text-sm font-medium transition-colors duration-200 underline decoration-aurora-gold/40 underline-offset-2 hover:decoration-aurora-gold text-aurora-gold focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
+                    className="text-sm font-medium transition-colors duration-200 underline decoration-aurora-gold/40 underline-offset-2 hover:decoration-aurora-gold text-aurora-gold-accessible focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
                   >
                     Plan Your Event&nbsp;&rarr;
                   </a>

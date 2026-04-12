@@ -26,7 +26,7 @@ export const destinations: Destination[] = [
     imageUrl: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1200&h=900&fit=crop',
     quickFacts: [
       'Panoramic skyline views with open-air and covered sections',
-      'Perfect for cocktail receptions, milestone birthdays, and corporate mixers',
+      'Perfect for elegant receptions, milestone birthdays, and corporate mixers',
       'Built-in bars, lounge seating, and ambient lighting systems',
       'Climate-controlled options with retractable glass enclosures'
     ]

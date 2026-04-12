@@ -22,7 +22,7 @@ export const faqs: FAQItem[] = [
   },
   {
     id: 'all-ages',
-    question: 'Can you handle children\'s events AND adult galas?',
+    question: 'Can you handle children\'s events AND formal galas?',
     answer: 'Absolutely — that\'s our specialty. Our team includes a dedicated Children\'s Experience Architect alongside our Production Director who oversees large-scale galas. Whether it\'s a whimsical 5th birthday with character performers or a 500-guest black-tie fundraiser, we bring the same level of creativity and precision.'
   },
   {

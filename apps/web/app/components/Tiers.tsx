@@ -24,7 +24,7 @@ export default function Tiers() {
             <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight text-white">
               Tiers
             </h2>
-            <p className="text-sm text-white/50">Every event is custom-tailored to your vision.</p>
+            <p className="text-sm text-white/70">Every event is custom-tailored to your vision.</p>
           </div>
         </AnimatedSection>
 

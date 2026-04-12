@@ -7,7 +7,7 @@ import AnimatedSection from './AnimatedSection';
 
 function StarRating({ rating }: { rating: number }) {
   return (
-    <span className="text-aurora-gold text-sm tracking-wide" aria-label={`${rating} out of 5 stars`}>
+    <span className="text-aurora-gold-accessible text-sm tracking-wide" aria-label={`${rating} out of 5 stars`}>
       {'★'.repeat(rating)}{'☆'.repeat(5 - rating)}
     </span>
   );
@@ -42,14 +42,14 @@ export default function Testimonials() {
   const active = testimonials[activeIndex];
 
   return (
-    <section id="testimonials" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light relative overflow-x-clip">
+    <section id="testimonials" className="py-section-md sm:py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light relative overflow-x-clip">
       {/* Subtle decorative element to break grid monotony */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-aurora-border/30 to-transparent pointer-events-none" aria-hidden="true" />
 
       <div className="max-w-4xl mx-auto relative">
         {/* Section Label — clear hierarchy for mobile */}
         <AnimatedSection>
-          <p className="text-sm font-medium tracking-[0.2em] uppercase mb-6 text-aurora-gold">
+          <p className="text-sm font-medium tracking-[0.2em] uppercase mb-6 text-aurora-gold-accessible">
             What Our Clients Say
           </p>
         </AnimatedSection>
@@ -104,7 +104,7 @@ export default function Testimonials() {
                     href={active.sourceLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs text-aurora-gold underline decoration-aurora-gold/40 underline-offset-2 hover:decoration-aurora-gold hover:text-aurora-gold/80 transition-colors mt-3 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
+                    className="inline-flex items-center gap-1 text-xs text-aurora-gold-accessible underline decoration-aurora-gold/40 underline-offset-2 hover:decoration-aurora-gold hover:text-aurora-gold-accessible/80 transition-colors mt-3 focus:outline-none focus:ring-2 focus:ring-aurora-gold focus:ring-offset-2"
                   >
                     Verified on Trustpilot <span aria-hidden="true">&rarr;</span>
                   </a>
