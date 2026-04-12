@@ -69,14 +69,15 @@ export default function Testimonials() {
           onKeyDown={handleKeyDown}
           tabIndex={0}
         >
-          <div className="relative min-h-[200px] sm:min-h-[240px]" aria-live="polite">
+          <div className="relative min-h-[280px] sm:min-h-[300px] md:min-h-[260px] overflow-hidden" aria-live="polite">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.id}
+                className="absolute inset-0"
                 initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, ease: 'easeInOut' }}
               >
                 {active.rating && (
                   <div className="mb-4">

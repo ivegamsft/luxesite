@@ -556,3 +556,11 @@ Reorganized test screenshot artifacts out of public/ directory tree. Updated hov
 | Tiers → FAQ | section-lg | section-lg | py-section-lg + py-section-lg | 64px | 120px |
 | FAQ → ConciergeForm | section-lg | section-lg | py-section-lg + py-section-lg | 64px | 120px |
 | ConciergeForm → Footer | section-lg | section-md | py-section-lg + pt-section-md | 56px | 104px |
+
+### Testimonial Carousel Layout Shift Fix (#258) (2026-04-13)
+
+**Problem:** Carousel slides were in normal document flow inside AnimatePresence. Different content heights (varying quote lengths, optional rating/source link) caused visible layout jumps on page transitions.
+
+**Fix:** Absolutely positioned `motion.div` slides (`absolute inset-0`) within a `relative overflow-hidden` container. Bumped `min-height` to 280px mobile / 300px sm / 260px md to accommodate tallest testimonial. Added `ease: 'easeInOut'` to transition for smoother crossfade. Reduced-motion users get instant swap with no layout shift.
+
+**Key principle:** Carousel slides should always be stacked via absolute positioning so enter/exit animations never cause reflow.
