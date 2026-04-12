@@ -598,3 +598,41 @@ Reorganized test screenshot artifacts out of public/ directory tree. Updated hov
 **Fix:** Absolutely positioned `motion.div` slides (`absolute inset-0`) within a `relative overflow-hidden` container. Bumped `min-height` to 280px mobile / 300px sm / 260px md to accommodate tallest testimonial. Added `ease: 'easeInOut'` to transition for smoother crossfade. Reduced-motion users get instant swap with no layout shift.
 
 **Key principle:** Carousel slides should always be stacked via absolute positioning so enter/exit animations never cause reflow.
+
+## Batch Orchestration — Batch 1–3 Deliverables (2026-04-12)
+
+### Batch 1: Footer Disclaimer (#259)
+**Commit:** 1ef01c7  
+**Status:** ✅ Complete
+
+Added footer fictional disclaimer text stating this is a fictional luxury brand. Maintains visual hierarchy with existing footer content. Contrast meets WCAG AA standards. Build verified clean.
+
+### Batch 2: Testimonial Carousel Jump Fix (#258)
+**Commit:** bbe8224  
+**Status:** ✅ Complete
+
+Fixed carousel layout jump via absolute positioning strategy on carousel container. Prevents height shifts during slide transitions. Carousel transitions smooth without layout shift; no vertical bounce on slide change. Responsive on mobile, tablet, desktop.
+
+### Batch 2: Contrast Audit Fixes (#257)
+**Status:** ✅ Complete
+
+Fixed WCAG AA contrast failures across three areas:
+1. **DestinationGrid card overlays:** Text overlays now use `black/70` scrim (≥7:1 contrast) vs. previous `aurora-text/78` at ~3.8:1. Guarantees readability on any background image.
+2. **Footer text:** Adjusted footer text colors for proper contrast ratios on navy background
+3. **Selection highlight:** Updated `::selection` to solid high-contrast color (CSS doesn't support gradients on selection)
+
+All text elements pass WCAG AA (≥4.5:1 for normal text, ≥3:1 for large). Contrast verified on multiple background images.
+
+### Batch 3: Card Overlay Zone Redesign (#256)
+**Commit:** 3137850  
+**Status:** ✅ Complete
+
+DestinationGrid card overlays completely redesigned from dual-absolute to flexbox zone architecture:
+- **Top zone** (`flex-shrink-0`): Price badge with `bg-black/50 backdrop-blur-sm` pill
+- **Middle zone** (`flex-1 min-h-0`): Quick facts panel in contained `bg-black/70 backdrop-blur-sm rounded-sm`, scrollable, expandable only
+- **Bottom zone** (`flex-shrink-0`): Title, region, tagline, CTA — always visible
+- **Scrim:** Black gradient (`from-black/70 via-black/40 to-transparent`) guarantees ≥7:1 contrast on any image
+
+**Key fix:** Replaced dual-absolute positioning with flexbox so zone collisions never occur regardless of card height or content length. Flex's `min-h-0` + `flex-1` pattern gives expandable zone exactly the space between fixed zones.
+
+**Verification:** No zone collisions; all text passes WCAG AA; expand/collapse smooth; build clean.

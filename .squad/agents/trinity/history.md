@@ -418,3 +418,30 @@ Build: ✅ (Next.js 16.2.3). Tests: ✅ 43/43 pass.
 - **Section spacing needs responsive tiers (2026-04-11):** Generous desktop spacing (12rem) compresses poorly on mobile via clamp() alone. Use `py-section-md sm:py-section-lg` pattern to pick appropriate spacing per breakpoint tier, rather than relying on a single clamp() to serve both 375px and 1440px.
 - **Carousel pagination with responsive cardsPerView (2026-04-12):** `useCardsPerView()` hook + `Math.ceil(total / cardsPerView)` for page count. Must clamp page index on resize (cardsPerView shrinks = totalPages grows, but cardsPerView grows = page may exceed new totalPages). AnimatePresence `mode="wait"` prevents layout flash between pages.
 - **Initials avatars over external images (2026-04-12):** Placeholder avatars using gradient backgrounds + initials text eliminate external image dependencies, load instantly, and maintain visual consistency. Gradient palette per card index avoids monotony. Pattern: `bg-gradient-to-br` + `font-heading text-2xl` initials.
+
+## Batch Orchestration — Batch 1–3 Deliverables (2026-04-12)
+
+### Batch 1: 404 Page Creation (#253)
+**Commit:** 8482d38  
+**Status:** ✅ Complete
+
+Created branded 404 error page with home navigation link. Maintains Aurora Luxe aesthetic and typography. Build verified clean.
+
+### Batch 2: Nav Breakpoint Adjustment (#254)
+**Commit:** 7a454fb  
+**Status:** ✅ Complete
+
+Navigation menu breakpoint bumped from `md` → `lg` for tablet collapse. Gives tablet layouts more breathing room before menu collapses to hamburger. Responsive behavior tested at all breakpoints; mobile menu functions correctly; desktop nav remains horizontal.
+
+### Batch 3: Specialists Carousel Restoration (#255)
+**Commit:** TBD  
+**Status:** ✅ Complete
+
+Restored WhyAurora (Specialists) section with full carousel redesign:
+- **Carousel:** Framer Motion with `AnimatePresence mode="wait"` and horizontal slide transitions
+- **Responsive:** 3 cards desktop, 2 tablet, 1 mobile; prev/next arrows + dot indicators; touch swipe support
+- **7 Specialists:** Expanded from 5 generic profiles to 7 luxury experiential specialists with unique roles (Creative Director, Production Director, Immersive Design Lead, Culinary Experience Director, Entertainment Curator, Concierge Lead, Floral & Environmental Designer)
+- **Avatars:** Gradient-background initials avatars eliminate external dependencies; loads instantly
+- **Accessibility:** 44px minimum touch targets; `useReducedMotion` respected throughout
+- **Files modified:** `apps/web/app/data/team.ts`, `apps/web/app/components/WhyAurora.tsx`, `apps/web/app/specialists/[id]/page.tsx`
+- **Verification:** Build clean; all animations responsive

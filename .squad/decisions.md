@@ -835,6 +835,104 @@ Typeset audit revealed systematic typography issues:
 
 ---
 
+### 28. Contrast Rules for Aurora Luxe Palette
+**Author:** Mouse (UI/Design Dev)  
+**Date:** 2026-04-13  
+**Status:** Implemented ✅  
+**Related:** PR #257
+
+#### Decision: Gold Text Color Usage
+
+**Rule**
+- **`text-aurora-gold` (#c9a76a)** — ONLY on dark backgrounds (navy, dark scrims ≥60% opacity). Yields ~4.76:1 on navy. Never on light/white surfaces (~2:1 = fail).
+- **`text-aurora-gold-accessible` (#7a6532)** — For gold-colored text on ANY light background (bg, bg-light, bg-dark, white). Yields ~5.34:1.
+- **`text-white` on image cards** — Always requires either a solid dark pill/badge bg or a gradient scrim ≥60% opacity. Top-of-card overlays need explicit dark backgrounds (gradient scrims alone are insufficient at card tops).
+
+**Rationale**
+aurora-gold at full opacity on light backgrounds produces ~2:1 contrast ratio, far below WCAG AA 4.5:1 minimum. Semi-transparent gold (e.g., `/70`) on navy also fails (~3.4:1). These are not edge cases — they're hard failures that affect readability for everyone, not just users with vision impairments.
+
+**Impact**
+All team members creating new sections or cards should follow these rules. Any PR introducing `text-aurora-gold` should be checked for background context.
+
+**Agent:** Mouse | **Commit:** Part of #257
+
+---
+
+### 29. Card Overlay Zone Redesign (#256)
+**Author:** Mouse (UI/Design Dev)  
+**Date:** 2026-04-14  
+**Status:** Implemented ✅  
+**Related:** PR #256 | **Commit:** 3137850
+
+#### Decision
+
+Replace the absolute-positioned dual-overlay system in DestinationGrid cards with a flexbox zone architecture that prevents text/panel collisions and guarantees WCAG AA contrast on any background image.
+
+#### Implementation
+
+**Structure:** Single `absolute inset-0 flex flex-col` overlay with three zones:
+1. **Top zone** (`flex-shrink-0`): Price badge — `bg-black/50 backdrop-blur-sm` pill
+2. **Middle zone** (`flex-1 min-h-0`): Quick facts panel — `bg-black/70 backdrop-blur-sm rounded-sm`, scrollable, only visible when card is expanded
+3. **Bottom zone** (`flex-shrink-0`): Title + subtitle + CTA — always visible
+
+**Scrim:** `bg-gradient-to-t from-black/70 via-black/40 to-transparent` replaces the previous `aurora-text/78` gradient. Black at 70% opacity gives ≥7:1 contrast for white text regardless of image brightness.
+
+#### Rationale
+
+- **Zone collisions:** The old design used two independent absolute containers (quick facts pinned top-to-bottom-28, text pinned bottom-0). On featured cards (2-row span) or varying content length, these zones overlapped. Flexbox's intrinsic sizing eliminates this class of bug entirely.
+- **Contrast failure:** `aurora-text` (#2c2620, dark brown) at 78% opacity produces ~3.8:1 contrast on bright images — below WCAG AA's 4.5:1 threshold. Pure black at 70% exceeds 7:1.
+- **Quick facts containment:** The previous panel had no boundary and bled past the title area. The new `rounded-sm` panel with `mx-4` margin gives it a visually distinct floating card-within-card appearance.
+
+#### Conventions Established
+
+- Card overlays must use **flexbox zone layout**, not stacked absolutes, when mixing persistent and toggled content
+- Scrim gradients must use **black** base (not theme color) at ≥60% opacity for text contrast
+- `aurora-gold` is safe as accent text on scrims ≥50% black opacity
+- Quick facts panels should use `backdrop-blur-sm` for depth separation from the image
+
+**Agent:** Mouse | **Commit:** 3137850 | **Build+Tests:** ✅
+
+---
+
+### 30. Specialists Section — Carousel + Content Pivot
+**Author:** Trinity (Frontend Dev)  
+**Date:** 2026-04-12  
+**Status:** Implemented ✅  
+**Related:** PR #255
+
+#### Context
+
+The Specialists (WhyAurora) section regressed to a static 3-card grid showing only 3 of 5 team members. Content didn't reflect the brand pivot to luxury experiential celebrations.
+
+#### Decision
+
+1. **Carousel with Framer Motion:** Replaced static grid with paginated carousel using `AnimatePresence mode="wait"` and horizontal slide transitions. Responsive: 3 cards desktop, 2 tablet, 1 mobile. Prev/next arrows + dot indicators. Touch swipe support on mobile.
+
+2. **7 Specialists with pivot-aligned roles:** Expanded from 5 generic profiles to 7 specialists with luxury experiential titles (Creative Director, Production Director, Immersive Design Lead, Culinary Experience Director, Entertainment Curator, Concierge Lead, Floral & Environmental Designer). Each has 4 unique skill tags — no repetition across cards.
+
+3. **Initials-based avatars:** Replaced external Unsplash image URLs with gradient-background initials avatars. Eliminates external dependency, loads instantly, maintains brand aesthetic with warm gold/navy gradients.
+
+4. **Detail page updated:** Specialist detail pages (`/specialists/[id]`) also use initials avatars instead of `next/image` with empty URLs.
+
+#### Rationale
+
+- Carousel exposes all 7 specialists without overwhelming the viewport
+- Framer Motion already in the project — no new dependencies
+- Initials avatars are more reliable than placeholder image services
+- 44px min touch targets on all interactive elements (WCAG 2.5.5)
+- `useReducedMotion` respected throughout
+
+#### Impact
+
+- `apps/web/app/data/team.ts` — 7 specialists, new titles/bios/tags
+- `apps/web/app/components/WhyAurora.tsx` — full rewrite to carousel
+- `apps/web/app/specialists/[id]/page.tsx` — initials avatars
+- Build verified clean
+
+**Agent:** Trinity | **Build+Tests:** ✅
+
+---
+
 ## Governance
 
 - All meaningful changes require team consensus
