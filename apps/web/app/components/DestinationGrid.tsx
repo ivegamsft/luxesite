@@ -156,6 +156,7 @@ export default function DestinationGrid() {
                     onClick={() => toggleCard(destination.slug)}
                     onKeyDown={(e) => handleKeyDown(e, destination.slug)}
                   >
+                    {/* Image layer */}
                     <div className={`relative bg-aurora-bg-dark ${isFeature ? 'aspect-[16/9] md:aspect-auto md:h-full' : 'aspect-[4/3]'}`}>
                       <Image
                         src={destination.imageUrl}
@@ -165,61 +166,71 @@ export default function DestinationGrid() {
                         sizes={isFeature ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'}
                         loading={index < 6 ? 'eager' : 'lazy'}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-aurora-text/78 via-aurora-text/24 to-transparent pointer-events-none"></div>
-                      <div className="absolute top-0 right-0 w-2/3 h-1/3 bg-gradient-to-bl from-aurora-text/24 to-transparent pointer-events-none"></div>
 
-                      <div className="absolute top-5 right-5">
-                        <span className="font-heading text-base tracking-wide text-white tabular-nums bg-aurora-text/60 backdrop-blur-sm rounded-full px-3 py-1">
+                      {/* Permanent scrim — guarantees WCAG AA on ANY image */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent pointer-events-none" />
+                      <div className="absolute top-0 right-0 w-2/3 h-1/3 bg-gradient-to-bl from-black/30 to-transparent pointer-events-none" />
+                    </div>
+
+                    {/* Overlay zones — flex column, pinned over the image */}
+                    <div className="absolute inset-0 flex flex-col pointer-events-none">
+
+                      {/* ─── Top zone: Price badge ─── */}
+                      <div className="flex-shrink-0 flex justify-end p-4 md:p-5 pointer-events-auto">
+                        <span className="font-heading text-sm tracking-wide text-white tabular-nums bg-black/50 backdrop-blur-sm rounded-full px-3.5 py-1.5">
                           from {destination.currency}{destination.price.toLocaleString()}
                         </span>
                       </div>
 
-                      {/* Quick facts overlay — only shown when card is expanded (clicked), not on hover */}
+                      {/* ─── Middle zone: Quick facts (expanded state) ─── */}
                       <div
-                        className={`absolute inset-x-0 top-0 bottom-28 bg-gradient-to-b from-aurora-text/92 via-aurora-text/84 to-aurora-text/72 transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                        className={`flex-1 min-h-0 transition-opacity duration-300 ${isExpanded ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
                         onClick={(e) => e.stopPropagation()}
                         onKeyDown={(e) => e.stopPropagation()}
                       >
-                        <div className="h-full overflow-y-auto overscroll-contain px-5 py-5 md:px-6 md:py-6">
-                          <h4 className="font-heading text-base font-semibold mb-3 text-aurora-gold tracking-wide">Quick Facts</h4>
-                          <ul className="space-y-2 text-sm text-white/92 pr-2">
-                            {destination.quickFacts.map((fact, i) => (
-                              <li key={i} className="flex items-start gap-2.5">
-                                <span className="text-aurora-gold mt-0.5 flex-shrink-0">•</span>
-                                <span className="leading-relaxed">{fact}</span>
-                              </li>
-                            ))}
-                          </ul>
+                        <div className="h-full mx-4 md:mx-5 rounded-sm bg-black/70 backdrop-blur-sm overflow-y-auto overscroll-contain scrollbar-hide">
+                          <div className="px-4 py-4 md:px-5 md:py-5">
+                            <h4 className="font-heading text-sm font-semibold mb-3 text-aurora-gold tracking-wide uppercase">Quick Facts</h4>
+                            <ul className="space-y-2 text-sm text-white/90">
+                              {destination.quickFacts.map((fact, i) => (
+                                <li key={i} className="flex items-start gap-2.5">
+                                  <span className="text-aurora-gold mt-0.5 flex-shrink-0 text-[10px]">◆</span>
+                                  <span className="leading-relaxed">{fact}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
-                      <h3 className={`font-heading font-medium mb-1 text-white ${isFeature ? 'text-fluid-xl' : 'text-fluid-lg'}`}>
-                        {destination.name}
-                      </h3>
-                      <p className="text-sm text-white/70 mb-1">
-                        {destination.region}
-                      </p>
-                      <p className="text-sm text-white/80 italic mb-2">
-                        {destination.tagline}
-                      </p>
-                      <Link
-                        href={`/destinations/${destination.slug}`}
-                        className="inline-flex items-center gap-1 text-xs font-medium tracking-wide text-aurora-gold hover:underline underline-offset-4"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        View details &rarr;
-                      </Link>
-                      <span
-                        className="inline-flex items-center gap-1 text-xs font-medium tracking-wide text-aurora-gold md:hidden"
-                        aria-hidden="true"
-                      >
-                        Tap to explore
-                        <svg className="w-3.5 h-3.5 animate-[bounceX_1.5s_ease-in-out_3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                        </svg>
-                      </span>
+                      {/* ─── Bottom zone: Title + subtitle + CTA ─── */}
+                      <div className="flex-shrink-0 p-4 pt-6 md:p-5 md:pt-8 pointer-events-auto">
+                        <h3 className={`font-heading font-medium leading-tight text-white ${isFeature ? 'text-fluid-xl' : 'text-fluid-lg'}`}>
+                          {destination.name}
+                        </h3>
+                        <p className="text-sm text-white/75 mt-1">
+                          {destination.region}
+                        </p>
+                        <p className="text-sm text-white/85 italic mt-1">
+                          {destination.tagline}
+                        </p>
+                        <div className="flex items-center gap-4 mt-3">
+                          <Link
+                            href={`/destinations/${destination.slug}`}
+                            className="inline-flex items-center gap-1.5 text-xs font-medium tracking-wider uppercase text-aurora-gold hover:text-white transition-colors underline-offset-4 hover:underline"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            View details
+                            <span aria-hidden="true">&rarr;</span>
+                          </Link>
+                          <span
+                            className="inline-flex items-center gap-1 text-xs font-medium tracking-wide text-aurora-gold/80 md:hidden"
+                            aria-hidden="true"
+                          >
+                            Tap to explore
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
                 );

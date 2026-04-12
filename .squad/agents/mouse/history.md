@@ -14,7 +14,21 @@
 
 <!-- Append new learnings below. Each entry is something lasting about the project. -->
 
-### Contrast Accessibility Fixes (#257) (2026-04-13)
+### Card Overlay Zone Redesign (#256) (2026-04-14)
+
+**Problem:** Destination card overlays had three compounding issues: (1) bottom text zone (`absolute bottom-0`) and quick-facts panel (`absolute top-0 bottom-28`) used independent absolute positioning causing overlap collisions, (2) white text on light image regions failed WCAG AA — the `aurora-text/78` scrim was insufficient on bright photos (Alpine snow, Dubai skyline), (3) the quick-facts scrollable panel had no containment boundary and bled into the title area.
+
+**Solution — Flexbox zone architecture:**
+Replaced the dual-absolute overlay system with a single `absolute inset-0 flex flex-col` container that divides the card into three non-overlapping zones:
+- **Top zone** (`flex-shrink-0`): Price badge with `bg-black/50 backdrop-blur-sm` pill
+- **Middle zone** (`flex-1 min-h-0`): Quick facts in a contained `bg-black/70 backdrop-blur-sm rounded-sm` panel with `overflow-y-auto` — only visible when expanded
+- **Bottom zone** (`flex-shrink-0`): Title, region, tagline, CTA — always visible
+
+**Scrim strategy:** Switched from `aurora-text/78` (brown, ~3.8:1 on bright images) to `black/70` gradient which guarantees ≥7:1 contrast ratio for white text on any image. Top-right corner scrim at `black/30` protects the price badge zone.
+
+**Key insight:** Card overlays with both "always visible" and "toggle visible" content zones must use flexbox, not stacked absolutes. Flex's `min-h-0` + `flex-1` pattern gives the expandable zone exactly the space between fixed zones, preventing collision regardless of card height or content length.
+
+### Contrast Accessibility Fixes (#257)(2026-04-13)
 
 **Audited all 9 section components** for WCAG 2.1 AA contrast compliance. Found and fixed three issues:
 
