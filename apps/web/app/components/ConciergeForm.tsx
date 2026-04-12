@@ -93,6 +93,14 @@ export default function ConciergeForm() {
         spectacular: 'Spectacular (500+)',
       };
 
+      // Default guest count for each tier (min of range)
+      const guestDefaults: Record<string, number> = {
+        intimate: 12,
+        medium: 25,
+        grand: 100,
+        spectacular: 500,
+      };
+
       setFormData((prev) => {
         const parts: string[] = [];
         if (occasion) parts.push(`Occasion: ${destLabels[occasion] ?? occasion}`);
@@ -114,6 +122,7 @@ export default function ConciergeForm() {
         return {
           ...prev,
           interests: mergedInterests,
+          expectedGuests: guestCount ? (guestDefaults[guestCount] ?? prev.expectedGuests) : prev.expectedGuests,
           notes: prev.notes ? prev.notes : prefillText,
         };
       });
@@ -250,16 +259,20 @@ export default function ConciergeForm() {
     'w-full bg-white border border-aurora-border rounded-lg px-4 py-3 text-aurora-text focus:border-aurora-gold focus:ring-2 focus:ring-aurora-gold/50 focus:outline-none transition-all min-h-[44px]';
 
   return (
-    <section id="contact" className="pt-section-sm sm:pt-section-lg pb-section-md sm:pb-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
+    <section id="contact" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-bg-light">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header — warm, conversational */}
+        {/* Section Header */}
         <AnimatedSection>
-          <div className="mb-6 sm:mb-10">
-            <p className="text-fluid-lg text-aurora-text-muted max-w-[50ch] leading-relaxed">
-              Tell us about your dream celebration.{' '}
-              <span className="text-aurora-text font-heading font-medium">We&rsquo;ll handle every detail from&nbsp;here.</span>
+          <div className="mb-10 md:mb-14">
+            <p className="text-sm font-medium tracking-[0.2em] uppercase text-aurora-gold-accessible mb-3">
+              Get Started
             </p>
-            <h2 className="sr-only">Request a Consultation</h2>
+            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight text-aurora-text mb-4">
+              Request a Consultation
+            </h2>
+            <p className="section-intro">
+              Tell us about your dream celebration. We&rsquo;ll handle every detail from&nbsp;here.
+            </p>
           </div>
         </AnimatedSection>
 

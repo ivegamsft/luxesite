@@ -74,9 +74,11 @@ export default function ExperienceList() {
       <div className="max-w-7xl mx-auto">
         {/* Editorial section intro — distinct from Destinations heading style */}
         <AnimatedSection>
-          <div className="mb-16 md:mb-20 max-w-3xl">
-            <div className="editorial-divider mb-8" aria-hidden="true"></div>
-            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-5 text-aurora-text">
+          <div className="mb-12 md:mb-16 max-w-3xl">
+            <p className="text-sm font-medium tracking-[0.2em] uppercase text-aurora-gold-accessible mb-3">
+              Signature Experiences
+            </p>
+            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight text-aurora-text mb-4">
               Productions, Not Parties
             </h2>
             <p className="section-intro">

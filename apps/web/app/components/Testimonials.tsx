@@ -47,19 +47,17 @@ export default function Testimonials() {
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-aurora-border/30 to-transparent pointer-events-none" aria-hidden="true" />
 
       <div className="max-w-4xl mx-auto relative">
-        {/* Section Label — clear hierarchy for mobile */}
         <AnimatedSection>
-          <p className="text-sm font-medium tracking-[0.2em] uppercase mb-6 text-aurora-gold-accessible">
-            What Our Clients Say
-          </p>
-        </AnimatedSection>
-
-        {/* Section Header — editorial, no gold-label pattern */}
-        <AnimatedSection>
-          <div className="mb-10 sm:mb-16">
-            <h2 className="font-heading italic text-fluid-2xl text-aurora-text-muted max-w-[75ch] leading-snug tracking-tight">
-              &ldquo;The measure of an event is not the spectacle&nbsp;&mdash; it&rsquo;s the silence when you remember.&rdquo;
+          <div className="mb-10 sm:mb-14">
+            <p className="text-sm font-medium tracking-[0.2em] uppercase text-aurora-gold-accessible mb-3">
+              What Our Clients Say
+            </p>
+            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight text-aurora-text mb-4">
+              Voices of Celebration
             </h2>
+            <p className="font-heading italic text-fluid-lg text-aurora-text-muted max-w-[60ch] leading-snug">
+              &ldquo;The measure of an event is not the spectacle&nbsp;&mdash; it&rsquo;s the silence when you remember.&rdquo;
+            </p>
           </div>
         </AnimatedSection>
 

@@ -78,10 +78,10 @@ export default function DestinationGrid() {
       <div className="max-w-7xl mx-auto">
         <AnimatedSection variant="fade-up">
           <div className="mb-12 md:mb-16">
-            <p className="text-sm font-medium tracking-[0.2em] uppercase mb-4 text-aurora-gold-accessible">
+            <p className="text-sm font-medium tracking-[0.2em] uppercase text-aurora-gold-accessible mb-3">
             Extraordinary Venues
             </p>
-            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight mb-5">
+            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight text-aurora-text mb-4">
               Celebration Spaces
             </h2>
             <div className="editorial-divider mb-6" aria-hidden="true"></div>

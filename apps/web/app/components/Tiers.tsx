@@ -17,14 +17,17 @@ export default function Tiers() {
     : cardVariants;
 
   return (
-    <section id="membership" className="py-section-md sm:py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-navy">
+    <section id="membership" className="py-section-lg px-4 sm:px-6 lg:px-12 bg-aurora-navy">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection variant="fade-up">
-          <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
-            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight text-white">
-              Tiers
+          <div className="mb-12 md:mb-16">
+            <p className="text-sm font-medium tracking-[0.2em] uppercase text-aurora-gold mb-3">
+              Membership
+            </p>
+            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight text-white mb-4">
+              Three Tiers. One Standard.
             </h2>
-            <p className="text-sm text-white/70">Every event is custom-tailored to your vision.</p>
+            <p className="text-base text-white/70 max-w-xl leading-relaxed">Every event is custom-tailored to your vision.</p>
           </div>
         </AnimatedSection>
 
@@ -47,13 +50,13 @@ export default function Tiers() {
             >
 
               <div className="mb-8">
-                <h3 className="font-heading text-fluid-xl font-medium mb-2 text-aurora-text">
+                <h3 className="font-heading text-fluid-xl font-semibold mb-2 text-aurora-text">
                   {tier.name}
                 </h3>
-                <p className="text-xs md:text-sm text-aurora-text-muted mb-4">
+                <p className="text-sm text-aurora-text-muted mb-4">
                   {tier.tagline}
                 </p>
-                <div className="text-fluid-xl font-bold text-aurora-text tabular-nums">
+                <div className="text-fluid-lg font-bold text-aurora-text tabular-nums">
                   {tier.price.includes('/') ? (
                     <>
                       {tier.price.split('/')[0]}

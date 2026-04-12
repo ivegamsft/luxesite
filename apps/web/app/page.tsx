@@ -14,10 +14,6 @@ import ConciergeForm from './components/ConciergeForm';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 
-function SectionBreak() {
-  return <div className="section-break" aria-hidden="true" />;
-}
-
 export default function Home() {
   return (
     <>
@@ -30,11 +26,9 @@ export default function Home() {
 
         {/* Act 2 — Expertise & Authority */}
         <WhyAurora />
-        <SectionBreak />
 
         {/* Act 3 — Discovery: Browse the world */}
         <DestinationGrid />
-        <SectionBreak />
         <ExperienceList />
 
         {/* Act 4 — Social Proof */}

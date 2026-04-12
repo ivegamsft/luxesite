@@ -16,13 +16,13 @@ export default function WhyAurora() {
       <div className="max-w-7xl mx-auto">
         <AnimatedSection variant="fade-up">
           <div className="mb-14 lg:mb-16">
-            <p className="text-sm font-medium tracking-widest uppercase text-aurora-gold-accessible mb-3">
+            <p className="text-sm font-medium tracking-[0.2em] uppercase text-aurora-gold-accessible mb-3">
               Why Aurora
             </p>
-            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight text-aurora-text mb-4">
+            <h2 className="font-heading text-fluid-2xl font-semibold tracking-tight leading-tight text-aurora-text mb-4">
               Designed by Specialists, Not Algorithms
             </h2>
-            <p className="text-aurora-text-muted max-w-2xl text-base leading-relaxed">
+            <p className="section-intro">
               Every Aurora celebration is shaped by an event specialist with over a decade of production experience — someone who has transformed the venues, curated the entertainment, and built the vendor relationships that make the impossible effortless.
             </p>
           </div>
