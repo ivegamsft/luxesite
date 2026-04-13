@@ -140,3 +140,43 @@ Audited and refreshed core site documentation to align with current implementati
 - Design system documentation explicit in README — new contributors understand token strategy without hunting globals.css
 - "What's Next" aligns marketing docs with engineering roadmap (24 specs across Sprint 2-4)
 
+### Spec Audit: Brand Pivot Compliance (#214, 2026-04-15)
+
+**Status:** ✅ COMPLETE — Audit findings written to `.squad/decisions/inbox/morpheus-spec-audit.md`
+
+Conducted comprehensive audit of all 24 spec files for stale travel-era references post-brand pivot (travel → party platform, tiers renamed to One Time / Yearly / Gift, pricing updated to $500K / $1.2M / $250K).
+
+**Key Findings:**
+- ✅ 21 of 24 specs (87.5%) fully aligned with pivot
+- ⚠️ 1 spec (`sample-data-pack.md`) has minor terminology inconsistencies (specialist role titles still reference "Destination Manager")
+- ❌ 2 specs (`luxurysite.md`, `site.md`) contradict frozen design system by referencing outdated dark-theme palette (neon, glassmorphism, #0a0a0f colors) instead of current warm ivory + champagne gold
+
+**Critical Issue:** The two visual palette specs will confuse implementation engineers during Phase 2. Design system is intentionally frozen (warm ivory, champagne gold, editorial restraint) to teach learners that business pivots don't require visual rework. These specs reintroduce old dark palette — must be rewritten.
+
+**Recommendations:**
+- **P1 (Critical):** Rewrite visual sections in `luxurysite.md` and `site.md` to use current frozen palette (4–6 hours)
+- **P2 (Nice-to-have):** Update specialist role terminology in `sample-data-pack.md` (1 hour)
+
+**Impact on downstream work:**
+- Ready to proceed with Phase 2 implementation after P1 fixes
+- No blocking issues with core business logic, APIs, security, or infrastructure specs
+- All tier-specific language (One-Time, Yearly, Gift) consistent across content/booking/security specs
+
+**What the audit teaches:** Keeping a frozen design system across a business pivot is a deliberate pattern. It demonstrates to learners that architecture (semantic structure, types, APIs) and visual identity (colors, typography) are separate concerns. Business pivots change the former; good design systems absorb those changes in the content layer without visual churn.
+
+### Monorepo Config Consolidation (#277, PR #279)
+
+**Status:** ✅ COMPLETE
+
+Restructured test configuration for proper monorepo hygiene:
+
+- **Root `package.json` added:** `private: true`, `workspaces: ["apps/*"]`, test scripts delegating to `tests/` configs
+- **`playwright.config.ts` → `tests/e2e/playwright.config.ts`:** Updated `testDir` to `.`, `outputDir`/`reportFolder` relative to new location, `webServer.cwd` to `../../apps/web`
+- **`jest.config.js` → `tests/unit/jest.config.js`:** Updated `webRoot` resolution to `../../apps/web`, `setupFilesAfterEnv` to `<rootDir>/../jest.setup.ts`, `roots` to `<rootDir>` (now inside `tests/unit/`)
+- **`apps/web/package.json`:** Test scripts updated to reference new config paths
+- **`package-lock.json`:** Regenerated from new root `package.json` with workspaces
+
+**Verification:** 47/47 unit tests passed, 19/19 e2e tests passed.
+
+**Key pattern:** Config files live next to what they configure. `tests/e2e/` owns its Playwright config; `tests/unit/` owns its Jest config. Root `package.json` is the orchestrator — it delegates, never duplicates.
+

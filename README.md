@@ -183,7 +183,7 @@ All colors registered in `@theme inline` for Tailwind v4 utility generation.
 - `guides.ts` – FAQ responses
 - `awards.ts` – Trust bar credentials
 
-**Content voice** (per `spec/documentation-update.md`):
+**Content voice** (per `spec/s1-foundation-brand/documentation-update.md`):
 - Luxurious + imaginative + professional + intentionally fictional
 - Believability-anchored (real prices, real destinations, real feasibility)
 - No false claims or AI hype
@@ -194,25 +194,25 @@ All colors registered in `@theme inline` for Tailwind v4 utility generation.
 See `spec/` directory for priorities:
 
 ### Platform & Architecture
-- **Content APIs** (`spec/content-apis.md`) — Versioned REST endpoints for experience packages, tier data, specialist profiles
-- **Backend Phase 1** (`spec/booking-consultation-apis.md`) — Consultation booking flow, event details capture, tier-specific fields
-- **Monorepo Expansion** (`spec/monorepo-architecture.md`) — Backend services (Node/Python), shared types, API contracts
+- **Content APIs** (`spec/s3-apis-content/content-apis.md`) — Versioned REST endpoints for experience packages, tier data, specialist profiles
+- **Backend Phase 1** (`spec/s3-apis-content/booking-consultation-apis.md`) — Consultation booking flow, event details capture, tier-specific fields
+- **Monorepo Expansion** (`spec/s6-infrastructure-devops/monorepo-architecture.md`) — Backend services (Node/Python), shared types, API contracts
 
 ### Security & Identity
-- **Authentication** (`spec/security-architecture.md`) — OAuth2/OIDC for staff, JWT session tokens, two-party identity for Gift tier
+- **Authentication** (`spec/s5-security-auth/security-architecture.md`) — OAuth2/OIDC for staff, JWT session tokens, two-party identity for Gift tier
 - **API Security** — Rate limiting, content filtering, PII encryption, admin RBAC
-- **Infrastructure** (`spec/azure-architecture.md`) — Azure App Service, Key Vault, API Management gateway, VNet isolation
+- **Infrastructure** (`spec/s6-infrastructure-devops/azure-architecture.md`) — Azure App Service, Key Vault, API Management gateway, VNet isolation
 
 ### Content & AI
-- **Content Management** (`spec/content-management.md`) — Headless CMS integration, draft/publish workflow, content versioning
-- **AI Concierge** (`spec/ai-excursion-builder.md`) — LLM-powered experience builder, prompt engineering, guardrails
-- **Internationalization** (`spec/accessibility-i18n.md`) — i18n for 5+ languages, locale-aware pricing, cultural adaptation
+- **Content Management** (`spec/s3-apis-content/content-management.md`) — Headless CMS integration, draft/publish workflow, content versioning
+- **AI Concierge** (`spec/s4-ai-intelligence/ai-excursion-builder.md`) — LLM-powered experience builder, prompt engineering, guardrails
+- **Internationalization** (`spec/s2-frontend-data/accessibility-i18n.md`) — i18n for 5+ languages, locale-aware pricing, cultural adaptation
 
 ### Operations & Quality
-- **Testing Strategy** (`spec/testing-strategy.md`) — Jest unit + Playwright e2e, accessibility testing, screenshot regression
-- **Observability** (`spec/observability.md`) — Application Insights telemetry, error tracking, performance monitoring
-- **CI/CD** (`spec/cicd-pipeline.md`) — GitHub Actions, automated tests, staging/production environments
-- **Sample Data Pack** (`spec/sample-data-pack.md`) — Import scripts, realistic fixture data for testing
+- **Testing Strategy** (`spec/s8-testing/testing-strategy.md`) — Jest unit + Playwright e2e, accessibility testing, screenshot regression
+- **Observability** (`spec/s6-infrastructure-devops/observability.md`) — Application Insights telemetry, error tracking, performance monitoring
+- **CI/CD** (`spec/s6-infrastructure-devops/cicd-pipeline.md`) — GitHub Actions, automated tests, staging/production environments
+- **Sample Data Pack** (`spec/s2-frontend-data/sample-data-pack.md`) — Import scripts, realistic fixture data for testing
 
 ## Learning Patterns
 

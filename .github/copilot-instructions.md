@@ -42,7 +42,7 @@ The tiers are structurally different products, not pricing levels:
 - **Yearly** ($1.2M/yr) — Annual subscription
 - **Gift** ($250K) — Third-party purchase (buyer ≠ recipient)
 
-See `spec/brand-pivot.md` for the full brand specification and `spec/tier-architecture-spike.md` for the discriminated union data model.
+See `spec/s1-foundation-brand/brand-pivot.md` for the full brand specification and `spec/s2-frontend-data/tier-architecture-spike.md` for the discriminated union data model.
 
 ## Key Conventions
 
@@ -97,14 +97,14 @@ The consultation form has an expandable "Share more details" section. Interest c
 
 The `spec/` directory contains project specifications — these are the source of truth for planned features. Key specs:
 
-- **`spec/brand-pivot.md`** — Current brand direction: luxury experiential party platform (pivoted from travel). Three service tiers are structurally different transaction types (discriminated union), not pricing levels.
-- **`spec/tier-architecture-spike.md`** — Discriminated union data model: `ServiceTier = OneTimeEvent | YearlySubscription | GiftPurchase`. Dates are ISO strings, forms use progressive disclosure, APIs are separate per tier.
-- **`spec/testing-strategy.md`** — Test pyramid: Jest unit → integration → Playwright E2E. Collocate tests, target 80%+ coverage, test tier-specific flows.
-- **`spec/security-architecture.md`** — Memory-only access tokens + HttpOnly refresh tokens, strict RBAC, server-side auth checks, security headers.
-- **`spec/frontend-data-migration.md`** — Migrate static data via adapter pattern (static → API → CMS) behind feature flags.
-- **`spec/observability.md`** — Structured JSON logging, never log PII or payment info.
-- **`spec/content-apis.md`** — URL-versioned APIs (`/v1`, `/v2`), tier-aware, cached, typed models.
-- **`spec/azure-architecture.md`** — Container Apps + APIM + Cosmos DB + PostgreSQL; APIM is the only public ingress.
+- **`spec/s1-foundation-brand/brand-pivot.md`** — Current brand direction: luxury experiential party platform (pivoted from travel). Three service tiers are structurally different transaction types (discriminated union), not pricing levels.
+- **`spec/s2-frontend-data/tier-architecture-spike.md`** — Discriminated union data model: `ServiceTier = OneTimeEvent | YearlySubscription | GiftPurchase`. Dates are ISO strings, forms use progressive disclosure, APIs are separate per tier.
+- **`spec/s8-testing/testing-strategy.md`** — Test pyramid: Jest unit → integration → Playwright E2E. Collocate tests, target 80%+ coverage, test tier-specific flows.
+- **`spec/s5-security-auth/security-architecture.md`** — Memory-only access tokens + HttpOnly refresh tokens, strict RBAC, server-side auth checks, security headers.
+- **`spec/s2-frontend-data/frontend-data-migration.md`** — Migrate static data via adapter pattern (static → API → CMS) behind feature flags.
+- **`spec/s6-infrastructure-devops/observability.md`** — Structured JSON logging, never log PII or payment info.
+- **`spec/s3-apis-content/content-apis.md`** — URL-versioned APIs (`/v1`, `/v2`), tier-aware, cached, typed models.
+- **`spec/s6-infrastructure-devops/azure-architecture.md`** — Container Apps + APIM + Cosmos DB + PostgreSQL; APIM is the only public ingress.
 
 ### Cross-Cutting Conventions from Specs
 

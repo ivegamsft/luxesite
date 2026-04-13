@@ -172,3 +172,23 @@ All major sections: 24–33px per side. ExperienceList uses smaller `py-section-
 - **Actual computed padding at 1440px is 60px, not 126px.** The previous audit's CSS math assumed max clamp values would apply, but the fluid formula's preferred value at 1440px viewport is well below the max. The clamp max (12rem) only kicks in at ~2500px+ viewports.
 - **Playwright bounding box measurements** are the authoritative way to verify spacing. CSS token math can be misleading because clamp() preferred values depend on viewport width.
 - **To run Playwright scripts outside apps/web/node_modules scope:** Create .mjs files in `apps/web/` directory (where node_modules lives) and use relative paths to output directories. ESM imports from `playwright` resolve correctly when cwd has the package installed.
+
+### GitHub Issue Audit — Brand Pivot Alignment (2026-04-13)
+
+**Session:** Scan all open GitHub issues for stale travel-era brand references.  
+**Status:** ✅ COMPLETE — No issues require updates.
+
+**Method:** `gh issue list --state open --limit 100`, manual review of all 7 issue bodies for travel keywords (travel, destinations, flights, hotels, itinerary, journey) and old tier names (Silver, Black, Obsidian).
+
+**Findings:**
+- **All 7 open issues are pivot-aligned.** No stale content detected.
+- Issue #268 explicitly uses correct post-pivot tier names: `OneTimeEvent`, `YearlySubscription`, `GiftPurchase`.
+- Recent closed issues (#232–#260) show successful content migration during the pivot (e.g., #233 resolved "adult-only references" issue).
+- **Confidence:** High — full-body audit of all open issues completed.
+
+**Output:** `.squad/decisions/inbox/tank-issue-audit.md`
+
+## Learnings
+
+- **GitHub Issue Backlog is Pivot-Complete.** All open issues reference post-pivot features (Phase 2 architecture, skills, team scaling). No travel-era vestiges remain in the public backlog.
+- **Issue #268's Tier Model is Authoritative.** Future architectural decisions should reference the discriminated union pattern established there: `OneTimeEvent | YearlySubscription | GiftPurchase`.
