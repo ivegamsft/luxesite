@@ -39,6 +39,14 @@ export default function Differentiators() {
   return (
     <section className="py-section-xs px-4 sm:px-6 lg:px-12 bg-aurora-bg">
       <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="font-heading text-fluid-2xl font-bold text-aurora-text mb-4">
+            The Aurora Difference
+          </h2>
+          <p className="text-aurora-text-muted max-w-2xl mx-auto leading-relaxed">
+            Bespoke event production backed by unparalleled expertise, personal attention, and around-the-clock support.
+          </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {differentiators.map((item) => (
             <div key={item.headline} className="text-center">

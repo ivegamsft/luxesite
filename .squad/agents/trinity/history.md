@@ -464,3 +464,36 @@ Replaced free-text event date input with native HTML date picker (`type="date"`)
 ## Learnings
 
 - **Default optional-section fields to least-restrictive (2026-04-12):** When a form field lives inside a collapsible "optional details" section, default its state to the most permissive option. The date flexibility defaulted to "Exact Date" initially, which broke submission for users who never expanded the section. Changed to "No specific date yet" to match the section's optional nature.
+
+### Typography Fixes — PressAwards, Differentiators, Footer, ScrollNav (2026-04-12)
+
+**Status:** ✅ COMPLETE
+
+**Fix 1 — PressAwards typography normalization (MEDIUM priority):**
+- Reduced from 5 wildly divergent typographic styles to 2 consistent variants
+- Serif italic for editorial brands (Condé Nast), sans-semibold for everything else
+- Eliminated font-light (too thin for readability), replaced with font-semibold
+- Normalized extreme tracking values: tracking-[0.35em], tracking-[0.3em], tracking-[0.25em], tracking-[0.2em], tracking-[0.15em] → tracking-wide (consistent, readable)
+- Pattern: award typography should feel editorially varied but not wildly inconsistent
+
+**Fix 2 — Differentiators section heading (LOW priority):**
+- Added h2 heading "The Aurora Difference" with ont-heading text-fluid-2xl font-bold
+- Added intro paragraph: "Bespoke event production backed by unparalleled expertise, personal attention, and around-the-clock support."
+- Follows same editorial pattern as WhyAurora, DestinationGrid, other sections
+- Pattern: every major content section needs a section-level h2 for visual hierarchy and accessibility
+
+**Fix 3 — text-xs → text-sm promotion (LOW priority):**
+- Footer disclaimer text: text-xs → text-sm (important legal/brand info deserves readable size)
+- ScrollNav labels: text-xs → text-sm (key navigation element, not supplementary)
+- Pattern: reserve text-xs for truly supplementary content only, not core navigation or important messaging
+
+**Fix 4 — TrustBar mobile readability (LOW priority):**
+- Reviewed TrustBar sizing — current text-sm/text-xs is intentional for compactness
+- Content is supplementary (credibility signals), not primary
+- No changes needed — sizing is accessible and appropriate for the component's role
+
+**Design System Learnings:**
+- Press award typography normalization (2026-04-12): Reduced PressAwards from 5 wildly divergent typographic styles down to 2 (serif italic for editorial brands like Condé Nast, sans-semibold for everything else). Eliminated font-light (too thin for readability) and extreme tracking values (tracking-[0.35em] → tracking-wide). Award typography should feel varied but not chaotic.
+- Section headings are not optional (2026-04-12): Every major content section needs an h2 heading for visual hierarchy and accessibility. Differentiators lacked a section-level heading — added "The Aurora Difference" + intro paragraph following the same editorial pattern as WhyAurora and DestinationGrid.
+- text-xs is often too small (2026-04-12): Footer disclaimer (important legal/brand info) and ScrollNav labels (key navigation) were using text-xs. Promoted to text-sm for improved readability and accessibility. Reserve text-xs for truly supplementary content only.
+- TrustBar sizing is deliberate (2026-04-12): TrustBar uses text-sm/text-xs intentionally for compactness. Current sizing is accessible on mobile and doesn't warrant change — the content is supplementary (credibility signals), not primary.

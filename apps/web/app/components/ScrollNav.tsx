@@ -69,7 +69,7 @@ export default function ScrollNav() {
             className="group flex items-center gap-2 focus:outline-none"
           >
             <span
-              className={`text-xs font-medium tracking-wide transition-all duration-200 ${
+              className={`text-sm font-medium tracking-wide transition-all duration-200 ${
                 isActive
                   ? 'opacity-100 translate-x-0 text-aurora-gold-accessible'
                   : 'opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-focus-visible:opacity-100 group-focus-visible:translate-x-0 text-aurora-text-muted'

@@ -105,7 +105,7 @@ export default function Footer() {
         </div>
 
         {/* Fictional disclaimer */}
-        <p className="mt-6 text-center text-xs text-white/60 leading-relaxed">
+        <p className="mt-6 text-center text-sm text-white/60 leading-relaxed">
           Aurora Luxe is a fictional concept site created for demonstration purposes. No real services are offered.
         </p>
       </div>

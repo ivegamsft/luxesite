@@ -1,13 +1,14 @@
 import { PressAward } from '../lib/types';
 
 // Each publication gets a distinctive typographic style
+// Serif for editorial brands, sans for everything else
 const awardStyles: Record<string, string> = {
   'award-conde-nast': 'text-base lg:text-lg font-serif italic tracking-normal',
-  'award-event-design': 'text-sm lg:text-base font-heading font-bold tracking-[0.3em]',
-  'award-forbes': 'text-sm lg:text-base font-heading font-semibold tracking-[0.2em]',
-  'award-trustpilot': 'text-sm lg:text-base font-heading font-bold tracking-[0.15em]',
-  'award-virtuoso': 'text-base lg:text-lg font-heading font-light tracking-[0.35em]',
-  'award-feefo': 'text-sm lg:text-base font-heading font-bold tracking-[0.25em] uppercase',
+  'award-event-design': 'text-sm lg:text-base font-heading font-semibold tracking-wide',
+  'award-forbes': 'text-sm lg:text-base font-heading font-semibold tracking-wide',
+  'award-trustpilot': 'text-sm lg:text-base font-heading font-semibold tracking-wide',
+  'award-virtuoso': 'text-sm lg:text-base font-heading font-semibold tracking-wide',
+  'award-feefo': 'text-sm lg:text-base font-heading font-semibold tracking-wide uppercase',
 };
 
 export const awards: PressAward[] = [
