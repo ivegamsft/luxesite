@@ -1,5 +1,5 @@
 const path = require('path');
-const webRoot = path.resolve(__dirname, 'apps/web');
+const webRoot = path.resolve(__dirname, '../../apps/web');
 const nextJest = require(require.resolve('next/jest', { paths: [webRoot] }));
 
 const createJestConfig = nextJest({
@@ -8,8 +8,8 @@ const createJestConfig = nextJest({
 
 const customJestConfig = {
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/tests/jest.setup.ts'],
-  roots: ['<rootDir>/tests/unit'],
+  setupFilesAfterEnv: ['<rootDir>/../jest.setup.ts'],
+  roots: ['<rootDir>'],
   testPathIgnorePatterns: ['/node_modules/', '/e2e/'],
   moduleNameMapper: {
     '^@/(.*)$': path.join(webRoot, '$1'),
