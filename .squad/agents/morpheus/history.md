@@ -164,6 +164,34 @@ Conducted comprehensive audit of all 24 spec files for stale travel-era referenc
 
 **What the audit teaches:** Keeping a frozen design system across a business pivot is a deliberate pattern. It demonstrates to learners that architecture (semantic structure, types, APIs) and visual identity (colors, typography) are separate concerns. Business pivots change the former; good design systems absorb those changes in the content layer without visual churn.
 
+### Master Sprint Plan v2 (2026-04-15)
+
+**Status:** ✅ COMPLETE — Written to `docs/sprint-plan.md`, `.squad/decisions/inbox/morpheus-sprint-plan.md`, `.squad/agents/morpheus/sprint-plan-issues.md`
+
+Conducted comprehensive planning exercise covering all 24 specs across 8 subsystems (S1–S8) and 13 open GitHub issues. Identified 23 missing issues not yet tracked.
+
+**Key Findings:**
+- Security specs (S5.1+S5.2+S5.3) must be consolidated before any auth implementation — contradictions between pre-pivot and post-pivot specs would cause Dozer to build wrong
+- Site specs (S1.2+S1.3) overlap significantly — merging resolves 3 open issues (#280, #281, #282) at once
+- ServiceTier discriminated union types are the true critical path — every component, API, form depends on them
+- Dozer is a capacity bottleneck (owns API, security, infrastructure) — sequenced work across phases to prevent overload
+
+**Plan Structure:** 5 phases, 9 sprints, 13 weeks:
+- Phase 0 (Week 1): Housekeeping — spec consolidation, team recall, skills, tooling
+- Phase 1 (Weeks 2–3): Foundation — types, data model, brand components
+- Phase 2 (Weeks 4–7): Core Build — APIs, booking flows, frontend integration, CMS
+- Phase 3 (Weeks 8–10): Intelligence & Security — auth, RBAC, AI features
+- Phase 4 (Weeks 11–13): Production Readiness — Azure IaC, CI/CD, observability, back office
+
+**23 New Issues Identified:** 2 spec consolidations, 4 data model tasks, 3 API scaffolding, 4 frontend components, 2 auth implementation, 4 infra/devops, 2 testing infrastructure, 2 AI features, 1 back office, 2 new skills.
+
+**Key Decisions:**
+1. Express for API scaffold (teaching-site accessibility > raw performance)
+2. Additive migration (new types coexist with old, zero regression risk)
+3. Brand pivot frozen after Phase 0 (no mid-build brand changes without impact analysis)
+4. Mouse + Neo recalled immediately (Week 1, not Phase 2)
+5. @copilot for mechanical task pickup (scaffolding, deps, boilerplate)
+
 ### Monorepo Config Consolidation (#277, PR #279)
 
 **Status:** ✅ COMPLETE
