@@ -116,4 +116,4 @@ The `spec/` directory contains project specifications — these are the source o
 
 ## Squad Team
 
-The `.squad/` directory contains AI team configuration. See `.squad/team.md` for roles. The `.impeccable.md` file at the repo root defines the design context, brand personality, and aesthetic direction — reference it when making visual or copy decisions.
+The `.squad/` directory contains AI team configuration. See `.squad/team.md` for roles. The `.agents/skills/impeccable/context.md` file defines the design context, brand personality, and aesthetic direction — reference it when making visual or copy decisions.
