@@ -7,10 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "cd ../.. && npx --prefix apps/web jest --config jest.config.js",
-    "test:watch": "cd ../.. && npx --prefix apps/web jest --config jest.config.js --watch",
-    "test:e2e": "playwright test --config ../../playwright.config.ts",
-    "test:e2e:headed": "playwright test --config ../../playwright.config.ts --headed",
+    "test": "cd ../.. && npx --prefix apps/web jest --config tests/unit/jest.config.js",
+    "test:watch": "cd ../.. && npx --prefix apps/web jest --config tests/unit/jest.config.js --watch",
+    "test:e2e": "playwright test --config ../../tests/e2e/playwright.config.ts",
+    "test:e2e:headed": "playwright test --config ../../tests/e2e/playwright.config.ts --headed",
     "test:e2e:report": "playwright show-report ../../tests/e2e/playwright-report"
   },
   "dependencies": {

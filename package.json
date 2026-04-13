@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "workspaces": ["apps/*"],
+  "scripts": {
+    "test:e2e": "npx playwright test --config tests/e2e/playwright.config.ts",
+    "test:unit": "npx jest --config tests/unit/jest.config.js --no-coverage",
+    "test": "npm run test:unit && npm run test:e2e"
+  }
+}
